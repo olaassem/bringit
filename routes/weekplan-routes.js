@@ -1,11 +1,11 @@
 const express = require('express');
-
+//Creates router routing middlewares and endpoints
 const router = express.Router();
 
 
 
 //create basic route with 1 console.log
-router.get('/week', (req, res) => {
+router.get('/days', (req, res) => {
 	res.status(200).json({
 		message: "this week's schedule."});
 })

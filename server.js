@@ -37,11 +37,14 @@ app.use(express.static('public'));
 //This grabs the whole file. 
 //We specify the prefix that will use for each file below in PREFIXES.
 const weekplan = require('./routes/weekplan-routes');
+const fitgoal = require('./routes/fitgoal-routes');
+
 
 
 //PREFIXES
 //specify prefix for the route above
 app.use('/week', weekplan);
+app.use('/goal', fitgoal);
 
 
 
