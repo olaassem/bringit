@@ -6,12 +6,27 @@ const morgan = require('morgan');
 //const mongoose = require('mongoose');
 
 
-//start the routing
+//Start the routing
 const app = express();
 
 
-//Middlewares
-//will use morgan and log common elements (not environmental or production)
+
+//CONNECT TO MONGOLAB DATABASE
+mongoose.connect('mongodb://olaassem:11natel7abl77@ds115411.mlab.com:15411/wrkoutapp');
+mongoose.Promise = global.Promise;
+//Retrives database connected at the moment
+let db = mongoose.connection;
+//FEEDBACK THAT THE DB IS OK:
+//on error
+db.on('error', console.error.bind(console, 'Connection error:'));
+//everything running correctly
+db.once('open', function () { console.log('Connected to a database') });
+
+
+
+
+//MIDDLEWARE
+//Use morgan to log common elements (not environmental or production)
 app.use(morgan('common'));
 app.use(bodyparser.json());
 app.use(express.static('public'));
@@ -19,18 +34,20 @@ app.use(express.static('public'));
 
 
 
-//routes
-//this grabs the whole file. we then need to specify the prefix that will use this file
+//ROUTES
+//This grabs the whole file. 
+//We specify the prefix that will use for each file below in PREFIXES.
 const routineroutes = require('./routes/routine');
 
 
+//PREFIXES
 //specify prefix for the route above
 app.use('/routine', routineroutes);
 
 
 
-
-//has to be final code
+//PORT LISTEN
+//Must be final code
 app.listen(8080, () => {
 	console.log('server wrkoutapp running in port 8080');
 })
