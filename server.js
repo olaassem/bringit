@@ -36,12 +36,12 @@ app.use(express.static('public'));
 //ROUTES
 //This grabs the whole file. 
 //We specify the prefix that will use for each file below in PREFIXES.
-const routineroutes = require('./routes/routine');
+const weekplan = require('./routes/weekplan-routes');
 
 
 //PREFIXES
 //specify prefix for the route above
-app.use('/routine', routineroutes);
+app.use('/week', weekplan);
 
 
 
