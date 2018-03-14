@@ -3,7 +3,8 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
 
 
 //Start the routing
@@ -24,13 +25,11 @@ db.once('open', function () { console.log('Connected to a database') });
 
 
 
-
 //MIDDLEWARE
 //Use morgan to log common elements (not environmental or production)
 app.use(morgan('common'));
 app.use(bodyparser.json());
 app.use(express.static('public'));
-
 
 
 
