@@ -32,7 +32,6 @@ router.get('/all', (req, res) => {
 })
 
 
-//HELP!!!!
 //Delete specific fit goal by ID
 router.delete('/:id', (req, res) => {
 	fitgoalModel.findByIdAndRemove(req.params.id)
@@ -47,6 +46,40 @@ router.delete('/:id', (req, res) => {
       		})
     	})
 });
+
+
+
+
+//Update fit goal
+router.put('/:id', (req, res) => {
+	if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+		res.status(400).json({
+			message: "Error. Request path id and request body id values must match."
+    	});
+  	}
+
+  	const updated = {};
+  	const updateableFields = ['title', 'description'];
+  	updateableFields.forEach(field => {
+    	if (field in req.body) {
+      		updated[field] = req.body[field];
+    	}
+  	});
+
+  	//$set : mongoose functionality for updating specific fields selected in the db
+  	fitgoalModel.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
+    	.then((updatedGoal) => {
+    		res.status(200).json({
+    			message: "Fit goal updated successfully."
+    		})
+    	})	
+    	.catch((error) => {
+    		res.status(500).json({ 
+    			message: "Error updating fit goal."
+    		})	
+    	}) 	
+});
+
 
 
 

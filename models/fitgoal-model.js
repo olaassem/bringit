@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 const fitgoalSchema = new mongoose.Schema({
-	//date: {type: Date, required: true}
+	createDate: {type: Date, default: Date.now}, //LOOK IT UP
 	title : {type: String, required: true},
 	description : {type: String, required: true}
 });
