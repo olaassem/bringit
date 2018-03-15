@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 
 const activitySchema = new mongoose.Schema({ 
-	type: {type: String, required: true}, //TO DO: (Jon: make a reference to the activity schema).
+	type: {type: String, required: true}, //TO DO: ().
 	hour: Date,
 	cardio: {
 				distance: String,
