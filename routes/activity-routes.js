@@ -4,8 +4,12 @@ const activityModel = require('../models/activity-model');
 
 const router = express.Router();
 
+//ENDPOINTS
+
+//Retrieve
 
 
+//
 
 
 
