@@ -50,6 +50,32 @@ router.delete('/:id', (req, res) => {
 
 
 
+//Create new fit goal.
+//NOTE: to use in Home Page.
+router.post('/new', ( req, res) => {
+	//creating an object with the keys/values defined in bookSchema
+	let newFitGoal = new fitgoalModel();
+	newFitGoal.title = req.body.title;
+	newFitGoal.description = req.body.description;
+	//mongoose function to save object (goal) in the database
+	newFitGoal.save()
+		.then( goal =>{
+			res.status(200).json({ 
+				message: "New fit goal saved.",
+				data: goal
+			})
+		})
+		.catch(err => {
+			res.status(500).json({ 
+				message: "Error saving new fit goal."
+			})
+		})
+})
+
+
+
+
+
 //Update fit goal
 router.put('/:id', (req, res) => {
 	if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
@@ -79,41 +105,6 @@ router.put('/:id', (req, res) => {
     		})	
     	}) 	
 });
-
-
-
-
-
-
-
-
-
-
-
-//Create new fit goal.
-//NOTE: to use in Home Page.
-router.post('/new', ( req, res) => {
-	//creating an object with the keys/values defined in bookSchema
-	let newFitGoal = new fitgoalModel();
-	newFitGoal.title = req.body.title;
-	newFitGoal.description = req.body.description;
-	//mongoose function to save object (goal) in the database
-	newFitGoal.save()
-		.then( goal =>{
-			res.status(200).json({ 
-				message: "New fit goal saved.",
-				data: goal
-			})
-		})
-		.catch(err => {
-			res.status(500).json({ 
-				message: "Error saving new fit goal."
-			})
-		})
-})
-
-
-
 
 
 

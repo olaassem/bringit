@@ -1,6 +1,6 @@
 const express = require('express');
 //Require activity model file
-const fitgoalModel = require('../models/category-model');
+const categoryModel = require('../models/category-model');
 
 const router = express.Router();
 
