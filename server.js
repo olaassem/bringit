@@ -37,9 +37,9 @@ app.use(express.static('public'));
 //This grabs the whole file. 
 //We specify the prefix that will use for each file below in PREFIXES.
 //const weekPlan = require('./routes/weekplan-routes');
-const fitGoal = require('./routes/fitgoal-routes');
-const category = require('./routes/category-routes');
-const activity = require('./routes/activity-routes');
+const fitGoal = require('./fitgoal/fitgoal-routes');
+const category = require('./category/category-routes');
+const activity = require('./activity/activity-routes');
 
 
 

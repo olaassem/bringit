@@ -1,6 +1,6 @@
 const express = require('express');
 //Require fitgoal model file
-const fitgoalModel = require('../models/fitgoal-model');
+const fitgoalModel = require('./fitgoal-model');
 
 
 
@@ -42,15 +42,15 @@ router.post('/new', ( req, res) => {
 //NOTE: to use in Goals History Page.
 router.get('/all', (req, res) => {
 	fitgoalModel.find({}) 
-	.then((goals) =>{
+	.then((goals) => {
 		res.status(200).json({
-			message: "This is the list of all fit goals to-date.",
+			message: "Successfully retrieved all fit goals.",
 			data: goals
 		})
 	}) 
 	.catch((error) => {
 		res.status(500).json({
-			message: "Error retrieving all fit goals to-date.",
+			message: "Error retrieving all fit goals.",
 			data: error
 		})
 	})
@@ -77,7 +77,7 @@ router.get('/:id', (req, res) => {
 
 
 
-//Edit fit goal
+//Edit fit goal by ID.
 router.put('/:id', (req, res) => {
 	if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
 		res.status(400).json({
@@ -107,7 +107,7 @@ router.put('/:id', (req, res) => {
 
 
 
-//Delete specific fit goal by ID
+//Delete fit goal by ID.
 router.delete('/:id', (req, res) => {
 	fitgoalModel.findByIdAndRemove(req.params.id)
 	.then(() => {

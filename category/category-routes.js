@@ -1,6 +1,6 @@
 const express = require('express');
 //Require activity model file
-const categoryModel = require('../models/category-model');
+const categoryModel = require('./category-model');
 
 const router = express.Router();
 
@@ -37,7 +37,7 @@ router.get('/all', (req, res) => {
 	categoryModel.find({})
 	.then((categories) => {
 		res.status(200).json({
-			message: "Retrieved all categories successfully.",
+			message: "Successfully retrieved all categories.",
 			data: categories 
 		})
 	})

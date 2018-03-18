@@ -4,19 +4,14 @@ const mongoose = require('mongoose');
 
 //All activity types
 const activitySchema = new mongoose.Schema({ 		
-	type: {type: String, required: true},
-	hour: {type: Date, required: true},
-	duration: {type: Number, required: true},
+	name: {type: String, required: true},
+	time: {type: String, required: true},
+	duration: {type: Number, required: false},
 	cardio: {
-				distance: String,
-				duration: Number
+				distance: {type: Number, required: false},
+				duration: {type: Number, required: false},
 			},
-	routine: {
-				excercise: {type: String, required: false},
-				sets: {type: Number, required: false},
-				reps: {type: Number, required: false},
-				weight: {type: Number, required: false}
-			},
+	routine: [{type: String, required: false}],//(Jon) Reference to 'exercise' and populate
 	location: {type: String, required: false}, //may integrate google maps API
 	inspiration: {type: String, required: false}, //link to routine blog/pic/video
 	completed: {type: Boolean, required: true}
