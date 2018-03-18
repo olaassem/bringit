@@ -40,7 +40,7 @@ app.use(express.static('public'));
 const fitGoal = require('./fitgoal/fitgoal-routes');
 const category = require('./category/category-routes');
 const activity = require('./activity/activity-routes');
-
+const exercise = require('./exercise/exercise-routes');
 
 
 //PREFIXES
@@ -49,7 +49,7 @@ const activity = require('./activity/activity-routes');
 app.use('/goal', fitGoal);
 app.use('/category', category);
 app.use('/activity', activity);
-
+app.use('/exercise', exercise);
 
 
 //PORT LISTEN

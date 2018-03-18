@@ -93,7 +93,7 @@ exports.updateCategoryByID = (req, res) => {
 
 //Delete category by ID
 exports.deleteCategoryByID = (req, res) => {
-	newCategory.findByIdAndRemove(req.params.id)
+	categoryModel.findByIdAndRemove(req.params.id)
 	.then(() => {
 		res.status(200).json({
 			message: `Successfully deleted category with ID ${req.params.id}.`
