@@ -6,7 +6,7 @@
 const activityModel = require('./activity-model');
 
 
-/*
+
 //Create new activity.
 exports.postNewActivity = (req, res) => {
 	let newActivity = new activityModel();
@@ -34,7 +34,23 @@ exports.postNewActivity = (req, res) => {
 	})
 }
 
+/*
+//Create test for Postman:
+{
+    "name": "test",
+    "time": "1 am",
+	"duration": 1,
+	"cardio": {
+				"distance": 3,
+				"duration": 3
+			},
+	"routine": ["LOL"],
+	"location": "somewhere.",
+	"inspiration": "someone.",
+	"completed": true
+}
 */
+
 
 
 
