@@ -1,0 +1,72 @@
+
+/*--Universal Styling--*/
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+ }
+
+
+section{
+	border: 1pc solid grey;
+}
+
+/*--End of Universal Styling--*/
+
+
+
+
+/*--Footer Styling--*/
+footer{
+	height: 50px;
+	background-color: white;
+	color: black;
+	width: 100%
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+
+	bottom: 0px;
+}
+
+.author-date{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    margin-top: 3px;
+
+}
+
+.github-logo,
+.linkedin-logo{
+    width:15px;
+    height:15px;
+    margin-right: 3px;
+}
+
+
+.ola{
+	font-size: 16px;
+	text-decoration: none;
+	color: #E2DEC6;
+	margin-left: 2px;
+	padding: 4px 8px 4px 0px;
+	margin-bottom: 0px;
+}
+
+.c2018{
+    font-size: 16px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 11px; 
+}
+/*--End of Footer Styling--*/

@@ -41,6 +41,7 @@ const fitGoal = require('./fitgoal/fitgoal-routes');
 const category = require('./category/category-routes');
 const activity = require('./activity/activity-routes');
 const exercise = require('./exercise/exercise-routes');
+const quote = require('./quote/quote-routes');
 
 
 //PREFIXES
@@ -50,6 +51,7 @@ app.use('/goal', fitGoal);
 app.use('/category', category);
 app.use('/activity', activity);
 app.use('/exercise', exercise);
+app.use('/quote', quote);
 
 
 //PORT LISTEN

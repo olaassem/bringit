@@ -11,10 +11,10 @@ const activitySchema = new mongoose.Schema({
 				distance: {type: Number, required: false},
 				duration: {type: Number, required: false},
 			},
-	routine: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercise'}],//(Jon) Reference to 'exercise' and populate
+	routine: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercise'}],
 	location: {type: String, required: false}, //may integrate google maps API
 	inspiration: {type: String, required: false}, //link to routine blog/pic/video
-	completed: {type: Boolean, required: true}
+	completed: {type: Boolean, default: false}
 });
 
 

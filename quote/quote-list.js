@@ -1,3 +1,11 @@
+//Object.assign method: Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
+//array to json: https://stackoverflow.com/questions/2295496/convert-array-to-json
+
+
+//create simple model schema and import into the collection db one property
+//import: modify into a json file and use the mongo import command
+//restaurants json file lesson???
+
 const motvQuotes = [
 	"Wow, I really regret that workout. – No One. Ever.",
 	'When nothing goes right… go lift.',
