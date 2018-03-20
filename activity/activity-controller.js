@@ -51,7 +51,7 @@ exports.postNewActivity = (req, res) => {
 }
 */
 
-
+//Can create allActivitiesShort (with specifc properties) AND allActivitiesFull (populate all properties)
 
 
 //Get all activities.

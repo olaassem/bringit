@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 //Exercise
 const exerciseSchema = new mongoose.Schema({ 
-	activityID: {type: String, required: false},//figure this out!		
+    activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
 	name: {type: String, required: false},
 	sets: {type: Number, required: false},
 	reps: {type: Number, required: false},

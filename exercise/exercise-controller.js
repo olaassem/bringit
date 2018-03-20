@@ -26,6 +26,8 @@ exports.postNewExercise = (req, res) => {
 
 
 
+
+
 //Get all exercises
 exports.getAllExercises = (req, res) => {
 	exerciseModel.find({})

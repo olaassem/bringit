@@ -9,6 +9,7 @@ exports.postNewFitGoal = ( req, res) => {
 	let newFitGoal = new fitgoalModel();
 	newFitGoal.title = req.body.title;
 	newFitGoal.description = req.body.description;
+	newFitGoal.completed = req.body.completed;
 	//mongoose function to save object (goal) in the database
 	newFitGoal.save()
 	.then( (goal) =>{
@@ -73,7 +74,7 @@ exports.updateFitGoalByID = (req, res) => {
     	});
   	}
   	const updated = {};
-  	const updateableFields = ['title', 'description'];
+  	const updateableFields = ['title', 'description', 'completed'];
   	updateableFields.forEach(field => {
     	if (field in req.body) {
       		updated[field] = req.body[field];
