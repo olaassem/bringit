@@ -1,22 +1,28 @@
-//Object.assign method: Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
-//array to json: https://stackoverflow.com/questions/2295496/convert-array-to-json
+/*
+
+motvQuotes.forEach(quote => {
+  let objQuotes = {
+    quote: quote
+  };
+  
+  console.log(objQuotes);
+})
+
+*/
 
 
-//create simple model schema and import into the collection db one property
-//import: modify into a json file and use the mongo import command
-//restaurants json file lesson???
 
 const motvQuotes = [
 	"Wow, I really regret that workout. – No One. Ever.",
-	'When nothing goes right… go lift.',
-	'The only one who can tell you “you can’t” is you, and you don’t have to listen.',  
-	'There are choices and then there are excuses. Not both.',
-	'Running is nothing more than a series of arguments between the part of your brain that wants to stop and the part that wants to keep going.',
-	'Better sore than sorry.',
-	'A change may be just around the corner.',
+	"When nothing goes right… go lift.",
+	"The only one who can tell you “you can’t” is you, and you don’t have to listen.",
+	"There are choices and then there are excuses. Not both.",
+	"Running is nothing more than a series of arguments between the part of your brain that wants to stop and the part that wants to keep going.",
+	"Better sore than sorry.",
+	"A change may be just around the corner.",
 	"One of the greatest moments in life is realizing that two weeks ago, your body couldn't do that.",
-	"Shut up. Work hard. Be patient.",  
-	"Remember that guy that gave up? Neither does anybody else.",  
+	"Shut up. Work hard. Be patient.",
+	"Remember that guy that gave up? Neither does anybody else.",
 	"Today I will do what others won’t, so tomorrow I can accomplish what others can’t.",
 	"Do something today that your future self will thank you for.",
 	"We are what we repeatedly do. Excellence then is not an act but a habit.",
@@ -250,9 +256,9 @@ const motvQuotes = [
 	"You don’t always get what you wish for, you get what you work for.",  
 	"You don’t have to see the whole staircase. Just take the first step.",  
 	"You have brains in your head. You have feet in your shoes. You can steer yourself in any direction you choose.", 
-	"You have to fight through some bad days to earn the best days of your life."
-	"You were strong enough to get this far. You are strong enough to keep going."  
-	"You won’t get very far if you only work out on the days you feel good.",  
+	"You have to fight through some bad days to earn the best days of your life.",
+	"You were strong enough to get this far. You are strong enough to keep going.",
+	"You won’t get very far if you only work out on the days you feel good.",
 	"You’ve got what it takes, but it will take everything you’ve got.",  
 	"Your body can do anything. It’s just your brain you have to convince.",  
 	"Your body keeps an accurate journal regardless of what you write down.", 

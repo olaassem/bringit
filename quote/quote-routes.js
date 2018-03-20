@@ -4,8 +4,11 @@ const quoteController = require('./quote-controller');
 
 
 
-//router.get('/all', quoteController.getAllQuotes);
-router.get('/:id', quoteController.getQuoteByID);
+router.get('/all', quoteController.getAllQuotes);
+//router.get('/:id', quoteController.getQuoteByID);
+//router.post('/new', quoteController.postNewQuote);
+//router.put('/:id', quoteController.updateQuoteByID);
+//router.delete('/:id', quoteController.deleteQuoteByID);
 
 
 

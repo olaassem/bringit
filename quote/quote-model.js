@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 //Quote
 const quoteSchema = new mongoose.Schema({ 
-	randomQuote: {type: String, required: true},
+	quote: {type: String, required: true},
 });
 
 
