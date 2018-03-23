@@ -9,7 +9,7 @@ exports.postNewFitGoal = ( req, res) => {
 	let newFitGoal = new fitgoalModel();
 	newFitGoal.title = req.body.title;
 	newFitGoal.description = req.body.description;
-	newFitGoal.completed = req.body.completed;
+	//newFitGoal.completed = req.body.completed;
 	//mongoose function to save object (goal) in the database
 	newFitGoal.save()
 	.then( (goal) =>{

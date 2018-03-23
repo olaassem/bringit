@@ -38,14 +38,55 @@
 			<div class="col-12">
 				<section role="region" class="quote-section">
 					<p class="random-quote"></p>
-					<button type="submit">Motivate Me</button>
+					<!--<button type="submit">I need more motivation</button> -->
 				</section>
+
+
+				
+
+
+
 
 
 				<section role="region" class="fitgoal-section">
 					<h2>Fit Goal</h2>
-					<p class="current-fit-goal"></p>
+						<div class="current-fitgoal hidden">
+							<h3 class="current-fitgoal-title"></h3>
+							<p class="current-fitgoal-date"></p>
+							<p class="current-fitgoal-description"></p>
+						</div>	
+					<button type="submit" class="open=fitgoal-form">Add new fit goal!</button>
+					<form role="form" class="post-fitgoal-form " action="#" method="post">
+						<fieldset>
+							<legend>What is your current fitness goal?</legend>
+								<label for="fitgoal-title">Fit Goal</label>
+							</br>
+								<input id="fitgoal-title" type="text" placeholder="e.g. Run 3 miles everyday"/>
+							</br>	
+								<label for="fitgoal-description">Description</label>
+							</br>	
+								<textarea id="fitgoal-description" type="text" cols="70" rows="5" placeholder="e.g. On non-leg days, run at least 3 miles a day pre- or post- workout. Mix HIIT and steady runs on different days."></textarea>
+							</br>	
+								<button type="submit" id="addfitgoalbutton">Add!</button>
+						</fieldset>
+					</form>
 				</section>
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<section role="region" class="fitweek-section">
 					<h2>This Week</h2>
@@ -62,7 +103,25 @@
 
 
 				<section role="region" class="category-section">
-					<h2>Categories</h2>	
+					<h2>Categories</h2>
+					<div class="category-icons"></div>	
+
+
+
+					<form role="form" class="post-category-form " action="#" method="post">
+						<fieldset>
+							<legend>Add New Category</legend>
+								<label for="category-name">Category Name:</label>
+							</br>
+								<input id="category-name" type="text" placeholder="e.g. Weight-Lifting"/>
+							</br>	
+								<label for="category-img">Upload Img</label>
+							</br>	
+								<input id="category-img" type="text" placeholder="URL"/>
+							</br>	
+								<button type="submit" id="addcategorybutton">Add!</button>
+						</fieldset>
+					</form>	
 				</section>
 
 
@@ -72,7 +131,8 @@
 
 
 				<section role="region" class="goalhistory-section">
-					<h2>Fit Goal History</h2>	
+					<h2>Fit Goal History</h2>
+					<ul class="goalhistory-list"></ul>	
 				</section>
 
 

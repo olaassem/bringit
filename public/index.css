@@ -13,12 +13,54 @@ body{
     padding: 0;
  }
 
+ .hidden{
+	display: none;
+}
 
 section{
 	border: 1pc solid grey;
 }
 
 /*--End of Universal Styling--*/
+
+
+
+
+.category-name,
+.category-img{
+	display: absolute;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.icon{
+	float: left;
+	width:200px;
+	height: 200px;
+	border: solid #20C36B 3px;
+	border-radius: 50%;
+	text-align: center;
+}
+
+
+
+/*--Fit Goal Section Styling--*/
+
+#fitgoal-title{
+	height: 40px;
+	width: 40%;
+	font-size: 14px;
+}
+
+#fitgoal-description{
+    font-size: 14px;
+}
+
+/*--End of Fit Goal Section Styling--*/
+
+
+
+
 
 
 

@@ -4,6 +4,7 @@ const categoryModel = require('./category-model');
 
 //Create new category
 exports.postNewCategory = (req, res) => {
+	console.log(req.body);
 	let newCategory = new categoryModel();
 	newCategory.name = req.body.name;
 	newCategory.img = req.body.img;
