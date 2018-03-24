@@ -18,13 +18,31 @@ body{
 }
 
 section{
-	border: 1pc solid grey;
+	border: 1pc solid #409CFF;
 }
 
 /*--End of Universal Styling--*/
 
 
 
+/*--Quote Styling Section--*/
+.motifit-button{
+	font-size: 30px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+
+/*--Fit Week Section Styling--*/
+.day-icon{
+	width: 100px;
+	height: 100px;
+}
+
+/*--End of Week Section Styling--*/
+
+
+/*--Fit Goal Section Styling--*/
 
 .category-name,
 .category-img{
@@ -41,6 +59,11 @@ section{
 	border-radius: 50%;
 	text-align: center;
 }
+
+/*--End of Fit Goal Section Styling--*/
+
+
+
 
 
 

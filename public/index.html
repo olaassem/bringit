@@ -37,40 +37,44 @@
 		<div class="row">
 			<div class="col-12">
 				<section role="region" class="quote-section">
-					<p class="random-quote"></p>
-					<!--<button type="submit">I need more motivation</button> -->
+					<p class="random-quote hidden"></p>
+					<button type="submit" class="motifit-button">MotiFit Me</button>
 				</section>
+
+
 
 
 				
 
-
-
-
-
 				<section role="region" class="fitgoal-section">
 					<h2>Fit Goal</h2>
-						<div class="current-fitgoal hidden">
-							<h3 class="current-fitgoal-title"></h3>
-							<p class="current-fitgoal-date"></p>
-							<p class="current-fitgoal-description"></p>
-						</div>	
-					<button type="submit" class="open=fitgoal-form">Add new fit goal!</button>
-					<form role="form" class="post-fitgoal-form " action="#" method="post">
-						<fieldset>
-							<legend>What is your current fitness goal?</legend>
-								<label for="fitgoal-title">Fit Goal</label>
-							</br>
-								<input id="fitgoal-title" type="text" placeholder="e.g. Run 3 miles everyday"/>
-							</br>	
-								<label for="fitgoal-description">Description</label>
-							</br>	
-								<textarea id="fitgoal-description" type="text" cols="70" rows="5" placeholder="e.g. On non-leg days, run at least 3 miles a day pre- or post- workout. Mix HIIT and steady runs on different days."></textarea>
-							</br>	
-								<button type="submit" id="addfitgoalbutton">Add!</button>
-						</fieldset>
-					</form>
-				</section>
+					<div class="current-fitgoal hidden"></div>
+					<button type="submit" class="open-fitgoal-modal">Add new fit goal!</button>	
+				</section>	
+
+				
+
+				<div class="fitgoal-modal-form hidden">
+					<div class="fitgoal-modal-content">
+			          	<div class="modal-body">
+						    <form role="form" class="post-fitgoal-form " action="#" method="#">
+								<fieldset>
+									<legend>What is your current fitness goal?</legend>
+										<label for="fitgoal-title">Fit Goal</label>
+									</br>
+										<input id="fitgoal-title" type="text" placeholder="e.g. Run 3 miles everyday"/>
+									</br>	
+										<label for="fitgoal-description">Description</label>
+									</br>	
+										<textarea id="fitgoal-description" type="text" cols="70" rows="5" placeholder="e.g. On non-leg days, run at least 3 miles a day pre- or post- workout. Mix HIIT and steady runs on different days."></textarea>
+									</br>	
+										<button type="submit" id="addfitgoalbutton">Add!</button>
+								</fieldset>
+							</form>
+			     	 	</div>	
+					</div>
+				</div>
+				
 
 				
 
@@ -90,16 +94,22 @@
 
 				<section role="region" class="fitweek-section">
 					<h2>This Week</h2>
-					<ul>
-						<li>Monday</li>
-						<li>Tuesday</li>
-						<li>Wednesday</li>
-						<li>Thursday</li>
-						<li>Friday</li>
-						<li>Saturday</li>
-						<li>Sunday</li>
-					</ul>	
+
+					<button type="submit" class="day-icon monday">
+						<h2>MON</h2>
+						<img src="https://png.icons8.com/dusk/64/000000/monday.png"/>
+					</button>
+
+
+					<input type ="image" class="day-icon monday" src="https://png.icons8.com/dusk/64/000000/monday.png">
+					<input type ="image" class="day-icon tuesday" src="https://png.icons8.com/dusk/64/000000/tuesday.png">
+					<input type ="image" class="day-icon wednesday" src="https://png.icons8.com/dusk/64/000000/wednesday.png">
+					<input type ="image" class="day-icon thursday" src="https://png.icons8.com/dusk/64/000000/thursday.png">
+					<input type ="image" class="day-icon friday" src="https://png.icons8.com/dusk/64/000000/friday.png">
+					<input type ="image"  class="day-icon saturday" src="https://png.icons8.com/dusk/64/000000/saturday.png">
+					<input type ="image" class="day-icon sunday" src="https://png.icons8.com/dusk/64/000000/sunday.png">	
 				</section>
+
 
 
 				<section role="region" class="category-section">
@@ -108,7 +118,7 @@
 
 
 
-					<form role="form" class="post-category-form " action="#" method="post">
+					<form role="form" class="post-category-form" action="#" method="#">
 						<fieldset>
 							<legend>Add New Category</legend>
 								<label for="category-name">Category Name:</label>
@@ -126,8 +136,75 @@
 
 
 				<section role="region" class="exercise-form">
-					<h2>Routine</h2>	
+					<h2>Activity</h2>
+
+
+
+					<form role="form" class="post-activity-form" action="#" method="#">
+						<fieldset>
+							<legend>Add Activity</legend>
+								<label for="activity-name">Activity Name:</label>
+								<input id="activity-name" type="text" placeholder=""/>
+							</br>	
+								<label for="activity-time">Time:</label>
+								<input id="activity-time" type="text" placeholder=""/>
+							</br>	
+								<label for="activity-duration">Duration:</label>
+								<input id="activity-duration" type="text" placeholder=""/>
+							</br>	
+								<label for="activity-cardio">Cardio</label>
+							</br>	
+								<label for="cardio-distance">Distance:</label>
+								<input id="cardio-distance" type="text" placeholder=""/>
+							</br>	
+								<label for="cardio-duration">Duration:</label>
+								<input id="cardio-duration" type="text" placeholder=""/>
+							</br>
+								<p>Routine</p>
+								<input type ="image" class="add-routine-icon" src="https://png.icons8.com/ultraviolet/80/000000/plus.png">
+								<div class="routine-form-section hidden">
+									<form role="form" class="post-routine-form hidden" action="#" method="#">
+										<fieldset>
+											<legend>Add Routine</legend>
+											</br>		
+												<label for="routine-name">Name:</label>
+												<input id="routine-name" type="text" placeholder=""/>	
+											</br>
+												<label for="routine-weight">Weight:</label>
+												<input id="routine-weight" type="text" placeholder=""/>
+											</br>		
+												<label for="routine-sets">Sets:</label>
+												<input id="routine-sets" type="text" placeholder=""/>	
+											</br>
+												<label for="routine-reps">Reps:</label>
+												<input id="routine-reps" type="text" placeholder=""/>
+										</fieldset>
+									</form>
+								</div>		
+							</br>		
+								<label for="activity-location">Location:</label>
+								<input id="activity-location" type="text" placeholder=""/>	
+							</br>
+								<label for="activity-inspiration">Inspiration:</label>
+								<input id="activity-inspiration" type="text" placeholder=""/>
+							</br>
+								<button type="submit" id="addroutinebutton">Add!</button>
+						</fieldset>
+					</form>
 				</section>
+
+
+
+
+
+				<section role="region" class="exercise-section">
+
+
+				</section>
+
+
+
+
 
 
 				<section role="region" class="goalhistory-section">

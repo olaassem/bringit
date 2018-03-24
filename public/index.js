@@ -2,6 +2,23 @@
 /***   Random Quote   ***/
 
 
+function getMotiFitQuote(){
+	$('.motifit-button').on('click', event => {
+		event.preventDefault();
+		$('.random-quote').removeClass('hidden');
+		
+		$.get('/quote/all', (allQuotes) => {
+			let num = Math.floor(Math.random() * allQuotes.data.length);
+			console.log(num);
+			let randomQuote = allQuotes.data[num].quote; 
+			console.log(randomQuote);
+			$('.random-quote').html(`"${randomQuote}"`);
+		})
+	})
+}
+getMotiFitQuote();
+
+/*
 $.get('/quote/all', (allQuotes) => {
 	let num = Math.floor(Math.random() * allQuotes.data.length);
 	console.log(num);
@@ -9,6 +26,7 @@ $.get('/quote/all', (allQuotes) => {
 	console.log(randomQuote);
 	$('.random-quote').html(`${randomQuote}`);
 })
+*/
 
 /*
 let now = new Date();
@@ -22,66 +40,142 @@ setTimeout(function(){alert("It's 8pm!")}, millisTill00);
 
 
 
-/***   Fit Goal   ***/
-$.get('/goal/all', (allGoals) => {
-	console.log(allGoals);
-	allGoals.data.forEach( (goal)=> {
+
+/***   FIT GOALS   ***/
+
+//Get all fit goals
+function getAllGoals(){
+	$.get('/goal/all', (allGoals) => {
+		console.log(allGoals);
+		displayAllGoals(allGoals);
+	})
+}
+
+function displayAllGoals( allGoals ){
+	allGoals.data.forEach( (goal) => {
 		$('.goalhistory-list').append(`
 			<li>${goal.title}: ${goal.description}</li>	
 		`)
 	})
-})
+}
+
+getAllGoals();
 
 
-/*
-//Post a new fit goal
-$('.post-fitgoal-form').on('submit', event => {
-	event.preventDefault();
-	let params = {
-		//createDate: $().val;
-		title: $('#fitgoal-title').val(),
-		description: $('#fitgoal-description').val(),  
-		//completed: $().val()
-	}
-	$.post( '/goal/new', params )
-		.done(function( data ){
-			console.log( newFitGoal );
-		})
-		.fail(function( data ){
-			console.log('Post new fit goal failed!')
-		})
-});
+
+
+
 
 
 /*
-	$.ajax({
-		method: 'POST',
-		url: '/goal/new',
-		data: fitgoal,
-		//contentType: 'application/json',
-		//dataType: 'json',
-		success: ( newFitGoal ) => {
-			console.log( newFitGoal );
-			$('.current-fitgoal').removeClass('hidden');
-			$('.current-fitgoal-title').append(newFitGoal.title);
-			$('.current-fitgoal-description').append(newFitGoal.description);
-			//$('.current-fitgoal-date').append(newFitGoal.createDate);
-		},
-		error: ( error ) => console.log(error)
-	});
-});
+// Get modal element
+var modal = document.getElementById('simpleModal');
+// Get open modal button
+var modalBtn = document.getElementById('modalBtn');
+// Get close button
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+// Listen for open click
+modalBtn.addEventListener('click', openModal);
+// Listen for close click
+closeBtn.addEventListener('click', closeModal);
+// Listen for outside click
+window.addEventListener('click', outsideClick);
+
+// Function to open modal
+function openModal(){
+  modal.style.display = 'block';
+}
+
+// Function to close modal
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+// Function to close modal if outside click
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
 */
 
 
 
+function openFitGoalModal(){
+	$('.open-fitgoal-modal').click( event => {
+		event.preventDefault();
+		$('.fitgoal-modal-form').removeClass('hidden');
+	});	
+}
+openFitGoalModal();
 
 
 
-/***   Categories   ***/
+
+
+
+
+
+
+//Post a new fit goal
+function postNewFitGoal(){
+	$('.post-fitgoal-form').on('submit', event => {
+		event.preventDefault();
+		let params = {
+			title: $('#fitgoal-title').val(),
+			//createDate: 
+			description: $('#fitgoal-description').val(),  
+		}
+		$.ajax({
+		    type: "POST",
+		    contentType: 'application/json',
+		    url: '/goal/new',
+		    data: JSON.stringify(params)
+	  	})
+		.done(function( data ){
+			console.log( data );
+	        displayNewFitGoal( data );
+	        $('.fitgoal-modal-form').addClass('hidden');
+		})
+		.fail(function( data ){
+	    	console.log('Post new fit goal failed!');
+	    })
+	})
+}
+
+function displayNewFitGoal( data ){
+	$('#fitgoal-title').val('');
+	$('#fitgoal-description').val('');
+    $('.current-fitgoal').removeClass('hidden');
+    $('.current-fitgoal').html(`
+    	<h3 class="current-fitgoal-title">${data.data.title}</h3>
+		<p class="current-fitgoal-description">${data.data.description}</p>
+    `)
+}
+
+postNewFitGoal();
+
+
+
+
+
+
+
+
+
+
+/***   CATEGORIES   ***/
 
 //Get all categories
-$.get('/category/all', (allCategories) => {
-	console.log(allCategories);
+function getAllCategories(){
+	$.get('/category/all', ( allCategories ) => {
+		console.log(allCategories);
+		displayAllCategories( allCategories );
+	})
+}
+
+function displayAllCategories( allCategories ){
 	allCategories.data.forEach( (category)=> {
 		$('.category-icons').append(`
 			<div class="icon">
@@ -90,8 +184,10 @@ $.get('/category/all', (allCategories) => {
 			</div>	
 		`)
 	})
+}
 
-})
+getAllCategories();
+
 
 
 //Post a new category
@@ -101,20 +197,61 @@ $('.post-category-form').submit('#addcategorybutton', event => {
 		name: $('#category-name').val(),
 		img: $('#category-img').val()  
 	}
-	console.log(params);
-	$.post( '/category/new', params )
-	.done(function( data ){
-		console.log( data );
+	$.ajax({
+	    type: "POST",
+	    contentType: 'application/json',
+	    url: '/category/new',
+	    data: JSON.stringify(params),
+  	})
+    .done(function( data ){
+        console.log( data );
+    })
+    .fail(function( data ){
+        console.log('Post new category failed!')
+    })
+})
+
+
+
+/***   ACTIVITY   ***/
+function displayRoutineForm(){
+	$('.post-activity-form').on('click', '.add-routine-icon', event => {
+		event.preventDefault();
+		$('.routine-form-section').removeClass('hidden');
 	})
-	.fail(function( data ){
-		console.log('Post new category failed!')
-	})
-});
+}
+displayRoutineForm();
+
+
+//Get all activities.
+function getAllActivities(){
+	$.get('/activity/all', ( allActivities ) => {
+		console.log( allActivities );
+	});
+}
+getAllActivities();
+
+
+
+//Post new activity.
+function postNewActivity(){
+
+}
+
+
+
 
 
 /*
-I feel like the same thing was happening to me 
-recently until we figured out that we needed 
-to add this to the server: 
-app.use(bodyParser.urlencoded({ extended: false }));
+	name: {type: String, required: true},
+	time: {type: String, required: true},
+	duration: {type: Number, required: false},
+	cardio: {
+				distance: {type: Number, required: false},
+				duration: {type: Number, required: false},
+			},
+	routine: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercise'}],
+	location: {type: String, required: false}, //may integrate google maps API
+	inspiration: {type: String, required: false}, //link to routine blog/pic/video
+	completed: {type: Boolean, default: false}
 */
