@@ -33,24 +33,38 @@ getMotiFitQuote();
 
 /***   F I T   G O A L S   ***/
 
-//Get all fit goals
-function getAllGoals(){
-	$.get('/goal/all', (allGoals) => {
-		console.log(allGoals);
-		displayAllGoals(allGoals);
+//Get all completed fit goals (for history log).
+function getAllCompletedGoals(){
+	$.get('/goal/all', ( allGoals ) => {
+		console.log( allGoals );
+		displayCompletedFitGoals( allGoals );
 	})
 }
-getAllGoals();
+getAllCompletedGoals();
 
 
 
-function displayAllGoals( allGoals ){
-	allGoals.data.forEach( (goal) => {
-		$('.goalhistory-list').append(`
-			<li>${goal.title}: ${goal.description}</li>	
-		`)
+function displayCompletedFitGoals( allGoals ){
+	allGoals.data.forEach( ( fitgoal ) => {
+		let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
+		if( fitgoal.completed === true){
+			$('.goalhistory-list').append(`
+				<div class="completed-goal">
+					<h3>Title: ${fitgoal.title}</h3>
+					<p>Description: ${fitgoal.description}</p>
+					<p>Completed on: ${formatedDate}</p>
+				</div>	
+			`)
+		}
 	})
 }
+
+
+
+
+
+
+
 
 
 
@@ -102,7 +116,7 @@ function displayNewFitGoal( fitgoal ){
     	<p class="current-fitgoal-date">${formatedDate}</p>
     	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
 		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
-		<button class="completed-fitgoal-button" value="${fitgoal.data.completed}">Completed!</button>
+		<button class="completed-fitgoal-button" data-value="${fitgoal.data.completed}" value="${fitgoal.data._id}">Completed!</button>
 		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
 		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
     `)
@@ -110,14 +124,67 @@ function displayNewFitGoal( fitgoal ){
 postNewFitGoal();
 
 
-
 let ID;
+
+
+//Completed fit goal.
+function completedFitGoal(){
+	$('.current-fitgoal').on('click', '.completed-fitgoal-button', event => {
+		event.preventDefault();
+		let ID =  $(event.currentTarget).attr( 'value' );
+		console.log(ID);
+		let params = {
+			'_id' : `${ID}`, //how come i have to specify _id here but not in delete?
+			'completed': true,
+			createDate: Date.now()
+		};	 
+		$.ajax({
+		    type: 'PUT',
+		    url: `/goal/${ID}`,
+		    contentType: 'application/json',
+		    data: JSON.stringify(params)
+	  	}).done((fitgoal) =>{
+	  		$('.current-fitgoal').remove();
+	  		getAllCompletedGoals();
+	  	}).fail((error) => {
+	  		console.log('Completeing fit goal failed!');
+	  	})
+	});  	
+}
+completedFitGoal();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Delete selected fit goal.
 function deleteFitGoal(){
 	$('.current-fitgoal').on('click', '.delete-fitgoal-button', event => {
 		event.preventDefault();
 		let ID = $(event.currentTarget).attr("value");
-		debugger
 		console.log(ID);
 		$.ajax({
             url: `goal/${ID}`,
@@ -137,7 +204,7 @@ deleteFitGoal();
 
 
 
-
+/*
 
 //Get fitgoal details when edit button is selected
 function editFitGoalModalLoad() {

@@ -19,7 +19,7 @@ body{
 
 button{
 	cursor: pointer;
-	font-size: 30px;
+	font-size: 20px;
 }
 
 section{
@@ -32,7 +32,6 @@ section{
 
 /*--Quote Styling Section--*/
 .motifit-button{
-	font-size: 30px;
 	border-radius: 15px;
 	cursor: pointer;
 }
@@ -75,7 +74,6 @@ section{
 /*--Fit Goal Section Styling--*/
 
 .open-fitgoal-modal{
-	font-size: 30px;
 	border-radius: 15px;
 	cursor: pointer;
 }
