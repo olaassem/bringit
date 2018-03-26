@@ -1,7 +1,16 @@
+//motifit quote
+//fitgoals
+//fitweek
+//categories
+//exercises
 
-/***   Random Quote   ***/
 
 
+
+/***   M O T I F I T   Q U O T E    ***/
+
+//add the db into app to persist
+//can only have this functionality when u add user functionality
 function getMotiFitQuote(){
 	$('.motifit-button').on('click', event => {
 		event.preventDefault();
@@ -18,30 +27,11 @@ function getMotiFitQuote(){
 }
 getMotiFitQuote();
 
-/*
-$.get('/quote/all', (allQuotes) => {
-	let num = Math.floor(Math.random() * allQuotes.data.length);
-	console.log(num);
-	let randomQuote = allQuotes.data[num].quote; 
-	console.log(randomQuote);
-	$('.random-quote').html(`${randomQuote}`);
-})
-*/
-
-/*
-let now = new Date();
-let millisTill00 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 0, 0, 0) - now;
-if (millisTill00 < 0) {
-     millisTill00 += 86400000; // it's after 8pm, try 8pm tomorrow.
-}
-setTimeout(function(){alert("It's 8pm!")}, millisTill00);
-*/
 
 
 
 
-
-/***   FIT GOALS   ***/
+/***   F I T   G O A L S   ***/
 
 //Get all fit goals
 function getAllGoals(){
@@ -50,6 +40,9 @@ function getAllGoals(){
 		displayAllGoals(allGoals);
 	})
 }
+getAllGoals();
+
+
 
 function displayAllGoals( allGoals ){
 	allGoals.data.forEach( (goal) => {
@@ -59,49 +52,9 @@ function displayAllGoals( allGoals ){
 	})
 }
 
-getAllGoals();
 
 
-
-
-
-
-
-/*
-// Get modal element
-var modal = document.getElementById('simpleModal');
-// Get open modal button
-var modalBtn = document.getElementById('modalBtn');
-// Get close button
-var closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-// Listen for open click
-modalBtn.addEventListener('click', openModal);
-// Listen for close click
-closeBtn.addEventListener('click', closeModal);
-// Listen for outside click
-window.addEventListener('click', outsideClick);
-
-// Function to open modal
-function openModal(){
-  modal.style.display = 'block';
-}
-
-// Function to close modal
-function closeModal(){
-  modal.style.display = 'none';
-}
-
-// Function to close modal if outside click
-function outsideClick(e){
-  if(e.target == modal){
-    modal.style.display = 'none';
-  }
-}
-*/
-
-
-
+//Open post fit goal form modal 
 function openFitGoalModal(){
 	$('.open-fitgoal-modal').click( event => {
 		event.preventDefault();
@@ -112,20 +65,16 @@ openFitGoalModal();
 
 
 
-
-
-
-
-
-
 //Post a new fit goal
 function postNewFitGoal(){
 	$('.post-fitgoal-form').on('submit', event => {
 		event.preventDefault();
+		$('.fitgoal-modal-form').addClass('hidden');
 		let params = {
 			title: $('#fitgoal-title').val(),
-			//createDate: 
-			description: $('#fitgoal-description').val(),  
+			createDate:  Date.now(),
+			description: $('#fitgoal-description').val(),
+			completed: false  
 		}
 		$.ajax({
 		    type: "POST",
@@ -133,31 +82,55 @@ function postNewFitGoal(){
 		    url: '/goal/new',
 		    data: JSON.stringify(params)
 	  	})
-		.done(function( data ){
-			console.log( data );
-	        displayNewFitGoal( data );
-	        $('.fitgoal-modal-form').addClass('hidden');
+		.done(function( fitgoal ){
+			console.log( fitgoal );
+	        displayNewFitGoal( fitgoal );
 		})
-		.fail(function( data ){
+		.fail(function( fitgoal ){
 	    	console.log('Post new fit goal failed!');
 	    })
 	})
 }
 
-function displayNewFitGoal( data ){
+function displayNewFitGoal( fitgoal ){
+	console.log( fitgoal );
+	let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
 	$('#fitgoal-title').val('');
 	$('#fitgoal-description').val('');
     $('.current-fitgoal').removeClass('hidden');
     $('.current-fitgoal').html(`
-    	<h3 class="current-fitgoal-title">${data.data.title}</h3>
-		<p class="current-fitgoal-description">${data.data.description}</p>
+    	<p class="current-fitgoal-date">${formatedDate}</p>
+    	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
+		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
+		<button class="completed-fitgoal-button" value="${fitgoal.data.completed}">Completed!</button>
+		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
+		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
     `)
 }
-
 postNewFitGoal();
 
 
 
+let ID;
+//Delete selected fit goal.
+function deleteFitGoal(){
+	$('.current-fitgoal').on('click', '.delete-fitgoal-button', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		debugger
+		console.log(ID);
+		$.ajax({
+            url: `goal/${ID}`,
+            type: 'DELETE'
+        }).done(( fitgoal ) => {
+        	console.log( fitgoal );
+        	$('.current-fitgoal').addClass('hidden');
+        }).fail(( error ) => {
+        	console.log('Deleting fit goal failed!');
+        })
+    });    
+}
+deleteFitGoal();
 
 
 
@@ -165,8 +138,107 @@ postNewFitGoal();
 
 
 
-/***   CATEGORIES   ***/
 
+//Get fitgoal details when edit button is selected
+function editFitGoalModalLoad() {
+
+}
+editFitGoalModalLoad();
+
+
+
+//Displays trip details in create trip page form inputs so that user can edit
+function displayFitGoalToEdit(trip) {
+
+}
+
+
+//Put request to update edited fitgoal details
+function submitFitGoalChanges() {
+
+}
+submitFitGoalChanges();
+
+
+/*
+//Open Edit FitGoal Form Modal.
+function editFitGoalForm( fitgoal ){
+	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
+		event.preventDefault();
+		$('.edit-fitgoal-modal-form').removeClass('hidden');
+		$('.edit-fitgoal-form').html(`
+			<legend>Update Current Fit Goal</legend>
+				<label for="fitgoal-title">Fit Goal</label>
+				<input id="fitgoal-title" type="text" value="${fitgoal.data.title}" />
+				<label for="fitgoal-description">Description</label>
+				<textarea id="fitgoal-description" type="text" value="${fitgoal.data.description}" cols="70" rows="5"></textarea>
+				<button type="submit" id="update-fitgoal-button">Update</button>
+				<button type="submit" id="cancel-fitgoal-button">Cancel</button>
+		`);
+
+
+	//$('.edit-fitgoal-modal-form').removeClass('hidden');
+	})
+}
+editFitGoalForm();
+
+
+
+let ID;
+
+//Update fitgoal.
+function updateFitGoal(){
+	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		
+		let params = {
+			title: $('#fitgoal-title').val(),
+			createDate:  Date.now(),
+			description: $('#fitgoal-description').val(),
+			completed: false  
+		}
+		
+		$.ajax({
+		    type: "PUT",
+		    contentType: 'application/json',
+		    url: `/goal/${ID}`,
+		   // data: JSON.stringify(params)
+	  	})
+	  	.done(function( fitgoal ){
+			console.log( fitgoal );
+	        $('.edit-fitgoal-modal-form').removeClass('hidden');
+			$('.edit-fitgoal-form').html(`
+				<fieldset>
+					<legend>Update Current Fit Goal</legend>
+					<label for="fitgoal-title">Fit Goal</label>
+					<input id="fitgoal-title" type="text" value="${fitgoal.data.title}" />
+					<label for="fitgoal-description">Description</label>
+					<textarea id="fitgoal-description" type="text" value="${fitgoal.data.description}" cols="70" rows="5"></textarea>
+					<button type="submit" id="update-fitgoal-button">Update</button>
+					<button type="submit" id="cancel-fitgoal-button">Cancel</button>
+				</fieldset>	
+			`);
+		})
+		.fail(function( fitgoal ){
+	    	console.log('Updating new fit goal failed!');
+	    })
+	})  	
+}
+updateFitGoal();
+*/
+
+
+
+
+
+
+
+
+
+
+/***   C A T E G O R I E S   ***/
+/*
 //Get all categories
 function getAllCategories(){
 	$.get('/category/all', ( allCategories ) => {
@@ -213,7 +285,9 @@ $('.post-category-form').submit('#addcategorybutton', event => {
 
 
 
-/***   ACTIVITY   ***/
+
+/***   A C T I V I T Y   ***
+
 function displayRoutineForm(){
 	$('.post-activity-form').on('click', '.add-routine-icon', event => {
 		event.preventDefault();
@@ -223,6 +297,7 @@ function displayRoutineForm(){
 displayRoutineForm();
 
 
+
 //Get all activities.
 function getAllActivities(){
 	$.get('/activity/all', ( allActivities ) => {
@@ -230,28 +305,65 @@ function getAllActivities(){
 	});
 }
 getAllActivities();
+*/
 
 
-
+/*
 //Post new activity.
 function postNewActivity(){
+	$('.post-activity-form').on('submit', '#add-newactivity-button', event => {
+		event.preventDefault();
+		let params = {
+			name: $('#activity-name').val(),
+			time:  $('#activity-time').val(),
+			duration: $('#activity-duration').val(),
+			cardio: {
+				distance: $('#cardio-distance').val(),
+				duration: $('#cardio-duration').val(),
+			},
+			//routine: ,
+			location: $('#activity-location').val(),
+			inspiration: $('#activity-inspiration').val(),
+			completed: false 
+		}
+		$.ajax({
+		    type: "POST",
+		    contentType: 'application/json',
+		    url: '/activity/new',
+		    data: JSON.stringify(params)
+	  	})
+		.done(function( data ){
+			console.log( data );
+	        displayNewActivity( data );
+		})
+		.fail(function( data ){
+	    	console.log('Post new fit goal failed!');
+	    })
+	})
+}
+*/
+
+
+
+
+
+
+//Update selected activity.
+function updateActivity(){
 
 }
 
 
 
+/***   E X E R C I S E S   ***/
+
+//Get exercises.
 
 
-/*
-	name: {type: String, required: true},
-	time: {type: String, required: true},
-	duration: {type: Number, required: false},
-	cardio: {
-				distance: {type: Number, required: false},
-				duration: {type: Number, required: false},
-			},
-	routine: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercise'}],
-	location: {type: String, required: false}, //may integrate google maps API
-	inspiration: {type: String, required: false}, //link to routine blog/pic/video
-	completed: {type: Boolean, default: false}
-*/
+//Post exercises.
+
+
+//Edit exercises.
+
+
+//Delete exercises.

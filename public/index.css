@@ -13,8 +13,13 @@ body{
     padding: 0;
  }
 
- .hidden{
+.hidden{
 	display: none;
+}
+
+button{
+	cursor: pointer;
+	font-size: 30px;
 }
 
 section{
@@ -42,7 +47,7 @@ section{
 /*--End of Week Section Styling--*/
 
 
-/*--Fit Goal Section Styling--*/
+/*--Category Section Styling--*/
 
 .category-name,
 .category-img{
@@ -60,7 +65,7 @@ section{
 	text-align: center;
 }
 
-/*--End of Fit Goal Section Styling--*/
+/*--End of Category Section Styling--*/
 
 
 
@@ -68,6 +73,12 @@ section{
 
 
 /*--Fit Goal Section Styling--*/
+
+.open-fitgoal-modal{
+	font-size: 30px;
+	border-radius: 15px;
+	cursor: pointer;
+}
 
 #fitgoal-title{
 	height: 40px;
