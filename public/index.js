@@ -161,6 +161,7 @@ submitFitGoalChanges();
 
 
 /*
+
 //Open Edit FitGoal Form Modal.
 function editFitGoalForm( fitgoal ){
 	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
@@ -341,9 +342,6 @@ function postNewActivity(){
 	    })
 	})
 }
-*/
-
-
 
 
 
