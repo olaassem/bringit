@@ -32,8 +32,6 @@ section{
 
 /*--Quote Styling Section--*/
 .motifit-button{
-	border-radius: 15px;
-	cursor: pointer;
 }
 
 
@@ -170,6 +168,8 @@ footer{
 }
 /* Inner */
 .popup-inner {
+	/* overflow-y: auto; 
+	height: 500px; */
 	max-width:700px;
 	width:90%;
 	padding:40px;
@@ -210,26 +210,4 @@ footer{
 }
 
 /*--End of Modal Styling--*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

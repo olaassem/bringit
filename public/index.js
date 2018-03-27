@@ -16,7 +16,6 @@ function getMotiFitQuote(){
 	$('.motifit-button').on('click', event => {
 		event.preventDefault();
 		$('.random-quote').removeClass('hidden');
-		
 		$.get('/quote/all', (allQuotes) => {
 			let num = Math.floor(Math.random() * allQuotes.data.length);
 			console.log(num);
@@ -36,28 +35,36 @@ getMotiFitQuote();
 
 //Get all completed fit goals (for history log).
 function getAllCompletedGoals(){
-	$.get('/goal/all', ( allGoals ) => {
-		console.log( allGoals );
-		displayCompletedFitGoals( allGoals );
-	})
+	$('.fitgoal-history-button').on('click', event => {
+		event.preventDefault();
+		$('[data-popup="popup-fitgoal-history"]').fadeIn(350);
+		$.get('/goal/all', ( allGoals ) => {
+			console.log( allGoals );
+			displayCompletedFitGoals( allGoals );
+		})
+	});
 }
 getAllCompletedGoals();
 
 
 
+function renderCompletedFitGoals( fitgoal ){
+	let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
+	if(fitgoal.completed === true){	
+		return `
+			<div class="completed-goal">
+				<p>Completed on: ${formatedDate}</p>
+				<h3>Title: ${fitgoal.title}</h3>
+				<p>Description: ${fitgoal.description}</p>
+			</div>	
+		`
+	}	
+} 
+
+
 function displayCompletedFitGoals( allGoals ){
-	allGoals.data.forEach( ( fitgoal ) => {
-		let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
-		if( fitgoal.completed === true){
-			$('.goalhistory-list').append(`
-				<div class="completed-goal">
-					<h3>Title: ${fitgoal.title}</h3>
-					<p>Description: ${fitgoal.description}</p>
-					<p>Completed on: ${formatedDate}</p>
-				</div>	
-			`)
-		}
-	})
+	let completedFitGoalOutput = allGoals.data.map( fitgoal => renderCompletedFitGoals( fitgoal )).join('');
+	$('.goalhistory').html(completedFitGoalOutput);
 }
 
 
@@ -101,7 +108,7 @@ function displayNewFitGoal( fitgoal ){
     	<p class="current-fitgoal-date">${formatedDate}</p>
     	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
 		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
-		<button class="completed-fitgoal-button" data-value="${fitgoal.data.completed}" value="${fitgoal.data._id}">Completed!</button>
+		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
 		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
 		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
     `)
@@ -119,7 +126,7 @@ function completedFitGoal(){
 		let ID =  $(event.currentTarget).attr( 'value' );
 		console.log(ID);
 		let params = {
-			'_id' : `${ID}`, //how come i have to specify _id here but not in delete?
+			'_id' : `${ID}`,
 			'completed': true,
 			createDate: Date.now()
 		};	 
@@ -137,30 +144,6 @@ function completedFitGoal(){
 	});  	
 }
 completedFitGoal();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -189,97 +172,94 @@ deleteFitGoal();
 
 
 
-/*
-
-//Get fitgoal details when edit button is selected
-function editFitGoalModalLoad() {
-
-}
-editFitGoalModalLoad();
-
-
-
-//Displays trip details in create trip page form inputs so that user can edit
-function displayFitGoalToEdit(trip) {
-
-}
-
-
-//Put request to update edited fitgoal details
-function submitFitGoalChanges() {
-
-}
-submitFitGoalChanges();
-
 
 /*
-
-//Open Edit FitGoal Form Modal.
-function editFitGoalForm( fitgoal ){
+//Get fitgoal details when edit button is clicked.
+function openEditFitGoalModal() {
 	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
 		event.preventDefault();
-		$('.edit-fitgoal-modal-form').removeClass('hidden');
-		$('.edit-fitgoal-form').html(`
-			<legend>Update Current Fit Goal</legend>
-				<label for="fitgoal-title">Fit Goal</label>
-				<input id="fitgoal-title" type="text" value="${fitgoal.data.title}" />
-				<label for="fitgoal-description">Description</label>
-				<textarea id="fitgoal-description" type="text" value="${fitgoal.data.description}" cols="70" rows="5"></textarea>
-				<button type="submit" id="update-fitgoal-button">Update</button>
-				<button type="submit" id="cancel-fitgoal-button">Cancel</button>
-		`);
-
-
-	//$('.edit-fitgoal-modal-form').removeClass('hidden');
-	})
-}
-editFitGoalForm();
-
-
-
-let ID;
-
-//Update fitgoal.
-function updateFitGoal(){
-	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
-		event.preventDefault();
+		$('[data-popup="popup-edit-fitgoal"]').fadeIn(350);
 		let ID = $(event.currentTarget).attr("value");
-		
-		let params = {
-			title: $('#fitgoal-title').val(),
-			createDate:  Date.now(),
-			description: $('#fitgoal-description').val(),
-			completed: false  
-		}
-		
 		$.ajax({
-		    type: "PUT",
-		    contentType: 'application/json',
-		    url: `/goal/${ID}`,
-		   // data: JSON.stringify(params)
-	  	})
-	  	.done(function( fitgoal ){
+            url: `goal/${ID}`,
+            type: 'GET'
+        }).done(function( fitgoal ){
 			console.log( fitgoal );
-	        $('.edit-fitgoal-modal-form').removeClass('hidden');
 			$('.edit-fitgoal-form').html(`
 				<fieldset>
 					<legend>Update Current Fit Goal</legend>
 					<label for="fitgoal-title">Fit Goal</label>
+					</br>
 					<input id="fitgoal-title" type="text" value="${fitgoal.data.title}" />
+					</br>
 					<label for="fitgoal-description">Description</label>
-					<textarea id="fitgoal-description" type="text" value="${fitgoal.data.description}" cols="70" rows="5"></textarea>
+					</br>
+					<input id="fitgoal-description" type="text" value="${fitgoal.data.description}" />
 					<button type="submit" id="update-fitgoal-button">Update</button>
 					<button type="submit" id="cancel-fitgoal-button">Cancel</button>
 				</fieldset>	
 			`);
+		}).fail(function( fitgoal ){
+	    	console.log('Updating new fit goal failed!');
+	    });    
+	});	
+}
+openEditFitGoalModal();
+*/
+
+
+
+//Put fitgoal edits.
+function putFitGoalEdits() {
+	$('.edit-fitgoal-form').on('click', '.update-fitgoal-button', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		let params = {
+				title: $('#fitgoal-title').val(),
+				createDate:  Date.now(),
+				description: $('#fitgoal-description').val(),
+				completed: false  
+			}
+		$.ajax({
+		    type: "PUT",
+		    contentType: 'application/json',
+		    url: `/goal/${ID}`,
+		   	data: JSON.stringify(params)
+	  	})
+	  	.done(function( fitgoal ){
+			console.log( fitgoal );
+			closeModal();
+	        displayEditedFitGoal( fitgoal );
 		})
 		.fail(function( fitgoal ){
 	    	console.log('Updating new fit goal failed!');
 	    })
-	})  	
+	})  
 }
-updateFitGoal();
-*/
+putFitGoalEdits();
+
+
+
+function displayEditedFitGoal( fitgoal ){
+	let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
+	$('#fitgoal-title').val('');
+	$('#fitgoal-description').val('');
+    $('.current-fitgoal').html(`
+    	<p class="current-fitgoal-date">${formatedDate}</p>
+    	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
+		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
+		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
+		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
+		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
+    `)
+}
+
+
+
+
+
+
+
 
 
 
@@ -423,6 +403,7 @@ function updateActivity(){
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
+
 function openModal(){
 	$('[data-popup-open]').on('click', function( event )  {
 		event.preventDefault();
