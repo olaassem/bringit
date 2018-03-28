@@ -86,7 +86,7 @@
 								<legend>What Is Your Current Fit Goal?</legend>
 									<label for="fitgoal-title">Fit Goal</label>
 								</br>
-									<input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day"/>
+									<input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')"/>
 								</br>	
 									<label for="fitgoal-description">Description</label>
 								</br>	
@@ -128,31 +128,63 @@
 
 				<section role="region" class="fitweek-section">
 					<h2>This Week</h2>
-<!--
-					<button type="submit" class="day-icon monday">
-						<h2>MON</h2>
-						<img src="https://png.icons8.com/dusk/64/000000/monday.png"/>
-					</button>
--->
 
-					<input type ="image" class="day-icon monday" src="https://png.icons8.com/dusk/64/000000/monday.png">
-					<input type ="image" class="day-icon tuesday" src="https://png.icons8.com/dusk/64/000000/tuesday.png">
-					<input type ="image" class="day-icon wednesday" src="https://png.icons8.com/dusk/64/000000/wednesday.png">
-					<input type ="image" class="day-icon thursday" src="https://png.icons8.com/dusk/64/000000/thursday.png">
-					<input type ="image" class="day-icon friday" src="https://png.icons8.com/dusk/64/000000/friday.png">
-					<input type ="image"  class="day-icon saturday" src="https://png.icons8.com/dusk/64/000000/saturday.png">
-					<input type ="image" class="day-icon sunday" src="https://png.icons8.com/dusk/64/000000/sunday.png">	
-				</section>
+					<div class="day-container mon-container">
+						<h3>MONDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>
+					<div class="day-container tues-container"> 	
+						<h3>TUESDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>
+					<div class="day-container wed-container"> 	
+						<h3>WEDNESAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>
+					<div class="day-container thurs-container"> 	
+						<h3>THURSDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>
+					<div class="day-container fri-container"> 	
+						<h3>FRIDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>
+					<div class="day-container sat-container"> 	
+						<h3>SATURDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>	
+					<div class="day-container sun-container"> 	
+						<h3>SUNDAY</h3>
+						<button class="add-day-plan-btn">Add</button>
+						<button class="edit-day-plan-btn">Edit</button>
+						<button class="delete-day-plan-btn">Delete</button>
+					</div>	
+				</section>	
 
 
 
-				<section role="region" class="category-section">
-					<h2>Categories</h2>
+
+
+
+				<section role="region" class="category-section hidden">
+					<h2 >Categories</h2>
 					<div class="category-icons"></div>	
 
 
 
-					<form role="form" class="post-category-form" action="#" method="#">
+					<form role="form" class="post-category-form hidden" action="#" method="#">
 						<fieldset>
 							<legend>Add New Category</legend>
 								<label for="category-name">Category Name:</label>
@@ -169,12 +201,12 @@
 				</section>
 
 
-				<section role="region" class="exercise-form">
+				<section role="region" class="exercise-form hidden">
 					<h2>Activity</h2>
 
 
 
-					<form role="form" class="post-activity-form" action="#" method="#">
+					<form role="form" class="post-activity-form hidden" action="#" method="#">
 						<fieldset>
 							<legend>Add Activity</legend>
 								<label for="activity-name">Activity Name:</label>
@@ -236,7 +268,7 @@
 
 
 
-				<section role="region" class="fitweek-history-section">
+				<section role="region" class="fitweek-history-section hidden">
 					<h2>Fit Week History</h2>	
 				</section>
 

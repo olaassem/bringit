@@ -36,9 +36,11 @@ section{
 
 
 /*--Fit Week Section Styling--*/
-.day-icon{
-	width: 100px;
-	height: 100px;
+.day-container{
+	width: 250px;
+	height: 250px;
+	float: left;
+	border: 2px solid grey;
 }
 
 /*--End of Week Section Styling--*/

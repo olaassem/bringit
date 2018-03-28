@@ -64,7 +64,7 @@ function renderCompletedFitGoals( fitgoal ){
 
 function displayCompletedFitGoals( allGoals ){
 	let completedFitGoalOutput = allGoals.data.map( fitgoal => renderCompletedFitGoals( fitgoal )).join('');
-	$('.goalhistory').html(completedFitGoalOutput);
+	$('.goalhistory-list').html(completedFitGoalOutput);
 }
 
 
@@ -74,7 +74,7 @@ function displayCompletedFitGoals( allGoals ){
 function postNewFitGoal(){
 	$('.post-fitgoal-form').on('click', '#add-fitgoal-button', event => {
 		event.preventDefault();
-		let params = {
+		let body = {
 			title: $('#fitgoal-title').val(),
 			createDate:  Date.now(),
 			description: $('#fitgoal-description').val(),
@@ -84,7 +84,7 @@ function postNewFitGoal(){
 		    type: "POST",
 		    contentType: 'application/json',
 		    url: '/goal/new',
-		    data: JSON.stringify(params)
+		    data: JSON.stringify(body)
 	  	})
 		.done(function( fitgoal ){
 			console.log( fitgoal );
@@ -125,18 +125,18 @@ function completedFitGoal(){
 		event.preventDefault();
 		let ID =  $(event.currentTarget).attr( 'value' );
 		console.log(ID);
-		let params = {
+		let body = {
 			'_id' : `${ID}`,
 			'completed': true,
-			createDate: Date.now()
+			'createDate': Date.now()
 		};	 
 		$.ajax({
 		    type: 'PUT',
 		    url: `/goal/${ID}`,
 		    contentType: 'application/json',
-		    data: JSON.stringify(params)
+		    data: JSON.stringify( body )
 	  	}).done((fitgoal) =>{
-	  		$('.current-fitgoal').remove();
+	  		$('.current-fitgoal').html("");
 	  		getAllCompletedGoals();
 	  	}).fail((error) => {
 	  		console.log('Completeing fit goal failed!');
@@ -172,11 +172,9 @@ deleteFitGoal();
 
 
 
-
-/*
 //Get fitgoal details when edit button is clicked.
 function openEditFitGoalModal() {
-	$('.current-fitgoal').on('click', '.edit-fitgoal-button', event => {
+	$('body').on('click', '.edit-fitgoal-button', event => {
 		event.preventDefault();
 		$('[data-popup="popup-edit-fitgoal"]').fadeIn(350);
 		let ID = $(event.currentTarget).attr("value");
@@ -188,15 +186,15 @@ function openEditFitGoalModal() {
 			$('.edit-fitgoal-form').html(`
 				<fieldset>
 					<legend>Update Current Fit Goal</legend>
-					<label for="fitgoal-title">Fit Goal</label>
+					<label for="fitgoal-title-edit">Fit Goal</label>
 					</br>
-					<input id="fitgoal-title" type="text" value="${fitgoal.data.title}" />
+					<input id="fitgoal-title-edit" type="text" value="${fitgoal.data.title}" />
 					</br>
-					<label for="fitgoal-description">Description</label>
+					<label for="fitgoal-description-edit">Description</label>
 					</br>
-					<input id="fitgoal-description" type="text" value="${fitgoal.data.description}" />
-					<button type="submit" id="update-fitgoal-button">Update</button>
-					<button type="submit" id="cancel-fitgoal-button">Cancel</button>
+					<input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
+					<button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
+					<button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
 				</fieldset>	
 			`);
 		}).fail(function( fitgoal ){
@@ -205,26 +203,27 @@ function openEditFitGoalModal() {
 	});	
 }
 openEditFitGoalModal();
-*/
+
 
 
 
 //Put fitgoal edits.
 function putFitGoalEdits() {
-	$('.edit-fitgoal-form').on('click', '.update-fitgoal-button', event => {
+	$('.edit-fitgoal-form').on('click', '#update-fitgoal-button', event => {
 		event.preventDefault();
 		let ID = $(event.currentTarget).attr("value");
-		let params = {
-				title: $('#fitgoal-title').val(),
-				createDate:  Date.now(),
-				description: $('#fitgoal-description').val(),
-				completed: false  
+		let body = {
+				'_id' : `${ID}`,
+				'title': $('#fitgoal-title-edit').val(),
+				'createDate':  Date.now(),
+				'description': $('#fitgoal-description-edit').val(),
+				'completed': false  
 			}
 		$.ajax({
 		    type: "PUT",
 		    contentType: 'application/json',
 		    url: `/goal/${ID}`,
-		   	data: JSON.stringify(params)
+		   	data: JSON.stringify(body)
 	  	})
 	  	.done(function( fitgoal ){
 			console.log( fitgoal );
@@ -241,7 +240,9 @@ putFitGoalEdits();
 
 
 function displayEditedFitGoal( fitgoal ){
+
 	let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
+	
 	$('#fitgoal-title').val('');
 	$('#fitgoal-description').val('');
     $('.current-fitgoal').html(`
@@ -253,7 +254,6 @@ function displayEditedFitGoal( fitgoal ){
 		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
     `)
 }
-
 
 
 
@@ -298,7 +298,7 @@ getAllCategories();
 //Post a new category
 $('.post-category-form').submit('#addcategorybutton', event => {
 	event.preventDefault();
-	let params = {
+	let body = {
 		name: $('#category-name').val(),
 		img: $('#category-img').val()  
 	}
@@ -306,7 +306,7 @@ $('.post-category-form').submit('#addcategorybutton', event => {
 	    type: "POST",
 	    contentType: 'application/json',
 	    url: '/category/new',
-	    data: JSON.stringify(params),
+	    data: JSON.stringify(body),
   	})
     .done(function( data ){
         console.log( data );
@@ -346,7 +346,7 @@ getAllActivities();
 function postNewActivity(){
 	$('.post-activity-form').on('submit', '#add-newactivity-button', event => {
 		event.preventDefault();
-		let params = {
+		let body = {
 			name: $('#activity-name').val(),
 			time:  $('#activity-time').val(),
 			duration: $('#activity-duration').val(),
@@ -363,7 +363,7 @@ function postNewActivity(){
 		    type: "POST",
 		    contentType: 'application/json',
 		    url: '/activity/new',
-		    data: JSON.stringify(params)
+		    data: JSON.stringify(body)
 	  	})
 		.done(function( data ){
 			console.log( data );

@@ -69,10 +69,11 @@ exports.getFitGoalByID = (req, res) => {
 
 //Edit fit goal by ID.
 exports.updateFitGoalByID = (req, res) => {
-	if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+	if (!req.params.id) {
 		res.status(400).json({
 			message: "Error. Request path id and request body id values must match."
     	});
+    	return
   	}
   	const updated = {};
   	const updateableFields = ['title', 'description', 'completed'];
@@ -85,7 +86,8 @@ exports.updateFitGoalByID = (req, res) => {
   	fitgoalModel.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
 	.then((updatedGoal) => {
 		res.status(200).json({
-			message: "Fit goal updated successfully."
+			message: "Fit goal updated successfully.",
+			data: updatedGoal
 		})
 	})	
 	.catch((error) => {
