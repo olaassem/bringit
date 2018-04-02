@@ -69,7 +69,6 @@ function displayCompletedFitGoals( allGoals ){
 
 
 
-
 //Post a new fit goal
 function postNewFitGoal(){
 	$('.post-fitgoal-form').on('click', '#add-fitgoal-button', event => {
@@ -147,7 +146,6 @@ completedFitGoal();
 
 
 
-
 //Delete selected fit goal.
 function deleteFitGoal(){
 	$('.current-fitgoal').on('click', '.delete-fitgoal-button', event => {
@@ -166,9 +164,6 @@ function deleteFitGoal(){
     });    
 }
 deleteFitGoal();
-
-
-
 
 
 
@@ -273,29 +268,29 @@ function displayEditedFitGoal( fitgoal ){
 
 
 
-/***   W E I G H T S   R O U T I N E   ***/
+/***   E X E R C I S E S   ***/
 
 
-function clearWeightsRoutineValue(){
-	$('#routine-name').val("");
-	$('#routine-sets').val(""); 
-	$('#routine-reps').val("");
-	$('#routine-weight').val("");
+function clearExerciseValue(){
+	$('#exercise-name').val("");
+	$('#exercise-sets').val(""); 
+	$('#exercise-reps').val("");
+	$('#exercise-weight').val("");
 }
 
 
 
 
 //Post a new weights routine.
-function postNewWeightsRoutine(){
-	$('.post-weightsroutine-form').on('click', '#add-weightsroutine-button', event => {
+function postNewExercise(){
+	$('.post-exercise-form').on('click', '#add-exercise-button', event => {
 		event.preventDefault();
 		let body = {
 			//activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
-			'name': $('#routine-name').val(),  //string
-			'sets': $('#routine-sets').val(),  //string
-			'reps': $('#routine-reps').val(),  //string
-			'weight': $('#routine-weight').val()  //string
+			'name': $('#exercise-name').val(),  //string
+			'sets': $('#exercise-sets').val(),  //string
+			'reps': $('#exercise-reps').val(),  //string
+			'weight': $('#exercise-weight').val()  //string
 		}
 		$.ajax({
 		    type: "POST",
@@ -303,131 +298,131 @@ function postNewWeightsRoutine(){
 		    url: '/exercise/new',
 		    data: JSON.stringify(body)
 	  	})
-		.done(function( data ){
-			console.log( data );
-			getAllWeightRoutines();
+		.done(function( newExercise ){
+			console.log( newExercise );
+			getAllExercises();
 		})
-		.fail(function( data ){
+		.fail(function( newExercise ){
 	    	console.log('Post new weights routine failed!');
 	    })
 	})
 }
-postNewWeightsRoutine();
+postNewExercise();
 
 
-//Get all weight routines.
-function getAllWeightRoutines(){
-	$.get('/exercise/all', ( allRoutines ) => {
-		console.log( allRoutines );
-		displayWeightsRoutines( allRoutines );
+//Get all exercises.
+function getAllExercises(){
+	$.get('/exercise/all', ( allExercises ) => {
+		console.log( allExercises );
+		displayExercises( allExercises );
 	});
 }
-getAllWeightRoutines();
+getAllExercises();
 
 
-function renderWeightsRoutines( routine ){
+function renderExercises( exercise ){
 	return `
-		<div class="weights-routine">
-			<table class="weights-routine-table">
+		<div class="exercise-routine">
+			<table class="exercise-table">
 			  <tr>
-			    <th class="th-routine-name" width="25%">Name</th>
-			    <th class="th-routine-weight" width="25%">Weight</th> 
-			    <th class="th-routine-sets" width="25%">Sets</th>
-			    <th class="th-routine-name" width="25%">Reps</th>
+			    <th class="th-exercise-name" width="25%">Name</th>
+			    <th class="th-exercise-weight" width="25%">Weight</th> 
+			    <th class="th-exercise-sets" width="25%">Sets</th>
+			    <th class="th-exercise-name" width="25%">Reps</th>
 			  </tr>
 			  <tr>
-			    <td class="td-routine-name" width="25%">${routine.name}</td>
-			    <td class="td-routine-weight" width="25%">${routine.weight}</td> 
-			    <td class="td-routine-sets" width="25%">${routine.sets}</td>
-			    <td class="td-routine-reps" width="25%">${routine.reps}</td>
+			    <td class="td-exercise-name" width="25%">${exercise.name}</td>
+			    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+			    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+			    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
 			  </tr>
 			</table>
-			<button type="submit" class="routine-edit-button" value="${routine._id}">Edit</button>
-			<button type="submit" class="routine-delete-button" value="${routine._id}">Delete</button>
+			<button type="submit" class="exercise-edit-button" value="${exercise._id}">Edit</button>
+			<button type="submit" class="exercise-delete-button" value="${exercise._id}">Delete</button>
 		</div>	
 	`	
 } 
 
 
-function displayWeightsRoutines( allRoutines ){
-	let weightRoutinesOutput = allRoutines.data.map( routine => renderWeightsRoutines( routine )).join('');
-	$('.weightsroutine-list').html(weightRoutinesOutput);
+function displayExercises( allExercises ){
+	let exercisesOutput = allExercises.data.map( exercise => renderExercises( exercise )).join('');
+	$('.exercise-list').html(exercisesOutput);
 }
 
 
 //Delete weights routine table.
-function deleteWeightsRoutineTable(){
-	$('.weightsroutine-list').on('click', '.routine-delete-button', event => {
+function deleteExerciseTable(){
+	$('.exercise-list').on('click', '.exercise-delete-button', event => {
 		event.preventDefault();
 		let ID = $(event.currentTarget).attr("value");
 		console.log(ID);
 		$.ajax({
             url: `/exercise/${ID}`,
             type: 'DELETE'
-        }).done(( weightsroutine ) => {
-        	console.log( weightsroutine );
-        	getAllWeightRoutines();
+        }).done(( exerciseRoutine ) => {
+        	console.log( exerciseRoutine );
+        	getAllExercises();
         }).fail(( error ) => {
-        	console.log('Deleting weight routine table failed!');
+        	console.log('Deleting exercise routine table failed!');
         })
     });    
 }
-deleteWeightsRoutineTable();
+deleteExerciseTable();
 
 
 
 
 //Get weight routine details when edit button is clicked.
-function openEditWeightsRoutinelModal() {
-	$('body').on('click', '.routine-edit-button', event => {
+function openEditExerciselModal() {
+	$('body').on('click', '.exercise-edit-button', event => {
 		event.preventDefault();
-		$('[data-popup="popup-edit-weightsroutine"]').fadeIn(350);
+		$('[data-popup="popup-edit-exercise"]').fadeIn(350);
 		let ID = $(event.currentTarget).attr("value");
 		$.ajax({
             url: `/exercise/${ID}`,
             type: 'GET'
-        }).done(function( routine ){
-			console.log( routine );
-			$('.edit-weightsroutine-form').html(`
+        }).done(function( exercise ){
+			console.log( exercise );
+			$('.edit-exercise-form').html(`
 				<fieldset>
-					<legend>Update Weights Routine</legend>
-					<label for="routine-name-edit">Name:</label>
-					<input id="routine-name-edit" type="text" value="${routine.data.name}"/>	
+					<legend>Update Exercise Routine</legend>
+					<label for="exercise-name-edit">Name:</label>
+					<input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>	
 					</br>
-					<label for="routine-weight-edit">Weight:</label>
-					<input id="routine-weight-edit" type="text" value="${routine.data.weight}"/>
+					<label for="exercise-weight-edit">Weight:</label>
+					<input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
 					</br>		
-					<label for="routine-sets-edit">Sets:</label>
-					<input id="routine-sets-edit" type="text" value="${routine.data.sets}"/>	
+					<label for="exercise-sets-edit">Sets:</label>
+					<input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>	
 					</br>
-					<label for="routine-reps-edit">Reps:</label>
-					<input id="routine-reps-edit" type="text" value="${routine.data.reps}"/>
+					<label for="exercise-reps-edit">Reps:</label>
+					<input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
 					</br>
-					<button type="submit" id="update-weightsroutine-button" data-popup-close="popup-edit-weightsroutine" value="${routine.data._id}">Update</button>
-					<button type="submit" id="cancel-weightsroutine-button" data-popup-close="popup-edit-weightsroutine">Cancel</button>
+					<button type="submit" id="update-exercise-button" data-popup-close="popup-edit-exercise" value="${exercise.data._id}">Update</button>
+					<button type="submit" id="cancel-exercise-button" data-popup-close="popup-edit-exercise">Cancel</button>
 				</fieldset>	
 			`);
-		}).fail(function( routine ){
-	    	console.log('Updating weights routine failed!');
+		}).fail(function( error ){
+	    	console.log('Updating exercise routine failed!');
 	    });    
 	});	
 }
-openEditWeightsRoutinelModal();
+openEditExerciselModal();
 
 
 
-//Put weight routine edits.
-function putWeightRoutineEdits() {
-	$('.edit-weightsroutine-form').on('click', '#update-weightsroutine-button', event => {
+//Put exercise routine edits.
+function putExerciseEdits() {
+	$('.edit-exercise-form').on('click', '#update-exercise-button', event => {
 		event.preventDefault();
 		let ID = $(event.currentTarget).attr("value");
 		let body = {
 			'_id' : `${ID}`,
 			//'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
-			'name': $('#routine-name-edit').val(),  
-			'sets': $('#routine-sets-edit').val(),  
-			'reps': $('#routine-reps-edit').val(),  
-			'weight': $('#routine-weight-edit').val() 
+			'name': $('#exercise-name-edit').val(),  
+			'sets': $('#exercise-sets-edit').val(),  
+			'reps': $('#exercise-reps-edit').val(),  
+			'weight': $('#exercise-weight-edit').val() 
 			}
 		$.ajax({
 		    type: "PUT",
@@ -435,50 +430,33 @@ function putWeightRoutineEdits() {
 		    url: `exercise/${ID}`,
 		   	data: JSON.stringify(body)
 	  	})
-	  	.done(function( routine ){
-			console.log( routine );
+	  	.done(function( exercise ){
+			console.log( exercise );
 			$('.popup').fadeOut(350);
-	        getAllWeightRoutines();
+	        getAllExercises();
 		})
-		.fail(function( routine ){
+		.fail(function( exercise ){
 	    	console.log('Updating weights routine failed!');
 	    })
 	})  
 }
-putWeightRoutineEdits();
+putExerciseEdits();
 
 
 
-
-/*
-//Cancel fitgoal update.
-function cancelFitGoalUpdate(){
-	$('.edit-fitgoal-form').on('click', '#cancel-fitgoal-button', event => {
+//Cancel exercise update.
+function cancelExerciseEdit(){
+	$('.edit-exercise-form').on('click', '#cancel-exercise-button', event => {
 		$('.popup').fadeOut(350);
 	});
 }
-cancelFitGoalUpdate();
+cancelExerciseEdit();
 
 
 
 
 
 
-function displayEditedFitGoal( fitgoal ){
-
-	let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
-	
-	$('#fitgoal-title').val('');
-	$('#fitgoal-description').val('');
-    $('.current-fitgoal').html(`
-    	<p class="current-fitgoal-date">${formatedDate}</p>
-    	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
-		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
-		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
-		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
-    `)
-}
 
 
 
@@ -534,6 +512,20 @@ $('.post-category-form').submit('#addcategorybutton', event => {
 })
 
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***   A C T I V I T Y   ***

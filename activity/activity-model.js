@@ -11,7 +11,7 @@ const activitySchema = new mongoose.Schema({
 				distance: {type: Number, required: false},
 				duration: {type: Number, required: false},
 			},
-	routine: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercise'}],
+	exercises: [{type: mongoose.Schema.Types.ObjectId, ref: 'exercises'}],
 	location: {type: String, required: false}, //may integrate google maps API
 	inspiration: {type: String, required: false}, //link to routine blog/pic/video
 	completed: {type: Boolean, default: false}
