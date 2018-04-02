@@ -68,7 +68,7 @@ exports.getExerciseByID = (req, res) => {
 
 //Edit category by ID
 exports.updateExerciseByID = (req, res) => {
-	if(!(req.params.id  && req.body.id && req.params.id === req.body.id)){
+	if(!req.params.id){
 		res.status(400).json({
 			message: "Error. Request path id and request body id values must match."
 		})
@@ -83,7 +83,8 @@ exports.updateExerciseByID = (req, res) => {
   	exerciseModel.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
 	.then((updatedExercise) => {
 		res.status(200).json({
-			message: "Exercise updated successfully."
+			message: "Exercise updated successfully.",
+			data: updatedExercise
 		})
 	})	
 	.catch((error) => {

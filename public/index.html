@@ -27,10 +27,7 @@
 	<header role="banner" id="box1">
 		<div class="row">
 			<div class="col-12">
-				<button type="submit" class="fitgoal-history-button">History</button>
-
-				<!-- data-popup-open="popup-fitgoal-history" -->
-
+				<button type="submit" class="fitgoal-history-button">Fit Goal History</button>
 				<button>Sign Out</button>  
 				<h1>App Name</h1>
 			</div>
@@ -114,19 +111,68 @@
 				</section>
 
 
+<!--end of fitgoal section-->
+
+
+
+<!--weights routine section-->
+
+				<section role="region" class="weightsroutine-section">
+					<div>
+						<h2>Weights Routine<button type="submit" class="btn" data-popup-open="popup-post-weightsroutine">Add</button></h2>
+						<div class="weightsroutine-list"></div>
+					</div>	
+				</section>	
+
+
+
+				<div class="popup" data-popup="popup-post-weightsroutine">
+					<div class="popup-inner">
+						<form role="form" class="post-weightsroutine-form" action="#" method="#">
+							<fieldset>
+								<legend>Add Your Weights Routine</legend>
+								</br>		
+									<label for="routine-name">Name:</label>
+									<input id="routine-name" type="text" placeholder=""/>	
+								</br>
+									<label for="routine-weight">Weight:</label>
+									<input id="routine-weight" type="text" placeholder=""/>
+								</br>		
+									<label for="routine-sets">Sets:</label>
+									<input id="routine-sets" type="text" placeholder=""/>	
+								</br>
+									<label for="routine-reps">Reps:</label>
+									<input id="routine-reps" type="text" placeholder=""/>
+								</br>	
+									<button type="submit" id="add-weightsroutine-button" data-popup-close="popup-post-weightsroutine">Add</button>
+									<button type="submit" data-popup-close="popup-post-weightsroutine">Cancel</button>
+							</fieldset>
+						</form>
+						<a class="popup-close" data-popup-close="popup-post-weightsroutine" href="#">x</a>
+					</div>
+				</div>
+
+
+
+				<section role="region" class="edit-weightsroutine-section">
+					<div class="popup" data-popup="popup-edit-weightsroutine">
+						<div class="popup-inner">
+							<form role="form" class="edit-weightsroutine-form" action="#" method="#"></form>
+							<a class="popup-close" data-popup-close="popup-edit-weightsroutine" href="#">x</a>
+						</div>
+					</div>	
+				</section>
+
+
+<!--end of weights routine section-->
 
 
 
 
 
+<!--fitweek section-->
 
-
-
-
-
-
-
-				<section role="region" class="fitweek-section">
+				<section role="region" class="fitweek-section hidden">
 					<h2>This Week</h2>
 
 					<div class="day-container mon-container">
@@ -173,7 +219,7 @@
 					</div>	
 				</section>	
 
-
+<!--end of fitweek section-->
 
 
 
@@ -201,11 +247,12 @@
 				</section>
 
 
-				<section role="region" class="exercise-form hidden">
-					<h2>Activity</h2>
 
 
 
+
+
+				<section>	
 					<form role="form" class="post-activity-form hidden" action="#" method="#">
 						<fieldset>
 							<legend>Add Activity</legend>
@@ -228,25 +275,6 @@
 							</br>
 								<p>Routine</p>
 								<input type ="image" class="add-routine-icon" src="https://png.icons8.com/ultraviolet/80/000000/plus.png">
-								<div class="routine-form-section hidden">
-									<form role="form" class="post-routine-form hidden" action="#" method="#">
-										<fieldset>
-											<legend>Add Routine</legend>
-											</br>		
-												<label for="routine-name">Name:</label>
-												<input id="routine-name" type="text" placeholder=""/>	
-											</br>
-												<label for="routine-weight">Weight:</label>
-												<input id="routine-weight" type="text" placeholder=""/>
-											</br>		
-												<label for="routine-sets">Sets:</label>
-												<input id="routine-sets" type="text" placeholder=""/>	
-											</br>
-												<label for="routine-reps">Reps:</label>
-												<input id="routine-reps" type="text" placeholder=""/>
-										</fieldset>
-									</form>
-								</div>		
 							</br>		
 								<label for="activity-location">Location:</label>
 								<input id="activity-location" type="text" placeholder=""/>	
@@ -263,14 +291,12 @@
 
 
 
-				<section role="region" class="exercise-section"></section>
-
-
-
-
 				<section role="region" class="fitweek-history-section hidden">
 					<h2>Fit Week History</h2>	
 				</section>
+
+
+
 
 			</div>
 		</div>	

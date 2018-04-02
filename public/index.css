@@ -99,6 +99,19 @@ section{
 
 
 
+/*--Weights Routine Section Styling--*/
+
+.weights-routine{
+	margin: 20px 10px;
+}
+
+/*--End of Weights Routine Section Styling--*/
+
+
+
+
+
+
 /*--Footer Styling--*/
 footer{
 	height: 50px;
@@ -149,7 +162,20 @@ footer{
 
 
 
+/*--Table Styling--*/
 
+table, 
+th, 
+td {
+    border: 1px solid black;
+    text-align: left;
+}
+
+table{
+	width:100%;
+}
+
+/*--End of Table Styling--*/
 
 
 
@@ -212,4 +238,7 @@ footer{
 }
 
 /*--End of Modal Styling--*/
+
+
+
 
