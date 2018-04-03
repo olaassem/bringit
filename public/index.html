@@ -43,7 +43,6 @@
 			<div class="col-12">
 
 
-			<section role="region" class="goalhistory-section">
 				<div class="popup" data-popup="popup-fitgoal-history">
 					<div class="popup-inner">
 						<h2>Fit Goal History</h2>
@@ -51,7 +50,6 @@
 						<a class="popup-close" data-popup-close="popup-fitgoal-history" href="#">x</a>
 					</div>
 				</div>	
-			</section>
 
 
 
@@ -119,8 +117,24 @@
 
 				<section role="region" class="exercise-section">
 					<div>
-						<h2>Exercises<button type="submit" class="btn" data-popup-open="popup-post-exercise">Add</button></h2>
-						<div class="exercise-list"></div>
+						<h2>Exercises<button type="submit" class="btn" data-popup-open="popup-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+						<div class="exercise-list-container"></div>
+							<table class="exercise-table" border="1">
+								<thread>
+									<tr>
+										<th class="th-exercise-select" width="15%">Select</th>
+									    <th class="th-exercise-name" width="15%">Name</th>
+									    <th class="th-exercise-weight" width="15%">Weight</th> 
+									    <th class="th-exercise-sets" width="15%">Sets</th>
+									    <th class="th-exercise-name" width="15%">Reps</th>
+									    <th class="th-exercise-edit" width="15%">Edit</th>
+									    <th class="th-exercise-delete" width="15%">Delete</th>
+							  		</tr>
+							  	</thread>
+							  	<tbody class="exercise-list">
+						 		</tbody>	
+							</table>	
+						</div>	
 					</div>	
 				</section>	
 
@@ -169,55 +183,66 @@
 
 
 
-
 <!--fitweek section-->
-
-				<section role="region" class="fitweek-section hidden">
+				<div class="fitweek">
 					<h2>This Week</h2>
 
-					<div class="day-container mon-container">
-						<h3>MONDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
+					<div class="row">
+						<div class="col-12">
+
+							<div class="day-container mon-container col-3">
+								<div class="center">
+									<h3>MON</h3>
+									<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+									<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+									<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+								</div>	
+							</div>
+
+							<div class="day-container tues-container col-3"> 	
+								<h3>TUES</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>
+
+							<div class="day-container wed-container col-3"> 	
+								<h3>WED</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>	
+
+							<div class="day-container thurs-container col-3"> 	
+								<h3>THURS</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>
+
+							<div class="day-container fri-container col-3"> 	
+								<h3>FRI</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>
+
+							<div class="day-container sat-container col-3"> 	
+								<h3>SAT</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>	
+
+							<div class="day-container sun-container col-3"> 	
+								<h3>SUN</h3>
+								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+							</div>
+						</div>
 					</div>
-					<div class="day-container tues-container"> 	
-						<h3>TUESDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>
-					<div class="day-container wed-container"> 	
-						<h3>WEDNESAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>
-					<div class="day-container thurs-container"> 	
-						<h3>THURSDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>
-					<div class="day-container fri-container"> 	
-						<h3>FRIDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>
-					<div class="day-container sat-container"> 	
-						<h3>SATURDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>	
-					<div class="day-container sun-container"> 	
-						<h3>SUNDAY</h3>
-						<button class="add-day-plan-btn">Add</button>
-						<button class="edit-day-plan-btn">Edit</button>
-						<button class="delete-day-plan-btn">Delete</button>
-					</div>	
-				</section>	
+				</div>
 
 <!--end of fitweek section-->
 

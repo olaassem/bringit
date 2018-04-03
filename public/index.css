@@ -23,7 +23,7 @@ button{
 }
 
 section{
-	border: 1pc solid #409CFF;
+	border: 1px solid #409CFF;
 }
 
 /*--End of Universal Styling--*/
@@ -35,15 +35,26 @@ section{
 }
 
 
+
 /*--Fit Week Section Styling--*/
 .day-container{
-	width: 250px;
-	height: 250px;
-	float: left;
-	border: 2px solid grey;
+	text-align: center;
+    border: solid 2px #D3D3D3;
+    /*box-shadow: 0 8px 6px -6px #2a2a2a;*/
+    width: 200px;
+    height:200px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
 }
 
-/*--End of Week Section Styling--*/
+
+
+/*--End of Fit Week Section Styling--*/
+
+
 
 
 /*--Category Section Styling--*/
@@ -96,16 +107,37 @@ section{
 
 
 
-
-
-
 /*--Exercise Section Styling--*/
 
 .exercise-routine{
 	margin: 20px 10px;
 }
 
-/*--End of Weights Routine Section Styling--*/
+.add-icon,
+.edit-icon,
+.delete-icon{
+	width: 20px;
+	height: 20px;
+}
+
+/*--Table Styling--*/
+
+table, 
+th, 
+td {
+    border: 1px solid black;
+    text-align: left;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/*--End of Table Styling--*/
+
+/*--End of Exercise Section Styling--*/
+
 
 
 
@@ -162,21 +194,19 @@ footer{
 
 
 
-/*--Table Styling--*/
 
-table, 
-th, 
-td {
-    border: 1px solid black;
-    text-align: left;
+/*--Button Styling--*/
+
+.add-day-plan-btn,
+.edit-day-plan-btn,
+.delete-day-plan-btn,
+.exercise-edit-button,
+.exercise-delete-button{
+	padding: 0;
+	border: none;
+	background: none;
 }
-
-table{
-	width:100%;
-}
-
-/*--End of Table Styling--*/
-
+/*--End of Button Styling--*/
 
 
 

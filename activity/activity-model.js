@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 
 //All activity types
-const activitySchema = new mongoose.Schema({ 		
+const activitySchema = new mongoose.Schema({ 	
+	categoryID:{type: mongoose.Schema.Types.ObjectId, ref: 'category'},
 	name: {type: String, required: true},
 	time: {type: String, required: true},
 	duration: {type: Number, required: false},

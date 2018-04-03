@@ -108,8 +108,8 @@ function displayNewFitGoal( fitgoal ){
     	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
 		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
 		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
-		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
+		<button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
+		<button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
     `)
 }
 postNewFitGoal();
@@ -257,8 +257,8 @@ function displayEditedFitGoal( fitgoal ){
     	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
 		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
 		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-		<button class="edit-fitgoal-button" value="${fitgoal.data._id}">Edit</button>
-		<button class="delete-fitgoal-button" value="${fitgoal.data._id}">Delete</button>
+		<button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+		<button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
     `)
 }
 
@@ -322,24 +322,15 @@ getAllExercises();
 
 function renderExercises( exercise ){
 	return `
-		<div class="exercise-routine">
-			<table class="exercise-table">
-			  <tr>
-			    <th class="th-exercise-name" width="25%">Name</th>
-			    <th class="th-exercise-weight" width="25%">Weight</th> 
-			    <th class="th-exercise-sets" width="25%">Sets</th>
-			    <th class="th-exercise-name" width="25%">Reps</th>
-			  </tr>
-			  <tr>
-			    <td class="td-exercise-name" width="25%">${exercise.name}</td>
-			    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
-			    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
-			    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-			  </tr>
-			</table>
-			<button type="submit" class="exercise-edit-button" value="${exercise._id}">Edit</button>
-			<button type="submit" class="exercise-delete-button" value="${exercise._id}">Delete</button>
-		</div>	
+	  <tr class="exercise-rows">
+	 	<td><input type="checkbox" id="select-exercise" name="select" value=""></td>
+	    <td class="td-exercise-name" width="25%">${exercise.name}</td>
+	    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+	    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+	    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
+	    <td><button type="submit" class="exercise-edit-button" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
+	    <td><button type="submit" class="exercise-delete-button" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></td>
+	  </tr>
 	`	
 } 
 
@@ -451,6 +442,22 @@ function cancelExerciseEdit(){
 	});
 }
 cancelExerciseEdit();
+
+
+
+//rework table
+
+
+
+
+
+/***   F I T   W E E K  ***/
+
+
+
+//'.add-day-plan-btn'
+
+
 
 
 
@@ -603,7 +610,7 @@ function openModal(){
 		event.preventDefault();
 		let targeted_popup_class = $( this ).attr('data-popup-open');
 		$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-		clearWeightsRoutineValue();
+		//clearWeightsRoutineValue();
 	});
 }
 openModal();	
