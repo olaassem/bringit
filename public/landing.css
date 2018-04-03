@@ -1,0 +1,95 @@
+/*--Universal Styling--*/
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+ }
+
+
+body{
+  background: white;
+  user-select: none;
+}
+
+.container{
+  width: 450px;
+  margin: 30px auto;
+}
+
+.signup,
+.login{
+  width: 50%;
+  background: #fff;
+  float: left;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.signup-form,
+.login-form{
+  background: #fff;
+  padding: 40px;
+  clear: both;
+  width: 100%;
+  box-sizing: border-box;
+  height: 400px;
+}
+
+.input{
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border: 2px solid #e9eaea;
+  color: #3e3e40;
+  font-size: 14px;
+  outline: none;
+  transform: all 0.5s ease;
+}
+
+.input:focus{
+  border: 2px solid #409CFF;
+}
+
+.create-account-btn,
+.login-btn{
+  width: 100%;
+  background: #409CFF;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+span a{
+  text-decoration: none;
+  color: #000;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #3e3e40;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #3e3e40;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #3e3e40;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #3e3e40;
+}
