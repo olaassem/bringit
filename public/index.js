@@ -477,24 +477,6 @@ cancelExerciseEdit();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /***   C A T E G O R I E S   ***/
 
 //Get all categories
@@ -506,13 +488,26 @@ function getAllCategories(){
 }
 getAllCategories();
 
+
+function renderCategories( category ){
+	return `
+		<div class="col-3">
+			<div class="category-container">
+				<button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
+				<button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+			</div>
+		</div>
+	`	
+} 
+//ADD CATEGORY EDIT BUTTON???
+//	<button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+
+
 function displayAllCategories( allCategories ){
-	allCategories.data.forEach( (category)=> {
-		$('.category-icons').append(`
-			<button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
-		`)
-	})
+	let categoriesOutput = allCategories.data.map( category => renderCategories( category )).join('');
+	$('.category-icons').html(categoriesOutput);
 }
+
 
 function revealNewCategoryForm(){
 	$('.popdown-post-category').on('click', event => {
@@ -559,14 +554,35 @@ function cancelNewCategory(){
 cancelNewCategory();
 
 
+//Delete category.
+function deleteCategory(){
+	$('.category-icons').on('click', '.delete-category-btn', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		console.log(ID);
+		$.ajax({
+            url: `/category/${ID}`,
+            type: 'DELETE'
+        }).done(( category ) => {
+        	console.log( category );
+        	getAllCategories();
+        }).fail(( error ) => {
+        	console.log('Deleting category failed!');
+        })
+    });    
+}
+deleteCategory();
 
 
+//Remove category delete button on category focus.
+$('.category-icons').on('focus','.select-category-btn', function(){
+   $('.category-container').children('.delete-category-btn').addClass('hidden');
+});
 
-
-
-
-
-
+//Return category delete button on category focusout.
+$('.category-icons').on('focusout','.select-category-btn', function(){
+   $('.category-container').children('.delete-category-btn').removeClass('hidden');
+});
 
 
 
