@@ -145,7 +145,6 @@ function completedFitGoal(){
 completedFitGoal();
 
 
-
 //Delete selected fit goal.
 function deleteFitGoal(){
 	$('.current-fitgoal').on('click', '.delete-fitgoal-button', event => {
@@ -164,7 +163,6 @@ function deleteFitGoal(){
     });    
 }
 deleteFitGoal();
-
 
 
 //Get fitgoal details when edit button is clicked.
@@ -198,8 +196,6 @@ function openEditFitGoalModal() {
 	});	
 }
 openEditFitGoalModal();
-
-
 
 
 //Put fitgoal edits.
@@ -242,14 +238,8 @@ function cancelFitGoalUpdate(){
 cancelFitGoalUpdate();
 
 
-
-
-
-
 function displayEditedFitGoal( fitgoal ){
-
 	let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
-	
 	$('#fitgoal-title').val('');
 	$('#fitgoal-description').val('');
     $('.current-fitgoal').html(`
@@ -269,209 +259,9 @@ function displayEditedFitGoal( fitgoal ){
 
 /***   F I T   W E E K  ***/
 
-
-
 //'.add-day-plan-btn'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***   E X E R C I S E S   ***/
-
-
-function clearExerciseValue(){
-	$('#exercise-name').val("");
-	$('#exercise-sets').val(""); 
-	$('#exercise-reps').val("");
-	$('#exercise-weight').val("");
-}
-
-
-//Post a new weights routine.
-function postNewExercise(){
-	$('.post-exercise-form').on('click', '#add-exercise-button', event => {
-		event.preventDefault();
-		let body = {
-			//activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
-			'name': $('#exercise-name').val(),  //string
-			'sets': $('#exercise-sets').val(),  //string
-			'reps': $('#exercise-reps').val(),  //string
-			'weight': $('#exercise-weight').val()  //string
-		}
-		$.ajax({
-		    type: "POST",
-		    contentType: 'application/json',
-		    url: '/exercise/new',
-		    data: JSON.stringify(body)
-	  	})
-		.done(function( newExercise ){
-			console.log( newExercise );
-			getAllExercises();
-		})
-		.fail(function( newExercise ){
-	    	console.log('Post new weights routine failed!');
-	    })
-	})
-}
-postNewExercise();
-
-
-//Get all exercises.
-function getAllExercises(){
-	$.get('/exercise/all', ( allExercises ) => {
-		console.log( allExercises );
-		displayExercises( allExercises );
-	});
-}
-getAllExercises();
-
-
-function renderExercises( exercise ){
-	return `
-	  <tr class="exercise-rows">
-	 	<td><input type="checkbox" id="select-exercise" name="select" value=""></td>
-	    <td class="td-exercise-name" width="25%">${exercise.name}</td>
-	    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
-	    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
-	    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-	    <td><button type="submit" class="exercise-edit-button" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
-	    <td><button type="submit" class="exercise-delete-button" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></td>
-	  </tr>
-	`	
-} 
-
-
-function displayExercises( allExercises ){
-	let exercisesOutput = allExercises.data.map( exercise => renderExercises( exercise )).join('');
-	$('.exercise-list').html(exercisesOutput);
-}
-
-
-//Delete weights routine table.
-function deleteExerciseTable(){
-	$('.exercise-list').on('click', '.exercise-delete-button', event => {
-		event.preventDefault();
-		let ID = $(event.currentTarget).attr("value");
-		console.log(ID);
-		$.ajax({
-            url: `/exercise/${ID}`,
-            type: 'DELETE'
-        }).done(( exerciseRoutine ) => {
-        	console.log( exerciseRoutine );
-        	getAllExercises();
-        }).fail(( error ) => {
-        	console.log('Deleting exercise routine table failed!');
-        })
-    });    
-}
-deleteExerciseTable();
-
-
-
-
-//Get exercise details when edit button is clicked.
-function openEditExerciselModal() {
-	$('body').on('click', '.exercise-edit-button', event => {
-		event.preventDefault();
-		$('[data-popup="popup-edit-exercise"]').fadeIn(350);
-		let ID = $(event.currentTarget).attr("value");
-		$.ajax({
-            url: `/exercise/${ID}`,
-            type: 'GET'
-        }).done(function( exercise ){
-			console.log( exercise );
-			$('.edit-exercise-form').html(`
-				<fieldset>
-					<legend>Update Exercise Routine</legend>
-					<label for="exercise-name-edit">Name:</label>
-					<input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>	
-					</br>
-					<label for="exercise-weight-edit">Weight:</label>
-					<input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
-					</br>		
-					<label for="exercise-sets-edit">Sets:</label>
-					<input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>	
-					</br>
-					<label for="exercise-reps-edit">Reps:</label>
-					<input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
-					</br>
-					<button type="submit" id="update-exercise-button" data-popup-close="popup-edit-exercise" value="${exercise.data._id}">Update</button>
-					<button type="submit" id="cancel-exercise-button" data-popup-close="popup-edit-exercise">Cancel</button>
-				</fieldset>	
-			`);
-		}).fail(function( error ){
-	    	console.log('Updating exercise routine failed!');
-	    });    
-	});	
-}
-openEditExerciselModal();
-
-
-
-//Put exercise routine edits.
-function putExerciseEdits() {
-	$('.edit-exercise-form').on('click', '#update-exercise-button', event => {
-		event.preventDefault();
-		let ID = $(event.currentTarget).attr("value");
-		let body = {
-			'_id' : `${ID}`,
-			//'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
-			'name': $('#exercise-name-edit').val(),  
-			'sets': $('#exercise-sets-edit').val(),  
-			'reps': $('#exercise-reps-edit').val(),  
-			'weight': $('#exercise-weight-edit').val() 
-			}
-		$.ajax({
-		    type: "PUT",
-		    contentType: 'application/json',
-		    url: `exercise/${ID}`,
-		   	data: JSON.stringify(body)
-	  	})
-	  	.done(function( exercise ){
-			console.log( exercise );
-			$('.popup').fadeOut(350);
-	        getAllExercises();
-		})
-		.fail(function( exercise ){
-	    	console.log('Updating weights routine failed!');
-	    })
-	})  
-}
-putExerciseEdits();
-
-
-
-//Cancel exercise update.
-function cancelExerciseEdit(){
-	$('.edit-exercise-form').on('click', '#cancel-exercise-button', event => {
-		$('.popup').fadeOut(350);
-	});
-}
-cancelExerciseEdit();
 
 
 
@@ -649,6 +439,204 @@ function postNewActivity(){
 function updateActivity(){
 
 }
+
+
+
+
+
+/***   E X E R C I S E S   ***/
+
+
+function clearExerciseValue(){
+	$('#exercise-name').val("");
+	$('#exercise-sets').val(""); 
+	$('#exercise-reps').val("");
+	$('#exercise-weight').val("");
+}
+
+
+//Get all exercises.
+function getAllExercises(){
+	$.get('/exercise/all', ( allExercises ) => {
+		console.log( allExercises );
+		displayExercises( allExercises );
+	});
+}
+getAllExercises();
+
+
+function renderExercises( exercise ){
+	return `
+	  <tr class="exercise-rows">
+	 	<td><input type="checkbox" id="select-exercise" name="select" value=""></td>
+	    <td class="td-exercise-name" width="25%">${exercise.name}</td>
+	    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+	    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+	    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
+	    <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
+	    <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+	  </tr>
+	`	
+} 
+
+
+function displayExercises( allExercises ){
+	let exercisesOutput = allExercises.data.map( exercise => renderExercises( exercise )).join('');
+	$('.exercise-list').html(exercisesOutput);
+}
+
+
+function showNewExerciseForm(){
+	$('.popdown-post-exercise').on('click', event => {
+		event.preventDefault();
+		$('.new-exercise-form').removeClass('hidden');
+	})
+}
+showNewExerciseForm();
+
+
+//Post new exercise.
+function postNewExercise(){
+	$('.post-exercise-form').on('click', '.post-exercise-btn', event => {
+		event.preventDefault();
+		let body = {
+			//activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
+			'name': $('#exercise-name').val(),  //string
+			'sets': $('#exercise-sets').val(),  //string
+			'reps': $('#exercise-reps').val(),  //string
+			'weight': $('#exercise-weight').val()  //string
+		}
+		$.ajax({
+		    type: "POST",
+		    contentType: 'application/json',
+		    url: '/exercise/new',
+		    data: JSON.stringify(body)
+	  	})
+		.done(function( newExercise ){
+			console.log( newExercise );
+			clearExerciseValue();
+			$('.new-exercise-form').addClass('hidden');
+			getAllExercises();
+		})
+		.fail(function( error ){
+	    	console.log('Post new weights routine failed!');
+	    })
+	})
+}
+postNewExercise();
+
+//Cancel adding new exercise.
+function cancelNewExercise(){
+	$('.new-exercise-form').on('click','.cancel-exercise-btn', event =>{
+		event.preventDefault();
+		clearExerciseValue();
+		$('.new-exercise-form').addClass('hidden');
+	});	
+}
+cancelNewExercise();
+
+
+//Delete exercise table.
+function deleteExerciseTable(){
+	$('.exercise-list').on('click', '.delete-exercise-btn', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		console.log(ID);
+		$.ajax({
+            url: `/exercise/${ID}`,
+            type: 'DELETE'
+        }).done(( exerciseRoutine ) => {
+        	console.log( exerciseRoutine );
+        	getAllExercises();
+        }).fail(( error ) => {
+        	console.log('Deleting exercise routine table failed!');
+        })
+    });    
+}
+deleteExerciseTable();
+
+
+//Get exercise details when edit button is clicked.
+function showEditExerciseForm() {
+	$('exercise-list').on('click', '.edit-exercise-btn', event => {
+		event.preventDefault();
+		$('.popdown-edit-exercise').removeClass('hidden');
+		let ID = $(event.currentTarget).attr("value");
+		$.ajax({
+            url: `/exercise/${ID}`,
+            type: 'GET'
+        }).done(function( exercise ){
+			console.log( exercise );
+			$('.edit-exercise-form').html(`
+				<fieldset>
+					<legend>Update Exercise Routine</legend>
+					<label for="exercise-name-edit">Name:</label>
+					<input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>	
+					</br>
+					<label for="exercise-weight-edit">Weight:</label>
+					<input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
+					</br>		
+					<label for="exercise-sets-edit">Sets:</label>
+					<input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>	
+					</br>
+					<label for="exercise-reps-edit">Reps:</label>
+					<input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
+					</br>
+					<button type="submit" class="post-exercise-btn" value="${exercise.data._id}">Update</button>
+					<button type="submit" class="cancel-exercise-btn">Cancel</button>
+				</fieldset>	
+			`);
+		}).fail(function( error ){
+	    	console.log('Updating exercise failed!');
+	    });    
+	});	
+}
+showEditExerciseForm();
+
+
+
+//Put exercise edits.
+function putExerciseEdits() {
+	$('.edit-exercise-form').on('click', '#update-exercise-button', event => {
+		event.preventDefault();
+		let ID = $(event.currentTarget).attr("value");
+		let body = {
+			'_id' : `${ID}`,
+			//'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
+			'name': $('#exercise-name-edit').val(),  
+			'sets': $('#exercise-sets-edit').val(),  
+			'reps': $('#exercise-reps-edit').val(),  
+			'weight': $('#exercise-weight-edit').val() 
+			}
+		$.ajax({
+		    type: "PUT",
+		    contentType: 'application/json',
+		    url: `exercise/${ID}`,
+		   	data: JSON.stringify(body)
+	  	})
+	  	.done(function( exercise ){
+			console.log( exercise );
+			$('.popup').fadeOut(350);
+	        getAllExercises();
+		})
+		.fail(function( exercise ){
+	    	console.log('Updating weights routine failed!');
+	    })
+	})  
+}
+putExerciseEdits();
+
+
+
+//Cancel exercise update.
+function cancelExerciseEdit(){
+	$('.edit-exercise-form').on('click', '#cancel-exercise-button', event => {
+		$('.popup').fadeOut(350);
+	});
+}
+cancelExerciseEdit();
+
+
 
 
 

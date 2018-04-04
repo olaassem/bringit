@@ -26,6 +26,9 @@ section{
 	border: 1px solid #409CFF;
 }
 
+fieldset{
+   border:0 none;
+}
 /*--End of Universal Styling--*/
 
 
@@ -95,8 +98,26 @@ section{
 
 
 
+/*--Fit Plan Modal--*/
+
+.fitplan-modal-btns{
+	margin-top: 40px;
+}
+
+/*--End of Fit Plan Modal Styling*/
+
+
 
 /*--Category Section Styling--*/
+
+.category-icons{
+	margin-bottom: 100px;
+}
+
+.new-category-form{
+	margin-bottom: 40px;
+}
+
 
 .category-container{
 	padding: 0px;
@@ -249,6 +270,7 @@ footer{
 /*--Button Styling--*/
 
 .add-day-plan-btn,
+.view-day-plan-btn,
 .edit-day-plan-btn,
 .delete-day-plan-btn,
 .exercise-edit-button,
