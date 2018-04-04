@@ -4,7 +4,7 @@
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	font-family: 'Oswald', sans-serif;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 body{
@@ -20,13 +20,13 @@ body{
 
 .container{
   width: 450px;
-  margin: 30px auto;
+  margin: 20px; /* auto */
 }
 
 .signup,
 .login{
   width: 50%;
-  background: #fff;
+  background: white;
   float: left;
   height: 60px;
   line-height: 60px;
@@ -37,7 +37,7 @@ body{
 
 .signup-form,
 .login-form{
-  background: #fff;
+  background: white;
   padding: 40px;
   clear: both;
   width: 100%;
@@ -58,6 +58,7 @@ body{
 }
 
 .input:focus{
+  outline:0;
   border: 2px solid #409CFF;
 }
 
@@ -69,7 +70,7 @@ body{
   text-align: center;
   line-height: 60px;
   text-transform: uppercase;
-  color: #fff;
+  color: white;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;

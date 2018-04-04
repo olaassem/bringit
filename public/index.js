@@ -267,6 +267,38 @@ function displayEditedFitGoal( fitgoal ){
 
 
 
+/***   F I T   W E E K  ***/
+
+
+
+//'.add-day-plan-btn'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***   E X E R C I S E S   ***/
 
@@ -277,8 +309,6 @@ function clearExerciseValue(){
 	$('#exercise-reps').val("");
 	$('#exercise-weight').val("");
 }
-
-
 
 
 //Post a new weights routine.
@@ -363,7 +393,7 @@ deleteExerciseTable();
 
 
 
-//Get weight routine details when edit button is clicked.
+//Get exercise details when edit button is clicked.
 function openEditExerciselModal() {
 	$('body').on('click', '.exercise-edit-button', event => {
 		event.preventDefault();
@@ -445,17 +475,10 @@ cancelExerciseEdit();
 
 
 
-//rework table
 
 
 
 
-
-/***   F I T   W E E K  ***/
-
-
-
-//'.add-day-plan-btn'
 
 
 
@@ -473,7 +496,7 @@ cancelExerciseEdit();
 
 
 /***   C A T E G O R I E S   ***/
-/*
+
 //Get all categories
 function getAllCategories(){
 	$.get('/category/all', ( allCategories ) => {
@@ -481,47 +504,59 @@ function getAllCategories(){
 		displayAllCategories( allCategories );
 	})
 }
+getAllCategories();
 
 function displayAllCategories( allCategories ){
 	allCategories.data.forEach( (category)=> {
 		$('.category-icons').append(`
-			<div class="icon">
-				<p class="category-name">${category.name}</p>
-				<img class="category-img" src=${category.img}/>
-			</div>	
+			<button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
 		`)
 	})
 }
 
-getAllCategories();
-
+function revealNewCategoryForm(){
+	$('.popdown-post-category').on('click', event => {
+		event.preventDefault();
+		$('.new-category-form').removeClass('hidden');
+	})
+}
+revealNewCategoryForm();	
 
 
 //Post a new category
-$('.post-category-form').submit('#addcategorybutton', event => {
-	event.preventDefault();
-	let body = {
-		name: $('#category-name').val(),
-		img: $('#category-img').val()  
-	}
-	$.ajax({
-	    type: "POST",
-	    contentType: 'application/json',
-	    url: '/category/new',
-	    data: JSON.stringify(body),
-  	})
-    .done(function( data ){
-        console.log( data );
-    })
-    .fail(function( data ){
-        console.log('Post new category failed!')
-    })
-})
+function postNewCategory(){
+	$('.new-category-form').on('click', '.post-category-btn', event => {
+		event.preventDefault();
+		let body = {
+			name: $('#category-name').val(),
+			img: $('#category-img').val()  
+		}
+		$.ajax({
+		    type: "POST",
+		    contentType: 'application/json',
+		    url: '/category/new',
+		    data: JSON.stringify(body),
+	  	})
+	    .done(function( data ){
+	        console.log( data );
+	        getAllCategories( data );
+	        $('.new-category-form').addClass('hidden');
+	    })
+	    .fail(function( error ){
+	        console.log('Posting new category failed!')
+	    })
+	})
+}
+postNewCategory();
 
-*/
 
-
-
+function cancelNewCategory(){
+	$('.new-category-form').on('click','.cancel-category-btn', event =>{
+		event.preventDefault();
+		$('.new-category-form').addClass('hidden');
+	});	
+}
+cancelNewCategory();
 
 
 

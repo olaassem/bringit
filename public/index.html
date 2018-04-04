@@ -30,6 +30,7 @@
 				<button type="submit" class="fitgoal-history-button">Fit Goal History</button>
 				<button>Sign Out</button>  
 				<h1>App Name</h1>
+				<h2>Hey, 'user name'!</h2>
 			</div>
 		</div>
 	</header>	
@@ -115,7 +116,7 @@
 
 <!--exercise section-->
 
-				<section role="region" class="exercise-section">
+				<section role="region" class="exercise-section hidden">
 					<div>
 						<h2>Exercises<button type="submit" class="btn" data-popup-open="popup-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
 						<div class="exercise-list-container"></div>
@@ -186,55 +187,59 @@
 <!--fitweek section-->
 				<div class="fitweek">
 					<h2>This Week</h2>
-
 					<div class="row">
 						<div class="col-12">
 
-							<div class="day-container mon-container col-3">
+
+							<div class="day-container mon-container col-3" value="Monday">
 								<div class="center">
 									<h3>MON</h3>
-									<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+
+									<button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
+
 									<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 									<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 								</div>	
 							</div>
 
-							<div class="day-container tues-container col-3"> 	
+
+
+							<div class="day-container tues-container col-3" value="Tuesday"> 	
 								<h3>TUES</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 							</div>
 
-							<div class="day-container wed-container col-3"> 	
+							<div class="day-container wed-container col-3" value="Wednesday"> 	
 								<h3>WED</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 							</div>	
 
-							<div class="day-container thurs-container col-3"> 	
+							<div class="day-container thurs-container col-3" value="Thursday"> 	
 								<h3>THURS</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 							</div>
 
-							<div class="day-container fri-container col-3"> 	
+							<div class="day-container fri-container col-3" value="Friday"> 	
 								<h3>FRI</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 							</div>
 
-							<div class="day-container sat-container col-3"> 	
+							<div class="day-container sat-container col-3" value="Saturday"> 	
 								<h3>SAT</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 								<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 							</div>	
 
-							<div class="day-container sun-container col-3"> 	
+							<div class="day-container sun-container col-3" value="Sunday"> 	
 								<h3>SUN</h3>
 								<button class="add-day-plan-btn"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button>
 								<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
@@ -249,27 +254,66 @@
 
 
 
-				<section role="region" class="category-section hidden">
-					<h2 >Categories</h2>
-					<div class="category-icons"></div>	
+<!--day plan modal form section-->
+
+				<div class="popup" data-popup="popup-post-dayplan">
+					<div class="popup-inner">
+						<form role="form" class="post-dayplan-form" action="#" method="#">
+							<fieldset>
+								<legend><span class="dayoftheweek"></span>Fit Plan</legend>
+								
+
+
+									<div role="region" class="category-section">
+										<h2>Categories<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+										
+										<div class="new-category-form hidden">
+											<form role="form" class="post-category-form" action="#" method="#">	
+												<fieldset>
+													<legend>Add New Category</legend>
+														<label for="category-name">Name:</label>
+														<input id="category-name" type="text" placeholder="e.g. Climbing"/>
+													</br>	
+														<label for="category-img">Image:</label>
+														<input id="category-img" type="text" placeholder="URL"/>
+													</br>	
+														<button type="submit" class="post-category-btn">Add</button>
+														<button type="submit" class="cancel-category-btn">Cancel</button>
+												</fieldset>
+											</form>
+										</div>	
 
 
 
-					<form role="form" class="post-category-form hidden" action="#" method="#">
-						<fieldset>
-							<legend>Add New Category</legend>
-								<label for="category-name">Category Name:</label>
-							</br>
-								<input id="category-name" type="text" placeholder="e.g. Weight-Lifting"/>
-							</br>	
-								<label for="category-img">Upload Img</label>
-							</br>	
-								<input id="category-img" type="text" placeholder="URL"/>
-							</br>	
-								<button type="submit" id="addcategorybutton">Add!</button>
-						</fieldset>
-					</form>	
-				</section>
+										<div class="row">
+											<div class="col-12">
+												<div class="category-icons"></div>
+											</div>
+										</div>
+									</div>	
+
+
+
+
+
+
+									<button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
+									<button type="submit" data-popup-close="popup-post-dayplan">Cancel</button>
+							</fieldset>
+						</form>
+						<a class="popup-close" data-popup-close="popup-post-dayplan" href="#">x</a>
+					</div>
+				</div>
+
+
+
+
+
+
+
+<!--end of dayplan form section-->
+
+
 
 
 
