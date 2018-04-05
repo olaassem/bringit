@@ -6,8 +6,6 @@ const jwt = require('jsonwebtoken');//create tokens
 
 
 //Register new user:
-
-
 exports.postNewUser = (req, res) => {
     //1. have to 1st check if another user exists with same email in all the db.
     userModel.findOne({ email: req.body.email })

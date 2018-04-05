@@ -23,8 +23,8 @@ body{
   margin: 20px; /* auto */
 }
 
-.signup,
-.login{
+.signup-tab,
+.login-tab{
   width: 50%;
   background: white;
   float: left;
