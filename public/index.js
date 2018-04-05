@@ -365,8 +365,8 @@ deleteCategory();
 
 
 //Remove category delete button on category focus.
-$('.category-icons').on('focus','.select-category-btn', function(){
-   $('.category-container').children('.delete-category-btn').addClass('hidden');
+$('.category-icons').on('focus','.select-category-btn', function( event ){
+   $(event.target).next('.delete-category-btn').addClass('hidden');
 });
 
 //Return category delete button on category focusout.

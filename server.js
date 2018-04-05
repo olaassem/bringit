@@ -42,6 +42,7 @@ const category = require('./category/category-routes');
 const activity = require('./activity/activity-routes');
 const exercise = require('./exercise/exercise-routes');
 const quote = require('./quote/quote-routes');
+const user = require('./user/user-routes');
 
 
 //PREFIXES
@@ -52,6 +53,7 @@ app.use('/category', category);
 app.use('/activity', activity);
 app.use('/exercise', exercise);
 app.use('/quote', quote);
+app.use('/user', user);
 
 
 //PORT LISTEN

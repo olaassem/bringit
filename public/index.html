@@ -28,7 +28,8 @@
 		<div class="row">
 			<div class="col-12">
 				<button type="submit" class="fitgoal-history-button">Fit Goal History</button>
-				<button>Sign Out</button>  
+				<button>Sign Out</button> 
+				<button><a href="landing.html">Landing</a></button> 
 				<h1>App Name</h1>
 				<h2>Hey, 'first name'!</h2>
 			</div>
@@ -133,7 +134,7 @@
 									
 
 									<button class="edit-day-plan-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
-									
+
 									<button class="delete-day-plan-btn"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
 								</div>	
 							</div>
@@ -205,14 +206,14 @@
 <!--category section-->
 
 										<div class="new-category-form hidden">
-											<form role="form" class="post-category-form" action="#" method="#">	
+											<form role="form" class="post-category-form" novalidate>	
 												<fieldset>
 													<legend>Add New Category</legend>
 														<label for="category-name">Name:</label>
-														<input id="category-name" type="text" required placeholder="e.g. Climbing"/>
+														<input id="category-name" type="text" placeholder="e.g. Climbing"/>
 													</br>	
 														<label for="category-img">Image:</label>
-														<input id="category-img" type="text" required placeholder="URL"/>
+														<input id="category-img" type="text" placeholder="URL"/>
 													</br>	
 														<button type="submit" class="post-category-btn">Add</button>
 														<button type="submit" class="cancel-category-btn">Cancel</button>
@@ -227,33 +228,35 @@
 
 									<div class="row">
 										<div class="col-12">
-											<form role="form" class="post-activity-form" action="#" method="#">
-												<fieldset>
-													<legend>Activity</legend>
-														<label for="activity-name">Name:</label>
-														<input id="activity-name" type="text" placeholder=""/>
-													</br>	
-														<label for="activity-time">Time:</label>
-														<input id="activity-time" type="text" placeholder=""/>
-													</br>	
-														<label for="activity-duration">Duration:</label>
-														<input id="activity-duration" type="text" placeholder=""/>
-													</br>	
-														<label for="activity-cardio">Cardio</label>
-													</br>	
-														<label for="cardio-distance">Distance:</label>
-														<input id="cardio-distance" type="text" placeholder=""/>
-													</br>	
-														<label for="cardio-duration">Duration:</label>
-														<input id="cardio-duration" type="text" placeholder=""/>
-													</br>		
-														<label for="activity-location">Location:</label>
-														<input id="activity-location" type="text" placeholder=""/>	
-													</br>
-														<label for="activity-inspiration">Inspiration:</label>
-														<input id="activity-inspiration" type="text" placeholder=""/>
-												</fieldset>
-											</form>
+											<div class="activity-container">
+												<form role="form" class="post-activity-form" novalidate>
+													<fieldset>
+														<legend>Activity</legend>
+															<label for="activity-name">Name:</label>
+															<input id="activity-name" type="text" placeholder=""/>
+														</br>	
+															<label for="activity-time">Time:</label>
+															<input id="activity-time" type="text" placeholder=""/>
+														</br>	
+															<label for="activity-duration">Duration:</label>
+															<input id="activity-duration" type="text" placeholder=""/>
+														</br>	
+															<label for="activity-cardio">Cardio</label>
+														</br>	
+															<label for="cardio-distance">Distance:</label>
+															<input id="cardio-distance" type="text" placeholder=""/>
+														</br>	
+															<label for="cardio-duration">Duration:</label>
+															<input id="cardio-duration" type="text" placeholder=""/>
+														</br>		
+															<label for="activity-location">Location:</label>
+															<input id="activity-location" type="text" placeholder=""/>	
+														</br>
+															<label for="activity-inspiration">Inspiration:</label>
+															<input id="activity-inspiration" type="text" placeholder=""/>
+													</fieldset>
+												</form>
+											</div>	
 										</div>
 									</div>		
 <!--end of activity section-->

@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+
+
+
+//All user types
+const userSchema = new mongoose.Schema({
+	email: {type: String, require: true, unique: true},
+	password: {type: String, require: true},
+	name: {type: String, require: true}	
+});
+
+
+
+module.exports = mongoose.model( 'user', userSchema );

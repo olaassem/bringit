@@ -111,13 +111,11 @@ fieldset{
 /*--Category Section Styling--*/
 
 .category-icons{
-	margin-bottom: 100px;
 }
 
 .new-category-form{
 	margin-bottom: 40px;
 }
-
 
 .category-container{
 	padding: 0px;
@@ -131,7 +129,6 @@ fieldset{
 
 }
 
-
 .delete-category-btn{
 	position: absolute;
   	top: -10px;
@@ -139,12 +136,10 @@ fieldset{
  	padding: 0;
 	border: none;
 	background: none;
-
 }
 
 .select-category-btn{
 	font-size: 12px;
-
 }
 
 .select-category-btn:focus{
@@ -170,7 +165,9 @@ fieldset{
 
 
 
-
+.activity-container{
+	margin-top: 50px;
+}
 
 
 
