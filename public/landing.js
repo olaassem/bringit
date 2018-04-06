@@ -1,52 +1,52 @@
-function registerNewUser(){
-	$('.create-account-btn').on('click', event => {
-		event.preventDefault();
-		let userData = {
-			'email': $('.inputEmail').val(),
-			'password': $('.inputPass').val(),
-			'name': $('.inputName').val()
-		}
-		$.ajax({
-		    type: "POST",
-		    contentType: 'application/json',
-		    url: '/user/register',
-		    data: JSON.stringify( userData )
-	  	})
-		.done(function( user ){
-			console.log( user );
-			$('.input').val("");
-		})
-		.fail(function( error ){
-	    	console.log('Registering user failed!');
-	    	$('.input').val("");
-	    })
-	})
+function registerNewUser() {
+    $('.create-account-btn').on('click', event => {
+        event.preventDefault();
+        let userData = {
+            'email': $('.inputEmail').val(),
+            'password': $('.inputPass').val(),
+            'name': $('.inputName').val()
+        }
+        $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: '/user/register',
+                data: JSON.stringify(userData)
+            })
+            .done(function(user) {
+                console.log(user);
+                $('.input').val("");
+            })
+            .fail(function(error) {
+                console.log(error);
+                $('.input').val("");
+            })
+    })
 }
 registerNewUser();
 
 
-function loginExistingUser(){
-	$('.login-btn').on('click', event => {
-		event.preventDefault();
-		let userData = {
-			'email': $('.inputEmail').val(),
-			'password': $('.inputPass').val(),
-		}
-		$.ajax({
-		    type: "POST",
-		    contentType: 'application/json',
-		    url: '/user/login',
-		    data: JSON.stringify( userData )
-	  	})
-		.done(function( user ){
-			console.log( user );
-			$('.input').val("");
-		})
-		.fail(function( error ){
-	    	console.log('Cannot log in user!');
-	    	$('.input').val("");
-	    })
-	})
+function loginExistingUser() {
+    $('.login-btn').on('click', event => {
+        event.preventDefault();
+        let userData = {
+            'email': $('.inputEmail').val(),
+            'password': $('.inputPass').val(),
+        }
+        $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: '/user/login',
+                data: JSON.stringify(userData)
+            })
+            .done(function(user) {
+                console.log(user);
+                $('.input').val("");
+            })
+            .fail(function(error) {
+                console.log(error);
+                $('.input').val("");
+            })
+    })
 }
 loginExistingUser();
 
@@ -54,13 +54,13 @@ loginExistingUser();
 
 
 //   C L I C K   O N   T A B   F U N C T I O N A L I T Y   //
-$('.js-login-form').hide( );
+$('.js-login-form').hide();
 $('.login-tab').css('background', 'none');
 
 
 
-$('.login-tab').click( event => {
-	event.preventDefault();
+$('.login-tab').click(event => {
+    event.preventDefault();
     $('.js-register-form').hide();
     $('.js-login-form').show();
     $('.signup-tab').css('background', 'none');
@@ -68,8 +68,8 @@ $('.login-tab').click( event => {
 });
 
 
-$('.signup-tab').click( event => {
-	event.preventDefault();
+$('.signup-tab').click(event => {
+    event.preventDefault();
     $('.js-register-form').show();
     $('.js-login-form').hide();
     $('.login-tab').css('background', 'none');
