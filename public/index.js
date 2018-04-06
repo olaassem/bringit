@@ -6,6 +6,17 @@
 //modal functionality
 
 
+//token --local storage
+
+//will be executed anytime we refresh
+function initApp() {
+    let userName = localStorage.getItem('name');
+    if (userName) {
+        $('.greeting .firstname').html(userName);
+    }
+}
+initApp();
+
 
 
 /***   M O T I F I T   Q U O T E    ***/
@@ -52,12 +63,12 @@ function renderCompletedFitGoals(fitgoal) {
     let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
     if (fitgoal.completed === true) {
         return `
-			<div class="completed-goal">
-				<p>Completed on: ${formatedDate}</p>
-				<h3>Title: ${fitgoal.title}</h3>
-				<p>Description: ${fitgoal.description}</p>
-			</div>	
-		`
+            <div class="completed-goal">
+                <p>Completed on: ${formatedDate}</p>
+                <h3>Title: ${fitgoal.title}</h3>
+                <p>Description: ${fitgoal.description}</p>
+            </div>  
+        `
     }
 }
 
@@ -104,12 +115,12 @@ function displayNewFitGoal(fitgoal) {
     $('#fitgoal-description').val('');
     $('.current-fitgoal').removeClass('hidden');
     $('.current-fitgoal').html(`
-    	<p class="current-fitgoal-date">${formatedDate}</p>
-    	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
-		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
-		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-		<button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
-		<button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+        <p class="current-fitgoal-date">${formatedDate}</p>
+        <h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
+        <p class="current-fitgoal-description">${fitgoal.data.description}</p>
+        <button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
+        <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
+        <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
     `)
 }
 postNewFitGoal();
@@ -177,19 +188,19 @@ function openEditFitGoalModal() {
         }).done(function(fitgoal) {
             console.log(fitgoal);
             $('.edit-fitgoal-form').html(`
-				<fieldset>
-					<legend>Update Current Fit Goal</legend>
-					<label for="fitgoal-title-edit">Fit Goal</label>
-					</br>
-					<input id="fitgoal-title-edit" type="text" value="${fitgoal.data.title}" />
-					</br>
-					<label for="fitgoal-description-edit">Description</label>
-					</br>
-					<input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
-					<button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
-					<button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
-				</fieldset>	
-			`);
+                <fieldset>
+                    <legend>Update Current Fit Goal</legend>
+                    <label for="fitgoal-title-edit">Fit Goal</label>
+                    </br>
+                    <input id="fitgoal-title-edit" type="text" value="${fitgoal.data.title}" />
+                    </br>
+                    <label for="fitgoal-description-edit">Description</label>
+                    </br>
+                    <input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
+                    <button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
+                    <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
+                </fieldset> 
+            `);
         }).fail(function(fitgoal) {
             console.log('Updating new fit goal failed!');
         });
@@ -243,12 +254,12 @@ function displayEditedFitGoal(fitgoal) {
     $('#fitgoal-title').val('');
     $('#fitgoal-description').val('');
     $('.current-fitgoal').html(`
-    	<p class="current-fitgoal-date">${formatedDate}</p>
-    	<h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
-		<p class="current-fitgoal-description">${fitgoal.data.description}</p>
-		<button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-		<button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
-		<button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+        <p class="current-fitgoal-date">${formatedDate}</p>
+        <h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
+        <p class="current-fitgoal-description">${fitgoal.data.description}</p>
+        <button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
+        <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+        <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
     `)
 }
 
@@ -281,16 +292,16 @@ getAllCategories();
 
 function renderCategories(category) {
     return `
-		<div class="col-3">
-			<div class="category-container">
-				<button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
-				<button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
-			</div>
-		</div>
-	`
+        <div class="col-3">
+            <div class="category-container">
+                <button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+            </div>
+        </div>
+    `
 }
 //ADD CATEGORY EDIT BUTTON???
-//	<button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+//  <button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 
 
 function displayAllCategories(allCategories) {
@@ -379,10 +390,10 @@ $('.category-icons').on('focusout', '.select-category-btn', function() {
 /***   A C T I V I T Y   ***
 
 function displayRoutineForm(){
-	$('.post-activity-form').on('click', '.add-routine-icon', event => {
-		event.preventDefault();
-		$('.routine-form-section').removeClass('hidden');
-	})
+    $('.post-activity-form').on('click', '.add-routine-icon', event => {
+        event.preventDefault();
+        $('.routine-form-section').removeClass('hidden');
+    })
 }
 displayRoutineForm();
 
@@ -390,9 +401,9 @@ displayRoutineForm();
 
 //Get all activities.
 function getAllActivities(){
-	$.get('/activity/all', ( allActivities ) => {
-		console.log( allActivities );
-	});
+    $.get('/activity/all', ( allActivities ) => {
+        console.log( allActivities );
+    });
 }
 getAllActivities();
 */
@@ -401,35 +412,35 @@ getAllActivities();
 /*
 //Post new activity.
 function postNewActivity(){
-	$('.post-activity-form').on('submit', '#add-newactivity-button', event => {
-		event.preventDefault();
-		let body = {
-			name: $('#activity-name').val(),
-			time:  $('#activity-time').val(),
-			duration: $('#activity-duration').val(),
-			cardio: {
-				distance: $('#cardio-distance').val(),
-				duration: $('#cardio-duration').val(),
-			},
-			//routine: ,
-			location: $('#activity-location').val(),
-			inspiration: $('#activity-inspiration').val(),
-			completed: false 
-		}
-		$.ajax({
-		    type: "POST",
-		    contentType: 'application/json',
-		    url: '/activity/new',
-		    data: JSON.stringify(body)
-	  	})
-		.done(function( data ){
-			console.log( data );
-	        displayNewActivity( data );
-		})
-		.fail(function( data ){
-	    	console.log('Post new fit goal failed!');
-	    })
-	})
+    $('.post-activity-form').on('submit', '#add-newactivity-button', event => {
+        event.preventDefault();
+        let body = {
+            name: $('#activity-name').val(),
+            time:  $('#activity-time').val(),
+            duration: $('#activity-duration').val(),
+            cardio: {
+                distance: $('#cardio-distance').val(),
+                duration: $('#cardio-duration').val(),
+            },
+            //routine: ,
+            location: $('#activity-location').val(),
+            inspiration: $('#activity-inspiration').val(),
+            completed: false 
+        }
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json',
+            url: '/activity/new',
+            data: JSON.stringify(body)
+        })
+        .done(function( data ){
+            console.log( data );
+            displayNewActivity( data );
+        })
+        .fail(function( data ){
+            console.log('Post new fit goal failed!');
+        })
+    })
 }
 
 
@@ -467,16 +478,16 @@ getAllExercises();
 
 function renderExercises(exercise) {
     return `
-	  <tr class="exercise-rows">
-	 	<td><input type="checkbox" id="select-exercise" name="select" value=""></td>
-	    <td class="td-exercise-name" width="25%">${exercise.name}</td>
-	    <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
-	    <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
-	    <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-	    <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
-	    <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
-	  </tr>
-	`
+      <tr class="exercise-rows">
+        <td><input type="checkbox" id="select-exercise" name="select" value=""></td>
+        <td class="td-exercise-name" width="25%">${exercise.name}</td>
+        <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+        <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+        <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
+        <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
+        <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+      </tr>
+    `
 }
 
 
@@ -500,7 +511,7 @@ function postNewExercise() {
     $('.post-exercise-form').on('click', '.post-exercise-btn', event => {
         event.preventDefault();
         let body = {
-            //activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
+            //activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},   
             'name': $('#exercise-name').val(), //string
             'sets': $('#exercise-sets').val(), //string
             'reps': $('#exercise-reps').val(), //string
@@ -568,24 +579,24 @@ function showEditExerciseForm() {
         }).done(function(exercise) {
             console.log(exercise);
             $('.edit-exercise-form').html(`
-				<fieldset>
-					<legend>Update Exercise Routine</legend>
-					<label for="exercise-name-edit">Name:</label>
-					<input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>	
-					</br>
-					<label for="exercise-weight-edit">Weight:</label>
-					<input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
-					</br>		
-					<label for="exercise-sets-edit">Sets:</label>
-					<input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>	
-					</br>
-					<label for="exercise-reps-edit">Reps:</label>
-					<input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
-					</br>
-					<button type="submit" class="post-exercise-btn" value="${exercise.data._id}">Update</button>
-					<button type="submit" class="cancel-exercise-btn">Cancel</button>
-				</fieldset>	
-			`);
+                <fieldset>
+                    <legend>Update Exercise Routine</legend>
+                    <label for="exercise-name-edit">Name:</label>
+                    <input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>  
+                    </br>
+                    <label for="exercise-weight-edit">Weight:</label>
+                    <input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
+                    </br>       
+                    <label for="exercise-sets-edit">Sets:</label>
+                    <input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>  
+                    </br>
+                    <label for="exercise-reps-edit">Reps:</label>
+                    <input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
+                    </br>
+                    <button type="submit" class="post-exercise-btn" value="${exercise.data._id}">Update</button>
+                    <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                </fieldset> 
+            `);
         }).fail(function(error) {
             console.log('Updating exercise failed!');
         });
@@ -602,7 +613,7 @@ function putExerciseEdits() {
         let ID = $(event.currentTarget).attr("value");
         let body = {
             '_id': `${ID}`,
-            //'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
+            //'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'}, 
             'name': $('#exercise-name-edit').val(),
             'sets': $('#exercise-sets-edit').val(),
             'reps': $('#exercise-reps-edit').val(),

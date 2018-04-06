@@ -38,7 +38,7 @@ exports.postNewUser = (req, res) => {
 
 
 
-            //check that input type are all Strings.
+            //check that all input types strings.
             const stringFields = ['email', 'password', 'name'];
             const nonStringField = stringFields.find(
                 field => field in req.body && typeof req.body[field] !== 'string'
@@ -52,7 +52,7 @@ exports.postNewUser = (req, res) => {
                 return
             }
 
-            // If the email and password aren't trimmed, we give an error.
+            // If the email and password aren't trimmed, give an error.
             const explicityTrimmedFields = ['email', 'password'];
             const nonTrimmedField = explicityTrimmedFields.find(
                 field => req.body[field].trim() !== req.body[field]
@@ -95,11 +95,12 @@ exports.postNewUser = (req, res) => {
             }
 
             let { email, password, name = '' } = req.body;
+            // let email = req.body.email;
+            // let password = req.body.password;
+            // let name = req.body.name || "";
             // Username and password come in pre-trimmed, otherwise we throw an error
             // before this
             name = name.trim();
-
-
 
 
 

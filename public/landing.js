@@ -2,9 +2,9 @@ function registerNewUser() {
     $('.create-account-btn').on('click', event => {
         event.preventDefault();
         let userData = {
-            'email': $('.inputEmail').val(),
-            'password': $('.inputPass').val(),
-            'name': $('.inputName').val()
+            'email': $('.js-register-form .inputEmail').val(),
+            'password': $('.js-register-form .inputPass').val(),
+            'name': $('.js-register-form .inputName').val()
         }
         $.ajax({
                 type: "POST",
@@ -29,8 +29,8 @@ function loginExistingUser() {
     $('.login-btn').on('click', event => {
         event.preventDefault();
         let userData = {
-            'email': $('.inputEmail').val(),
-            'password': $('.inputPass').val(),
+            'email': $('.js-login-form .inputEmail').val(),
+            'password': $('.js-login-form .inputPass').val(),
         }
         $.ajax({
                 type: "POST",
@@ -41,6 +41,9 @@ function loginExistingUser() {
             .done(function(user) {
                 console.log(user);
                 $('.input').val("");
+                localStorage.setItem('token', user.data.token);
+                localStorage.setItem('name', user.data.name);
+                localStorage.setItem('userID', user.data.userID);
             })
             .fail(function(error) {
                 console.log(error);
@@ -49,6 +52,22 @@ function loginExistingUser() {
     })
 }
 loginExistingUser();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
