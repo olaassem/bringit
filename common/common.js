@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken');
 
 
 
-
+//will be executed before the endpoints (requests)
 exports.verifyToken = (req, res, next) => {
     const token = req.headers.authorization || req.params.token;
     //check if token exists
     if (!token) {
         res.status(401).json({
-            message: 'token not provided'
+            message: 'Token not provided.'
         })
         return
     }
