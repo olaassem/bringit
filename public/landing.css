@@ -140,9 +140,13 @@ fieldset{
 
 
 .ing{
+    width:50px;
+    position: absolute;
+    right: 30px;
+    bottom:37px;
     color: #201f2f;
     font-family: 'Roboto', sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
 
 }
