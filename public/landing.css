@@ -11,6 +11,11 @@
 }
 
 
+html{
+    margin: 0;
+    padding: 0; 
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -52,6 +57,7 @@ fieldset{
 .box1{
     height: 100vh;
     width: 100%;
+    display: table;
 }
 
 
@@ -59,10 +65,8 @@ fieldset{
     margin-right: auto;
     margin-left: auto;
     width: 500px;
-    /*animation-name: fallFromTop;
-    animation-duration: 3s;
-    animation-fill-mode: both;
-    animation-direction: alternate;*/
+    padding-top: 100px;
+
 }
 
 
@@ -117,8 +121,8 @@ fieldset{
     margin-right: auto;
     -webkit-transform-origin: 50% 0; /* for Safari and older Chrome */
     transform-origin: 50% 0;
-    -webkit-animation: swing 3.5s ease-in-out forwards infinite;
-    animation: swing 3.5s ease-in-out forwards infinite;
+    -webkit-animation: swing 4s ease-in-out forwards infinite;
+    animation: swing 4s ease-in-out forwards infinite;
 }
 
 
@@ -129,8 +133,8 @@ fieldset{
 } 
 
 @keyframes fallFromTop {
-    from{ transform: translateY(-1000px); }
-    to{ transform: translateY( 60px); }
+    from{ transform: translateY(-800px); opacity:0; }
+    to{ transform: translateY( 20px); opacity:1; }
 }
 
 
