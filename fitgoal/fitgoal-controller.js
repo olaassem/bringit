@@ -7,6 +7,7 @@ const fitgoalModel = require('./fitgoal-model');
 exports.postNewFitGoal = ( req, res) => {
 	//creating an object with the keys/values defined in bookSchema
 	let newFitGoal = new fitgoalModel();
+	newFitGoal.userID = req.body.userID;
 	newFitGoal.title = req.body.title;
 	newFitGoal.createDate = req.body.createDate;
 	newFitGoal.description = req.body.description;
@@ -31,7 +32,7 @@ exports.postNewFitGoal = ( req, res) => {
 //Get all fit goals
 //NOTE: to use in Goals History Page.
 exports.getAllFitGoals = (req, res) => {
-	fitgoalModel.find({}) 
+	fitgoalModel.find({userID: req.user.id}) 
 	.then((goals) => {
 		res.status(200).json({
 			message: "Successfully retrieved all fit goals.",

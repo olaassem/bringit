@@ -1,0 +1,343 @@
+
+/*--Universal Styling--*/
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+ }
+
+.hidden{
+	display: none;
+}
+
+button{
+	cursor: pointer;
+	font-size: 20px;
+}
+
+section{
+	border: 1px solid #409CFF;
+}
+
+fieldset{
+   border:0 none;
+}
+/*--End of Universal Styling--*/
+
+
+
+/*--Quote Styling Section--*/
+.quote-section{
+	margin-bottom: 60px;
+}
+
+.motifit-button{
+}
+/*--End of Quote Styling Section--*/
+
+
+
+/*--Fit Goal Section Styling--*/
+
+
+.fitgoal-section{
+	margin-bottom: 60px;
+}
+
+
+.open-fitgoal-modal{
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#fitgoal-title{
+	height: 40px;
+	width: 40%;
+	font-size: 14px;
+}
+
+#fitgoal-description{
+	height: 40px;
+	width: 90%;
+    font-size: 14px;
+}
+
+/*--End of Fit Goal Section Styling--*/
+
+
+
+/*--Fit Week Section Styling--*/
+
+.fitweek{
+	padding-top:30px;
+}
+
+.day-container{
+	text-align: center;
+    border: solid 2px #D3D3D3;
+    /*box-shadow: 0 8px 6px -6px #2a2a2a;*/
+    width: 120px;
+    height:120px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+
+
+/*--End of Fit Week Section Styling--*/
+
+
+
+/*--Fit Plan Modal--*/
+
+.fitplan-modal-btns{
+	margin-top: 40px;
+}
+
+/*--End of Fit Plan Modal Styling*/
+
+
+
+/*--Category Section Styling--*/
+
+.category-icons{
+}
+
+.new-category-form{
+	margin-bottom: 40px;
+}
+
+.category-container{
+	padding: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 15px;
+	height: 100px; 
+	width: 100px;
+	position: relative;
+  	display: inline-block;
+
+}
+
+.delete-category-btn{
+	position: absolute;
+  	top: -10px;
+ 	right: -10px;
+ 	padding: 0;
+	border: none;
+	background: none;
+}
+
+.select-category-btn{
+	font-size: 12px;
+}
+
+.select-category-btn:focus{
+	outline:0;
+	border: 5px solid black;
+	background-color: #d3d3d3;
+	width: 110px;
+	height: 110px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.icon{
+
+	width: 100px;
+	height: 100px;
+	border: solid #20C36B 3px;
+	border-radius: 50%;
+	text-align: center;
+}
+
+/*--End of Category Section Styling--*/
+
+
+
+.activity-container{
+	margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+/*--Exercise Section Styling--*/
+
+.exercise-routine{
+	margin: 20px 10px;
+}
+
+.add-icon,
+.edit-icon,
+.delete-icon{
+	width: 20px;
+	height: 20px;
+}
+
+/*--Table Styling--*/
+
+table, 
+th, 
+td {
+    border: 1px solid black;
+    text-align: left;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/*--End of Table Styling--*/
+
+/*--End of Exercise Section Styling--*/
+
+
+
+
+
+
+
+/*--Footer Styling--*/
+footer{
+	height: 50px;
+	background-color: white;
+	color: black;
+	width: 100%
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+
+	bottom: 0px;
+}
+
+.author-date{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    margin-top: 3px;
+
+}
+
+.github-logo,
+.linkedin-logo{
+    width:15px;
+    height:15px;
+    margin-right: 3px;
+}
+
+
+.ola{
+	font-size: 16px;
+	text-decoration: none;
+	color: #E2DEC6;
+	margin-left: 2px;
+	padding: 4px 8px 4px 0px;
+	margin-bottom: 0px;
+}
+
+.c2018{
+    font-size: 16px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 11px; 
+}
+/*--End of Footer Styling--*/
+
+
+
+
+/*--Button Styling--*/
+
+.add-day-plan-btn,
+.view-day-plan-btn,
+.edit-day-plan-btn,
+.delete-day-plan-btn,
+.exercise-edit-button,
+.exercise-delete-button{
+	padding: 0;
+	border: none;
+	background: none;
+}
+/*--End of Button Styling--*/
+
+
+
+
+
+/*--Modal Styling--*/
+
+/* Outer */
+.popup {
+	width:100%;
+	height:100%;
+	display:none;
+	position:fixed;
+	top:0px;
+	left:0px;
+	background:rgba(0,0,0,0.75);
+}
+/* Inner */
+.popup-inner {
+	overflow-y: auto; 
+	height: 90%; 
+	max-width:700px;
+	width:90%;
+	padding:40px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+	box-shadow:0px 2px 6px rgba(0,0,0,1);
+	border-radius:3px;
+	background:#fff;
+}
+/* Close Button */
+.popup-close {
+	width:30px;
+	height:30px;
+	padding-top:4px;
+	display:inline-block;
+	position:absolute;
+	top:0px;
+	right:0px;
+	transition:ease 0.25s all;
+	-webkit-transform:translate(50%, -50%);
+	transform:translate(50%, -50%);
+	border-radius:1000px;
+	background:rgba(0,0,0,0.8);
+	font-family:Arial, Sans-Serif;
+	font-size:20px;
+	text-align:center;
+	line-height:100%;
+	color:#fff;
+}
+.popup-close:hover {
+	-webkit-transform:translate(50%, -50%) rotate(180deg);
+	transform:translate(50%, -50%) rotate(180deg);
+	background:rgba(0,0,0,1);
+	text-decoration:none;
+}
+
+/*--End of Modal Styling--*/
+
+
+
