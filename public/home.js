@@ -206,8 +206,7 @@ function deleteFitGoal() {
             url: `goal/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((fitgoal) => {
-            console.log(fitgoal);
-            $('.current-fitgoal').addClass('hidden');
+            getCurrentFitGoals();
         }).fail((error) => {
             console.log('Deleting fit goal failed!');
         })
