@@ -2,7 +2,7 @@ function registerNewUser() {
     $('.create-account-btn').on('click', event => {
         event.preventDefault();
         let userData = {
-            'email': $('.js-register-form .inputEmail').val(),
+            'username': $('.js-register-form .inputUsername').val(),
             'password': $('.js-register-form .inputPass').val(),
             'name': $('.js-register-form .inputName').val()
         }
@@ -13,12 +13,18 @@ function registerNewUser() {
                 data: JSON.stringify(userData)
             })
             .done(function(user) {
-                console.log(user);
                 $('.input').val("");
+                $('.register-alert').html("");
+                $('.register-alert').html(`
+                    <p class="landing-alert">New account created. Please login :)</i></p>
+                `);
             })
             .fail(function(error) {
-                console.log(error);
                 $('.input').val("");
+                $('.register-alert').html("");
+                $('.register-alert').html(`
+                    <p class="landing-alert">${error.responseJSON.message}</p>
+                `);
             })
     })
 }
@@ -29,7 +35,7 @@ function loginExistingUser() {
     $('.login-btn').on('click', event => {
         event.preventDefault();
         let userData = {
-            'email': $('.js-login-form .inputEmail').val(),
+            'username': $('.js-login-form .inputUsername').val(),
             'password': $('.js-login-form .inputPass').val(),
         }
         $.ajax({
@@ -39,7 +45,6 @@ function loginExistingUser() {
                 data: JSON.stringify(userData)
             })
             .done(function(user) {
-                console.log(user);
                 $('.input').val("");
                 localStorage.setItem('token', user.data.token);
                 localStorage.setItem('name', user.data.name);
@@ -47,8 +52,10 @@ function loginExistingUser() {
                 window.location.href = 'home.html'; //directs to home pg
             })
             .fail(function(error) {
-                console.log(error);
                 $('.input').val("");
+                $('.login-alert').html(`
+                    <p class="landing-alert">${error.responseJSON.message}</p>
+                `);
             })
     })
 }

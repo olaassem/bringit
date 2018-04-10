@@ -138,11 +138,11 @@ h2{
 }
 
 .couch{
-    background-image: url("https://i.imgur.com/gw6jbje.png");   /* http://pngimg.com/uploads/sofa/sofa_PNG6949.png    https://i.imgur.com/8VSFyIl.png  ('https://bhavitajago.in/wp-content/uploads/2017/12/furniture-png-red-sofa-furniture-icon-png-image-2603-512.png')/*('https://i.imgur.com/iUleRZX.png')*/
+    background-image: url("https://i.imgur.com/SASkzve.png");   /* http://pngimg.com/uploads/sofa/sofa_PNG6949.png    https://i.imgur.com/8VSFyIl.png  ('https://bhavitajago.in/wp-content/uploads/2017/12/furniture-png-red-sofa-furniture-icon-png-image-2603-512.png')/*('https://i.imgur.com/iUleRZX.png')*/
     background-size: cover;
     background-repeat: no-repeat;
-    width: 215px;
-    height: 126px;
+    width: 225px;
+    height: 104px;
     margin-left: auto;
     margin-right: auto;
     bottom: 0px;
@@ -205,8 +205,8 @@ h2{
 .ing{
     width: 50px;
     position: absolute;
-    right: 30px;
-    bottom: 20px;
+    right: 42px;
+    bottom: 30px;
     color: #201f2f;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
@@ -351,6 +351,14 @@ span a {
     /* Firefox 18- */
     color: grey;
 }
+
+
+.landing-alert,
+.register-alert,
+.login-alert{
+    margin: 0px;
+}
+
 
 /*-- End of Form Styling --*/
 

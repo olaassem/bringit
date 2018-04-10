@@ -7,13 +7,13 @@ const jwt = require('jsonwebtoken'); //create tokens
 
 //Register new user:
 exports.postNewUser = (req, res) => {
-    //1. have to 1st check if another user exists with same email in all the db.
-    userModel.findOne({ email: req.body.email })
+    //1. have to 1st check if another user exists with entered user name in all the db.
+    userModel.findOne({ username: req.body.username })
         .then((user) => {
             //if we have user, means that user already exists       
             if (user) {
                 res.status(401).json({
-                    message: `An account for this email already exists.`
+                    message: `An account for this user already exists.`
                 });
                 return //stops. won't do anything else.
             }
@@ -23,9 +23,9 @@ exports.postNewUser = (req, res) => {
                 });
                 return
             }
-            if (!req.body.email) {
+            if (!req.body.username) {
                 res.status(401).json({
-                    message: 'Please enter your email.'
+                    message: 'Please provide a user name.'
                 });
                 return
             }
@@ -39,7 +39,7 @@ exports.postNewUser = (req, res) => {
 
 
             //check that all input types strings.
-            const stringFields = ['email', 'password', 'name'];
+            const stringFields = ['username', 'password', 'name'];
             const nonStringField = stringFields.find(
                 field => field in req.body && typeof req.body[field] !== 'string'
             );
@@ -52,15 +52,15 @@ exports.postNewUser = (req, res) => {
                 return
             }
 
-            // If the email and password aren't trimmed, give an error.
-            const explicityTrimmedFields = ['email', 'password'];
+            // If the username and password aren't trimmed, give an error.
+            const explicityTrimmedFields = ['username', 'password'];
             const nonTrimmedField = explicityTrimmedFields.find(
                 field => req.body[field].trim() !== req.body[field]
             );
 
             if (nonTrimmedField) {
                 res.status(422).json({
-                    message: 'Email and password cannot start or end with whitespace',
+                    message: 'User name and password cannot start or end with whitespace',
                     location: nonTrimmedField
                 });
                 return
@@ -87,15 +87,14 @@ exports.postNewUser = (req, res) => {
                 res.status(422).json({
                     message: tooSmallField ?
                         `Password must be at least ${sizedFields[tooSmallField]
-                      .min} characters long` :
-                        `Password must be at most ${sizedFields[tooLargeField]
+                      .min} characters long` : `Password must be at most ${sizedFields[tooLargeField]
                       .max} characters long`,
                 });
                 return
             }
 
-            let { email, password, name = '' } = req.body;
-            // let email = req.body.email;
+            let { username, password, name = '' } = req.body;
+            // let username = req.body.username;
             // let password = req.body.password;
             // let name = req.body.name || "";
             // Username and password come in pre-trimmed, otherwise we throw an error
@@ -106,7 +105,7 @@ exports.postNewUser = (req, res) => {
 
             //if we get to this line, it means we passed all the tests!! :D So, proceed to create new user:
             let newUser = new userModel();
-            newUser.email = req.body.email;
+            newUser.username = req.body.username;
             newUser.name = req.body.name;
             //encrypt password
             //takes 3 params : 1.password, 2.number of loops it will take to encrypt (10-12 recommended for security), 3.callback.
@@ -148,12 +147,12 @@ exports.postNewUser = (req, res) => {
 
 //Login registered user:
 exports.loginUser = (req, res) => {
-    //1. have to 1st check if the user exists with same email in all the db.
-    userModel.findOne({ email: req.body.email })
+    //1. have to 1st check if the user exists with same username in all the db.
+    userModel.findOne({ username: req.body.username })
         .then((user) => {
-            if (!req.body.email) {
+            if (!req.body.username) {
                 res.status(401).json({
-                    message: 'Please enter your email.'
+                    message: 'Please enter your user name.'
                 })
                 return
             }
@@ -163,10 +162,10 @@ exports.loginUser = (req, res) => {
                 })
                 return
             }
-            //no user found means there is no account with this email in the db 
+            //no user found means there is no account with this username in the db 
             if (!user) {
                 res.status(401).json({
-                    message: `No registered account found for this email.`
+                    message: `No registered account found for this user.`
                 })
                 return //stops. won't do anything else.
             }
@@ -183,7 +182,7 @@ exports.loginUser = (req, res) => {
             //create token.
             //this is the object we will encrypt --> will become the token!!!
             let userToken = {
-                email: user.email,
+                username: user.username,
                 id: user._id
             }
             //
