@@ -43,18 +43,16 @@ signOut();
 
 /***   M O T I F I T   Q U O T E    ***/
 
-//add the db into app to persist
-//can only have this functionality when u add user functionality
 function getMotiFitQuote() {
     $('.motifit-button').on('click', event => {
         event.preventDefault();
-        $('.random-quote').removeClass('hidden');
-        $.get('/quote/all', (allQuotes) => {
+        $.get('/quote/all/' + localStorage.getItem('token'), (allQuotes) => {
             let num = Math.floor(Math.random() * allQuotes.data.length);
             console.log(num);
-            let randomQuote = allQuotes.data[num].quote;
-            console.log(randomQuote);
-            $('.random-quote').html(`"${randomQuote}"`);
+            localStorage.setItem('randomQuote', allQuotes.data[num].quote);
+            let currentQuote = localStorage.getItem('randomQuote');
+            console.log(currentQuote);
+            $('.random-quote').html(`"${currentQuote}"`);
         })
     })
 }
@@ -307,23 +305,11 @@ function displayEditedFitGoal(fitgoal) {
 
 
 
-
-
-/***   F I T   W E E K  ***/
-
-//'.add-day-plan-btn'
-
-
-
-
-
-
-
 /***   C A T E G O R I E S   ***/
 
 //Get all categories
 function getAllCategories() {
-    $.get('/category/all', (allCategories) => {
+    $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
         console.log(allCategories);
         displayAllCategories(allCategories);
     })
@@ -365,18 +351,21 @@ function postNewCategory() {
     $('.new-category-form').on('click', '.post-category-btn', event => {
         event.preventDefault();
         let body = {
-            name: $('#category-name').val(),
-            img: $('#category-img').val()
+            'name': $('#category-name').val(),
+            'img': $('#category-img').val(),
+            'token': localStorage.getItem('token')
         }
         $.ajax({
                 type: "POST",
                 contentType: 'application/json',
-                url: '/category/new',
+                url: '/category/new/' + localStorage.getItem('token'),
                 data: JSON.stringify(body),
             })
             .done(function(data) {
                 console.log(data);
                 getAllCategories(data);
+                $('#category-name').val(''),
+                $('#category-img').val(''),
                 $('.new-category-form').addClass('hidden');
             })
             .fail(function(error) {
@@ -403,7 +392,7 @@ function deleteCategory() {
         let ID = $(event.currentTarget).attr("value");
         console.log(ID);
         $.ajax({
-            url: `/category/${ID}`,
+            url: `/category/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((category) => {
             console.log(category);
