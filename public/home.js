@@ -33,7 +33,7 @@ initApp();
 function signOut() {
     $('.signout').on('click', event => {
         event.preventDefault();
-        localStorage.clear();
+        // localStorage.clear(); //for motifit to work on logout...
         window.location.href = 'index.html';
     });
 }
@@ -43,20 +43,45 @@ signOut();
 
 /***   M O T I F I T   Q U O T E    ***/
 
-function getMotiFitQuote() {
+// function getMotiFitQuote() {
+//     $('.motifit-button').on('click', event => {
+//         event.preventDefault();
+//         $.get('/quote/all/' + localStorage.getItem('token'), (allQuotes) => {
+//             let num = Math.floor(Math.random() * allQuotes.data.length);
+//             console.log(num);
+//             $('.random-quote').html(`"${currentQuote}"`);
+//             let currentQuote = localStorage.getItem('randomQuote');
+//             console.log(currentQuote);
+            
+//         })
+//     })
+// }
+// getMotiFitQuote();
+
+
+//adds button listener (what your getMotiFitQuote is doing right now)
+function setupMotiFitQuote(){ 
     $('.motifit-button').on('click', event => {
         event.preventDefault();
         $.get('/quote/all/' + localStorage.getItem('token'), (allQuotes) => {
             let num = Math.floor(Math.random() * allQuotes.data.length);
             console.log(num);
             localStorage.setItem('randomQuote', allQuotes.data[num].quote);
-            let currentQuote = localStorage.getItem('randomQuote');
-            console.log(currentQuote);
-            $('.random-quote').html(`"${currentQuote}"`);
+            showMotiFitQuote();
         })
     })
+}    
+setupMotiFitQuote();
+
+
+// displays the given quote to the "random-quote" element
+function showMotiFitQuote(){
+    let currentQuote = localStorage.getItem('randomQuote');
+    $('.random-quote').html(`${currentQuote}`);
 }
-getMotiFitQuote();
+showMotiFitQuote();
+
+
 
 
 
