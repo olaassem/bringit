@@ -20,20 +20,14 @@
 </head>
 
 <body>
-    <header role="banner" id="box1">
+    <header role="banner">
         <div class="row">
             <div class="col-12">
-                <button type="submit" class="fitgoal-history-button">Fit Goal History</button>
-                <button class="signout">Sign Out</button>
-                <button><a href="landing.html">Landing</a></button>
-                <h1>App Name</h1>
-                <h2 class="greeting">Hey, <span class="firstname"></span>!</h2>
-            </div>
-        </div>
-    </header>
-    <main role="main">
-        <div class="row">
-            <div class="col-12">
+                <div class="header-elements">
+                    <h1 class="logo">app name</h1>
+                    <button type="submit" class="fitgoal-history-button">Fit Goal History</button>
+                    <button class="signout">Sign Out</button>
+                </div>
                 <div class="popup" data-popup="popup-fitgoal-history">
                     <div class="popup-inner">
                         <h2>Fit Goal History</h2>
@@ -41,14 +35,31 @@
                         <a class="popup-close" data-popup-close="popup-fitgoal-history" href="#">x</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <main role="main">
+        <div class="row">
+            <div class="col-12">
+
+                
+
+
+                <h2 class="greeting">Hey, <span class="firstname"></span>!</h2>
+
+
                 <section role="region" class="quote-section">
                     <p class="random-quote hidden"></p>
                     <button type="submit" class="motifit-button">MotiFit Me</button>
                 </section>
                 <section role="region" class="fitgoal-section">
-                    <h2>Fit Goal</h2>
+                    <h2>Fit Goal<button type="submit" class="btn" data-popup-open="popup-post-fitgoal">Set New Fit Goal</button></h2>
                     <div class="current-fitgoal hidden"></div>
-                    <button type="submit" class="btn" data-popup-open="popup-post-fitgoal">Set Fit Goal</button>
                 </section>
                 <div class="popup" data-popup="popup-post-fitgoal">
                     <div class="popup-inner">

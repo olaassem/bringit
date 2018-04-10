@@ -13,14 +13,15 @@ function initApp() {
     let userName = localStorage.getItem('name');
     if (userName) {
         $('.greeting .firstname').html(userName);
+        getCurrentFitGoals();
     }
     //anytime we check, and we don't have have the token it will go back to index pg
-    if (!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
         window.location.href = 'index.html'; //always an object
     }
     //token and ID exists
     //We do the check to get user info
-    else{
+    else {
         console.log(localStorage.getItem('userID'));
     }
 }
@@ -28,8 +29,8 @@ initApp();
 
 
 
-//  S I G N  O U T 
-function signOut(){
+/***   S I G N  O U T    ***/
+function signOut() {
     $('.signout').on('click', event => {
         event.preventDefault();
         localStorage.clear();
@@ -71,14 +72,13 @@ function getAllCompletedGoals() {
         event.preventDefault();
         $('[data-popup="popup-fitgoal-history"]').fadeIn(350);
         let url = '/goal/all/' + localStorage.getItem('token');
-        $.get( url , (allGoals) => {
+        $.get(url, (allGoals) => {
             console.log(allGoals);
             displayCompletedFitGoals(allGoals);
         })
     });
 }
 getAllCompletedGoals();
-
 
 
 function renderCompletedFitGoals(fitgoal) {
@@ -107,12 +107,12 @@ function postNewFitGoal() {
     $('.post-fitgoal-form').on('click', '#add-fitgoal-button', event => {
         event.preventDefault();
         let body = {
-            title: $('#fitgoal-title').val(),
-            userID: localStorage.getItem('userID'),
-            createDate: Date.now(),
-            description: $('#fitgoal-description').val(),
-            completed: false,
-            token: localStorage.getItem('token')
+            'title': $('#fitgoal-title').val(),
+            'userID': localStorage.getItem('userID'),
+            'createDate': Date.now(),
+            'description': $('#fitgoal-description').val(),
+            'completed': false,
+            'token': localStorage.getItem('token')
         }
         $.ajax({
                 type: "POST",
@@ -123,34 +123,48 @@ function postNewFitGoal() {
             .done(function(fitgoal) {
                 console.log(fitgoal);
                 closeModal();
-                displayNewFitGoal(fitgoal);
+                getCurrentFitGoals();
             })
             .fail(function(fitgoal) {
                 console.log('Post new fit goal failed!');
-            })
+        })
     })
-}
-
-
-function displayNewFitGoal(fitgoal) {
-    console.log(fitgoal);
-    let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
-    $('#fitgoal-title').val('');
-    $('#fitgoal-description').val('');
-    $('.current-fitgoal').removeClass('hidden');
-    $('.current-fitgoal').html(`
-        <p class="current-fitgoal-date">${formatedDate}</p>
-        <h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
-        <p class="current-fitgoal-description">${fitgoal.data.description}</p>
-        <button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-        <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
-        <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
-    `)
 }
 postNewFitGoal();
 
 
-let ID;
+function getCurrentFitGoals() {
+    let url = '/goal/all/' + localStorage.getItem('token');
+    $.get(url, (allGoals) => {
+        console.log(allGoals);
+        displayCurrentFitGoals(allGoals);
+    });
+}
+getCurrentFitGoals();
+
+
+function renderCurrentFitGoals(fitgoal) {
+    let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
+    if (fitgoal.completed === false) {
+        $('#fitgoal-title').val('');
+        $('#fitgoal-description').val('');
+        $('.current-fitgoal').removeClass('hidden');
+        return `
+        <p class="current-fitgoal-date">${formatedDate}</p>
+        <h3 class="current-fitgoal-title">${fitgoal.title}</h3>
+        <p class="current-fitgoal-description">${fitgoal.description}</p>
+        <button class="completed-fitgoal-button" value="${fitgoal._id}">Completed!</button>
+        <button class="edit-fitgoal-button" value="${fitgoal._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
+        <button class="delete-fitgoal-button" value="${fitgoal._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+        `
+    }
+}
+
+
+function displayCurrentFitGoals(allGoals) {
+    let currentFitGoalOutput = allGoals.data.map(fitgoal => renderCurrentFitGoals(fitgoal)).join('');
+    $('.current-fitgoal').html(currentFitGoalOutput);
+}
 
 
 //Completed fit goal.
@@ -162,15 +176,17 @@ function completedFitGoal() {
         let body = {
             '_id': `${ID}`,
             'completed': true,
-            'createDate': Date.now()
+            'createDate': Date.now(),
+            'userID': localStorage.getItem('userID'),
+            'token': localStorage.getItem('token')
         };
         $.ajax({
             type: 'PUT',
-            url: `/goal/${ID}`,
+            url: `/goal/${ID}/` + localStorage.getItem('token'),
             contentType: 'application/json',
             data: JSON.stringify(body)
         }).done((fitgoal) => {
-            $('.current-fitgoal').html("");
+            getCurrentFitGoals();
             getAllCompletedGoals();
         }).fail((error) => {
             console.log('Completeing fit goal failed!');
@@ -187,7 +203,7 @@ function deleteFitGoal() {
         let ID = $(event.currentTarget).attr("value");
         console.log(ID);
         $.ajax({
-            url: `goal/${ID}`,
+            url: `goal/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((fitgoal) => {
             console.log(fitgoal);
@@ -207,7 +223,7 @@ function openEditFitGoalModal() {
         $('[data-popup="popup-edit-fitgoal"]').fadeIn(350);
         let ID = $(event.currentTarget).attr("value");
         $.ajax({
-            url: `goal/${ID}`,
+            url: `goal/${ID}/` + localStorage.getItem('token'),
             type: 'GET'
         }).done(function(fitgoal) {
             console.log(fitgoal);
@@ -243,12 +259,14 @@ function putFitGoalEdits() {
             'title': $('#fitgoal-title-edit').val(),
             'createDate': Date.now(),
             'description': $('#fitgoal-description-edit').val(),
-            'completed': false
+            'completed': false,
+            // 'userID': localStorage.getItem('userID'),
+            'token': localStorage.getItem('token')
         }
         $.ajax({
                 type: "PUT",
                 contentType: 'application/json',
-                url: `/goal/${ID}`,
+                url: `/goal/${ID}/` + localStorage.getItem('token'),
                 data: JSON.stringify(body)
             })
             .done(function(fitgoal) {

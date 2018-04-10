@@ -16,11 +16,12 @@ function registerNewUser() {
                 $('.input').val("");
                 $('.register-alert').html("");
                 $('.register-alert').html(`
-                    <p class="landing-alert">New account created. Please login :)</i></p>
+                    <p class="landing-alert">New account created. Please login :-) </p>
                 `);
             })
             .fail(function(error) {
                 $('.input').val("");
+                console.log(error);
                 $('.register-alert').html("");
                 $('.register-alert').html(`
                     <p class="landing-alert">${error.responseJSON.message}</p>

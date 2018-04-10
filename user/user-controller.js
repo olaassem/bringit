@@ -25,13 +25,13 @@ exports.postNewUser = (req, res) => {
             }
             if (!req.body.username) {
                 res.status(401).json({
-                    message: 'Please provide a user name.'
+                    message: 'Please enter a username.'
                 });
                 return
             }
             if (!req.body.password) {
                 res.status(401).json({
-                    message: 'Please enter your password.'
+                    message: 'Please enter a password.'
                 });
                 return
             }
@@ -60,7 +60,7 @@ exports.postNewUser = (req, res) => {
 
             if (nonTrimmedField) {
                 res.status(422).json({
-                    message: 'User name and password cannot start or end with whitespace',
+                    message: 'Username and password cannot start or end with whitespace',
                     location: nonTrimmedField
                 });
                 return
@@ -107,6 +107,7 @@ exports.postNewUser = (req, res) => {
             let newUser = new userModel();
             newUser.username = req.body.username;
             newUser.name = req.body.name;
+            newUser.created = req.body.created;
             //encrypt password
             //takes 3 params : 1.password, 2.number of loops it will take to encrypt (10-12 recommended for security), 3.callback.
             //callback takes two params: error and hashed(string containing encrypted pass//synonym of encrypt).
@@ -152,7 +153,7 @@ exports.loginUser = (req, res) => {
         .then((user) => {
             if (!req.body.username) {
                 res.status(401).json({
-                    message: 'Please enter your user name.'
+                    message: 'Please enter your username.'
                 })
                 return
             }
