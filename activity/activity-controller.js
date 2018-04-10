@@ -56,7 +56,7 @@ exports.postNewActivity = (req, res) => {
 
 //Get all activities.
 exports.getAllActivities = (req, res) => {
-		activityModel.find({}) 
+		activityModel.find({userID: req.user.id}) 
 	.then((activities) => {
 		res.status(200).json({
 			message: "Successfully retrieved all activities.",

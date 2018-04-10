@@ -28,7 +28,7 @@ exports.postNewCategory = (req, res) => {
 
 //Get all categories
 exports.getAllCategories = (req, res) => {
-	categoryModel.find({})
+	categoryModel.find({userID: req.user.id})
 	.then((categories) => {
 		res.status(200).json({
 			message: "Successfully retrieved all categories.",

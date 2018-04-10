@@ -33,7 +33,7 @@ initApp();
 function signOut() {
     $('.signout').on('click', event => {
         event.preventDefault();
-        // localStorage.clear(); //for motifit to work on logout...
+        localStorage.clear(); //for motifit to work on logout...
         window.location.href = 'index.html';
     });
 }
@@ -43,23 +43,7 @@ signOut();
 
 /***   M O T I F I T   Q U O T E    ***/
 
-// function getMotiFitQuote() {
-//     $('.motifit-button').on('click', event => {
-//         event.preventDefault();
-//         $.get('/quote/all/' + localStorage.getItem('token'), (allQuotes) => {
-//             let num = Math.floor(Math.random() * allQuotes.data.length);
-//             console.log(num);
-//             $('.random-quote').html(`"${currentQuote}"`);
-//             let currentQuote = localStorage.getItem('randomQuote');
-//             console.log(currentQuote);
-            
-//         })
-//     })
-// }
-// getMotiFitQuote();
-
-
-//adds button listener (what your getMotiFitQuote is doing right now)
+//adds button listener
 function setupMotiFitQuote(){ 
     $('.motifit-button').on('click', event => {
         event.preventDefault();
@@ -282,7 +266,7 @@ function putFitGoalEdits() {
             'createDate': Date.now(),
             'description': $('#fitgoal-description-edit').val(),
             'completed': false,
-            // 'userID': localStorage.getItem('userID'),
+            'userID': localStorage.getItem('userID'),
             'token': localStorage.getItem('token')
         }
         $.ajax({
@@ -337,7 +321,7 @@ function getAllCategories() {
     $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
         console.log(allCategories);
         displayAllCategories(allCategories);
-    })
+    });
 }
 getAllCategories();
 
@@ -378,6 +362,7 @@ function postNewCategory() {
         let body = {
             'name': $('#category-name').val(),
             'img': $('#category-img').val(),
+            'userID': localStorage.getItem('userID'),
             'token': localStorage.getItem('token')
         }
         $.ajax({
@@ -442,29 +427,28 @@ $('.category-icons').on('focusout', '.select-category-btn', function() {
 
 
 
-/***   A C T I V I T Y   ***
+/***   A C T I V I T Y   ***/
 
-function displayRoutineForm(){
-    $('.post-activity-form').on('click', '.add-routine-icon', event => {
-        event.preventDefault();
-        $('.routine-form-section').removeClass('hidden');
-    })
-}
-displayRoutineForm();
-
-
-
-//Get all activities.
-function getAllActivities(){
-    $.get('/activity/all', ( allActivities ) => {
-        console.log( allActivities );
-    });
-}
-getAllActivities();
-*/
+// function displayRoutineForm(){
+//     $('.post-activity-form').on('click', '.add-routine-icon', event => {
+//         event.preventDefault();
+//         $('.routine-form-section').removeClass('hidden');
+//     })
+// }
+// displayRoutineForm();
 
 
-/*
+
+// //Get all activities.
+// function getAllActivities(){
+//     $.get('/activity/all', ( allActivities ) => {
+//         console.log( allActivities );
+//     });
+// }
+// getAllActivities();
+
+
+
 //Post new activity.
 function postNewActivity(){
     $('.post-activity-form').on('submit', '#add-newactivity-button', event => {
@@ -501,10 +485,10 @@ function postNewActivity(){
 
 
 
-//Update selected activity.
-function updateActivity(){
+// //Update selected activity.
+// function updateActivity(){
 
-}
+// }
 
 
 
