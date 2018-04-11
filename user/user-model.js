@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique:true },
     password: { type: String, required: true },
     name: { type: String, required: true },
-    created: {type: Date, default: Date.now}
+    created: {type: Date, default: Date.now},
+    currentQuote : {type: String} //save the quote here
 });
 
 

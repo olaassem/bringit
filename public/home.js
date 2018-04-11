@@ -43,14 +43,16 @@ signOut();
 
 /***   M O T I F I T   Q U O T E    ***/
 
+//calls take the most time
+// do the random grab serverside
 //adds button listener
 function setupMotiFitQuote(){ 
     $('.motifit-button').on('click', event => {
         event.preventDefault();
-        $.get('/quote/all/' + localStorage.getItem('token'), (allQuotes) => {
-            let num = Math.floor(Math.random() * allQuotes.data.length);
-            console.log(num);
-            localStorage.setItem('randomQuote', allQuotes.data[num].quote);
+        $.get('/quote/random/' + localStorage.getItem('token'), (randomQuote) => {
+            
+            localStorage.setItem('randomQuote', randomQuote.data);
+            
             showMotiFitQuote();
         })
     })

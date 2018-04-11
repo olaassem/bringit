@@ -5,7 +5,7 @@ const commonController = require('../common/common');
 
 
 
-router.get('/all/:token', commonController.verifyToken, quoteController.getAllQuotes);
+router.get('/random/:token', commonController.verifyToken, quoteController.getAllQuotes, quoteController.saveQuoteToUser );
 //router.get('/:id', quoteController.getQuoteByID);
 //router.post('/new', quoteController.postNewQuote);
 //router.put('/:id', quoteController.updateQuoteByID);
