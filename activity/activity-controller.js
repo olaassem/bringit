@@ -10,6 +10,8 @@ const activityModel = require('./activity-model');
 //Create new activity.
 exports.postNewActivity = (req, res) => {
 	let newActivity = new activityModel();
+	newActivity.userID = req.body.userID;
+	newActivity.dayplanID = req.body.dayplanID;
 	newActivity.name = req.body.name;
 	newActivity.time = req.body.time;
 	newActivity.duration = req.body.duration;

@@ -43,6 +43,7 @@ const activity = require('./activity/activity-routes');
 const exercise = require('./exercise/exercise-routes');
 const quote = require('./quote/quote-routes');
 const user = require('./user/user-routes');
+// const dayplan = require('./dayplan/dayplan-routes');
 
 
 //PREFIXES
@@ -54,6 +55,7 @@ app.use('/activity', activity);
 app.use('/exercise', exercise);
 app.use('/quote', quote);
 app.use('/user', user);
+// app.use('/dayplan', dayplan);
 
 
 //PORT LISTEN

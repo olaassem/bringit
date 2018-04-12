@@ -332,7 +332,7 @@ function renderCategories(category) {
     return `
         <div class="col-3">
             <div class="category-container">
-                <button type="submit" class="select-category-btn" value="${category._id}"><img class="category-img" src="${category.img}" alt="${category.name} image" width="80px" height="80px"/>${category.name}</button>
+                <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
                 <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
             </div>
         </div>
@@ -346,6 +346,20 @@ function displayAllCategories(allCategories) {
     let categoriesOutput = allCategories.data.map(category => renderCategories(category)).join('');
     $('.category-icons').html(categoriesOutput);
 }
+
+
+
+//Remove category delete button on category focus.
+// $('.category-icons').on('checked', 'input', function(event) {
+//     $(event.target).next('.delete-category-btn').addClass('hidden');
+// });
+
+// //Return category delete button on category focusout.
+// $('.category-icons').on('focusout', '.category-toggle', function() {
+//     $('.category-container').children('.delete-category-btn').removeClass('hidden');
+// });
+
+
 
 
 function revealNewCategoryForm() {
@@ -417,38 +431,27 @@ function deleteCategory() {
 deleteCategory();
 
 
-//Remove category delete button on category focus.
-$('.category-icons').on('focus', '.select-category-btn', function(event) {
-    $(event.target).next('.delete-category-btn').addClass('hidden');
-});
-
-//Return category delete button on category focusout.
-$('.category-icons').on('focusout', '.select-category-btn', function() {
-    $('.category-container').children('.delete-category-btn').removeClass('hidden');
-});
+//Get selected/checked category
+function getSelectedCategory(){
+    $('.dayplan-category-get').on('click', event => {
+        event.preventDefault();
+        let ID = $('input[name="toggle"]:checked').val();
+        $.ajax({
+            url: `/category/${ID}/`+ localStorage.getItem('token'),
+            type: 'GET'
+        }).done((category) => {
+            console.log(category);
+            getAllExercises();
+        }).fail((error) => {
+            console.log('Error getting selected category!');
+        })
+    })
+}
+getSelectedCategory();
 
 
 
 /***   A C T I V I T Y   ***/
-
-// function displayRoutineForm(){
-//     $('.post-activity-form').on('click', '.add-routine-icon', event => {
-//         event.preventDefault();
-//         $('.routine-form-section').removeClass('hidden');
-//     })
-// }
-// displayRoutineForm();
-
-
-
-// //Get all activities.
-// function getAllActivities(){
-//     $.get('/activity/all', ( allActivities ) => {
-//         console.log( allActivities );
-//     });
-// }
-// getAllActivities();
-
 
 
 //Post new activity.
@@ -729,3 +732,9 @@ function closeModalOnClickOutsideModal() {
     });
 }
 closeModalOnClickOutsideModal();
+
+
+
+
+
+///////////////////////////////////////////////////////////////

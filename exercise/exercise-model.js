@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 
 //Exercise
 const exerciseSchema = new mongoose.Schema({ 
-    //activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},	
+	userID: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
+    dayplanID: {type: mongoose.Schema.Types.ObjectId, ref: 'dayplan'},	
 	name: {type: String, required: false},
 	sets: {type: String, required: false},
 	reps: {type: String, required: false},
@@ -14,3 +15,7 @@ const exerciseSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model( 'exercise', exerciseSchema );
+
+
+
+
