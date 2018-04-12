@@ -75,19 +75,23 @@ fieldset{
 
 /*--Fit Week Section Styling--*/
 
+
+
 .fitweek{
 	padding-top:30px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .day-container{
 	text-align: center;
     border: solid 2px #D3D3D3;
     /*box-shadow: 0 8px 6px -6px #2a2a2a;*/
-    width: 120px;
-    height:120px;
+    width: 180px;
+    height:180px;
     padding: 0px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 10px;
+    margin-left: 10px;
     margin-bottom: 15px;
     border-radius: 50%;
 }
@@ -101,7 +105,6 @@ fieldset{
 /*--Fit Plan Modal--*/
 
 .fitplan-modal-btns{
-	margin-top: 40px;
 }
 
 /*--End of Fit Plan Modal Styling*/
@@ -109,6 +112,44 @@ fieldset{
 
 
 /*--Category Section Styling--*/
+
+
+/*post form*/
+.new-category-form label{
+    display: block;
+    margin: 10px 0px 4px 0px;
+	/*font-weight: bold;*/
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+
+
+.new-category-form label > span{
+    font-weight: bold;
+    float: right;
+    padding-left: 5px;
+    color: red;
+}
+
+
+ .new-category-form input{
+ 	width: 100%;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+/*end of post form*/
+
+
+
 
 .category-icons{
 }
@@ -127,8 +168,22 @@ fieldset{
 	display: table-cell;
     vertical-align: middle;
     text-align: center;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
 
 }
+
+.category-container p{
+	font-size: 12px;
+}
+
 
 input[type="radio"]{
 	margin-right: auto;
@@ -163,8 +218,9 @@ input[type="radio"]{
 
 .category-container input:checked + img {
 	border: 5px solid red;
-/*		-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);*/
+	
+	/*-webkit-filter: grayscale(100%);*/
+	/*filter: grayscale(100%);*/
 }
 
 
@@ -184,13 +240,18 @@ input[type="radio"]{
 	background: none;
 }
 
-.dayplan-category-post{
-	
+.dayplan-category-get{
+	margin-top: 25px;
 }
 
 /*--End of Category Section Styling--*/
 
 
+
+
+
+
+/*--Activity Section Styling--*/
 
 .activity-container{
 	margin-top: 50px;
@@ -198,6 +259,56 @@ input[type="radio"]{
 
 
 
+.post-activity-form label{
+    display: block;
+    margin: 10px 0px 4px 0px;
+	/*font-weight: bold;*/
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+
+
+.post-activity-form label > span{
+    font-weight: bold;
+    float: right;
+    padding-left: 5px;
+    color: red;
+}
+
+
+ .post-activity-form input{
+ 	width: 100%;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+
+
+
+/*#activity-name,
+#activity-time,
+#activity-duration,
+#activity-location,
+#activity-inspiration,
+#cardio-duration,
+#cardio-distance{
+	width: 100%;
+}*/
+
+
+.dayplan-activity-get{
+	margin-top: 25px;
+}
+
+/*--End of Activity Styling Section--*/
 
 
 
@@ -303,6 +414,25 @@ footer{
 	border: none;
 	background: none;
 }
+
+.next{
+	background-color: grey;
+	color: white;
+	margin-top: 25px;
+	width: 100px;
+	padding: 11px 5px;
+	border-radius: 10px;
+}
+
+
+#submit-dayplan-button,
+#cancel-dayplan-button{
+	background-color: rgb(255,255,153);
+	padding: 5px;
+	margin: 30px 10px;
+	width: 45%;
+}
+
 /*--End of Button Styling--*/
 
 

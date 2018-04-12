@@ -454,46 +454,42 @@ getSelectedCategory();
 /***   A C T I V I T Y   ***/
 
 
-//Post new activity.
+// Post new activity.
 function postNewActivity(){
-    $('.post-activity-form').on('submit', '#add-newactivity-button', event => {
+    $('.dayplan-activity-get').on('click', event => {
         event.preventDefault();
         let body = {
-            name: $('#activity-name').val(),
-            time:  $('#activity-time').val(),
-            duration: $('#activity-duration').val(),
-            cardio: {
-                distance: $('#cardio-distance').val(),
-                duration: $('#cardio-duration').val(),
+            'name': $('#activity-name').val(),
+            'time':  $('#activity-time').val(),
+            'duration': $('#activity-duration').val(),
+            'cardio': {
+                'distance': $('#cardio-distance').val(),
+                'duration': $('#cardio-duration').val()
             },
-            //routine: ,
-            location: $('#activity-location').val(),
-            inspiration: $('#activity-inspiration').val(),
-            completed: false 
+            'location': $('#activity-location').val(),
+            'inspiration': $('#activity-inspiration').val(),
+            'completed': false,
+            'userID': localStorage.getItem('userID'),
+            'token': localStorage.getItem('token') 
         }
         $.ajax({
             type: "POST",
             contentType: 'application/json',
-            url: '/activity/new',
+            url: '/activity/new/' + localStorage.getItem('token'),
             data: JSON.stringify(body)
         })
-        .done(function( data ){
-            console.log( data );
-            displayNewActivity( data );
+        .done(function( activity ){
+            console.log( activity );
         })
-        .fail(function( data ){
-            console.log('Post new fit goal failed!');
+        .fail(function( activity ){
+            console.log('Post new activity failed!');
         })
     })
 }
+postNewActivity();
 
 
 
-
-// //Update selected activity.
-// function updateActivity(){
-
-// }
 
 
 

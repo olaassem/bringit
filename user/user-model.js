@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     created: {type: Date, default: Date.now},
     currentQuote : {type: String}, 
-    dayplan: {type: mongoose.Schema.Types.ObjectId, ref: 'dayplan'}
+    // dayplan: {type: mongoose.Schema.Types.ObjectId, ref: 'dayplan'}
 });
 
 
