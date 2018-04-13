@@ -480,18 +480,6 @@ function postNewActivity(){
         dayplanFormObject.userID = localStorage.getItem('userID');
         dayplanFormObject.token = localStorage.getItem('token'); 
         console.log(dayplanFormObject);
-        // $.ajax({
-        //     type: "POST",
-        //     contentType: 'application/json',
-        //     url: '/activity/new/' + localStorage.getItem('token'),
-        //     data: JSON.stringify(body)
-        // })
-        // .done(function( activity ){
-        //     console.log( activity );
-        // })
-        // .fail(function( activity ){
-        //     console.log('Post new activity failed!');
-        // })
     })
 }
 postNewActivity();
@@ -696,8 +684,6 @@ cancelExerciseEdit();
 
 
 
-
-
 //Get selected/checked exercises.
 function getSelectedExercises(){
     $('.dayplan-exercise-get').on('click', event => {
@@ -707,23 +693,11 @@ function getSelectedExercises(){
         console.log( checked );
 
         let exercisesIDs = checked.map( (i, exercise) => { //map expects index as first param
-            debugger
             return exercise.value
         });
 
         dayplanFormObject.exercisesIDs = exercisesIDs;
         console.log( dayplanFormObject );    
-        // for ( let i = 0; i < checked.length; i++ ){
-        //     let ID = $(":checkbox:checked").dataset.defaultValue;
-        //     $.ajax({
-        //     url: `/exercise/${ID}/`+ localStorage.getItem('token'),
-        //     type: 'GET'
-        // }).done(( exercise ) => {
-        //     console.log( exercise );
-        // }).fail(( exercise ) => {
-        //     console.log('Error getting selected exercise(s)!');
-        // })  
-        // }
     })    
 }
 getSelectedExercises();
