@@ -315,6 +315,10 @@ function displayEditedFitGoal(fitgoal) {
 
 
 
+/***   F O R M   G LO B A L   V A R I A B L E   ***/
+let dayplanFormObject = {};
+
+
 
 /***   C A T E G O R I E S   ***/
 
@@ -436,15 +440,17 @@ function getSelectedCategory(){
     $('.dayplan-category-get').on('click', event => {
         event.preventDefault();
         let ID = $('input[name="toggle"]:checked').val();
-        $.ajax({
-            url: `/category/${ID}/`+ localStorage.getItem('token'),
-            type: 'GET'
-        }).done((category) => {
-            console.log(category);
-            getAllExercises();
-        }).fail((error) => {
-            console.log('Error getting selected category!');
-        })
+        dayplanFormObject.categoryID = ID;
+        console.log(dayplanFormObject);
+        // $.ajax({
+        //     url: `/category/${ID}/`+ localStorage.getItem('token'),
+        //     type: 'GET'
+        // }).done((category) => {
+        //     console.log(category);
+        //     getAllExercises();
+        // }).fail((error) => {
+        //     console.log('Error getting selected category!');
+        // })
     })
 }
 getSelectedCategory();
@@ -468,22 +474,24 @@ function postNewActivity(){
             },
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
-            'completed': false,
-            'userID': localStorage.getItem('userID'),
-            'token': localStorage.getItem('token') 
+            'completed': false
         }
-        $.ajax({
-            type: "POST",
-            contentType: 'application/json',
-            url: '/activity/new/' + localStorage.getItem('token'),
-            data: JSON.stringify(body)
-        })
-        .done(function( activity ){
-            console.log( activity );
-        })
-        .fail(function( activity ){
-            console.log('Post new activity failed!');
-        })
+        dayplanFormObject.activity = body;
+        dayplanFormObject.userID = localStorage.getItem('userID');
+        dayplanFormObject.token = localStorage.getItem('token'); 
+        console.log(dayplanFormObject);
+        // $.ajax({
+        //     type: "POST",
+        //     contentType: 'application/json',
+        //     url: '/activity/new/' + localStorage.getItem('token'),
+        //     data: JSON.stringify(body)
+        // })
+        // .done(function( activity ){
+        //     console.log( activity );
+        // })
+        // .fail(function( activity ){
+        //     console.log('Post new activity failed!');
+        // })
     })
 }
 postNewActivity();
@@ -694,26 +702,40 @@ cancelExerciseEdit();
 function getSelectedExercises(){
     $('.dayplan-exercise-get').on('click', event => {
         event.preventDefault();
-        let checked = $(":checkbox:checked");
+        let ID = $(":checkbox:checked").val();
+         let checked = $(":checkbox:checked");
         console.log( checked );
-        for ( let i = 0; i < checked.length; i++ ){
-            let ID = $(":checkbox:checked").dataset.defaultValue;
-            $.ajax({
-            url: `/exercise/${ID}/`+ localStorage.getItem('token'),
-            type: 'GET'
-        }).done(( exercise ) => {
-            console.log( exercise );
-        }).fail(( exercise ) => {
-            console.log('Error getting selected exercise(s)!');
-        })  
-        }
+
+        let exercisesIDs = checked.map( (i, exercise) => { //map expects index as first param
+            debugger
+            return exercise.value
+        });
+
+        dayplanFormObject.exercisesIDs = exercisesIDs;
+        console.log( dayplanFormObject );    
+        // for ( let i = 0; i < checked.length; i++ ){
+        //     let ID = $(":checkbox:checked").dataset.defaultValue;
+        //     $.ajax({
+        //     url: `/exercise/${ID}/`+ localStorage.getItem('token'),
+        //     type: 'GET'
+        // }).done(( exercise ) => {
+        //     console.log( exercise );
+        // }).fail(( exercise ) => {
+        //     console.log('Error getting selected exercise(s)!');
+        // })  
+        // }
     })    
 }
 getSelectedExercises();
 
 
+/***    DA Y P LA N  ***/
 
+//create day plan
+function createDayPlan(){
 
+}
+createDayPlan();
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
@@ -721,9 +743,9 @@ getSelectedExercises();
 function openModal() {
     $('[data-popup-open]').on('click', function(event) {
         event.preventDefault();
+        dayplanFormObject.day = $(event.target).attr('value');
         let targeted_popup_class = $(this).attr('data-popup-open');
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-        //clearWeightsRoutineValue();
     });
 }
 openModal();
