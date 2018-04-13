@@ -5,7 +5,7 @@ const exerciseModel = require('./exercise-model');
 exports.postNewExercise = (req, res) => {
     let newExercise = new exerciseModel();
     newExercise.userID = req.body.userID;
-    newExercise.dayplanID = req.body.dayplanID;
+    // newExercise.dayplanID = req.body.dayplanID;
     newExercise.name = req.body.name;
     newExercise.sets = req.body.sets;
     newExercise.reps = req.body.reps;
@@ -31,7 +31,7 @@ exports.postNewExercise = (req, res) => {
 
 //Get all exercises
 exports.getAllExercises = (req, res) => {
-    exerciseModel.find({})
+    exerciseModel.find({userID: req.user.id})
         .then((exercises) => {
             res.status(200).json({
                 message: "Successfully retrieved all exercises.",
@@ -45,6 +45,8 @@ exports.getAllExercises = (req, res) => {
             })
         })
 }
+
+
 
 
 
@@ -64,6 +66,8 @@ exports.getExerciseByID = (req, res) => {
             })
         })
 }
+
+
 
 
 

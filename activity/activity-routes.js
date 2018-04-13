@@ -5,9 +5,9 @@ const commonController = require('../common/common');
 
 
 
-router.post('/new/:token', commonController.verifyToken , activityController.postNewActivity);
+router.post('/new/:token', commonController.verifyToken, activityController.postNewActivity);
+router.get('/:id/:token', commonController.verifyToken, activityController.getActivityByID);
 router.get('/all', activityController.getAllActivities);
-router.get('/:id', activityController.getActivityByID);
 router.put('/:id', activityController.updateActivityByID);
 router.delete('/:id', activityController.deleteActivityByID);
 

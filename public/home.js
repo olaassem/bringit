@@ -33,7 +33,7 @@ initApp();
 function signOut() {
     $('.signout').on('click', event => {
         event.preventDefault();
-        localStorage.clear(); //for motifit to work on logout...
+        localStorage.clear();
         window.location.href = 'index.html';
     });
 }
@@ -493,8 +493,6 @@ postNewActivity();
 
 
 
-
-
 /***   E X E R C I S E S   ***/
 
 
@@ -508,7 +506,7 @@ function clearExerciseValue() {
 
 //Get all exercises.
 function getAllExercises() {
-    $.get('/exercise/all', (allExercises) => {
+    $.get('/exercise/all/' + localStorage.getItem('token'), (allExercises) => {
         console.log(allExercises);
         displayExercises(allExercises);
     });
@@ -519,7 +517,7 @@ getAllExercises();
 function renderExercises(exercise) {
     return `
       <tr class="exercise-rows">
-        <td><input type="checkbox" id="select-exercise" name="select" value=""></td>
+        <td><input type="checkbox" id="select-exercise" value="${exercise._id}"></td>
         <td class="td-exercise-name" width="25%">${exercise.name}</td>
         <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
         <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
@@ -551,16 +549,17 @@ function postNewExercise() {
     $('.post-exercise-form').on('click', '.post-exercise-btn', event => {
         event.preventDefault();
         let body = {
-            //activityID:{type: mongoose.Schema.Types.ObjectId, ref: 'activity'},   
-            'name': $('#exercise-name').val(), //string
-            'sets': $('#exercise-sets').val(), //string
-            'reps': $('#exercise-reps').val(), //string
-            'weight': $('#exercise-weight').val() //string
+            'name': $('#exercise-name').val(), 
+            'sets': $('#exercise-sets').val(), 
+            'reps': $('#exercise-reps').val(), 
+            'weight': $('#exercise-weight').val(),
+            'token' : localStorage.getItem('token'),
+            'userID': localStorage.getItem('userID')
         }
         $.ajax({
                 type: "POST",
                 contentType: 'application/json',
-                url: '/exercise/new',
+                url: '/exercise/new/' + localStorage.getItem('token'),
                 data: JSON.stringify(body)
             })
             .done(function(newExercise) {
@@ -594,10 +593,10 @@ function deleteExerciseTable() {
         let ID = $(event.currentTarget).attr("value");
         console.log(ID);
         $.ajax({
-            url: `/exercise/${ID}`,
+            url: `/exercise/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
-        }).done((exerciseRoutine) => {
-            console.log(exerciseRoutine);
+        }).done(( exercise ) => {
+            console.log( exercise );
             getAllExercises();
         }).fail((error) => {
             console.log('Deleting exercise routine table failed!');
@@ -609,12 +608,12 @@ deleteExerciseTable();
 
 //Get exercise details when edit button is clicked.
 function showEditExerciseForm() {
-    $('exercise-list').on('click', '.edit-exercise-btn', event => {
+    $('.exercise-list').on('click', '.edit-exercise-btn', event => {
         event.preventDefault();
         $('.popdown-edit-exercise').removeClass('hidden');
         let ID = $(event.currentTarget).attr("value");
         $.ajax({
-            url: `/exercise/${ID}`,
+            url: `/exercise/${ID}/` + localStorage.getItem('token'),
             type: 'GET'
         }).done(function(exercise) {
             console.log(exercise);
@@ -633,7 +632,7 @@ function showEditExerciseForm() {
                     <label for="exercise-reps-edit">Reps:</label>
                     <input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
                     </br>
-                    <button type="submit" class="post-exercise-btn" value="${exercise.data._id}">Update</button>
+                    <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>
                     <button type="submit" class="cancel-exercise-btn">Cancel</button>
                 </fieldset> 
             `);
@@ -648,30 +647,30 @@ showEditExerciseForm();
 
 //Put exercise edits.
 function putExerciseEdits() {
-    $('.edit-exercise-form').on('click', '#update-exercise-button', event => {
+    $('.edit-exercise-form').on('click', '.put-exercise-btn', event => {
         event.preventDefault();
         let ID = $(event.currentTarget).attr("value");
         let body = {
             '_id': `${ID}`,
-            //'activityID':{type: mongoose.Schema.Types.ObjectId, ref: 'activity'}, 
             'name': $('#exercise-name-edit').val(),
             'sets': $('#exercise-sets-edit').val(),
             'reps': $('#exercise-reps-edit').val(),
-            'weight': $('#exercise-weight-edit').val()
+            'weight': $('#exercise-weight-edit').val(),
+            'userID': localStorage.getItem('userID')
         }
         $.ajax({
                 type: "PUT",
                 contentType: 'application/json',
-                url: `exercise/${ID}`,
+                url: `exercise/${ID}/` + localStorage.getItem('token'),
                 data: JSON.stringify(body)
             })
-            .done(function(exercise) {
-                console.log(exercise);
-                $('.popup').fadeOut(350);
+            .done(function( exercise ) {
+                console.log( exercise );
+                $('.popdown-edit-exercise').addClass('hidden');
                 getAllExercises();
             })
-            .fail(function(exercise) {
-                console.log('Updating weights routine failed!');
+            .fail(function( error ) {
+                console.log('Updating exercise failed!');
             })
     })
 }
@@ -681,12 +680,36 @@ putExerciseEdits();
 
 //Cancel exercise update.
 function cancelExerciseEdit() {
-    $('.edit-exercise-form').on('click', '#cancel-exercise-button', event => {
-        $('.popup').fadeOut(350);
+    $('.edit-exercise-form').on('click', '.cancel-exercise-btn', event => {
+        $('.popdown-edit-exercise').addClass('hidden');
     });
 }
 cancelExerciseEdit();
 
+
+
+
+
+//Get selected/checked exercises.
+function getSelectedExercises(){
+    $('.dayplan-exercise-get').on('click', event => {
+        event.preventDefault();
+        let checked = $(":checkbox:checked");
+        console.log( checked );
+        for ( let i = 0; i < checked.length; i++ ){
+            let ID = $(":checkbox:checked").dataset.defaultValue;
+            $.ajax({
+            url: `/exercise/${ID}/`+ localStorage.getItem('token'),
+            type: 'GET'
+        }).done(( exercise ) => {
+            console.log( exercise );
+        }).fail(( exercise ) => {
+            console.log('Error getting selected exercise(s)!');
+        })  
+        }
+    })    
+}
+getSelectedExercises();
 
 
 
