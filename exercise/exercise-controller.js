@@ -5,7 +5,6 @@ const exerciseModel = require('./exercise-model');
 exports.postNewExercise = (req, res) => {
     let newExercise = new exerciseModel();
     newExercise.userID = req.body.userID;
-    // newExercise.dayplanID = req.body.dayplanID;
     newExercise.name = req.body.name;
     newExercise.sets = req.body.sets;
     newExercise.reps = req.body.reps;

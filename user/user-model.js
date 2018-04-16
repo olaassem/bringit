@@ -8,8 +8,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     name: { type: String, required: true },
     created: {type: Date, default: Date.now},
-    currentQuote : {type: String}, 
-    dayplan: {type: mongoose.Schema.Types.ObjectId, ref: 'dayplan'}
+    currentQuote : {type: String}
 });
 
 

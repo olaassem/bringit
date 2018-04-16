@@ -14,6 +14,7 @@ function initApp() {
     if (userName) {
         $('.greeting .firstname').html(userName);
         getCurrentFitGoals();
+        getUserWeek();
     }
     //anytime we check, and we don't have have the token it will go back to index pg
     if (!localStorage.getItem('token')) {
@@ -46,22 +47,22 @@ signOut();
 //calls take the most time
 // do the random grab serverside
 //adds button listener
-function setupMotiFitQuote(){ 
+function setupMotiFitQuote() {
     $('.motifit-button').on('click', event => {
         event.preventDefault();
         $.get('/quote/random/' + localStorage.getItem('token'), (randomQuote) => {
-            
+
             localStorage.setItem('randomQuote', randomQuote.data);
-            
+
             showMotiFitQuote();
         })
     })
-}    
+}
 setupMotiFitQuote();
 
 
 // displays the given quote to the "random-quote" element
-function showMotiFitQuote(){
+function showMotiFitQuote() {
     let currentQuote = localStorage.getItem('randomQuote');
     $('.random-quote').html(`${currentQuote}`);
 }
@@ -136,7 +137,7 @@ function postNewFitGoal() {
             })
             .fail(function(fitgoal) {
                 console.log('Post new fit goal failed!');
-        })
+            })
     })
 }
 postNewFitGoal();
@@ -315,7 +316,7 @@ function displayEditedFitGoal(fitgoal) {
 
 
 
-/***   F O R M   G LO B A L   V A R I A B L E   ***/
+/***   D A Y   P L A N   F O R M   G LO B A L   V A R I A B L E   ***/
 let dayplanFormObject = {};
 
 
@@ -395,8 +396,8 @@ function postNewCategory() {
                 console.log(data);
                 getAllCategories(data);
                 $('#category-name').val(''),
-                $('#category-img').val(''),
-                $('.new-category-form').addClass('hidden');
+                    $('#category-img').val(''),
+                    $('.new-category-form').addClass('hidden');
             })
             .fail(function(error) {
                 console.log('Posting new category failed!')
@@ -436,21 +437,12 @@ deleteCategory();
 
 
 //Get selected/checked category
-function getSelectedCategory(){
+function getSelectedCategory() {
     $('.dayplan-category-get').on('click', event => {
         event.preventDefault();
         let ID = $('input[name="toggle"]:checked').val();
         dayplanFormObject.categoryID = ID;
         console.log(dayplanFormObject);
-        // $.ajax({
-        //     url: `/category/${ID}/`+ localStorage.getItem('token'),
-        //     type: 'GET'
-        // }).done((category) => {
-        //     console.log(category);
-        //     getAllExercises();
-        // }).fail((error) => {
-        //     console.log('Error getting selected category!');
-        // })
     })
 }
 getSelectedCategory();
@@ -461,12 +453,12 @@ getSelectedCategory();
 
 
 // Post new activity.
-function postNewActivity(){
-    $('.dayplan-activity-get').on('click', event => {
+function postNewActivity() {
+    $('.post-dayplan-form').on('click', '#submit-dayplan-button', event => {
         event.preventDefault();
         let body = {
             'name': $('#activity-name').val(),
-            'time':  $('#activity-time').val(),
+            'time': $('#activity-time').val(),
             'duration': $('#activity-duration').val(),
             'cardio': {
                 'distance': $('#cardio-distance').val(),
@@ -474,12 +466,29 @@ function postNewActivity(){
             },
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
-            'completed': false
+            'completed': false,
         }
         dayplanFormObject.activity = body;
         dayplanFormObject.userID = localStorage.getItem('userID');
-        dayplanFormObject.token = localStorage.getItem('token'); 
+        dayplanFormObject.token = localStorage.getItem('token');
         console.log(dayplanFormObject);
+        createDayPlan(dayplanFormObject);
+        // })
+        // $.ajax({
+        //         type: 'POST',
+        //         contentType: 'application/json',
+        //         url: 'activity/new/' + localStorage.getItem('token'),
+        //         data: JSON.stringify(body)
+        //     })
+        //     .done(( activity ) => {
+        //         console.log(activity);
+        //         dayplanFormObject.activity = body;
+        //         dayplanFormObject.userID = localStorage.getItem('userID');
+        //         dayplanFormObject.token = localStorage.getItem('token');
+        //     })
+        // //     .fail(( error ) => {
+        // //         console.log('Post new activity failed!');
+        //     })
     })
 }
 postNewActivity();
@@ -545,11 +554,11 @@ function postNewExercise() {
     $('.post-exercise-form').on('click', '.post-exercise-btn', event => {
         event.preventDefault();
         let body = {
-            'name': $('#exercise-name').val(), 
-            'sets': $('#exercise-sets').val(), 
-            'reps': $('#exercise-reps').val(), 
+            'name': $('#exercise-name').val(),
+            'sets': $('#exercise-sets').val(),
+            'reps': $('#exercise-reps').val(),
             'weight': $('#exercise-weight').val(),
-            'token' : localStorage.getItem('token'),
+            'token': localStorage.getItem('token'),
             'userID': localStorage.getItem('userID')
         }
         $.ajax({
@@ -591,8 +600,8 @@ function deleteExerciseTable() {
         $.ajax({
             url: `/exercise/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
-        }).done(( exercise ) => {
-            console.log( exercise );
+        }).done((exercise) => {
+            console.log(exercise);
             getAllExercises();
         }).fail((error) => {
             console.log('Deleting exercise routine table failed!');
@@ -660,12 +669,12 @@ function putExerciseEdits() {
                 url: `exercise/${ID}/` + localStorage.getItem('token'),
                 data: JSON.stringify(body)
             })
-            .done(function( exercise ) {
-                console.log( exercise );
+            .done(function(exercise) {
+                console.log(exercise);
                 $('.popdown-edit-exercise').addClass('hidden');
                 getAllExercises();
             })
-            .fail(function( error ) {
+            .fail(function(error) {
                 console.log('Updating exercise failed!');
             })
     })
@@ -685,31 +694,67 @@ cancelExerciseEdit();
 
 
 //Get selected/checked exercises.
-function getSelectedExercises(){
+function getSelectedExercises() {
     $('.dayplan-exercise-get').on('click', event => {
         event.preventDefault();
         let ID = $(":checkbox:checked").val();
-         let checked = $(":checkbox:checked");
-        console.log( checked );
+        let checked = $(":checkbox:checked");
+        console.log(checked);
 
-        let exercisesIDs = checked.map( (i, exercise) => { //map expects index as first param
-            return exercise.value
-        });
+        let exercisesIDs = [];
+        for (let i = 0; i < checked.length; i++) {
+            exercisesIDs.push(checked[i].value);
+        }
+
+        // let exercisesIDs = checked.map((i, exercise) => { //map expects index as first param
+        //     return exercise.value 
+        // });
 
         dayplanFormObject.exercisesIDs = exercisesIDs;
-        console.log( dayplanFormObject );    
-    })    
+        console.log(dayplanFormObject);
+    })
 }
 getSelectedExercises();
 
 
-/***    DA Y P LA N  ***/
 
-//create day plan
-function createDayPlan(){
 
+
+
+/***   D A Y    P L A N  ***/
+
+
+//Post new day plan
+function createDayPlan() {
+    $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: 'dayplan/new/' + localStorage.getItem('token'),
+            data: JSON.stringify(dayplanFormObject)
+        })
+        .done(function(dayplan) {
+            console.log(dayplan);
+        })
+        .fail(function(error) {
+            console.log('Post new day plan failed!');
+        })
 }
-createDayPlan();
+
+
+
+function getUserWeek() {
+    $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: 'dayplan/all/' + localStorage.getItem('token')
+        })
+        .done(function( week ) {
+            console.log( week );
+        })
+        .fail(function(error) {
+            console.log('Post new day plan failed!');
+        })
+}
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
