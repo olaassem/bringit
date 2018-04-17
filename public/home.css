@@ -33,20 +33,63 @@ fieldset{
 
 
 
+
+
+/*--Header Styling--*/
+header{
+    background-color: /*#d4dfe1*/; /*#2214E5 blue*/
+    border-bottom: solid 2px grey;
+}
+
+.logo{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    color: #201f2f;
+    font-size: 30px;
+    font-family: 'Oxygen', sans-serif;
+    display: inline-block;
+}
+
+.top-nav {
+  margin-top: 9px;
+  float: right;
+  display: inline-block;
+}
+
+.nav-link {
+  font-size: 18px;
+  padding: 0 6px;
+  border: none;
+}
+/*--End of Header Styling--*/
+
+
+
+
+
+
+
 /*--Quote Styling Section--*/
 .quote-section{
 	margin-bottom: 60px;
 }
 
+.random-quote{
+	font-size: 40px;
+	text-align: center;
+}
+
 .motifit-button{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 /*--End of Quote Styling Section--*/
 
 
 
+
 /*--Fit Goal Section Styling--*/
-
-
 .fitgoal-section{
 	margin-bottom: 60px;
 }
@@ -218,9 +261,11 @@ input[type="radio"]{
 
 .category-container input:checked + img {
 	border: 5px solid red;
-	
-	/*-webkit-filter: grayscale(100%);*/
-	/*filter: grayscale(100%);*/
+	background-color: red;
+    -moz-opacity: 20%;
+    -webkit-opacity: 20%;
+    z-index: 4;
+    overflow: hidden;
 }
 
 
@@ -321,6 +366,7 @@ input[type="radio"]{
 }
 
 .add-icon,
+.view-icon,
 .edit-icon,
 .delete-icon{
 	width: 20px;

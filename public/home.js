@@ -473,22 +473,6 @@ function postNewActivity() {
         dayplanFormObject.token = localStorage.getItem('token');
         console.log(dayplanFormObject);
         createDayPlan(dayplanFormObject);
-        // })
-        // $.ajax({
-        //         type: 'POST',
-        //         contentType: 'application/json',
-        //         url: 'activity/new/' + localStorage.getItem('token'),
-        //         data: JSON.stringify(body)
-        //     })
-        //     .done(( activity ) => {
-        //         console.log(activity);
-        //         dayplanFormObject.activity = body;
-        //         dayplanFormObject.userID = localStorage.getItem('userID');
-        //         dayplanFormObject.token = localStorage.getItem('token');
-        //     })
-        // //     .fail(( error ) => {
-        // //         console.log('Post new activity failed!');
-        //     })
     })
 }
 postNewActivity();
@@ -706,10 +690,6 @@ function getSelectedExercises() {
             exercisesIDs.push(checked[i].value);
         }
 
-        // let exercisesIDs = checked.map((i, exercise) => { //map expects index as first param
-        //     return exercise.value 
-        // });
-
         dayplanFormObject.exercisesIDs = exercisesIDs;
         console.log(dayplanFormObject);
     })
@@ -734,6 +714,7 @@ function createDayPlan() {
         })
         .done(function(dayplan) {
             console.log(dayplan);
+            getUserWeek();
         })
         .fail(function(error) {
             console.log('Post new day plan failed!');
@@ -748,13 +729,56 @@ function getUserWeek() {
             contentType: 'application/json',
             url: 'dayplan/all/' + localStorage.getItem('token')
         })
-        .done(function( week ) {
-            console.log( week );
+        .done(function(week) {
+            console.log(week);
+            showDayPlan(week);
         })
         .fail(function(error) {
             console.log('Post new day plan failed!');
         })
 }
+
+
+const noPlanMsg = [
+    "No fit plan set for Monday.",
+    "No fit plan set for Tuesday.",
+    "No fit plan set for Wednesday.",
+    "No fit plan set for Thursday.",
+    "No fit plan set for Friday.",
+    "No fit plan set for Saturday.",
+    "No fit plan set for Sunday."
+];
+
+
+//.find() specifically work to find elements in an html.
+//week is nt an html element -- it is an array of onjects.
+
+function findDay(week, day) { //day from showDayPlan
+    for( let i = 0 ; i < week.data.length; i++){
+        if (week.data[i].day == day){ //values saved on json array is a number // string number 
+            return week.data[i]
+        }
+    }
+}
+
+function showDayPlan(week) {
+    $('.day-container').on('click', '.view-icon', event => {
+        event.preventDefault();
+
+        let day = $(event.target).attr('value');
+
+        const dayFound = findDay(week, day);
+
+        if (dayFound === undefined)
+            console.log(noPlanMsg[day]);
+        else
+            console.log(dayFound);
+    })
+}
+
+// $(event.target).parent().siblings('.add-day-plan-btn').addClass('hidden');
+
+
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/

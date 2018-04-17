@@ -108,13 +108,13 @@ exports.getWeekByUser = (req, res) => {
         .exec()
         .then(( week ) => {
             res.status(200).json({
-                message: `Successfully retrieved all day plans for user.`,
+                message: `Successfully retrieved week for user.`,
                 data: week
             })
         })
         .catch((error) => {
             res.status(500).json({
-                message: `Error retrieving dayplan with ID ${req.params.id}.`,
+                message: `Error retrieving week for user.`,
                 data: error
             })
         })
