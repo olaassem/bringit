@@ -920,7 +920,7 @@ function openEditDayPlanModal() {
                                     <fieldset>
                                         <legend>Fill Activity Info</legend>
                                         <label for="activity-name">Name<span class="required">*</span></label>
-                                        <input id="activity-name" type="text" value="${dayplan.data.activityID.name} />
+                                        <input id="activity-name" type="text" value="${dayplan.data.activityID.name}" />
                                         </br>
                                         <label for="activity-time">Time<span class="required">*</span></label>
                                         <input id="activity-time" type="text" placeholder="" />

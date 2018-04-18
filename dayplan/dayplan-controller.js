@@ -92,10 +92,6 @@ exports.getWeekByUser = (req, res) => {
 //Delete day plan by ID
 exports.deleteDayPlanByID = (req, res) => {
     dayplanModel.findByIdAndRemove(req.params.id)
-        .populate('activityID')
-        .populate('categoryID')
-        .populate('exercisesIDs')
-        .exec()
     .then(() => {
         res.status(200).json({
             message: `Successfully deleted day plan with ID ${req.params.id}.`
@@ -113,6 +109,10 @@ exports.deleteDayPlanByID = (req, res) => {
 //Get day plan by ID
 exports.getDayPlanByID = (req, res) => {
     dayplanModel.findById(req.params.id)
+        .populate('activityID')
+        .populate('categoryID')
+        .populate('exercisesIDs')
+        .exec()
     .then((dayplan) => {
         res.status(200).json({
             message: `Successfully retrieved day plan with ID ${req.params.id}.`,
