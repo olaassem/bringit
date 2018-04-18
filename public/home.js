@@ -805,13 +805,11 @@ function displayDayPlan(dayFound) {
         <p>${dayFound.activityID.location}</p>
         <p>${dayFound.activityID.cardio.distance}</p>
         <p>${dayFound.activityID.cardio.duration}</p>
-
-
         <div class="exercise-results-list-container">
             <table class="exercise-results-table" border="1">
                 <thread>
                     <tr>
-                        <th class="th-exercise-results-name" width="15%">Name</th>
+                        <th class="th-exercise-results-name" width="15%">Exercise</th>
                         <th class="th-exercise-results-weight" width="15%">Weight</th>
                         <th class="th-exercise-results-sets" width="15%">Sets</th>
                         <th class="th-exercise-results-name" width="15%">Reps</th>
@@ -820,11 +818,9 @@ function displayDayPlan(dayFound) {
                 <tbody class="exercise-results-list">
                 </tbody>
             </table>
-        </div>
-
-                                
+        </div>                  
         <p>${dayFound.activityID.inspiration}</p>
-        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button>
+        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button>
         <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button>
     `);
 }
@@ -849,7 +845,7 @@ function displayDayPlanExercisesResults(allExercises) {
 
 
 function deleteDayPlan() {
-    $('.uniqe-dayplan').on('click', '.delete-dayplan-btn', event => {
+    $('.unique-dayplan-results').on('click', '.delete-dayplan-btn', event => {
         event.preventDefault();
         let ID = $(event.currentTarget).attr('value');
         console.log(ID);
@@ -857,7 +853,7 @@ function deleteDayPlan() {
             url: `dayplan/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((dayplan) => {
-            $('.uniqe-dayplan').html('');
+            $('.unique-dayplan-results').html('');
             getUserWeek();
         }).fail((error) => {
             console.log('Deleting day plan failed!');
@@ -869,21 +865,194 @@ deleteDayPlan();
 
 
 
+//Get day plan details when edit button is clicked.
+function openEditDayPlanModal() {
+    $('.unique-dayplan-results').on('click', '.edit-dayplan-btn', event => {
+        event.preventDefault();
+        $('[data-popup="popup-edit-dayplan"]').fadeIn(350);
+        let ID = $(event.currentTarget).attr("value");
+        $.ajax({
+            url: `dayplan/${ID}/` + localStorage.getItem('token'),
+            type: 'GET'
+        }).done(function(dayplan) {
+            console.log(dayplan);
 
 
-// categoryID.img: url
+            $('.edit-dayplan-form').html(`
+                <fieldset>
+                    <legend><span class="dayoftheweek"></span>Fit Plan</legend>
+                    <div class="category-section">
+                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                        <!--category section-->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="new-category-form hidden">
+                                    <form role="form" class="post-category-form" novalidate>
+                                        <fieldset>
+                                            <legend>Add New Category</legend>
+                                            <label for="category-name">Name<span class="required">*</span></label>
+                                            <input id="category-name" type="text" placeholder="e.g. Climbing" />
+                                            </br>
+                                            <label for="category-img">Image<span class="required">*</span></label>
+                                            <input id="category-img" type="text" placeholder="URL" />
+                                            </br>
+                                            <button type="submit" class="post-category-btn">Add</button>
+                                            <button type="submit" class="cancel-category-btn">Cancel</button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category-icons"></div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="dayplan-category-get next">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of category section-->
+                    <!--activity section-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="activity-container">
+                                <form role="form" class="post-activity-form" novalidate>
+                                    <h2>STEP 2 Activity</h2>
+                                    <fieldset>
+                                        <legend>Fill Activity Info</legend>
+                                        <label for="activity-name">Name<span class="required">*</span></label>
+                                        <input id="activity-name" type="text" value="${dayplan.data.activityID.name} />
+                                        </br>
+                                        <label for="activity-time">Time<span class="required">*</span></label>
+                                        <input id="activity-time" type="text" placeholder="" />
+                                        </br>
+                                        <label for="activity-duration">Duration<span class="required">*</span></label>
+                                        <input id="activity-duration" type="text" placeholder="" />
+                                        </br>
+                                        <label for="activity-cardio">Cardio</label>
+                                        </br>
+                                        <label for="cardio-distance">Distance</label>
+                                        <input id="cardio-distance" type="text" placeholder="" />
+                                        </br>
+                                        <label for="cardio-duration">Duration</label>
+                                        <input id="cardio-duration" type="text" placeholder="" />
+                                        </br>
+                                        <label for="activity-location">Location</label>
+                                        <input id="activity-location" type="text" placeholder="" />
+                                        </br>
+                                        <label for="activity-inspiration">Inspiration</label>
+                                        <input id="activity-inspiration" type="text" placeholder="" />
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="dayplan-activity-get next">Next</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of activity section-->
+                    <!--exercise section-->
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                            <div class="new-exercise-form hidden">
+                                <form role="form" class="post-exercise-form" action="#" method="#">
+                                    <fieldset>
+                                        <legend>Add New Exercise</legend>
+                                        </br>
+                                        <label for="exercise-name">Name:</label>
+                                        <input id="exercise-name" type="text" placeholder="" />
+                                        </br>
+                                        <label for="exercise-weight">Weight:</label>
+                                        <input id="exercise-weight" type="text" placeholder="" />
+                                        </br>
+                                        <label for="exercise-sets">Sets:</label>
+                                        <input id="exercise-sets" type="text" placeholder="" />
+                                        </br>
+                                        <label for="exercise-reps">Reps:</label>
+                                        <input id="exercise-reps" type="text" placeholder="" />
+                                        </br>
+                                        <button type="submit" class="post-exercise-btn">Add</button>
+                                        <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="popdown-edit-exercise hidden">
+                                <form role="form" class="edit-exercise-form" action="#" method="#"></form>
+                            </div>
+                            <div class="exercise-list-container">
+                                <table class="exercise-table" border="1">
+                                    <thread>
+                                        <tr>
+                                            <th class="th-exercise-select" width="15%">Select</th>
+                                            <th class="th-exercise-name" width="15%">Name</th>
+                                            <th class="th-exercise-weight" width="15%">Weight</th>
+                                            <th class="th-exercise-sets" width="15%">Sets</th>
+                                            <th class="th-exercise-name" width="15%">Reps</th>
+                                            <th class="th-exercise-edit" width="15%"></th>
+                                            <th class="th-exercise-delete" width="15%"></th>
+                                        </tr>
+                                    </thread>
+                                    <tbody class="exercise-list">
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <!-- <div class="col-12"> -->
+                                    <button type="submit" class="dayplan-exercise-get next">Next</button>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of activity section-->
+                    <div class="fitplan-modal-btns">
+                        <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
+                        <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                    </div>
+                </fieldset>
+             `);
 
-// day:0
 
-// exercisesIDs
-// Array(2)
-// 0:{_id: "5ad000d32398ae0ed5aa454d", userID: "5accadba4b89910a9c70f386", name: "burpees", sets: "5", reps: "12", …}
-// 1:{_id: "5ad00fecf1f09b104696d6b6", userID: "5accadba4b89910a9c70f386", name: "this", sets: "been", reps: "edited", …}
-// length
-
-
+        }).fail(function(error) {
+            console.log('Retrieving day plan details failed!');
+        });
+    });
+}
+openEditDayPlanModal();
 
 
+// //Put fitgoal edits.
+// function putFitGoalEdits() {
+//     $('.edit-fitgoal-form').on('click', '#update-fitgoal-button', event => {
+//         event.preventDefault();
+//         let ID = $(event.currentTarget).attr("value");
+//         let body = {
+//             '_id': `${ID}`,
+//             'title': $('#fitgoal-title-edit').val(),
+//             'createDate': Date.now(),
+//             'description': $('#fitgoal-description-edit').val(),
+//             'completed': false,
+//             'userID': localStorage.getItem('userID'),
+//             'token': localStorage.getItem('token')
+//         }
+//         $.ajax({
+//                 type: "PUT",
+//                 contentType: 'application/json',
+//                 url: `/goal/${ID}/` + localStorage.getItem('token'),
+//                 data: JSON.stringify(body)
+//             })
+//             .done(function(fitgoal) {
+//                 console.log(fitgoal);
+//                 $('.popup').fadeOut(350);
+//                 displayEditedFitGoal(fitgoal);
+//             })
+//             .fail(function(fitgoal) {
+//                 console.log('Updating new fit goal failed!');
+//             })
+//     })
+// }
+// putFitGoalEdits();
 
 
 
