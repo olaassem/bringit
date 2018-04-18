@@ -66,40 +66,7 @@ exports.postNewDayPlan = (req, res, next) => {
 }
 
 
-
-// //Save day plan to user.
-// exports.saveDayPlanToUser = (req, res) => {
-//     dayplanModel.findByIdAndUpdate(req.user.id, {
-//             $set: {
-//                 // userID: dayplan.,
-//                 // categoryID: ,
-//                 // activityID: ,
-//                 // exercisesIDs: ,
-//                 // day: ,
-//             }
-//         }).then((user) => {
-//             res.status(200).json({
-//                 message: "Successfully saved day plan to user.",
-//                 data: user
-//             })
-
-//         })
-//         .catch((error) => {
-//             res.status(500).json({
-//                 message: "Error saving day plan to user.",
-//                 data: error
-//             })
-//         })
-
-// }
-
-
-
-
-
-
 //Get all day plans
-//hide and show each unique day plan on the front end
 exports.getWeekByUser = (req, res) => {
     dayplanModel.find({ userID: req.user.id})
         .populate('activityID')
@@ -118,4 +85,22 @@ exports.getWeekByUser = (req, res) => {
                 data: error
             })
         })
+}
+
+
+
+//Delete day plan by ID
+exports.deleteDayPlanByID = (req, res) => {
+    dayplanModel.findByIdAndRemove(req.params.id)
+    .then(() => {
+        res.status(200).json({
+            message: `Successfully deleted day plan with ID ${req.params.id}.`
+        })
+    })
+    .catch((error) => {
+        res.status(500).json({
+            message: `Error deleting day plan with ID ${req.params.id}.`,
+            data: error
+        })
+    })
 }

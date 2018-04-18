@@ -473,9 +473,26 @@ function postNewActivity() {
         dayplanFormObject.token = localStorage.getItem('token');
         console.log(dayplanFormObject);
         createDayPlan(dayplanFormObject);
+        hideAddDayPlanBtn();
+        //HIDE DAYPLAN ADD BUTTON
+        //SHOW CATEGORY IMG IN DAY CONTAINER
     })
 }
 postNewActivity();
+
+
+
+//Hide add dayplan button when plan is set for day.
+function hideAddDayPlanBtn() {
+
+}
+
+
+function showCategoryImgInDayCntnr() {
+
+}
+
+
 
 
 
@@ -751,32 +768,141 @@ const noPlanMsg = [
 
 
 //.find() specifically work to find elements in an html.
-//week is nt an html element -- it is an array of onjects.
-
+//week is not an html element -- it is an array of onjects.
 function findDay(week, day) { //day from showDayPlan
-    for( let i = 0 ; i < week.data.length; i++){
-        if (week.data[i].day == day){ //values saved on json array is a number // string number 
+    for (let i = 0; i < week.data.length; i++) {
+        if (week.data[i].day == day) { //values saved on json array is a number // string number 
             return week.data[i]
         }
     }
 }
 
+//Display fit plan for particular/clicked day
 function showDayPlan(week) {
     $('.day-container').on('click', '.view-icon', event => {
         event.preventDefault();
-
         let day = $(event.target).attr('value');
 
         const dayFound = findDay(week, day);
 
-        if (dayFound === undefined)
-            console.log(noPlanMsg[day]);
-        else
+        if (dayFound === undefined) {
+            $('.unique-dayplan-results').html(`<p>${noPlanMsg[day]}</p>`);
+        } else {
             console.log(dayFound);
+            displayDayPlan(dayFound);
+            displayDayPlanExercisesResults(dayFound);
+        }
     })
 }
 
-// $(event.target).parent().siblings('.add-day-plan-btn').addClass('hidden');
+function displayDayPlan(dayFound) {
+    $('.unique-dayplan-results').html('');
+    $('.unique-dayplan-results').html(`
+        <p>${dayFound.categoryID.name}</p>
+        <p>${dayFound.activityID.name}</p>
+        <p>${dayFound.activityID.time}</p>
+        <p>${dayFound.activityID.duration}</p>
+        <p>${dayFound.activityID.location}</p>
+        <p>${dayFound.activityID.cardio.distance}</p>
+        <p>${dayFound.activityID.cardio.duration}</p>
+
+
+        <div class="exercise-results-list-container">
+            <table class="exercise-results-table" border="1">
+                <thread>
+                    <tr>
+                        <th class="th-exercise-results-name" width="15%">Name</th>
+                        <th class="th-exercise-results-weight" width="15%">Weight</th>
+                        <th class="th-exercise-results-sets" width="15%">Sets</th>
+                        <th class="th-exercise-results-name" width="15%">Reps</th>
+                    </tr>
+                </thread>
+                <tbody class="exercise-results-list">
+                </tbody>
+            </table>
+        </div>
+
+                                
+        <p>${dayFound.activityID.inspiration}</p>
+        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button>
+        <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button>
+    `);
+}
+
+
+function renderDayPlanExercisesResults(exercise) {
+    return `
+      <tr class="exercise-result-rows">
+        <td class="td-exercise-results-name" width="25%">${exercise.name}</td>
+        <td class="td-exercise-results-weight" width="25%">${exercise.weight}</td> 
+        <td class="td-exercise-results-sets" width="25%">${exercise.sets}</td>
+        <td class="td-exercise-results-reps" width="25%">${exercise.reps}</td>
+      </tr>
+    `
+}
+
+function displayDayPlanExercisesResults(allExercises) {
+    let dayplanExercisesOutput = allExercises.exercisesIDs.map(exercise => renderDayPlanExercisesResults(exercise)).join('');
+    $('.exercise-results-list').html(dayplanExercisesOutput);
+}
+
+
+
+function deleteDayPlan() {
+    $('.uniqe-dayplan').on('click', '.delete-dayplan-btn', event => {
+        event.preventDefault();
+        let ID = $(event.currentTarget).attr('value');
+        console.log(ID);
+        $.ajax({
+            url: `dayplan/${ID}/` + localStorage.getItem('token'),
+            type: 'DELETE'
+        }).done((dayplan) => {
+            $('.uniqe-dayplan').html('');
+            getUserWeek();
+        }).fail((error) => {
+            console.log('Deleting day plan failed!');
+        })
+    });
+}
+deleteDayPlan();
+
+
+
+
+
+
+// categoryID.img: url
+
+// day:0
+
+// exercisesIDs
+// Array(2)
+// 0:{_id: "5ad000d32398ae0ed5aa454d", userID: "5accadba4b89910a9c70f386", name: "burpees", sets: "5", reps: "12", …}
+// 1:{_id: "5ad00fecf1f09b104696d6b6", userID: "5accadba4b89910a9c70f386", name: "this", sets: "been", reps: "edited", …}
+// length
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

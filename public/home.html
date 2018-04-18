@@ -53,7 +53,7 @@
                         <div class="col-12">
                             <button type="submit" class="motifit-button">Motifit Me</button>
                         </div>
-                    </div>        
+                    </div>
                 </section>
                 <section role="region" class="fitgoal-section">
                     <h2>Fit Goal<button type="submit" class="btn" data-popup-open="popup-post-fitgoal">Set New Fit Goal</button></h2>
@@ -146,154 +146,174 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--end of fitweek section-->
-                <!--day plan modal form section-->
-                <div class="popup" data-popup="popup-post-dayplan">
-                    <div class="popup-inner">
-                        <form role="form" class="post-dayplan-form" action="#" method="#">
-                            <fieldset>
-                                <legend><span class="dayoftheweek"></span>Fit Plan</legend>
-                                <div class="category-section">
-                                    <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
-                                    <!--category section-->
+                    <div class="dayplan-container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="unique-dayplan-results"></div>
+                                <!-- <div class="exercise-results-list-container">
+                                    <table class="exercise-results-table" border="1">
+                                        <thread>
+                                            <tr>
+                                                <th class="th-exercise-results-name" width="15%">Name</th>
+                                                <th class="th-exercise-results-weight" width="15%">Weight</th>
+                                                <th class="th-exercise-results-sets" width="15%">Sets</th>
+                                                <th class="th-exercise-results-name" width="15%">Reps</th>
+                                            </tr>
+                                        </thread>
+                                        <tbody class="exercise-results-list">
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of fitweek section-->
+                    <!--day plan modal form section-->
+                    <div class="popup" data-popup="popup-post-dayplan">
+                        <div class="popup-inner">
+                            <form role="form" class="post-dayplan-form" action="#" method="#">
+                                <fieldset>
+                                    <legend><span class="dayoftheweek"></span>Fit Plan</legend>
+                                    <div class="category-section">
+                                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                                        <!--category section-->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="new-category-form hidden">
+                                                    <form role="form" class="post-category-form" novalidate>
+                                                        <fieldset>
+                                                            <legend>Add New Category</legend>
+                                                            <label for="category-name">Name<span class="required">*</span></label>
+                                                            <input id="category-name" type="text" placeholder="e.g. Climbing" />
+                                                            </br>
+                                                            <label for="category-img">Image<span class="required">*</span></label>
+                                                            <input id="category-img" type="text" placeholder="URL" />
+                                                            </br>
+                                                            <button type="submit" class="post-category-btn">Add</button>
+                                                            <button type="submit" class="cancel-category-btn">Cancel</button>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="category-icons"></div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="dayplan-category-get next">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end of category section-->
+                                    <!--activity section-->
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="new-category-form hidden">
-                                                <form role="form" class="post-category-form" novalidate>
+                                            <div class="activity-container">
+                                                <form role="form" class="post-activity-form" novalidate>
+                                                    <h2>STEP 2 Activity</h2>
                                                     <fieldset>
-                                                        <legend>Add New Category</legend>
-                                                        <label for="category-name">Name<span class="required">*</span></label>
-                                                        <input id="category-name" type="text" placeholder="e.g. Climbing" />
+                                                        <legend>Fill Activity Info</legend>
+                                                        <label for="activity-name">Name<span class="required">*</span></label>
+                                                        <input id="activity-name" type="text" placeholder="" />
                                                         </br>
-                                                        <label for="category-img">Image<span class="required">*</span></label>
-                                                        <input id="category-img" type="text" placeholder="URL" />
+                                                        <label for="activity-time">Time<span class="required">*</span></label>
+                                                        <input id="activity-time" type="text" placeholder="" />
                                                         </br>
-                                                        <button type="submit" class="post-category-btn">Add</button>
-                                                        <button type="submit" class="cancel-category-btn">Cancel</button>
+                                                        <label for="activity-duration">Duration<span class="required">*</span></label>
+                                                        <input id="activity-duration" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="activity-cardio">Cardio</label>
+                                                        </br>
+                                                        <label for="cardio-distance">Distance</label>
+                                                        <input id="cardio-distance" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="cardio-duration">Duration</label>
+                                                        <input id="cardio-duration" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="activity-location">Location</label>
+                                                        <input id="activity-location" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="activity-inspiration">Inspiration</label>
+                                                        <input id="activity-inspiration" type="text" placeholder="" />
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <button type="submit" class="dayplan-activity-get next">Next</button>
+                                                            </div>
+                                                        </div>
                                                     </fieldset>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="category-icons"></div>
+                                    <!--end of activity section-->
+                                    <!--exercise section-->
                                     <div class="row">
                                         <div class="col-12">
-                                            <button type="submit" class="dayplan-category-get next">Next</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end of category section-->
-                                <!--activity section-->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="activity-container">
-                                            <form role="form" class="post-activity-form" novalidate>
-                                                <h2>STEP 2 Activity</h2>
-                                                <fieldset>
-                                                    <legend>Fill Activity Info</legend>
-                                                    <label for="activity-name">Name<span class="required">*</span></label>
-                                                    <input id="activity-name" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="activity-time">Time<span class="required">*</span></label>
-                                                    <input id="activity-time" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="activity-duration">Duration<span class="required">*</span></label>
-                                                    <input id="activity-duration" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="activity-cardio">Cardio</label>
-                                                    </br>
-                                                    <label for="cardio-distance">Distance</label>
-                                                    <input id="cardio-distance" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="cardio-duration">Duration</label>
-                                                    <input id="cardio-duration" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="activity-location">Location</label>
-                                                    <input id="activity-location" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="activity-inspiration">Inspiration</label>
-                                                    <input id="activity-inspiration" type="text" placeholder="" />
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <button type="submit" class="dayplan-activity-get next">Next</button>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end of activity section-->
-                                <!--exercise section-->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
-                                        <div class="new-exercise-form hidden">
-                                            <form role="form" class="post-exercise-form" action="#" method="#">
-                                                <fieldset>
-                                                    <legend>Add New Exercise</legend>
-                                                    </br>
-                                                    <label for="exercise-name">Name:</label>
-                                                    <input id="exercise-name" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="exercise-weight">Weight:</label>
-                                                    <input id="exercise-weight" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="exercise-sets">Sets:</label>
-                                                    <input id="exercise-sets" type="text" placeholder="" />
-                                                    </br>
-                                                    <label for="exercise-reps">Reps:</label>
-                                                    <input id="exercise-reps" type="text" placeholder="" />
-                                                    </br>
-                                                    <button type="submit" class="post-exercise-btn">Add</button>
-                                                    <button type="submit" class="cancel-exercise-btn">Cancel</button>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                        <div class="popdown-edit-exercise hidden">
-                                            <form role="form" class="edit-exercise-form" action="#" method="#"></form>
-                                        </div>
-                                        <div class="exercise-list-container">
-                                            <table class="exercise-table" border="1">
-                                                <thread>
-                                                    <tr>
-                                                        <th class="th-exercise-select" width="15%">Select</th>
-                                                        <th class="th-exercise-name" width="15%">Name</th>
-                                                        <th class="th-exercise-weight" width="15%">Weight</th>
-                                                        <th class="th-exercise-sets" width="15%">Sets</th>
-                                                        <th class="th-exercise-name" width="15%">Reps</th>
-                                                        <th class="th-exercise-edit" width="15%"></th>
-                                                        <th class="th-exercise-delete" width="15%"></th>
-                                                    </tr>
-                                                </thread>
-                                                <tbody class="exercise-list">
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <!-- <div class="col-12"> -->
-                                                <button type="submit" class="dayplan-exercise-get next">Next</button>
-                                                <!-- </div> -->
+                                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                                            <div class="new-exercise-form hidden">
+                                                <form role="form" class="post-exercise-form" action="#" method="#">
+                                                    <fieldset>
+                                                        <legend>Add New Exercise</legend>
+                                                        </br>
+                                                        <label for="exercise-name">Name:</label>
+                                                        <input id="exercise-name" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="exercise-weight">Weight:</label>
+                                                        <input id="exercise-weight" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="exercise-sets">Sets:</label>
+                                                        <input id="exercise-sets" type="text" placeholder="" />
+                                                        </br>
+                                                        <label for="exercise-reps">Reps:</label>
+                                                        <input id="exercise-reps" type="text" placeholder="" />
+                                                        </br>
+                                                        <button type="submit" class="post-exercise-btn">Add</button>
+                                                        <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                            <div class="popdown-edit-exercise hidden">
+                                                <form role="form" class="edit-exercise-form" action="#" method="#"></form>
+                                            </div>
+                                            <div class="exercise-list-container">
+                                                <table class="exercise-table" border="1">
+                                                    <thread>
+                                                        <tr>
+                                                            <th class="th-exercise-select" width="15%">Select</th>
+                                                            <th class="th-exercise-name" width="15%">Name</th>
+                                                            <th class="th-exercise-weight" width="15%">Weight</th>
+                                                            <th class="th-exercise-sets" width="15%">Sets</th>
+                                                            <th class="th-exercise-name" width="15%">Reps</th>
+                                                            <th class="th-exercise-edit" width="15%"></th>
+                                                            <th class="th-exercise-delete" width="15%"></th>
+                                                        </tr>
+                                                    </thread>
+                                                    <tbody class="exercise-list">
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <!-- <div class="col-12"> -->
+                                                    <button type="submit" class="dayplan-exercise-get next">Next</button>
+                                                    <!-- </div> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!--end of activity section-->
-                                <div class="fitplan-modal-btns">
-                                    <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
-                                    <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                        <a class="popup-close" data-popup-close="popup-post-dayplan" href="#">x</a>
+                                    <!--end of activity section-->
+                                    <div class="fitplan-modal-btns">
+                                        <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
+                                        <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <a class="popup-close" data-popup-close="popup-post-dayplan" href="#">x</a>
+                        </div>
                     </div>
+                    <!--end of day plan modal form section-->
+                    <section role="region" class="fitweek-history-section hidden">
+                        <h2>Fit Week History</h2>
+                    </section>
                 </div>
-                <!--end of day plan modal form section-->
-                <section role="region" class="fitweek-history-section hidden">
-                    <h2>Fit Week History</h2>
-                </section>
             </div>
-        </div>
     </main>
     <!--
     <footer role='contentinfo' class="hidden">
