@@ -1023,9 +1023,23 @@ function openEditDayPlanModal() {
 
             getAllEditDayPlanCategories(dayplan);
             revealNewCategoryForm(dayplan);
-            getAllExercises(dayplan);
+            postNewCategory(dayplan); 
+            cancelNewCategory(dayplan);
+            deleteCategory(dayplan);
+            getSelectedCategory(dayplan);
+
+            getAllEditDayPlanExercises(dayplan);
             showNewExerciseForm(dayplan);
             showEditExerciseForm(dayplan);
+            postNewExercise();
+            cancelNewExercise();
+            deleteExerciseTable();
+            showEditExerciseForm();
+            putExerciseEdits();
+            cancelExerciseEdit();
+            getSelectedExercises();
+            postEditDayPlanActivity();
+            
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
@@ -1034,11 +1048,7 @@ function openEditDayPlanModal() {
 openEditDayPlanModal();
 
 
-
-
-
-
-//Get all categories
+//Get all edit dayplan form categories
 function getAllEditDayPlanCategories(dayplan) {
     $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
         console.log(allCategories);
@@ -1046,9 +1056,8 @@ function getAllEditDayPlanCategories(dayplan) {
     });
 }
 
-
+//render all edit dayplan form categories and display checked category
 function renderEditDayPlanCategories(selectedCategoryId, category) {
-    // if(category)
     if (selectedCategoryId === category._id) {
         return `
         <div class="col-3">
@@ -1072,18 +1081,99 @@ function renderEditDayPlanCategories(selectedCategoryId, category) {
 //ADD CATEGORY EDIT BUTTON???
 //  <button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 
-
+//Display all edit dayplan form categories
 function displayAllEditDayPlanCategories(selectedCategoryId, allCategories) {
     let categoriesOutput = allCategories.data.map(category => renderEditDayPlanCategories(selectedCategoryId, category)).join('');
     $('.category-icons').html(categoriesOutput);
 }
 
 
+//Get all edit dayplan form exercises.
+function getAllEditDayPlanExercises(dayplan) {
+    $.get('/exercise/all/' + localStorage.getItem('token'), (allExercises) => {
+        console.log(allExercises);
+        displayEditDayPlanExercises(dayplan.data.exercisesIDs, allExercises);
+    });
+}
+
+//array find/filter/some(any)
+function isExcerciseSelected(selectedExercises, exercise) {
+    //return selectedExercises.some(x => x._id === exercises._id);  READ UP
+    for (let i = 0; i < selectedExercises.length; i++) {
+        if (selectedExercises[i]._id === exercise._id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+//return statement overrides anything else inside a function
+//return aborts the for-loop
+//makes a jump in execution that is unexpected
+function renderEditDayPlanExercises(selectedExercises, exercise) {
+    console.log(selectedExercises, exercise);
+
+    if (isExcerciseSelected(selectedExercises, exercise)) {
+        return `
+              <tr class="exercise-rows">
+                <td><input type="checkbox" checked id="select-exercise" value="${exercise._id}"></td>
+                <td class="td-exercise-name" width="25%">${exercise.name}</td>
+                <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+                <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+                <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
+                <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
+                <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+              </tr>
+            `
+    }
+    return `
+          <tr class="exercise-rows">
+            <td><input type="checkbox" id="select-exercise" value="${exercise._id}"></td>
+            <td class="td-exercise-name" width="25%">${exercise.name}</td>
+            <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
+            <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
+            <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
+            <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
+            <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+          </tr>
+        `
+}
+
+
+function displayEditDayPlanExercises(selectedExercises, allExercises) {
+    let exercisesOutput = allExercises.data.map(exercise => renderEditDayPlanExercises(selectedExercises, exercise)).join('');
+    $('.exercise-list').html(exercisesOutput);
+}
 
 
 
-
-
+// Post activity in edit dayplan form.
+function postEditDayPlanActivity() {
+    $('.edit-dayplan-form').on('click', '#submit-dayplan-button', event => {
+        event.preventDefault();
+        let body = {
+            'name': $('#activity-name').val(),
+            'time': $('#activity-time').val(),
+            'duration': $('#activity-duration').val(),
+            'cardio': {
+                'distance': $('#cardio-distance').val(),
+                'duration': $('#cardio-duration').val()
+            },
+            'location': $('#activity-location').val(),
+            'inspiration': $('#activity-inspiration').val(),
+            'completed': false,
+        }
+        dayplanFormObject.activity = body;
+        dayplanFormObject.userID = localStorage.getItem('userID');
+        dayplanFormObject.token = localStorage.getItem('token');
+        console.log(dayplanFormObject);
+        createDayPlan(dayplanFormObject);
+        hideAddDayPlanBtn();
+        //HIDE DAYPLAN ADD BUTTON
+        //SHOW CATEGORY IMG IN DAY CONTAINER
+    })
+}
 
 
 

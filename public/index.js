@@ -50,7 +50,6 @@ function loginExistingUser() {
                 localStorage.setItem('token', user.data.token);
                 localStorage.setItem('name', user.data.name);
                 localStorage.setItem('userID', user.data.userID);
-                debugger
                 localStorage.setItem('randomQuote', user.data.currentQuote);
                 window.location.href = 'home.html'; //directs to home pg
             })
