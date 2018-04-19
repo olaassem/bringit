@@ -15,6 +15,7 @@ function initApp() {
         $('.greeting .firstname').html(userName);
         getCurrentFitGoals();
         getUserWeek();
+        showMotiFitQuote();
     }
     //anytime we check, and we don't have have the token it will go back to index pg
     if (!localStorage.getItem('token')) {
@@ -50,6 +51,7 @@ signOut();
 function setupMotiFitQuote() {
     $('.motifit-button').on('click', event => {
         event.preventDefault();
+
         $.get('/quote/random/' + localStorage.getItem('token'), (randomQuote) => {
 
             localStorage.setItem('randomQuote', randomQuote.data);
@@ -63,7 +65,9 @@ setupMotiFitQuote();
 
 // displays the given quote to the "random-quote" element
 function showMotiFitQuote() {
+
     let currentQuote = localStorage.getItem('randomQuote');
+
     $('.random-quote').html(`${currentQuote}`);
 }
 showMotiFitQuote();
@@ -825,6 +829,8 @@ function displayDayPlan(dayFound) {
     `);
 }
 
+//JSON.stringify(object) -> will provide  string of entire object
+//JSON.parse(string) 
 
 function renderDayPlanExercisesResults(exercise) {
     return `
@@ -869,6 +875,8 @@ deleteDayPlan();
 function openEditDayPlanModal() {
     $('.unique-dayplan-results').on('click', '.edit-dayplan-btn', event => {
         event.preventDefault();
+
+
         $('[data-popup="popup-edit-dayplan"]').fadeIn(350);
         let ID = $(event.currentTarget).attr("value");
         $.ajax({
@@ -918,29 +926,29 @@ function openEditDayPlanModal() {
                                 <form role="form" class="post-activity-form" novalidate>
                                     <h2>STEP 2 Activity</h2>
                                     <fieldset>
-                                        <legend>Fill Activity Info</legend>
+                                        <legend>Edit Activity Info</legend>
                                         <label for="activity-name">Name<span class="required">*</span></label>
                                         <input id="activity-name" type="text" value="${dayplan.data.activityID.name}" />
                                         </br>
                                         <label for="activity-time">Time<span class="required">*</span></label>
-                                        <input id="activity-time" type="text" placeholder="" />
+                                        <input id="activity-time" type="text" value="${dayplan.data.activityID.time}" />
                                         </br>
                                         <label for="activity-duration">Duration<span class="required">*</span></label>
-                                        <input id="activity-duration" type="text" placeholder="" />
+                                        <input id="activity-duration" type="text" value="${dayplan.data.activityID.duration}" />
                                         </br>
                                         <label for="activity-cardio">Cardio</label>
                                         </br>
                                         <label for="cardio-distance">Distance</label>
-                                        <input id="cardio-distance" type="text" placeholder="" />
+                                        <input id="cardio-distance" type="text" value="${dayplan.data.activityID.cardio.distance}" />
                                         </br>
                                         <label for="cardio-duration">Duration</label>
-                                        <input id="cardio-duration" type="text" placeholder="" />
+                                        <input id="cardio-duration" type="text" value="${dayplan.data.activityID.cardio.duration}" />
                                         </br>
                                         <label for="activity-location">Location</label>
-                                        <input id="activity-location" type="text" placeholder="" />
+                                        <input id="activity-location" type="text" value="${dayplan.data.activityID.location}"" />
                                         </br>
                                         <label for="activity-inspiration">Inspiration</label>
-                                        <input id="activity-inspiration" type="text" placeholder="" />
+                                        <input id="activity-inspiration" type="text" value="${dayplan.data.activityID.inspiration}" />
                                         <div class="row">
                                             <div class="col-12">
                                                 <button type="submit" class="dayplan-activity-get next">Next</button>
@@ -1007,13 +1015,17 @@ function openEditDayPlanModal() {
                     </div>
                     <!--end of activity section-->
                     <div class="fitplan-modal-btns">
-                        <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
+                        <button type="submit" id="submit-edited-dayplan-button" data-popup-close="popup-post-dayplan" value="${dayplan.data._id}">Add</button>
                         <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
                     </div>
                 </fieldset>
              `);
 
-
+            getAllEditDayPlanCategories(dayplan);
+            revealNewCategoryForm(dayplan);
+            getAllExercises(dayplan);
+            showNewExerciseForm(dayplan);
+            showEditExerciseForm(dayplan);
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
@@ -1022,37 +1034,49 @@ function openEditDayPlanModal() {
 openEditDayPlanModal();
 
 
-// //Put fitgoal edits.
-// function putFitGoalEdits() {
-//     $('.edit-fitgoal-form').on('click', '#update-fitgoal-button', event => {
-//         event.preventDefault();
-//         let ID = $(event.currentTarget).attr("value");
-//         let body = {
-//             '_id': `${ID}`,
-//             'title': $('#fitgoal-title-edit').val(),
-//             'createDate': Date.now(),
-//             'description': $('#fitgoal-description-edit').val(),
-//             'completed': false,
-//             'userID': localStorage.getItem('userID'),
-//             'token': localStorage.getItem('token')
-//         }
-//         $.ajax({
-//                 type: "PUT",
-//                 contentType: 'application/json',
-//                 url: `/goal/${ID}/` + localStorage.getItem('token'),
-//                 data: JSON.stringify(body)
-//             })
-//             .done(function(fitgoal) {
-//                 console.log(fitgoal);
-//                 $('.popup').fadeOut(350);
-//                 displayEditedFitGoal(fitgoal);
-//             })
-//             .fail(function(fitgoal) {
-//                 console.log('Updating new fit goal failed!');
-//             })
-//     })
-// }
-// putFitGoalEdits();
+
+
+
+
+//Get all categories
+function getAllEditDayPlanCategories(dayplan) {
+    $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
+        console.log(allCategories);
+        displayAllEditDayPlanCategories(dayplan.data.categoryID._id, allCategories);
+    });
+}
+
+
+function renderEditDayPlanCategories(selectedCategoryId, category) {
+    // if(category)
+    if (selectedCategoryId === category._id) {
+        return `
+        <div class="col-3">
+            <div class="category-container">
+                <label for="${category.name}"><input checked type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+            </div>
+        </div>
+    `
+    } else {
+        return `
+        <div class="col-3">
+            <div class="category-container">
+                <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+            </div>
+        </div>
+    `
+    }
+}
+//ADD CATEGORY EDIT BUTTON???
+//  <button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
+
+
+function displayAllEditDayPlanCategories(selectedCategoryId, allCategories) {
+    let categoriesOutput = allCategories.data.map(category => renderEditDayPlanCategories(selectedCategoryId, category)).join('');
+    $('.category-icons').html(categoriesOutput);
+}
 
 
 

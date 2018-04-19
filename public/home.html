@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="home.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- reference Moment.js library -->
@@ -48,15 +48,19 @@
             <div class="col-12">
                 <h2 class="greeting">Hey, <span class="firstname"></span>!</h2>
                 <section role="region" class="quote-section">
-                    <p class="random-quote"></p>
+                    <div class="quote-container">
+                        <p class="random-quote"></p>
+                    </div>    
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="motifit-button">Motifit Me</button>
+                            <div class="motifit-btn-container">
+                                <button type="submit" class="motifit-button">Motifit Me</button>
+                            </div>    
                         </div>
                     </div>
                 </section>
                 <section role="region" class="fitgoal-section">
-                    <h2>Fit Goal<button type="submit" class="btn" data-popup-open="popup-post-fitgoal">Set New Fit Goal</button></h2>
+                    <h2>Fit Goal<button type="submit" class="btn" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button></h2>
                     <div class="current-fitgoal hidden"></div>
                 </section>
                 <div class="popup" data-popup="popup-post-fitgoal">

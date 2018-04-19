@@ -193,7 +193,8 @@ exports.loginUser = (req, res) => {
                 data: {
                     token: token,
                     name: user.name,
-                    userID: user._id
+                    userID: user._id,
+                    currentQuote: user.currentQuote
                 }
             })
         })
