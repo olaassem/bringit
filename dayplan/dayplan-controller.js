@@ -23,19 +23,19 @@ exports.postNewActivity = (req, res, next) => {
     newActivity.completed = req.body.activity.completed;
 
 
-	newActivity.save()
-	.then(( activity ) => {
+    newActivity.save()
+        .then((activity) => {
 
-        req.activityID = activity._id;
+            req.activityID = activity._id;
 
-		next();
-	})
-	.catch(( error ) => {
-		res.status(500).json({
-			message: `Error saving new activity (${newActivity.name}).`,
-			data: error
-		})
-	})
+            next();
+        })
+        .catch((error) => {
+            res.status(500).json({
+                message: `Error saving new activity (${newActivity.name}).`,
+                data: error
+            })
+        })
 }
 
 
@@ -68,12 +68,12 @@ exports.postNewDayPlan = (req, res, next) => {
 
 //Get all day plans
 exports.getWeekByUser = (req, res) => {
-    dayplanModel.find({ userID: req.user.id})
+    dayplanModel.find({ userID: req.user.id })
         .populate('activityID')
         .populate('categoryID')
         .populate('exercisesIDs')
         .exec()
-        .then(( week ) => {
+        .then((week) => {
             res.status(200).json({
                 message: `Successfully retrieved week for user.`,
                 data: week
@@ -92,17 +92,17 @@ exports.getWeekByUser = (req, res) => {
 //Delete day plan by ID
 exports.deleteDayPlanByID = (req, res) => {
     dayplanModel.findByIdAndRemove(req.params.id)
-    .then(() => {
-        res.status(200).json({
-            message: `Successfully deleted day plan with ID ${req.params.id}.`
+        .then(() => {
+            res.status(200).json({
+                message: `Successfully deleted day plan with ID ${req.params.id}.`
+            })
         })
-    })
-    .catch((error) => {
-        res.status(500).json({
-            message: `Error deleting day plan with ID ${req.params.id}.`,
-            data: error
+        .catch((error) => {
+            res.status(500).json({
+                message: `Error deleting day plan with ID ${req.params.id}.`,
+                data: error
+            })
         })
-    })
 }
 
 
@@ -113,20 +113,85 @@ exports.getDayPlanByID = (req, res) => {
         .populate('categoryID')
         .populate('exercisesIDs')
         .exec()
-    .then((dayplan) => {
-        res.status(200).json({
-            message: `Successfully retrieved day plan with ID ${req.params.id}.`,
-            data: dayplan
+        .then((dayplan) => {
+            res.status(200).json({
+                message: `Successfully retrieved day plan with ID ${req.params.id}.`,
+                data: dayplan
+            })
         })
-    })
-    .catch((error) => {
-        res.status(500).json({
-            message: `Error retrieving day plan with ID ${req.params.id}.`,
-            data: error
+        .catch((error) => {
+            res.status(500).json({
+                message: `Error retrieving day plan with ID ${req.params.id}.`,
+                data: error
+            })
         })
-    })
 }
 
 
 
 
+
+//Edit dayplan by ID
+exports.updateDayPlanByID = (req, res, next) => {
+    if (!req.params.dayplanid) {
+        res.status(400).json({
+            message: "Error. Request path id and request body id values must match - dayplan."
+        })
+    }
+
+    let updated = {};
+    const updateableFields = ['categoryID', 'activityID', 'exercisesIDs'];
+    updateableFields.forEach(field => {
+        if (field in req.body) {
+            updated[field] = req.body[field];
+        }
+    })
+    console.log(updated);
+    //$set use to change one field
+    dayplanModel.findByIdAndUpdate(req.params.dayplanid, { $set: updated }, { new: true })
+        .then((updatedDayPlan) => {
+
+            req.activityID = updatedDayPlan.activityID
+            next();
+        })
+        .catch((error) => {
+            res.status(500).json({
+                message: "Error updating day plan."
+            })
+        })
+}
+
+
+//Update activity by ID
+exports.updateActivityByID = (req, res) => {
+
+    if (!req.activityID) {
+        res.status(400).json({
+            message: "Error. Request path id and request body id values must match - activity."
+        });
+    }
+
+    let updated = {};
+    const updateableFields = ["name", "time", "duration", "cardio", "routine",
+        "location", "inspiration"
+    ];
+    updateableFields.forEach(field => {
+        if (field in req.body.activity) {
+            updated[field] = req.body.activity[field];
+        }
+    })
+    console.log(updated);
+    activityModel.findByIdAndUpdate(req.activityID, { $set: updated }, { new: true })
+        .then((updatedActivity) => {
+            res.status(200).json({
+                message: "Day plan updated successfully.",
+                data: updatedActivity
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+                message: "Error updating activity."
+            })
+        })
+}

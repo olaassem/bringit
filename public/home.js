@@ -876,7 +876,6 @@ function openEditDayPlanModal() {
     $('.unique-dayplan-results').on('click', '.edit-dayplan-btn', event => {
         event.preventDefault();
 
-
         $('[data-popup="popup-edit-dayplan"]').fadeIn(350);
         let ID = $(event.currentTarget).attr("value");
         $.ajax({
@@ -1027,7 +1026,6 @@ function openEditDayPlanModal() {
             cancelNewCategory(dayplan);
             deleteCategory(dayplan);
             getSelectedCategory(dayplan);
-
             getAllEditDayPlanExercises(dayplan);
             showNewExerciseForm(dayplan);
             showEditExerciseForm(dayplan);
@@ -1037,9 +1035,7 @@ function openEditDayPlanModal() {
             showEditExerciseForm();
             putExerciseEdits();
             cancelExerciseEdit();
-            getSelectedExercises();
-            postEditDayPlanActivity();
-            
+            // getSelectedExercises(); CHANGE TO  getEditDayPlanSelectedExercises()           
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
@@ -1096,9 +1092,8 @@ function getAllEditDayPlanExercises(dayplan) {
     });
 }
 
-//array find/filter/some(any)
+//check if a selected exercise id matched with all exercises ids
 function isExcerciseSelected(selectedExercises, exercise) {
-    //return selectedExercises.some(x => x._id === exercises._id);  READ UP
     for (let i = 0; i < selectedExercises.length; i++) {
         if (selectedExercises[i]._id === exercise._id) {
             return true;
@@ -1148,10 +1143,41 @@ function displayEditDayPlanExercises(selectedExercises, allExercises) {
 
 
 
-// Post activity in edit dayplan form.
-function postEditDayPlanActivity() {
-    $('.edit-dayplan-form').on('click', '#submit-dayplan-button', event => {
+
+//editdayplanform
+//new function
+//Get selected/checked exercises.
+// function getSelectedExercises() {
+//     $('.dayplan-exercise-get').on('click', event => {
+//         event.preventDefault();
+//         let ID = $(":checkbox:checked").val();
+//         let checked = $(":checkbox:checked");
+//         console.log(checked);
+
+//         let exercisesIDs = [];
+//         for (let i = 0; i < checked.length; i++) {
+//             exercisesIDs.push(checked[i].value);
+//         }
+
+//         dayplanFormObject.exercisesIDs = exercisesIDs;
+//         console.log(dayplanFormObject);
+//     })
+// }
+// getSelectedExercises();
+
+
+
+
+
+
+
+
+// Put activity in edit dayplan form.
+function putEditedDayPlanActivity() {
+    $('.edit-dayplan-form').on('click', '#submit-edited-dayplan-button', event => {
         event.preventDefault();
+        let ID = $(event.currentTarget).attr("value");
+
         let body = {
             'name': $('#activity-name').val(),
             'time': $('#activity-time').val(),
@@ -1163,24 +1189,34 @@ function postEditDayPlanActivity() {
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
             'completed': false,
+            '_id': `${ID}`
         }
         dayplanFormObject.activity = body;
         dayplanFormObject.userID = localStorage.getItem('userID');
         dayplanFormObject.token = localStorage.getItem('token');
         console.log(dayplanFormObject);
-        createDayPlan(dayplanFormObject);
-        hideAddDayPlanBtn();
-        //HIDE DAYPLAN ADD BUTTON
-        //SHOW CATEGORY IMG IN DAY CONTAINER
+        putEditedDayPlan(ID);
     })
 }
+putEditedDayPlanActivity();
 
 
-
-
-
-
-
+//Put edited day plan.
+function putEditedDayPlan(ID) {
+    $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url: `dayplan/${ID}/` + localStorage.getItem('token'), //_id
+            data: JSON.stringify(dayplanFormObject) //body
+        })
+        .done(function(dayplan) {
+            console.log(dayplan);
+            getUserWeek();
+        })
+        .fail(function(error) {
+            console.log('Updating day plan failed!');
+        })
+}
 
 
 
