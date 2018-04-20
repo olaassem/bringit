@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Gochi+Hand|Just+Me+Again+Down+Here" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- reference Moment.js library -->
@@ -30,8 +32,8 @@
                 <div class="header-elements">
                     <h1 class="logo">app name</h1>
                     <nav class="top-nav" role="navigation">
-                        <button type="submit" class="fitgoal-history-button nav-link">Fit Goal History</button>
-                        <button class="signout nav-link">Sign Out</button>
+                        <button type="submit" class="fitgoal-history-button nav-link"><img class="history-icon" src="https://i.imgur.com/f5KQgL5.png" alt="history icon"/></button>
+                        <button class="signout nav-link"><img class='poweroff-icon' src="https://i.imgur.com/eDEHYCv.png" alt='power off icon'/></button>
                     </nav>
                 </div>
                 <div class="popup" data-popup="popup-fitgoal-history">
@@ -51,18 +53,22 @@
                 <section role="region" class="quote-section">
                     <div class="quote-container">
                         <p class="random-quote"></p>
-                    </div>    
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="motifit-btn-container">
                                 <button type="submit" class="motifit-button">Motifit Me</button>
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </section>
                 <section role="region" class="fitgoal-section">
-                    <h2>Fit Goal<button type="submit" class="btn" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button></h2>
-                    <div class="current-fitgoal hidden"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Fit Goal<button type="submit" class="rmv-btn-brdr" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button></h2>
+                            <div class="current-fitgoal hidden"></div>
+                        </div>
+                    </div>        
                 </section>
                 <div class="popup" data-popup="popup-post-fitgoal">
                     <div class="popup-inner">
@@ -101,39 +107,39 @@
                             <div class="day-container mon-container col-3" value="Monday">
                                 <div class="center">
                                     <h3>MON</h3>
-                                    <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="0" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                    <button type="submit" class="view-day-plan-btn"><img value="0" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                    <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="0" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                    <button type="submit" class="view-day-plan-btn"><img value="0" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                                 </div>
                             </div>
                             <div class="day-container tues-container col-3" value="Tuesday">
                                 <h3>TUES</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="1" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="1" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="1" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="1" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                             <div class="day-container wed-container col-3" value="Wednesday">
                                 <h3>WED</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="2" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="2" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="2" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="2" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                             <div class="day-container thurs-container col-3" value="Thursday">
                                 <h3>THURS</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="3" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="3" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="3" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="3" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                             <div class="day-container fri-container col-3" value="Friday">
                                 <h3>FRI</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="4" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="4" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="4" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="4" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                             <div class="day-container sat-container col-3" value="Saturday">
                                 <h3>SAT</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="5" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="5" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="5" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="5" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                             <div class="day-container sun-container col-3" value="Sunday">
                                 <h3>SUN</h3>
-                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="6" class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="6" class="view-icon" src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/view-128.png" alt="view icon" /></button>
+                                <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="6" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="6" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
                             </div>
                         </div>
                     </div>
@@ -160,7 +166,7 @@
                                 <fieldset>
                                     <legend><span class="dayoftheweek"></span>Fit Plan</legend>
                                     <div class="category-section">
-                                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                                         <!--category section-->
                                         <div class="row">
                                             <div class="col-12">
@@ -233,7 +239,7 @@
                                     <!--exercise section-->
                                     <div class="row">
                                         <div class="col-12">
-                                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                                             <div class="new-exercise-form hidden">
                                                 <form role="form" class="post-exercise-form" action="#" method="#">
                                                     <fieldset>

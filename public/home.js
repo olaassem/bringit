@@ -167,9 +167,9 @@ function renderCurrentFitGoals(fitgoal) {
         <p class="current-fitgoal-date">${formatedDate}</p>
         <h3 class="current-fitgoal-title">${fitgoal.title}</h3>
         <p class="current-fitgoal-description">${fitgoal.description}</p>
-        <button class="completed-fitgoal-button" value="${fitgoal._id}">Completed!</button>
-        <button class="edit-fitgoal-button" value="${fitgoal._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button></button>
-        <button class="delete-fitgoal-button" value="${fitgoal._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+        <button class="completed-fitgoal-button" value="${fitgoal._id}"><img class="complete" src="https://i.imgur.com/cokaK0E.png" alt="check icon"/></button>
+        <button class="edit-fitgoal-button" value="${fitgoal._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png" alt="edit icon"/></button></button>
+        <button class="delete-fitgoal-button" value="${fitgoal._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
         `
     }
 }
@@ -313,8 +313,8 @@ function displayEditedFitGoal(fitgoal) {
         <h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
         <p class="current-fitgoal-description">${fitgoal.data.description}</p>
         <button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
-        <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
-        <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+        <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png" alt="edit icon"/></button>
+        <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
     `)
 }
 
@@ -342,7 +342,7 @@ function renderCategories(category) {
         <div class="col-3">
             <div class="category-container">
                 <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
             </div>
         </div>
     `
@@ -532,8 +532,8 @@ function renderExercises(exercise) {
         <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
         <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
         <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-        <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
-        <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+        <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
+        <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
       </tr>
     `
 }
@@ -824,8 +824,8 @@ function displayDayPlan(dayFound) {
             </table>
         </div>                  
         <p>${dayFound.activityID.inspiration}</p>
-        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button>
-        <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button>
+        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button>
+        <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button>
     `);
 }
 
@@ -889,7 +889,7 @@ function openEditDayPlanModal() {
                 <fieldset>
                     <legend><span class="dayoftheweek"></span>Fit Plan</legend>
                     <div class="category-section">
-                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                         <!--category section-->
                         <div class="row">
                             <div class="col-12">
@@ -962,7 +962,7 @@ function openEditDayPlanModal() {
                     <!--exercise section-->
                     <div class="row">
                         <div class="col-12">
-                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/764773-200.png" alt="add icon"/></button></h2>
+                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                             <div class="new-exercise-form hidden">
                                 <form role="form" class="post-exercise-form" action="#" method="#">
                                     <fieldset>
@@ -1059,7 +1059,7 @@ function renderEditDayPlanCategories(selectedCategoryId, category) {
         <div class="col-3">
             <div class="category-container">
                 <label for="${category.name}"><input checked type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
             </div>
         </div>
     `
@@ -1068,7 +1068,7 @@ function renderEditDayPlanCategories(selectedCategoryId, category) {
         <div class="col-3">
             <div class="category-container">
                 <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png" alt="delete icon"/></button>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
             </div>
         </div>
     `
@@ -1117,8 +1117,8 @@ function renderEditDayPlanExercises(selectedExercises, exercise) {
                 <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
                 <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
                 <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-                <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
-                <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+                <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
+                <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
               </tr>
             `
     }
@@ -1129,8 +1129,8 @@ function renderEditDayPlanExercises(selectedExercises, exercise) {
             <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
             <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
             <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-            <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png"/></button></td>
-            <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://png.icons8.com/metro/1600/delete.png"/></button></td>
+            <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
+            <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
           </tr>
         `
 }
