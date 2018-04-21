@@ -309,7 +309,7 @@ font-family: 'Gloria Hallelujah', cursive;
     margin-left: 10px;
     margin-bottom: 15px;
     /*    border-radius: 50%;*/
-    background-color: white;
+    background-color: #F4F4F4;
     -webkit-transition: background-color 1s ease-out;
   -moz-transition: background-color 1s ease-out;
   -o-transition: background-color 1s ease-out;
@@ -343,17 +343,33 @@ font-family: 'Gloria Hallelujah', cursive;
 
 /*post form*/
 
+.post-exercise-form,
+.post-activity-form,
+.new-category-form{
+/*	border: 1px solid grey;*/
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.post-exercise-form legend,
+.new-category-form legend{
+	padding-top:15px;
+	font-weight: bold;
+    font-size: 22px;
+}
+
+.post-exercise-form label,
 .new-category-form label {
     display: block;
     margin: 10px 0px 4px 0px;
-    /*font-weight: bold;*/
+/*    font-weight: bold;
+    font-size: 22px;*/
     float: left;
     padding-top: 8px;
     padding-right: 5px;
 }
 
 
-
+.post-exercise-form label>span,
 .new-category-form label>span {
     font-weight: bold;
     float: right;
@@ -361,8 +377,9 @@ font-family: 'Gloria Hallelujah', cursive;
     color: #FFD239;
 }
 
-
+.post-exercise-form input,
 .new-category-form input {
+    font-size: 20px;
     width: 100%;
     border: 1px solid #C2C2C2;
     box-shadow: 1px 1px 4px #EBEBEB;
@@ -376,9 +393,63 @@ font-family: 'Gloria Hallelujah', cursive;
 }
 
 
+.post-exercise-form{
+	margin-bottom: 30px;
+}
 
 
-/*end of post form*/
+
+.cancel-category-btn,
+.post-category-btn,
+.post-exercise-btn,
+.cancel-exercise-btn{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-right: 15px;
+    border: solid rgba(0, 0, 0, 0.2);
+    border-width: 1px 1px 5px;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1), inset 0 0 3px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.4s ease;
+    outline: none;
+    font-family:'Roboto Mono', monospace;
+}
+
+.cancel-category-btn:hover,
+.post-category-btn:hover,
+.post-exercise-btn:hover,
+.cancel-exercise-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.4);
+    border-bottom-height: 8px;
+    outline: none;
+}
+
+
+.cancel-category-btn:active,
+.post-category-btn:active,
+.post-exercise-btn:active,
+.cancel-exercise-btn:active{
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255, 255, 255, 0.4);
+    border-bottom-width: 2px;
+    transition: 0.1s ease;
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*end of category post form*/
 
 .category-icons {}
 

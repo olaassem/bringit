@@ -533,8 +533,8 @@ function renderExercises(exercise) {
         <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
         <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
         <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-        <td><button type="submit" class="edit-exercise-btn" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
-        <td><button type="submit" class="delete-exercise-btn" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
+        <td><button type="submit" class="edit-exercise-btn rmv-btn-brdr" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
+        <td><button type="submit" class="delete-exercise-btn rmv-btn-brdr" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
       </tr>
     `
 }
