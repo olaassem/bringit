@@ -96,17 +96,17 @@ getAllCompletedGoals();
 
 
 function renderCompletedFitGoals(fitgoal) {
-    let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
+    let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do, YYYY');
     if (fitgoal.completed === true) {
         return `
             <div class="completed-goal">
-                <p>Completed on: ${formatedDate}</p>
-                <h3>Title: ${fitgoal.title}</h3>
-                <p>Description: ${fitgoal.description}</p>
+                <p class="completed-fitgoal-date">Completed on <span class="">${formatedDate}</span</p>
+                <p class="completed-fitgoal-title">${fitgoal.title}<span class="completed-fitgoal-description">&nbsp;&nbsp;&nbsp;&nbsp;${fitgoal.description}</span></p>
             </div>  
         `
     }
 }
+
 
 
 function displayCompletedFitGoals(allGoals) {
@@ -158,18 +158,19 @@ getCurrentFitGoals();
 
 
 function renderCurrentFitGoals(fitgoal) {
-    let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do YYYY');
+    let formatedDate = moment(fitgoal.createDate).format('dddd, MMMM Do, YYYY');
     if (fitgoal.completed === false) {
         $('#fitgoal-title').val('');
         $('#fitgoal-description').val('');
         $('.current-fitgoal').removeClass('hidden');
         return `
-        <p class="current-fitgoal-date">${formatedDate}</p>
-        <h3 class="current-fitgoal-title">${fitgoal.title}</h3>
-        <p class="current-fitgoal-description">${fitgoal.description}</p>
-        <button class="completed-fitgoal-button" value="${fitgoal._id}"><img class="complete" src="https://i.imgur.com/cokaK0E.png" alt="check icon"/></button>
-        <button class="edit-fitgoal-button" value="${fitgoal._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png" alt="edit icon"/></button></button>
-        <button class="delete-fitgoal-button" value="${fitgoal._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
+        <div class="unq-fitgoal-box">
+            <p class="current-fitgoal-date">${formatedDate}</p>
+            <p class="current-fitgoal-title">${fitgoal.title}<span class="current-fitgoal-description">&nbsp;&nbsp;&nbsp;&nbsp;${fitgoal.description}</span></p>
+            <button class="completed-fitgoal-button" value="${fitgoal._id}"><img class="complete" src="https://i.imgur.com/cokaK0E.png" alt="check icon"/></button>
+            <button class="edit-fitgoal-button" value="${fitgoal._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png" alt="edit icon"/></button></button>
+            <button class="delete-fitgoal-button" value="${fitgoal._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
+        </div>
         `
     }
 }
@@ -305,7 +306,7 @@ cancelFitGoalUpdate();
 
 
 function displayEditedFitGoal(fitgoal) {
-    let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do YYYY');
+    let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do, YYYY');
     $('#fitgoal-title').val('');
     $('#fitgoal-description').val('');
     $('.current-fitgoal').html(`
@@ -1022,7 +1023,7 @@ function openEditDayPlanModal() {
 
             getAllEditDayPlanCategories(dayplan);
             revealNewCategoryForm(dayplan);
-            postNewCategory(dayplan); 
+            postNewCategory(dayplan);
             cancelNewCategory(dayplan);
             deleteCategory(dayplan);
             getSelectedCategory(dayplan);

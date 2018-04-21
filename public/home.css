@@ -4,13 +4,14 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-	font-family:'Roboto Mono', monospace;
+    font-family: 'Roboto Condensed', sans-serif;
     text-decoration: none;
 }
 
 body {
     margin: 0;
     padding: 0;
+    color: #2e2f30;
 }
 
 .hidden {
@@ -33,13 +34,16 @@ button:focus {
     outline: none;
 }
 
+
+
 /*--End of Universal Styling--*/
 
 
 /*--Header Styling--*/
 
 header {
-    background-color: white;/*#d4dfe1 #2214E5 ; blue*/
+    background-color: white;
+    /*#d4dfe1 #2214E5 ; blue*/
     /*    border-bottom: solid 2px grey;*/
     -webkit-box-shadow: 0 8px 8px #BEBEBE;
     -moz-box-shadow: 0 8px 8px #BEBEBE;
@@ -66,17 +70,22 @@ header {
     padding: 0 6px;
     border: none;
 }
+
+
+
 /*--End of Header Styling--*/
-
-
 
 
 /*--Greeting Styling--*/
 
-.greeting,
-.firstname{
-	font-family: 'Roboto Mono', monospace;
+.greeting {}
+
+.firstname {
+    font-family: 'Gloria Hallelujah', cursive;
 }
+
+
+
 /*--End of Greeting Styling--*/
 
 
@@ -84,32 +93,32 @@ header {
 
 .quote-section {
     margin-bottom: 60px;
-    height: 20%;
+    min-height: 20%;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .quote-container {
-    height: 200px;
+    min-height: 200px;
+    padding-top: 5px;
 }
 
 .random-quote {
-	padding-left: 40px;
-	padding-right: 40px;
-    font-size: 35px;
+    padding: 0px 40px;
+    /*	margin-top: 80px;*/
+    font-size: 30px;
     text-align: center;
-    font-family: 'Just Me Again Down Here', cursive;
-/*    font-weight: bold;*/
+    font-family: 'Gloria Hallelujah', cursive;
+    /*    font-weight: bold;*/
 }
+
+
 
 /*
 font-family: 'Just Me Again Down Here', cursive;
 font-family: 'Gochi Hand', cursive;
 font-family: 'Gloria Hallelujah', cursive;
 */
-
-
-
 
 .motifit-btn-container {
     height: 100px;
@@ -135,7 +144,8 @@ font-family: 'Gloria Hallelujah', cursive;
     background: #FFD239;
     color: white;
     outline: none;
-    font-family: /*'Rubik', sans-serif*/ 'Roboto Mono', monospace;
+    /*    font-family: 'Rubik', sans-serif 'Roboto Mono', monospace;*/
+    font-size: 20px;
     /*text-transform: uppercase;*/
 }
 
@@ -159,6 +169,8 @@ font-family: 'Gloria Hallelujah', cursive;
 
 
 
+
+
 /*--End of Quote Styling Section--*/
 
 
@@ -168,6 +180,79 @@ font-family: 'Gloria Hallelujah', cursive;
     margin-bottom: 60px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.current-fitgoal {
+    margin: 15px;
+    padding: 10px;
+}
+
+
+.completed-goal,
+.unq-fitgoal-box {
+    /*position: relative;*/
+    border: 1px solid lightgray;
+    margin-bottom: 15px;
+    background-color: #D6E6F2;
+    padding: 20px;
+    box-shadow: 1px 1px 0px #9fb7c9,
+    2px 2px 0px #9fb7c9,
+    3px 3px 0px #9fb7c9,
+    4px 4px 0px #9fb7c9,
+    5px 5px 0px #9fb7c9,
+    6px 6px 0px #9fb7c9;
+    z-index: 25;
+}
+
+
+
+/*.unq-fitgoal-box:after {
+    z-index: 20;
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+    /*top: 0;
+  left: 100%;
+  width: 30px;
+  height: 100%;
+	background: dimgray;
+	 transform: skewY(45deg);
+  transform-origin: top left;*/
+   /* box-shadow: 10px 0 20px dimgray;
+}*/
+
+
+.goal-icon {
+    position: absolute;
+    top: -100;
+    left: -20;
+}
+
+.completed-fitgoal-date,
+.current-fitgoal-date {
+    margin-top: 0px;
+    margin-bottom: 11px;
+    text-decoration: underline #FFD239;
+}
+
+.completed-fitgoal-title,
+.current-fitgoal-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 0px;
+}
+
+
+.completed-fitgoal-description,
+.current-fitgoal-description{
+    font-weight: normal;
+    font-size: 25px;
 }
 
 
@@ -188,17 +273,27 @@ font-family: 'Gloria Hallelujah', cursive;
     font-size: 14px;
 }
 
+
+
+
+/*position default is static (ignores other layout attributes )
+*/
+
 .edit-fitgoal-button,
-.delete-fitgoal-button{
-	border:none;
+.delete-fitgoal-button {
+    border: none;
+    background-color: transparent;
 }
+
+
+
 /*--End of Fit Goal Section Styling--*/
 
 
 /*--Fit Week Section Styling--*/
 
 .fitweek {
-    padding-top: 30px;
+    padding-top: 10px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -207,16 +302,26 @@ font-family: 'Gloria Hallelujah', cursive;
     text-align: center;
     border: solid 2px #D3D3D3;
     box-shadow: 0 8px 6px -6px #2a2a2a;
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: 150px;
     padding: 0px;
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 15px;
-    border-radius: 50%;
+    /*    border-radius: 50%;*/
     background-color: white;
+    -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
 }
 
+
+.day-container:hover{
+	background-color: #D6E6F2;
+
+
+}
 
 
 
@@ -226,6 +331,8 @@ font-family: 'Gloria Hallelujah', cursive;
 /*--Fit Plan Modal--*/
 
 .fitplan-modal-btns {}
+
+
 
 
 /*--End of Fit Plan Modal Styling*/
@@ -251,7 +358,7 @@ font-family: 'Gloria Hallelujah', cursive;
     font-weight: bold;
     float: right;
     padding-left: 5px;
-    color: red;
+    color: #FFD239;
 }
 
 
@@ -267,6 +374,8 @@ font-family: 'Gloria Hallelujah', cursive;
     padding: 7px;
     outline: none;
 }
+
+
 
 
 /*end of post form*/
@@ -335,8 +444,8 @@ input[type="radio"] {
 }
 
 .category-container input:checked+img {
-    border: 5px solid red;
-    background-color: red;
+    border: 5px solid #FFD239;
+    background-color: #FFD239;
     -moz-opacity: 20%;
     -webkit-opacity: 20%;
     z-index: 4;
@@ -363,6 +472,8 @@ input[type="radio"] {
 .dayplan-category-get {
     margin-top: 25px;
 }
+
+
 
 
 /*--End of Category Section Styling--*/
@@ -411,6 +522,8 @@ input[type="radio"] {
 
 
 
+
+
 /*#activity-name,
 #activity-time,
 #activity-duration,
@@ -424,6 +537,8 @@ input[type="radio"] {
 .dayplan-activity-get {
     margin-top: 25px;
 }
+
+
 
 
 /*--End of Activity Styling Section--*/
@@ -444,6 +559,8 @@ input[type="radio"] {
 }
 
 
+
+
 /*--Table Styling--*/
 
 table,
@@ -457,6 +574,8 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+
+
 
 
 /*--End of Table Styling--*/
@@ -512,57 +631,63 @@ footer {
 }
 
 
+
+
 /*--End of Footer Styling--*/
 
 
 /*--Button Styling--*/
+
 .complete,
 .add-icon,
 .view-icon,
 .edit-icon,
 .delete-icon,
 .history-icon,
-.poweroff-icon{
-	width: 30px;
-	height: 30px;
-	margin-right: auto;
-	margin-left: auto;
-	position: relative;
-	margin-top: 5px;
+.poweroff-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    /*position: relative;*/
+    margin-top: 5px;
 }
 
-.signout{
-   background: #FFD239;
-   border-radius: 50%;
+.signout {
+    background: #FFD239;
+    border-radius: 50%;
 }
 
-.fitgoal-history-button{
-	background: #C0C0C0;
+.fitgoal-history-button {
+    background: #C0C0C0;
 }
 
-.add-icon{
-	background: #2D98F5;
+.add-icon {
+    background: /*#2D98F5*/
+    /*#313480*/
+    #FFD239;
+    border-radius: 50%;
 }
 
-.view-icon{
-	background: lightgreen;
+.view-icon {
+    background: lightgreen;
 }
 
-.complete{
-	background: purple;
+.complete {
+    background: tomato;
 }
 
-.delete-icon{
-	background-color: #F63134;
+.delete-icon {
+    background-color: #F63134;
 }
 
 
-.edit-icon{
-	background: orange;
+.edit-icon {
+    background: orange;
 }
 
-.rmv-btn-brdr{
-	border:none;
+.rmv-btn-brdr {
+    border: none;
 }
 
 .complete,
@@ -581,7 +706,9 @@ footer {
     transition: 0.4s ease;
     color: white;
     outline: none;
-    font-family: /*'Rubik', sans-serif*/ 'Roboto Mono', monospace;
+    font-family: /*'Rubik', sans-serif*/
+    'Roboto Mono', monospace;
+    border-radius: 50%;
 }
 
 .complete:hover,
@@ -629,6 +756,11 @@ footer {
     background: none;
 }
 
+
+.completed-fitgoal-button{
+	padding: 1px 6px;
+}
+
 .next {
     background-color: grey;
     color: white;
@@ -648,6 +780,8 @@ footer {
 }
 
 
+
+
 /*--End of Button Styling--*/
 
 
@@ -663,8 +797,10 @@ footer {
     position: fixed;
     top: 0px;
     left: 0px;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(255, 199, 8, 0.75);
 }
+
+
 
 
 /* Inner */
@@ -682,8 +818,11 @@ footer {
     transform: translate(-50%, -50%);
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 1);
     border-radius: 3px;
-    background: #fff;
+    background: white;
+    z-index: 100;
 }
+
+
 
 
 /* Close Button */
@@ -694,26 +833,28 @@ footer {
     padding-top: 4px;
     display: inline-block;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 30px;
+    right: 30px;
     transition: ease 0.25s all;
     -webkit-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
     border-radius: 1000px;
-    background: rgba(0, 0, 0, 0.8);
+    background: grey;
     font-family: Arial, Sans-Serif;
     font-size: 20px;
     text-align: center;
     line-height: 100%;
-    color: #fff;
+    color: white;
 }
 
 .popup-close:hover {
     -webkit-transform: translate(50%, -50%) rotate(180deg);
     transform: translate(50%, -50%) rotate(180deg);
-    background: rgba(0, 0, 0, 1);
+    background: blue;
     text-decoration: none;
 }
+
+
 
 
 /*--End of Modal Styling--*/
