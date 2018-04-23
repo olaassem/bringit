@@ -787,13 +787,15 @@ function findDay(week, day) { //day from showDayPlan
 
 function showCategoryImgInDayCntnr(week) {
     let day = $('.day-container').attr('value');
-    const dayFound = findDay(week, day);
-    if (dayFound === undefined) {
-        $('.day-category-img').html('');
-    } else {
-        displayDayCategoryImg(dayFound);
-    }
+    // for(let i = 0; i < day.length; i++ ){
 
+        const dayFound = findDay(week, day);
+        if (dayFound === undefined) {
+            $('.day-category-img').html('');
+        } else {
+            displayDayCategoryImg(dayFound);
+       }
+    // }
 }
 
 function displayDayCategoryImg(dayFound) {
