@@ -157,28 +157,36 @@ header {
 
 
 /*--Fit Goal Section Styling--*/
+.fitgoal-hdr{
+    margin: 0px 10px;
+}
+
+
+.main-add-fitgoal-icon{
+    margin-left: 10px;
+}
 
 .fitgoal-section {
-    margin-top: 150px;
+    margin-top: 50px;
     margin-bottom: 60px;
-    background-color: black;
 }
 
 .current-fitgoal {
     margin: 15px;
     padding: 10px;
+    border: none;
 }
 
 .completed-goal,
 .unq-fitgoal-box {
-    border: 1px solid lightgray;
     margin-bottom: 15px;
-    background-color: #222223;
+    background: #0c0c0c;
+    border: none;
     padding: 20px;
 }
 
 
-.goal-icon {
+.goal-icon{
     position: absolute;
     top: -100;
     left: -20;
@@ -188,11 +196,12 @@ header {
 .current-fitgoal-date {
     margin-top: 0px;
     margin-bottom: 11px;
+    font-size: 17px;
 }
 
 .completed-fitgoal-title,
 .current-fitgoal-title {
-    font-size: 30px;
+    font-size: 27px;
     font-weight: bold;
     margin-bottom: 8px;
     margin-top: 0px;
@@ -203,7 +212,7 @@ header {
 .completed-fitgoal-description,
 .current-fitgoal-description {
     font-weight: normal;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 
@@ -326,8 +335,10 @@ header {
 .unique-dayplan-results {
     margin-top: 50px;
     padding-top: 20px;
+    padding-bottom: 20px;
     display: block;
     border-top: 2px solid #222223;
+    border-bottom: 2px solid #222223;
 }
 
 
@@ -612,7 +623,6 @@ input[type="radio"] {
 .post-activity-form label {
     display: block;
     margin: 10px 0px 4px 0px;
-    /*font-weight: bold;*/
     float: left;
     padding-top: 8px;
     padding-right: 5px;
@@ -777,13 +787,14 @@ footer {
 .delete-icon,
 .history-icon,
 .poweroff-icon {
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    height: 27px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 5px;
     background-color: none;
     background: none;
+    padding:2px;
 }
 
 .exercise-icon,
@@ -974,7 +985,7 @@ span .required {
 .popup-close:hover {
     -webkit-transform: translate(50%, -50%) rotate(180deg);
     transform: translate(50%, -50%) rotate(180deg);
-    background: blue;
+    background: #E71353;
     text-decoration: none;
 }
 
@@ -984,6 +995,19 @@ span .required {
 
 
 /*--Exercise Table Styling--*/
+
+.edit-dayplan-btn,
+.delete-dayplan-btn{
+    float: right;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
+.rslt{
+    text-transform: uppercase;
+}
+
 
 table {
     border-collapse: collapse;
@@ -1009,18 +1033,18 @@ th {
 
 
 th:nth-child(6),
-th:last-child,
-
-/*td:nth-child(6),
-td:last-child */
-
-{
+th:last-child{
     background-color: grey;
 }
 
+.exercise-results-table th{
+    background-color: #353535;
+    color: #E1DAC8;
+}
 
-
-
+.icon{
+    color: #D5FF44;
+}
 
 
 

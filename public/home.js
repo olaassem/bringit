@@ -789,12 +789,12 @@ function showCategoryImgInDayCntnr(week) {
     let day = $('.day-container').attr('value');
     // for(let i = 0; i < day.length; i++ ){
 
-        const dayFound = findDay(week, day);
-        if (dayFound === undefined) {
-            $('.day-category-img').html('');
-        } else {
-            displayDayCategoryImg(dayFound);
-       }
+    const dayFound = findDay(week, day);
+    if (dayFound === undefined) {
+        $('.day-category-img').html('');
+    } else {
+        displayDayCategoryImg(dayFound);
+    }
     // }
 }
 
@@ -828,12 +828,15 @@ function showDayPlan(week) {
 function displayDayPlan(dayFound) {
     $('.unique-dayplan-results').html('');
     $('.unique-dayplan-results').html(`
-        <p>${dayFound.activityID.name}</p>
-        <p>${dayFound.activityID.time}</p>
-        <p>${dayFound.activityID.duration}</p>
-        <p>${dayFound.activityID.location}</p>
-        <p>${dayFound.activityID.cardio.distance}</p>
-        <p>${dayFound.activityID.cardio.duration}</p>
+         <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button>
+        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button>
+    
+        <p class="dp-rslts"><i class="fas fa-bullseye icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.name}</span></p>
+        <p class="dp-rslts"><i class="fas fa-clock icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.time}</span></p>
+        <p class="dp-rslts"><i class="fas fa-stopwatch icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.duration}</span></p>
+        <p class="dp-rslts"><i class="fas fa-map-marker-alt icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.location}</span></p>
+        <p class="dp-rslts"><i class="fas fa-road icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.cardio.distance}</span></p>
+        <p class="dp-rslts"><i class="fas fa-lightbulb icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.inspiration}</span></p>
         <div class="exercise-results-list-container">
             <table class="exercise-results-table" cellspacing="0" cellpadding="0">
                 <thread>
@@ -848,10 +851,7 @@ function displayDayPlan(dayFound) {
                 </tbody>
             </table>
         </div>                  
-        <p>${dayFound.activityID.inspiration}</p>
-        <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button>
-        <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button>
-    `);
+       `);
 }
 
 //JSON.stringify(object) -> will provide  string of entire object
@@ -1060,7 +1060,7 @@ function openEditDayPlanModal() {
             showEditExerciseForm(dayplan);
             putExerciseEdits(dayplan);
             cancelExerciseEdit(dayplan);
-            getSelectedEditedExercises(dayplan);          
+            getSelectedEditedExercises(dayplan);
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
@@ -1075,7 +1075,7 @@ openEditDayPlanModal();
 
 //Get selected/checked edited exercises.
 function getSelectedEditedExercises() {
-    $('.edit-dayplan-form').on('click','edited-dayplan-exercise-get', event => {
+    $('.edit-dayplan-form').on('click', 'edited-dayplan-exercise-get', event => {
         event.preventDefault();
         let ID = $(":checkbox:checked").val();
         let checked = $(":checkbox:checked");
