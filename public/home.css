@@ -223,14 +223,15 @@ header {
 
 #fitgoal-title {
     height: 40px;
-    width: 40%;
-    font-size: 14px;
+    width: 100%;
+    font-size: 20px;
 }
 
 #fitgoal-description {
     height: 40px;
-    width: 90%;
-    font-size: 14px;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom:40px;
 }
 
 
@@ -342,8 +343,6 @@ header {
 }
 
 
-
-
 /*--Category Section Styling--*/
 
 
@@ -394,7 +393,7 @@ header {
 }
 
 
-
+.post-fitgoal-form,
 .post-exercise-form,
 .post-activity-form,
 .new-category-form {
@@ -403,7 +402,7 @@ header {
 }
 
 
-
+.post-fitgoal-form legend,
 .post-activity-form legend,
 .post-exercise-form legend,
 .new-category-form legend {
@@ -413,29 +412,29 @@ header {
 }
 
 
-
+.post-fitgoal-form label,
 .post-exercise-form label,
 .new-category-form label {
     display: block;
     margin: 10px 0px 4px 0px;
-    /*    font-weight: bold;
-    font-size: 22px;*/
     float: left;
     padding-top: 8px;
     padding-right: 5px;
 }
 
 
+.post-fitgoal-form label>span,
 .post-exercise-form label>span,
 .new-category-form label>span {
     font-weight: bold;
     float: right;
     padding-left: 5px;
-    color: #FFD239;
+    color: #D5FF44;
 }
 
-.post-exercise-form input,
-.new-category-form input {
+.post-fitgoal-form>input,
+.post-exercise-form>input,
+.new-category-form >input {
     font-size: 20px;
     width: 100%;
     border: 1px solid #C2C2C2;
@@ -447,14 +446,20 @@ header {
     -moz-border-radius: 3px;
     padding: 7px;
     outline: none;
+    display: block;
+    margin-top: 2px;
 }
+
 
 
 .post-exercise-form {
     margin-bottom: 30px;
 }
 
+.post-fitgoal-form{
+    margin-top: 22%;
 
+}
 
 .cancel-category-btn,
 .post-category-btn,
@@ -464,8 +469,6 @@ header {
     margin-bottom: 10px;
     margin-right: 15px;
     border: solid rgba(0, 0, 0, 0.2);
-    border-width: 1px 1px 5px;
-    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1), inset 0 0 3px rgba(255, 255, 255, 0.3);
     cursor: pointer;
     user-select: none;
     transition: 0.4s ease;
@@ -478,8 +481,6 @@ header {
 .post-exercise-btn:hover,
 .cancel-exercise-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.4);
-    border-bottom-height: 8px;
     outline: none;
 }
 
@@ -489,8 +490,6 @@ header {
 .post-exercise-btn:active,
 .cancel-exercise-btn:active {
     transform: translateY(4px);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255, 255, 255, 0.4);
-    border-bottom-width: 2px;
     transition: 0.1s ease;
     outline: none;
 }
@@ -905,12 +904,6 @@ footer {
     margin: 30px 10px;
     width: 45%;
 }
-
-
-span .required {
-    color: #FFD239;
-}
-
 
 
 /*--End of Button Styling--*/

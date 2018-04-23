@@ -62,7 +62,6 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-
                                 <div class="motifit-btn-container">
                                     <button type="submit" class="motifit-button">#FITSPIRE ME</button>
                                 </div>
@@ -136,7 +135,7 @@
                     <div class="dayplan-container">
                         <div class="row">
                             <div class="col-12">
-                                <div class="unique-dayplan-results">                                    
+                                <div class="unique-dayplan-results">
                                 </div>
                             </div>
                         </div>
@@ -162,19 +161,24 @@
                     <div class="popup" data-popup="popup-post-fitgoal">
                         <div class="popup-inner">
                             <form role="form" class="post-fitgoal-form " action="#" method="#">
-                                <fieldset>
-                                    <legend>What Is Your Current Fit Goal?</legend>
-                                    <label for="fitgoal-title">Fit Goal</label>
-                                    </br>
-                                    <input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')" />
-                                    </br>
-                                    <label for="fitgoal-description">Description</label>
-                                    </br>
-                                    <input id="fitgoal-description" type="text" placeholder="e.g. On non-leg days, mix HIIT & steady 3 mile runs pre- or post-workout." />
-                                    </br>
-                                    <button type="submit" id="add-fitgoal-button" data-popup-close="popup-post-fitgoal">Add</button>
-                                    <button type="submit" data-popup-close="popup-post-fitgoal">Cancel</button>
-                                </fieldset>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <fieldset>
+                                            <legend>Add A Fit Goal</legend>
+                                            <label for="fitgoal-title">Fit Goal<span class="required">*</span></label>
+                                            <br/>
+                                            <br/>
+                                            <input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')" />
+                                            <br/>
+                                            <label for="fitgoal-description">Description<span class="required">*</span></label>
+                                            <br/>
+                                            <textarea id="fitgoal-description" type="text" rows="4" placeholder="e.g. On non-leg days, mix HIIT & steady 3 mile runs pre- or post-workout." />
+                                            <br/>
+                                            <button type="submit" id="add-fitgoal-button" data-popup-close="popup-post-fitgoal">Add</button>
+                                            <button type="submit" data-popup-close="popup-post-fitgoal">Cancel</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
                             </form>
                             <a class="popup-close" data-popup-close="popup-post-fitgoal" href="#">x</a>
                         </div>
