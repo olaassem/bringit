@@ -754,6 +754,7 @@ function getUserWeek() {
         .done(function(week) {
             console.log(week);
             showDayPlan(week);
+            showCategoryImgInDayCntnr(week);
         })
         .fail(function(error) {
             console.log('Post new day plan failed!');
@@ -772,6 +773,8 @@ const noPlanMsg = [
 ];
 
 
+
+
 //.find() specifically work to find elements in an html.
 //week is not an html element -- it is an array of onjects.
 function findDay(week, day) { //day from showDayPlan
@@ -781,6 +784,26 @@ function findDay(week, day) { //day from showDayPlan
         }
     }
 }
+
+function showCategoryImgInDayCntnr(week) {
+    let day = $('.day-container').attr('value');
+    const dayFound = findDay(week, day);
+    if (dayFound === undefined) {
+        $('.day-category-img').html('');
+    } else {
+        displayDayCategoryImg(dayFound);
+    }
+
+}
+
+function displayDayCategoryImg(dayFound) {
+    $('.day-category-img').html(`
+        <p class="day-container-cat-name">${dayFound.categoryID.name}</p>
+        <img class="day-container-img" src=${dayFound.categoryID.img} alt="category icon"/>
+    `);
+}
+
+
 
 //Display fit plan for particular/clicked day
 function showDayPlan(week) {
@@ -803,7 +826,6 @@ function showDayPlan(week) {
 function displayDayPlan(dayFound) {
     $('.unique-dayplan-results').html('');
     $('.unique-dayplan-results').html(`
-        <p>${dayFound.categoryID.name}</p>
         <p>${dayFound.activityID.name}</p>
         <p>${dayFound.activityID.time}</p>
         <p>${dayFound.activityID.duration}</p>
@@ -811,7 +833,7 @@ function displayDayPlan(dayFound) {
         <p>${dayFound.activityID.cardio.distance}</p>
         <p>${dayFound.activityID.cardio.duration}</p>
         <div class="exercise-results-list-container">
-            <table class="exercise-results-table" border="1">
+            <table class="exercise-results-table" cellspacing="0" cellpadding="0">
                 <thread>
                     <tr>
                         <th class="th-exercise-results-name" width="15%">Exercise</th>
@@ -990,7 +1012,7 @@ function openEditDayPlanModal() {
                                 <form role="form" class="edit-exercise-form" action="#" method="#"></form>
                             </div>
                             <div class="exercise-list-container">
-                                <table class="exercise-table" border="1">
+                                <table class="exercise-table" cellspacing="0" cellpadding="0">
                                     <thread>
                                         <tr>
                                             <th class="th-exercise-select" width="15%">Select</th>

@@ -19,9 +19,11 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Gochi+Hand|Just+Me+Again+Down+Here" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/solid.css" integrity="sha384-HTDlLIcgXajNzMJv5hiW5s2fwegQng6Hi+fN6t5VAcwO/9qbg2YEANIyKBlqLsiT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/fontawesome.css" integrity="sha384-8WwquHbb2jqa7gKWSoAwbJBV2Q+/rQRss9UXL5wlvXOZfSodONmVnifo/+5xJIWX" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <!-- reference Moment.js library -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 </head>
@@ -33,6 +35,7 @@
                 <div class="header-elements">
                     <h1 class="logo">app name</h1>
                     <nav class="top-nav" role="navigation">
+                        <span class="greeting nav-link">Hey, <span class="firstname"></span>!</span>
                         <button type="submit" class="fitgoal-history-button nav-link"><img class="history-icon" src="https://i.imgur.com/1Ql1moS.png" alt="history icon" /></button>
                         <button class="signout nav-link"><img class='poweroff-icon' src="https://i.imgur.com/qfH5AJV.png" alt='power off icon' /></button>
                     </nav>
@@ -50,112 +53,82 @@
     <main role="main">
         <div class="row">
             <div class="col-12">
-                <h2 class="greeting">Hey, <span class="firstname"></span>!</h2>
                 <section role="region" class="quote-section">
                     <div class="testing">
                         <div class="quote-container">
+                            <img class="fitspire-img" src="https://i.imgur.com/w5TRhsZ.png" alt="drawing of a megaphone"/>
                             <p class="random-quote"></p>
                         </div>
                         <div class="row">
                             <div class="col-12">
+
                                 <div class="motifit-btn-container">
-                                    <button type="submit" class="motifit-button">Motifit Me</button>
+                                    <button type="submit" class="motifit-button">#fitspire me</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section role="region" class="fitgoal-section">
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- <img class="goal-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/371327-200.png" alt="bulls eye target icon" width="30px" height="30px" /> -->
-                            <h2>Fit Goal<button type="submit" class="rmv-btn-brdr" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button></h2>
-                            <div class="current-fitgoal hidden"></div>
-                        </div>
-                    </div>
-                </section>
-                <div class="popup" data-popup="popup-post-fitgoal">
-                    <div class="popup-inner">
-                        <form role="form" class="post-fitgoal-form " action="#" method="#">
-                            <fieldset>
-                                <legend>What Is Your Current Fit Goal?</legend>
-                                <label for="fitgoal-title">Fit Goal</label>
-                                </br>
-                                <input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')" />
-                                </br>
-                                <label for="fitgoal-description">Description</label>
-                                </br>
-                                <input id="fitgoal-description" type="text" placeholder="e.g. On non-leg days, mix HIIT & steady 3 mile runs pre- or post-workout." />
-                                </br>
-                                <button type="submit" id="add-fitgoal-button" data-popup-close="popup-post-fitgoal">Add</button>
-                                <button type="submit" data-popup-close="popup-post-fitgoal">Cancel</button>
-                            </fieldset>
-                        </form>
-                        <a class="popup-close" data-popup-close="popup-post-fitgoal" href="#">x</a>
-                    </div>
-                </div>
-                <section role="region" class="edit-fitgoal-section">
-                    <div class="popup" data-popup="popup-edit-fitgoal">
-                        <div class="popup-inner">
-                            <form role="form" class="edit-fitgoal-form" action="#" method="#"></form>
-                            <a class="popup-close" data-popup-close="popup-edit-fitgoal" href="#">x</a>
-                        </div>
-                    </div>
-                </section>
-                <!--end of fitgoal section-->
                 <!--fitweek section-->
                 <div class="fitweek">
-                    <h2>This Week</h2>
+                    <!-- <h2 class="fitweekh2">Fit Week</h2> -->
                     <div class="row">
                         <div class="col-7">
-                            <div class="day-container mon-container" value="Monday">
+                            <div class="day-container mon-container" value="0">
                                 <div class="center">
-                                    <h3>MON</h3>
+                                    <h3 class="weekday">Mon</h3>
+                                    <div class="day-category-img"></div>
                                     <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="0" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                    <button type="submit" class="view-day-plan-btn"><img value="0" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                    <button type="submit" class="view-day-plan-btn"><img value="0" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container tues-container " value="Tuesday">
-                                <h3>TUES</h3>
+                            <div class="day-container tues-container " value="1">
+                                <h3 class="weekday">Tues</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="1" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="1" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="1" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container wed-container " value="Wednesday">
-                                <h3>WED</h3>
+                            <div class="day-container wed-container " value="2">
+                                <h3 class="weekday">Wed</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="2" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="2" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="2" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container thurs-container " value="Thursday">
-                                <h3>THURS</h3>
+                            <div class="day-container thurs-container " value="3">
+                                <h3 class="weekday">Thurs</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="3" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="3" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="3" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container fri-container " value="Friday">
-                                <h3>FRI</h3>
+                            <div class="day-container fri-container " value="4">
+                                <h3 class="weekday">Fri</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="4" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="4" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="4" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container sat-container " value="Saturday">
-                                <h3>SAT</h3>
+                            <div class="day-container sat-container " value="5">
+                                <h3 class="weekday">Sat</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="5" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="5" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="5" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="day-container sun-container " value="Sunday">
-                                <h3>SUN</h3>
+                            <div class="day-container sun-container " value="6">
+                                <h3 class="weekday">Sun</h3>
+                                <div class="day-category-img"></div>
                                 <button type="submit" class="add-day-plan-btn btn" data-popup-open="popup-post-dayplan"><img value="6" class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button>
-                                <button type="submit" class="view-day-plan-btn"><img value="6" class="view-icon" src="https://i.imgur.com/ENDzvw0.png" alt="view icon" /></button>
+                                <button type="submit" class="view-day-plan-btn"><img value="6" class="view-icon" src="https://i.imgur.com/cBpgxjs.png" alt="view icon" /></button>
                             </div>
                         </div>
                     </div>
@@ -175,6 +148,44 @@
                         </div>
                     </section>
                     <!--end of fitweek section-->
+                    <section role="region" class="fitgoal-section">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- <img class="goal-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/371327-200.png" alt="bulls eye target icon" width="30px" height="30px" /> -->
+                                <h2>Fit Goal<button type="submit" class="rmv-btn-brdr" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button></h2>
+                                <div class="current-fitgoal hidden"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="popup" data-popup="popup-post-fitgoal">
+                        <div class="popup-inner">
+                            <form role="form" class="post-fitgoal-form " action="#" method="#">
+                                <fieldset>
+                                    <legend>What Is Your Current Fit Goal?</legend>
+                                    <label for="fitgoal-title">Fit Goal</label>
+                                    </br>
+                                    <input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')" />
+                                    </br>
+                                    <label for="fitgoal-description">Description</label>
+                                    </br>
+                                    <input id="fitgoal-description" type="text" placeholder="e.g. On non-leg days, mix HIIT & steady 3 mile runs pre- or post-workout." />
+                                    </br>
+                                    <button type="submit" id="add-fitgoal-button" data-popup-close="popup-post-fitgoal">Add</button>
+                                    <button type="submit" data-popup-close="popup-post-fitgoal">Cancel</button>
+                                </fieldset>
+                            </form>
+                            <a class="popup-close" data-popup-close="popup-post-fitgoal" href="#">x</a>
+                        </div>
+                    </div>
+                    <section role="region" class="edit-fitgoal-section">
+                        <div class="popup" data-popup="popup-edit-fitgoal">
+                            <div class="popup-inner">
+                                <form role="form" class="edit-fitgoal-form" action="#" method="#"></form>
+                                <a class="popup-close" data-popup-close="popup-edit-fitgoal" href="#">x</a>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end of fitgoal section-->
                     <!--day plan modal form section-->
                     <div class="popup" data-popup="popup-post-dayplan">
                         <div class="popup-inner">
@@ -182,7 +193,8 @@
                                 <fieldset>
                                     <legend><span class="dayoftheweek"></span>Fit Plan</legend>
                                     <div class="category-section">
-                                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
+                                        <p class="step"> Step 1/3 </p>
+                                        <h2>Category<button type="submit" class="btn popdown-post-category rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                                         <!--category section-->
                                         <div class="row">
                                             <div class="col-12">
@@ -215,10 +227,11 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="activity-container">
-                                                <h2>STEP 2 Activity</h2>
+                                                <p class="step">Step 2/3</p>
+                                                <h2>Activity</h2>
                                                 <form role="form" class="post-activity-form" novalidate>
                                                     <fieldset>
-                                                        <legend>Fill Activity Info</legend>
+                                                        <legend>Add Activity</legend>
                                                         <label for="activity-name">Name<span class="required">*</span></label>
                                                         <input id="activity-name" type="text" placeholder="" />
                                                         </br>
@@ -255,7 +268,8 @@
                                     <!--exercise section-->
                                     <div class="row">
                                         <div class="col-12">
-                                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
+                                            <p class="step">Step 3/3</p>
+                                            <h2>Exercises<button type="submit" class="btn popdown-post-exercise rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="new-exercise-form hidden">
@@ -282,51 +296,51 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                <div>
+                                            <div>
                                             </div>
                                             <div class="popdown-edit-exercise hidden">
                                                 <form role="form" class="edit-exercise-form" action="#" method="#"></form>
-                                                </div>
-                                                    <div class="exercise-list-container">
-                                                        <table class="exercise-table" border="1">
-                                                            <thread>
-                                                                <tr>
-                                                                    <th class="th-exercise-select" width="15%">Select</th>
-                                                                    <th class="th-exercise-name" width="15%">Name</th>
-                                                                    <th class="th-exercise-weight" width="15%">Weight</th>
-                                                                    <th class="th-exercise-sets" width="15%">Sets</th>
-                                                                    <th class="th-exercise-name" width="15%">Reps</th>
-                                                                    <th class="th-exercise-edit" width="15%"></th>
-                                                                    <th class="th-exercise-delete" width="15%"></th>
-                                                                </tr>
-                                                            </thread>
-                                                            <tbody class="exercise-list">
-                                                            </tbody>
-                                                        </table>
-                                                        <div class="row">
-                                                            <!-- <div class="col-12"> -->
-                                                            <button type="submit" class="dayplan-exercise-get next">Next</button>
-                                                            <!-- </div> -->
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="exercise-list-container">
+                                                <table class="exercise-table" border="1">
+                                                    <thread>
+                                                        <tr>
+                                                            <th class="th-exercise-select" width="15%">Select</th>
+                                                            <th class="th-exercise-name" width="15%">Name</th>
+                                                            <th class="th-exercise-weight" width="15%">Weight</th>
+                                                            <th class="th-exercise-sets" width="15%">Sets</th>
+                                                            <th class="th-exercise-name" width="15%">Reps</th>
+                                                            <th class="th-exercise-edit" width="15%"></th>
+                                                            <th class="th-exercise-delete" width="15%"></th>
+                                                        </tr>
+                                                    </thread>
+                                                    <tbody class="exercise-list">
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <!-- <div class="col-12"> -->
+                                                    <button type="submit" class="dayplan-exercise-get next">Next</button>
+                                                    <!-- </div> -->
                                                 </div>
                                             </div>
-                                            <!--end of activity section-->
-                                            <div class="fitplan-modal-btns">
-                                                <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
-                                                <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end of activity section-->
+                                    <div class="fitplan-modal-btns">
+                                        <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan">Add</button>
+                                        <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                                    </div>
                                 </fieldset>
                             </form>
                             <a class="popup-close" data-popup-close="popup-post-dayplan" href="#">x</a>
-                            </div>
-                            </div>
-                            <!--end of day plan modal form section-->
-                            <section role="region" class="fitweek-history-section hidden">
-                                <h2>Fit Week History</h2>
-                            </section>
                         </div>
                     </div>
+                    <!--end of day plan modal form section-->
+                    <section role="region" class="fitweek-history-section hidden">
+                        <h2>Fit Week History</h2>
+                    </section>
+                </div>
+            </div>
     </main>
     <!--
     <footer role='contentinfo' class="hidden">
