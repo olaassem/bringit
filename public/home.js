@@ -798,8 +798,8 @@ function showCategoryImgInDayCntnr(week) {
 
 function displayDayCategoryImg(dayFound) {
     $('.day-category-img').html(`
-        <p class="day-container-cat-name">${dayFound.categoryID.name}</p>
         <img class="day-container-img" src=${dayFound.categoryID.img} alt="category icon"/>
+        <p class="day-container-cat-name">${dayFound.categoryID.name}</p>
     `);
 }
 
@@ -1028,9 +1028,9 @@ function openEditDayPlanModal() {
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <!-- <div class="col-12"> -->
-                                    <button type="submit" class="dayplan-exercise-get next">Next</button>
-                                    <!-- </div> -->
+                                    <div class="col-12"> 
+                                    <button type="submit" class="edited-dayplan-exercise-get next">Next</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1052,19 +1052,49 @@ function openEditDayPlanModal() {
             getAllEditDayPlanExercises(dayplan);
             showNewExerciseForm(dayplan);
             showEditExerciseForm(dayplan);
-            postNewExercise();
-            cancelNewExercise();
-            deleteExerciseTable();
-            showEditExerciseForm();
-            putExerciseEdits();
-            cancelExerciseEdit();
-            // getSelectedExercises(); CHANGE TO  getEditDayPlanSelectedExercises()           
+            postNewExercise(dayplan);
+            cancelNewExercise(dayplan);
+            deleteExerciseTable(dayplan);
+            showEditExerciseForm(dayplan);
+            putExerciseEdits(dayplan);
+            cancelExerciseEdit(dayplan);
+            getSelectedEditedExercises(dayplan);          
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
     });
 }
 openEditDayPlanModal();
+
+
+
+
+
+
+//Get selected/checked edited exercises.
+function getSelectedEditedExercises() {
+    $('.edit-dayplan-form').on('click','edited-dayplan-exercise-get', event => {
+        event.preventDefault();
+        let ID = $(":checkbox:checked").val();
+        let checked = $(":checkbox:checked");
+        console.log(checked);
+
+        let exercisesIDs = [];
+        for (let i = 0; i < checked.length; i++) {
+            exercisesIDs.push(checked[i].value);
+        }
+
+        dayplanFormObject.exercisesIDs = exercisesIDs;
+        console.log(dayplanFormObject);
+    })
+}
+
+
+
+
+
+
+
 
 
 //Get all edit dayplan form categories
@@ -1167,26 +1197,6 @@ function displayEditDayPlanExercises(selectedExercises, allExercises) {
 
 
 
-//editdayplanform
-//new function
-//Get selected/checked exercises.
-// function getSelectedExercises() {
-//     $('.dayplan-exercise-get').on('click', event => {
-//         event.preventDefault();
-//         let ID = $(":checkbox:checked").val();
-//         let checked = $(":checkbox:checked");
-//         console.log(checked);
-
-//         let exercisesIDs = [];
-//         for (let i = 0; i < checked.length; i++) {
-//             exercisesIDs.push(checked[i].value);
-//         }
-
-//         dayplanFormObject.exercisesIDs = exercisesIDs;
-//         console.log(dayplanFormObject);
-//     })
-// }
-// getSelectedExercises();
 
 
 

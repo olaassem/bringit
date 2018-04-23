@@ -11,8 +11,8 @@
 body {
     margin: 0;
     padding: 0;
-    color: #2e2f30;
-    background: #D6E6F2;
+    color: white;
+    background: #111111;
 }
 
 .hidden {
@@ -44,18 +44,18 @@ button:focus {
 /*--Header Styling--*/
 
 header {
-    background-color: #D6E6F2;
+    background-color: #151515;
     /*#d4dfe1 #2214E5 ; blue*/
     /*    border-bottom: solid 2px grey;*/
-    -webkit-box-shadow: 0 8px 8px #BEBEBE;
+/*    -webkit-box-shadow: 0 8px 8px #BEBEBE;
     -moz-box-shadow: 0 8px 8px #BEBEBE;
-    box-shadow: 0 8px 8px #BEBEBE;
+    box-shadow: 0 8px 8px #BEBEBE;*/
 }
 
 .logo {
     margin-top: 0px;
     margin-bottom: 15px;
-    color: #201f2f;
+    color: #D5FF44;
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
     display: inline-block;
@@ -87,7 +87,8 @@ header {
 
 
 .quote-section {
-    margin-bottom: 20px;
+	margin-top:50px;
+    margin-bottom: 0px;
     min-height: 20%;
     /*background-color: white;*/
 /*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
@@ -110,6 +111,8 @@ header {
 }
 
 .random-quote {
+	font-style: italic;
+    text-transform: uppercase ;
     padding: 0px 40px;
     /*	margin-top: 80px;*/
     font-size: 50px;
@@ -117,7 +120,7 @@ header {
     color:white;
     font-family: 'Anton', sans-serif;
     /*    font-weight: bold;*/
-    text-shadow: 0 1px 0 #ccc,
+/*    text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
                0 4px 0 #b9b9b9,
@@ -128,7 +131,7 @@ header {
                0 3px 5px rgba(0,0,0,.2),
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
+               0 20px 20px rgba(0,0,0,.15);*/
 }
 
 
@@ -161,7 +164,7 @@ font-family: 'Gloria Hallelujah', cursive;
     cursor: pointer;
     user-select: none;
     transition: 0.4s ease;
-    background: #FFD239;
+    background: #353535;
     color: white;
     outline: none;
     /*    font-family: 'Rubik', sans-serif 'Roboto Mono', monospace;*/
@@ -198,9 +201,9 @@ font-family: 'Gloria Hallelujah', cursive;
 /*--Fit Goal Section Styling--*/
 
 .fitgoal-section {
-	margin-top: 100px;
+	margin-top: 210px;
     margin-bottom: 60px;
-    background-color: white;
+    background-color: black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -216,7 +219,7 @@ font-family: 'Gloria Hallelujah', cursive;
     /*position: relative;*/
     border: 1px solid lightgray;
     margin-bottom: 15px;
-    background-color: #D6E6F2;
+    background-color: #222223;
     padding: 20px;
     box-shadow: 1px 1px 0px ,
     2px 2px 0px #9fb7c9,
@@ -270,6 +273,7 @@ font-family: 'Gloria Hallelujah', cursive;
     font-weight: bold;
     margin-bottom: 8px;
     margin-top: 0px;
+    color: #D5FF44;
 }
 
 
@@ -334,10 +338,10 @@ font-family: 'Gloria Hallelujah', cursive;
     text-align: center;
     width: 100%;
     height: 150px;
-    padding: 0px;
+    padding: 50px 10px;
     margin-right: 10px;
     margin-left: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     background-color: none;
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;
@@ -349,8 +353,8 @@ font-family: 'Gloria Hallelujah', cursive;
 .weekday{
 	font-family: 'Poppins', sans-serif;;
 	font-weight: bold;
-	letter-spacing: 4px;
-	text-shadow: 0 1px 0 #ccc,
+	letter-spacing: 3px;
+/*	text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
                0 4px 0 #b9b9b9,
@@ -361,7 +365,7 @@ font-family: 'Gloria Hallelujah', cursive;
                0 3px 5px rgba(0,0,0,.2),
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
+               0 20px 20px rgba(0,0,0,.15);*/
 }
 
 .day-container:hover {
@@ -370,13 +374,23 @@ font-family: 'Gloria Hallelujah', cursive;
     box-shadow: 0 8px 6px -6px #2a2a2a;*/
 }
 
+
+
+
 .day-container-img{
-	width: 70px;
-	height: 70px;
-/*	filter: brightness(1000%);*/
+	width: 90px;
+	height: 90px;
 	z-index: 20;
+	background: #D5FF44;
+	border-radius: 50%;
 }
 
+
+
+.day-container-cat-name{
+	color: #D5FF44;
+	font-size: 15px;
+}
 
 /*--End of Fit Week Section Styling--*/
 
@@ -390,6 +404,13 @@ font-family: 'Gloria Hallelujah', cursive;
 
 
 /*--End of Fit Plan Modal Styling*/
+
+
+.unique-dayplan-results{
+	padding-top: 30px;
+	display: block;
+}
+
 
 
 /*--Category Section Styling--*/
@@ -596,6 +617,8 @@ input[type="radio"] {
 
 .category-img {
     border: black 1px solid;
+    border-radius: 50%;
+    background: white;
     margin-right: auto;
     margin-left: auto;
     width: 90%;
@@ -825,6 +848,7 @@ footer {
 
 /*--Button Styling--*/
 
+.exercise-icon,
 .complete,
 .add-icon,
 .view-icon,
@@ -836,8 +860,8 @@ footer {
     height: 30px;
     margin-right: auto;
     margin-left: auto;
-    /*position: relative;*/
     margin-top: 5px;
+    background-color: none;
 }
 
 
@@ -847,36 +871,37 @@ footer {
 	height: 20px;
 }
 
+.exercise-icon,
 .signout {
-    background: #FFD239;
+    background: none;
     border-radius: 50%;
 }
 
 .fitgoal-history-button {
-    background: #C0C0C0;
+    background: none;
 }
 
 .add-icon {
     background: /*#2D98F5*/
     /*#313480*/
     /*#FFD239*/
-    #C0C0C0;
+    none;
     border-radius: 50%;
 }
 
 
-
+.wrkout-section-button,,
 .complete {
-    background: tomato;
+    background: none;
 }
 
 .delete-icon {
-    background-color: #C0C0C0;
+    background-color: none;
 }
 
 
 .edit-icon {
-    background: #C0C0C0;
+    background: none;
 }
 
 .rmv-btn-brdr {
@@ -884,6 +909,7 @@ footer {
     background: none;
 }
 
+.wrkout-section-button,
 .complete,
 .add-icon,
 .view-icon,
@@ -916,6 +942,7 @@ footer {
     box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.4);
     border-bottom-height: 8px;
     outline: none;
+    background-color: #E71353;
 }
 
 
@@ -934,7 +961,7 @@ footer {
 }
 
 .view-icon {
-    background: #C0C0C0;
+    background: none;
     border-radius: 50%;
 }
 
@@ -1012,7 +1039,7 @@ span .required{
     transform: translate(-50%, -50%);
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 1);
     border-radius: 3px;
-    background: white;
+    background: #222223;
     z-index: 100;
 }
 
@@ -1069,7 +1096,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2
+    background-color: black;
 }
 
 th {
@@ -1082,7 +1109,7 @@ th:nth-child(6),
 th:last-child,
 /*td:nth-child(6),
 td:last-child */{
-    background-color: white;
+    background-color: grey;
 }
 
 
