@@ -776,10 +776,11 @@ const noPlanMsg = [
 
 
 //.find() specifically work to find elements in an html.
-//week is not an html element -- it is an array of onjects.
+//week is not an html element -- it is an array of objects.
 function findDay(week, day) { //day from showDayPlan
     for (let i = 0; i < week.data.length; i++) {
         if (week.data[i].day == day) { //values saved on json array is a number // string number 
+        // if (week.data[i].day[i] == day) {    
             return week.data[i]
         }
     }
@@ -1069,10 +1070,6 @@ function openEditDayPlanModal() {
 openEditDayPlanModal();
 
 
-
-
-
-
 //Get selected/checked edited exercises.
 function getSelectedEditedExercises() {
     $('.edit-dayplan-form').on('click', 'edited-dayplan-exercise-get', event => {
@@ -1090,13 +1087,6 @@ function getSelectedEditedExercises() {
         console.log(dayplanFormObject);
     })
 }
-
-
-
-
-
-
-
 
 
 //Get all edit dayplan form categories
@@ -1197,16 +1187,6 @@ function displayEditDayPlanExercises(selectedExercises, allExercises) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 // Put activity in edit dayplan form.
 function putEditedDayPlanActivity() {
     $('.edit-dayplan-form').on('click', '#submit-edited-dayplan-button', event => {
@@ -1255,12 +1235,6 @@ function putEditedDayPlan(ID) {
 
 
 
-
-
-
-
-
-
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
 
 function openModal() {
@@ -1296,9 +1270,3 @@ function closeModalOnClickOutsideModal() {
     });
 }
 closeModalOnClickOutsideModal();
-
-
-
-
-
-///////////////////////////////////////////////////////////////

@@ -161,6 +161,10 @@ header {
     margin: 0px 10px;
 }
 
+.add-fitgoal-lgnd{
+    margin-top: 0px;
+}
+
 
 .main-add-fitgoal-icon{
     margin-left: 10px;
@@ -225,6 +229,7 @@ header {
     height: 40px;
     width: 100%;
     font-size: 20px;
+    transform: all 0.5s ease;
 }
 
 #fitgoal-description {
@@ -232,10 +237,55 @@ header {
     width: 100%;
     font-size: 20px;
     margin-bottom:40px;
+    transform: all 0.5s ease;
 }
 
 
 
+#fitgoal-title:focus,
+#fitgoal-description:focus{
+    outline: 0;
+    border: 2px solid #D5FF44;
+}
+
+
+
+
+
+
+
+#add-fitgoal-button,
+#cancel-fitgoal-button{
+    float: right;
+    margin-right: 15px;
+    display: inline-block;
+    bottom: 0;
+    font-size: 1.2em;
+    padding: 10px 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.4s ease;
+    background: #353535;
+    color: white;
+    outline: none;
+    font-size: 20px;
+    border: none;
+    border-radius: 2px;
+}
+
+
+#add-fitgoal-button:hover
+#cancel-fitgoal-button:hover {
+    transform: translateY(-3px);
+    outline: none;
+}
+
+#add-fitgoal-button:active,
+#cancel-fitgoal-button:active {
+    transform: translateY(4px);
+    transition: 0.1s ease;
+    outline: none;
+}
 
 
 
@@ -447,6 +497,7 @@ header {
     -moz-border-radius: 3px;
     padding: 7px;
     outline: none;
+    margin-bottom: 20px;
 }
 
 

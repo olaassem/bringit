@@ -153,7 +153,6 @@
                     <section role="region" class="fitgoal-section">
                         <div class="row">
                             <div class="col-12">
-                                <!-- <img class="goal-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/371327-200.png" alt="bulls eye target icon" width="30px" height="30px" /> -->
                                 <h2 class="fitgoal-hdr">Fit Goal<button type="submit" class="main-add-fitgoal-icon rmv-btn-brdr" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button></h2>
                                 <div class="current-fitgoal hidden"></div>
                             </div>
@@ -163,17 +162,17 @@
                         <div class="popup-inner">
                             <form role="form" class="post-fitgoal-form " action="#" method="#">
                                 <fieldset>
-                                    <legend>What Is Your Current Fit Goal?</legend>
-                                    <label for="fitgoal-title">Fit Goal</label>
+                                    <h2 class="add-fitgoal-lgnd"><legend>Add a Fit Goal</legend></h2>
+                                    <label for="fitgoal-title">Fit Goal<span class="required">*</span></label>
                                     </br>
                                     <input id="fitgoal-title" type="text" placeholder="e.g. Run 3 Miles Every Day" required="yes" oninvalid="this.setCustomValidity('Please Enter Your Fit Goal Title.')" oninput="setCustomValidity('')" />
                                     </br>
-                                    <label for="fitgoal-description">Description</label>
+                                    <label for="fitgoal-description">Description <span class="required">*</span></label>
                                     </br>
                                     <input id="fitgoal-description" type="text" placeholder="e.g. On non-leg days, mix HIIT & steady 3 mile runs pre- or post-workout." />
                                     </br>
                                     <button type="submit" id="add-fitgoal-button" data-popup-close="popup-post-fitgoal">Add</button>
-                                    <button type="submit" data-popup-close="popup-post-fitgoal">Cancel</button>
+                                    <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-post-fitgoal">Cancel</button>
                                 </fieldset>
                             </form>
                             <a class="popup-close" data-popup-close="popup-post-fitgoal" href="#">x</a>
