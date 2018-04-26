@@ -340,7 +340,6 @@ header {
 .weekday {
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    ;
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -449,7 +448,6 @@ header {
 .post-exercise-form,
 .post-activity-form,
 .new-category-form {
-    /*  border: 1px solid grey;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -464,6 +462,7 @@ header {
 }
 
 
+
 .post-fitgoal-form label,
 .post-exercise-form label,
 .new-category-form label {
@@ -474,6 +473,7 @@ header {
     padding-right: 5px;
 }
 
+.post-activity-form label>span,
 .post-fitgoal-form label>span,
 .post-exercise-form label>span,
 .new-category-form label>span {
@@ -554,31 +554,39 @@ header {
     margin-bottom: 40px;
 }
 
-.category-container {
-    padding: 0px;
-    margin-right: auto;
-    margin-left: auto;
-    position: relative;
-    width: 160px;
-    height: 160px;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    padding: 7px;
+.category-container{
+    position:relative;
     outline: none;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    background-color: black;
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    -o-transition: background-color 1s ease-out;
+    transition: background-color 1s ease-out;
+    border-radius: 10px;
 }
+
 
 .category-container p {
-    font-size: 12px;
+    font-size: 15px;
 }
 
+.category-container label{
+    font-size: 0px;
+    margin: 0px;
+    padding: 0px;
+
+}
 
 input[type="radio"] {
     margin-right: auto;
@@ -591,7 +599,10 @@ input[type="radio"] {
     background: white;
     margin-right: auto;
     margin-left: auto;
-    width: 90%;
+    width: 100px;
+    height:100px;
+    margin-bottom: 5px;
+    margin-top:10px;
 }
 
 .category-container input:hover+img {
@@ -614,8 +625,8 @@ input[type="radio"] {
 }
 
 .category-container input:checked+img {
-    border: 5px solid #FFD239;
-    background-color: #FFD239;
+    border: 5px solid #D5FF44;
+    background-color: #D5FF44;
     -moz-opacity: 20%;
     -webkit-opacity: 20%;
     z-index: 4;
@@ -666,14 +677,6 @@ input[type="radio"] {
     padding-right: 5px;
 }
 
-
-
-.post-activity-form label>span {
-    font-weight: bold;
-    float: right;
-    padding-left: 5px;
-    color: #FFD239;
-}
 
 
 .post-activity-form input {
@@ -1063,21 +1066,26 @@ th {
     color: black;
 }
 
-
-th:nth-child(6),
-th:last-child{
-    background-color: grey;
-}
-
 .exercise-results-table th{
     background-color: #353535;
     color: #E1DAC8;
+    border-radius: 15px;
 }
 
 .icon{
     color: #D5FF44;
 }
 
+th:nth-child(6),
+th:last-child{
+    background-color: none;
+    background: none;
+}
 
+/*.th-exercise-edit,
+.th-exercise-delete{
+    background-color: none;
+    background: none;
+}*/
 
 /*--End of Exercise Table Styline--*/
