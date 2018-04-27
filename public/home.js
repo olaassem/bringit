@@ -244,11 +244,11 @@ function openEditFitGoalModal() {
             $('.edit-fitgoal-form').html(`
                 <fieldset>
                     <legend>Update Current Fit Goal</legend>
-                    <label for="fitgoal-title-edit">Fit Goal</label>
+                    <label for="fitgoal-title-edit">Fit Goal<span class="required">*</span></label>
                     </br>
                     <input id="fitgoal-title-edit" type="text" value="${fitgoal.data.title}" />
                     </br>
-                    <label for="fitgoal-description-edit">Description</label>
+                    <label for="fitgoal-description-edit">Description<span class="required">*</span></label>
                     </br>
                     <input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
                     <button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
