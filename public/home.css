@@ -48,6 +48,7 @@ button:focus {
 
 
 
+
 /*--End of Universal Styling--*/
 
 
@@ -83,6 +84,7 @@ header {
 
 
 
+
 /*--End of Header Styling--*/
 
 
@@ -93,6 +95,7 @@ header {
     margin-bottom: 0px;
     min-height: 20%;
 }
+
 
 
 /*.fitspire-img{
@@ -155,20 +158,22 @@ header {
 }
 
 
+
 /*--End of Quote Styling Section--*/
 
 
 /*--Fit Goal Section Styling--*/
-.fitgoal-hdr{
+
+.fitgoal-hdr {
     margin: 0px 10px;
 }
 
-.add-fitgoal-lgnd{
+.add-fitgoal-lgnd {
     margin-top: 0px;
 }
 
 
-.main-add-fitgoal-icon{
+.main-add-fitgoal-icon {
     margin-left: 10px;
 }
 
@@ -192,7 +197,7 @@ header {
 }
 
 
-.goal-icon{
+.goal-icon {
     position: absolute;
     top: -100;
     left: -20;
@@ -243,16 +248,30 @@ header {
     transform: all 0.5s ease;
 }
 
+
+
+
+
+
+#exercise-name:focus,
+#exercise-weight:focus,
+#exercise-sets:focus,
+#exercise-reps:focus,
+#activity-name:focus,
+#activity-time:focus,
+#activity-duration:focus,
+#cardio-distance:focus,
+#activity-location:focus,
+#activity-inspiration:focus,
 #category-name:focus,
 #category-img:focus,
 #fitgoal-title-edit:focus,
 #fitgoal-description-edit:focus,
 #fitgoal-title:focus,
-#fitgoal-description:focus{
+#fitgoal-description:focus {
     outline: 0;
     border: 2px solid #D5FF44;
 }
-
 
 
 #update-fitgoal-button,
@@ -261,7 +280,7 @@ header {
 .post-exercise-btn,
 .cancel-exercise-btn,
 #add-fitgoal-button,
-#cancel-fitgoal-button{
+#cancel-fitgoal-button {
     margin-right: 15px;
     display: inline-block;
     bottom: 0;
@@ -270,7 +289,7 @@ header {
     cursor: pointer;
     user-select: none;
     transition: 0.4s ease;
-    background: rgba(88,88,88,1);
+    background: rgba(88, 88, 88, 1);
     color: white;
     outline: none;
     font-size: 20px;
@@ -280,7 +299,7 @@ header {
 
 
 .next {
-    font-size: 23px;
+    font-size: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
     margin-right: 15px;
@@ -292,7 +311,7 @@ header {
     border: none;
     color: white;
     border-radius: 5px;
-    background: rgba(88,88,88,1);
+    background: rgba(88, 88, 88, 1);
     float: right;
 }
 
@@ -324,18 +343,21 @@ header {
 
 
 
-#fitgoal-description-edit{
+#fitgoal-description-edit {
     margin-bottom: 50px;
 }
 
 
+
 /*position default is static (ignores other layout attributes )
 */
+
 .edit-fitgoal-button,
 .delete-fitgoal-button {
     border: none;
     background-color: transparent;
 }
+
 
 
 
@@ -403,12 +425,14 @@ header {
 }
 
 
+
 /*--End of Fit Week Section Styling--*/
 
 
 /*--Fit Plan Modal--*/
 
 .fitplan-modal-btns {}
+
 
 
 
@@ -433,12 +457,13 @@ header {
 
 
 
+
 /*--Category Section Styling--*/
 
 
 /*post form*/
 
-.category-section{
+.category-section {
     margin-right: auto;
     margin-left: auto;
 }
@@ -515,13 +540,14 @@ header {
 
 
 .edit-fitgoal-form,
-.post-fitgoal-form{
+.post-fitgoal-form {
     margin-top: 22%;
-}    
+}
 
 .post-exercise-form {
     margin-bottom: 30px;
 }
+
 
 
 
@@ -537,8 +563,8 @@ header {
     margin-bottom: 40px;
 }
 
-.category-container{
-    position:relative;
+.category-container {
+    position: relative;
     outline: none;
     display: inline-block;
     color: white;
@@ -564,11 +590,10 @@ header {
     font-size: 15px;
 }
 
-.category-container label{
+.category-container label {
     font-size: 0px;
     margin: 0px;
     padding: 0px;
-
 }
 
 input[type="radio"] {
@@ -583,9 +608,9 @@ input[type="radio"] {
     margin-right: auto;
     margin-left: auto;
     width: 100px;
-    height:100px;
+    height: 100px;
     margin-bottom: 5px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .category-container input:hover+img {
@@ -641,6 +666,7 @@ input[type="radio"] {
 
 
 
+
 /*--End of Category Section Styling--*/
 
 
@@ -665,15 +691,21 @@ input[type="radio"] {
 .post-activity-form input {
     width: 100%;
     border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
+    /*    box-shadow: 1px 1px 4px #EBEBEB;
     -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;*/
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     padding: 7px;
     outline: none;
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    transform: all 0.5s ease;
+    margin-bottom: 20px;
 }
+
 
 
 
@@ -701,6 +733,7 @@ input[type="radio"] {
 
 
 
+
 /*--End of Activity Styling Section--*/
 
 
@@ -722,6 +755,7 @@ input[type="checkbox"] {
 
 
 
+
 /*--Table Styling--*/
 
 table,
@@ -735,6 +769,7 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+
 
 
 
@@ -798,6 +833,7 @@ footer {
 
 
 
+
 /*--End of Footer Styling--*/
 
 
@@ -818,7 +854,7 @@ footer {
     margin-top: 5px;
     background-color: none;
     background: none;
-    padding:2px;
+    padding: 2px;
 }
 
 .exercise-icon,
@@ -920,15 +956,46 @@ footer {
 }
 
 
-
+.fa-calendar-check,
+.fa-ban{
+    font-size: 30px;
+}
 
 #submit-dayplan-button,
 #cancel-dayplan-button {
-    background-color: ;
-    padding: 5px;
-    margin: 30px 10px;
-    width: 45%;
+    background-color: rgba(240,240,240,0.9);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color: #353535;
+    transition: 0.4s ease;
+    border: none;
+    font-size: 25px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
 }
+
+
+#submit-dayplan-button:hover,
+#cancel-dayplan-button:hover {
+    transform: translateY(-3px);
+    outline: none;
+    background-color: #D5FF44;
+    border: 2px solid #D5FF44;
+}
+
+
+#submit-dayplan-button:active,
+#cancel-dayplan-button:active {
+    transform: translateY(4px);
+    transition: 0.1s ease;
+    outline: none;
+    border: 2px solid #D5FF44;
+}
+
 
 
 /*--End of Button Styling--*/
@@ -950,7 +1017,9 @@ footer {
 }
 
 
+
 /* Inner */
+
 .popup-inner {
     overflow-y: auto;
     height: 90%;
@@ -969,7 +1038,9 @@ footer {
 }
 
 
+
 /* Close Button */
+
 .popup-close {
     width: 30px;
     height: 30px;
@@ -999,20 +1070,21 @@ footer {
 
 
 
+
 /*--End of Modal Styling--*/
 
 
 /*--Exercise Table Styling--*/
 
 .edit-dayplan-btn,
-.delete-dayplan-btn{
+.delete-dayplan-btn {
     float: right;
     display: inline-block;
     margin-right: 20px;
 }
 
 
-.rslt{
+.rslt {
     text-transform: uppercase;
 }
 
@@ -1039,26 +1111,24 @@ th {
     color: black;
 }
 
-.exercise-results-table th{
+.exercise-results-table th {
     background-color: #353535;
     color: #E1DAC8;
-    border-radius: 15px;
 }
 
-.icon{
+
+/*    border-radius: 15px;
+*/
+
+.icon {
     color: #D5FF44;
 }
 
 th:nth-child(6),
-th:last-child{
+th:nth-child(7) {
     background-color: none;
     background: none;
 }
 
-/*.th-exercise-edit,
-.th-exercise-delete{
-    background-color: none;
-    background: none;
-}*/
 
 /*--End of Exercise Table Styline--*/
