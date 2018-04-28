@@ -248,11 +248,16 @@ header {
     transform: all 0.5s ease;
 }
 
+#exercise-reps-edit{
+    margin-bottom: 50px;
+}
 
 
 
-
-
+#exercise-name-edit:focus,
+#exercise-weight-edit:focus,
+#exercise-sets-edit:focus,
+#exercise-reps-edit:focus,
 #exercise-name:focus,
 #exercise-weight:focus,
 #exercise-sets:focus,
@@ -274,6 +279,7 @@ header {
 }
 
 
+.put-exercise-btn,
 #update-fitgoal-button,
 .cancel-category-btn,
 .post-category-btn,
@@ -298,6 +304,37 @@ header {
 }
 
 
+
+.next:hover,
+.put-exercise-btn:hover,
+#add-fitgoal-button:hover,
+#cancel-fitgoal-button:hover,
+#update-fitgoal-button:hover,
+.cancel-category-btn:hover,
+.post-category-btn:hover,
+.post-exercise-btn:hover,
+.cancel-exercise-btn:hover {
+    transform: translateY(-3px);
+    outline: none;
+}
+
+
+.next:active,
+.put-exercise-btn:active,
+#add-fitgoal-button:active,
+#cancel-fitgoal-button:active,
+#update-fitgoal-button:active,
+.cancel-category-btn:active,
+.post-category-btn:active,
+.post-exercise-btn:active,
+.cancel-exercise-btn:active {
+    transform: translateY(4px);
+    transition: 0.1s ease;
+    outline: none;
+}
+
+
+
 .next {
     font-size: 20px;
     margin-top: 20px;
@@ -314,33 +351,6 @@ header {
     background: rgba(88, 88, 88, 1);
     float: right;
 }
-
-
-.next:hover,
-#add-fitgoal-button:hover,
-#cancel-fitgoal-button:hover,
-#update-fitgoal-button:hover,
-.cancel-category-btn:hover,
-.post-category-btn:hover,
-.post-exercise-btn:hover,
-.cancel-exercise-btn:hover {
-    transform: translateY(-3px);
-    outline: none;
-}
-
-.next:active,
-#add-fitgoal-button:active,
-#cancel-fitgoal-button:active,
-#update-fitgoal-button:active,
-.cancel-category-btn:active,
-.post-category-btn:active,
-.post-exercise-btn:active,
-.cancel-exercise-btn:active {
-    transform: translateY(4px);
-    transition: 0.1s ease;
-    outline: none;
-}
-
 
 
 #fitgoal-description-edit {
@@ -476,6 +486,7 @@ header {
 }
 
 
+.edit-exercise-form,
 .edit-fitgoal-form,
 .post-fitgoal-form,
 .post-exercise-form,
@@ -485,6 +496,7 @@ header {
 }
 
 
+.edit-exercise-form legend,
 .edit-fitgoal-form legend,
 .post-fitgoal-form legend,
 .post-activity-form legend,
@@ -495,7 +507,7 @@ header {
     font-size: 22px;
 }
 
-
+.edit-exercise-form label,
 .edit-fitgoal-form label,
 .post-fitgoal-form label,
 .post-exercise-form label,
@@ -508,6 +520,7 @@ header {
 }
 
 
+.edit-exercise-form label>span,
 .edit-fitgoal-form label>span,
 .post-activity-form label>span,
 .post-fitgoal-form label>span,
@@ -520,6 +533,7 @@ header {
 }
 
 
+.edit-exercise-form input,
 .edit-fitgoal-form input,
 .post-fitgoal-form input,
 .post-exercise-form input,
@@ -544,6 +558,7 @@ header {
     margin-top: 22%;
 }
 
+.edit-exercise-form,
 .post-exercise-form {
     margin-bottom: 30px;
 }
@@ -934,7 +949,10 @@ footer {
     border-radius: 50%;
 }
 
-
+.delete-exercise-btn,
+.edit-exercise-btn,
+.popdown-post-exercise,
+.popdown-post-category,
 .completed-fitgoal-button,
 .history-icon,
 .poweroff-icon,
@@ -951,6 +969,14 @@ footer {
 }
 
 
+.popdown-post-exercise,
+.popdown-post-category{
+    width:30px;
+    height: 30px;
+    margin-left: 8px;
+}
+
+
 .completed-fitgoal-button {
     padding: 1px 6px;
 }
@@ -961,6 +987,7 @@ footer {
     font-size: 30px;
 }
 
+#submit-edited-dayplan-button,
 #submit-dayplan-button,
 #cancel-dayplan-button {
     background-color: rgba(240,240,240,0.9);
@@ -979,6 +1006,7 @@ footer {
 }
 
 
+#submit-edited-dayplan-button:hover,
 #submit-dayplan-button:hover,
 #cancel-dayplan-button:hover {
     transform: translateY(-3px);
@@ -987,7 +1015,7 @@ footer {
     border: 2px solid #D5FF44;
 }
 
-
+#submit-edited-dayplan-button:active,
 #submit-dayplan-button:active,
 #cancel-dayplan-button:active {
     transform: translateY(4px);

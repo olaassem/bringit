@@ -466,8 +466,7 @@ function postNewActivity() {
             'time': $('#activity-time').val(),
             'duration': $('#activity-duration').val(),
             'cardio': {
-                'distance': $('#cardio-distance').val(),
-                'duration': $('#cardio-duration').val()
+                'distance': $('#cardio-distance').val()
             },
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
@@ -631,20 +630,22 @@ function showEditExerciseForm() {
             $('.edit-exercise-form').html(`
                 <fieldset>
                     <legend>Update Exercise Routine</legend>
-                    <label for="exercise-name-edit">Name:</label>
+                    <label for="exercise-name-edit">Name<span class="required">*</span></label>
                     <input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>  
                     </br>
-                    <label for="exercise-weight-edit">Weight:</label>
+                    <label for="exercise-weight-edit">Weight</label>
                     <input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
                     </br>       
-                    <label for="exercise-sets-edit">Sets:</label>
+                    <label for="exercise-sets-edit">Sets</label>
                     <input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>  
                     </br>
-                    <label for="exercise-reps-edit">Reps:</label>
+                    <label for="exercise-reps-edit">Reps</label>
                     <input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
                     </br>
-                    <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>
-                    <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                     <div class="row">
+                        <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>   
+                        <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                    </div>
                 </fieldset> 
             `);
         }).fail(function(error) {
@@ -915,8 +916,8 @@ function openEditDayPlanModal() {
                 <fieldset>
                     <legend><span class="dayoftheweek"></span>Fit Plan</legend>
                     <div class="category-section">
-                        <h2>STEP 1 Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
-                        <!--category section-->
+                        <p class="step"> Step 1/3 </p>
+                        <h2>Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>                        <!--category section-->
                         <div class="row">
                             <div class="col-12">
                                 <div class="new-category-form hidden">
@@ -949,7 +950,8 @@ function openEditDayPlanModal() {
                         <div class="col-12">
                             <div class="activity-container">
                                 <form role="form" class="post-activity-form" novalidate>
-                                    <h2>STEP 2 Activity</h2>
+                                    <p class="step"> Step 2/3 </p>
+                                    <h2>Activity</h2>
                                     <fieldset>
                                         <legend>Edit Activity Info</legend>
                                         <label for="activity-name">Name<span class="required">*</span></label>
@@ -988,7 +990,8 @@ function openEditDayPlanModal() {
                     <!--exercise section-->
                     <div class="row">
                         <div class="col-12">
-                            <h2>STEP 3 Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
+                            <p class="step"> Step 3/3 </p>
+                            <h2>Exercises<button type="submit" class="btn popdown-post-exercise"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
                             <div class="new-exercise-form hidden">
                                 <form role="form" class="post-exercise-form" action="#" method="#">
                                     <fieldset>
@@ -1040,8 +1043,14 @@ function openEditDayPlanModal() {
                     </div>
                     <!--end of activity section-->
                     <div class="fitplan-modal-btns">
-                        <button type="submit" id="submit-edited-dayplan-button" data-popup-close="popup-post-dayplan" value="${dayplan.data._id}">Add</button>
-                        <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                        <div class="row">
+                          <div class="col-6">
+                                <button type="submit" id="submit-edited-dayplan-button" data-popup-close="popup-post-dayplan" value="${dayplan.data._id}"><i class="fas fa-calendar-check"></i>&nbsp; Save Edits</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan"><i class="fas fa-ban"></i>&nbsp; Cancel Edits</button>
+                            </div>
+                        </div>  
                     </div>
                 </fieldset>
              `);
@@ -1198,8 +1207,7 @@ function putEditedDayPlanActivity() {
             'time': $('#activity-time').val(),
             'duration': $('#activity-duration').val(),
             'cardio': {
-                'distance': $('#cardio-distance').val(),
-                'duration': $('#cardio-duration').val()
+                'distance': $('#cardio-distance').val()
             },
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
