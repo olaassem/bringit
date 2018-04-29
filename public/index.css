@@ -23,11 +23,9 @@ body {
     user-select: none;
 }
 
-
 .hidden{
     display: none;
 }
-
 
 fieldset{
     border: none;
@@ -38,21 +36,21 @@ fieldset{
 /*--End of Universal Styling--*/
 
 
+
 /*--Header Styling--*/
 
 header{
-    background-color: /*#d4dfe1*/; /*#2214E5 blue*/
-    border-bottom: solid 2px grey;
+    background-color: #D5FF44;
+    opacity: .7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .logo{
     margin-top: 0px;
     margin-bottom: 15px;
-    color: #D5FF44;
+    color: #111111;
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
-
-
 }
 
 
@@ -63,33 +61,63 @@ header{
 h2{
     font-style: italic;
     text-transform: uppercase;
-    font-size: 50px;
-    color: #434343;
+    font-size: 56px;
+    color: #111111;
     font-family: 'Anton', sans-serif;
     margin-top: 100px;
+    margin-bottom: 20px;
 }
 
+
+.start-btn{
+    background: white;
+    opacity: .9;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.start-btn:hover{
+
+}
+
+
+.start-btn:active{
+
+}
+
+
+.start{
+    font-size: 25px;
+    padding: 10px;
+}
 
 .middle{
     height: 500px;
 }
 
 .steps-container{
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 200px;
     padding: 0px;
 }
 
-
 .cont{
     margin-top: 10px;
-    margin-bottom: 100px;
-    width: 100px;
-    height: 100px;
+    margin-bottom: 30px;
+    width: 220px;
+    height: 220px;
     margin-right: auto;
     margin-left: auto;
-    border: 1px solid grey;
+/*   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     background-color: white;
+    opacity: .7;
 }
 
 
