@@ -130,16 +130,3 @@ function closeModal() {
     });
 }
 closeModal();
-
-
-
-function closeModalOnClickOutsideModal() {
-    //Close Modal on click outside of modal
-    $(".popup").click(function() {
-        $('.popup').fadeOut(350).removeClass("active");
-    });
-    $('.popup-inner').click(function(event) {
-        event.stopPropagation();
-    });
-}
-closeModalOnClickOutsideModal();
