@@ -912,8 +912,6 @@ footer {
     transition: 0.4s ease;
     color: white;
     outline: none;
-    font-family: /*'Rubik', sans-serif*/
-    'Roboto Mono', monospace;
     border-radius: 50%;
 }
 
@@ -921,28 +919,42 @@ footer {
 .add-icon:hover,
 .view-icon:hover,
 .edit-icon:hover,
-.delete-icon:hover,
-.fitgoal-history-button:hover,
-.signout:hover {
+.delete-icon:hover{
     transform: translateY(-3px);
     outline: none;
     background-color: #E71353;
     border: 2px solid #E71353;
 }
 
-
 .complete:active,
 .add-icon:active,
 .view-icon:active,
 .edit-icon:active,
-.delete-icon:active,
-.fitgoal-history-button:active,
-.signout:active {
+.delete-icon:active{
     transform: translateY(4px);
     transition: 0.1s ease;
     outline: none;
     border: 2px solid #E71353;
 }
+
+
+
+.fitgoal-history-button:hover,
+.signout:hover{
+    transform: translateY(-2px);
+    outline: none;
+    background-color: #E71353;
+    border: none;
+}
+
+.fitgoal-history-button:active,
+.signout:active{
+    transform: translateY(4px);
+    transition: 0.1s ease;
+    outline: none;
+    border: none;
+}
+
 
 .view-icon {
     background: none;
