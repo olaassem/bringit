@@ -104,3 +104,42 @@ $('.signup-tab').click(event => {
     $('.login-tab').css('background', 'none');
     $('.signup-tab').css('background', 'white');
 });
+
+
+
+
+
+/***   M O D A L   F U N C T I O N A L I T Y   ***/
+
+function openModal() {
+    $('[data-popup-open]').on('click', function(event) {
+        event.preventDefault();
+        let targeted_popup_class = $(this).attr('data-popup-open');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+    });
+}
+openModal();
+
+
+
+function closeModal() {
+    $('[data-popup-close]').on('click', function(event) {
+        event.preventDefault();
+        let targeted_popup_class = $(this).attr('data-popup-close');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+    });
+}
+closeModal();
+
+
+
+function closeModalOnClickOutsideModal() {
+    //Close Modal on click outside of modal
+    $(".popup").click(function() {
+        $('.popup').fadeOut(350).removeClass("active");
+    });
+    $('.popup-inner').click(function(event) {
+        event.stopPropagation();
+    });
+}
+closeModalOnClickOutsideModal();
