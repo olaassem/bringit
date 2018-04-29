@@ -63,11 +63,10 @@ header{
 h2{
     font-style: italic;
     text-transform: uppercase;
-    padding: 0px 40px;
     font-size: 50px;
-    /*text-align: center;*/
-    color: lightgrey;
+    color: #434343;
     font-family: 'Anton', sans-serif;
+    margin-top: 100px;
 }
 
 
@@ -76,19 +75,21 @@ h2{
 }
 
 .steps-container{
-    margin-top: 200px;
-    margin-bottom: 100px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    padding: 0px;
 }
 
 
 .cont{
-    margin-top: 100px;
+    margin-top: 10px;
+    margin-bottom: 100px;
     width: 100px;
     height: 100px;
     margin-right: auto;
     margin-left: auto;
     border: 1px solid grey;
-    background-color: #fc4a1a;
+    background-color: white;
 }
 
 
@@ -100,133 +101,14 @@ h2{
 .box1{
     height: 100vh;
     width: 100%;
+    background-image: url("https://i.imgur.com/5OMknmG.png");
+/*    opacity: 0.8;*/
+    background-size: cover;
     display: table;
+    background-attachment: fixed;
 }
 
 
-.stop-slothing{
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    /*padding-top: 100px;*/
-    background-color: ;
-
-}
-
-
-.house{
-    background-image: url('https://i.imgur.com/BGCBlrr.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 300px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    animation-name: fallFromTop;
-    animation-duration: 3s;
-    animation-fill-mode: both;
-    animation-timing-function: ease-out;
-}
-
-.couch{
-    background-image: url("https://i.imgur.com/iQ4WSja.png");   /* http://pngimg.com/uploads/sofa/sofa_PNG6949.png    https://i.imgur.com/8VSFyIl.png  ('https://bhavitajago.in/wp-content/uploads/2017/12/furniture-png-red-sofa-furniture-icon-png-image-2603-512.png')/*('https://i.imgur.com/iUleRZX.png')*/
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 225px;
-    height: 177px;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: 0px;
-    right: 0;
-    left: 0;
-    position: absolute;
-    padding:0px;
-    animation-name: fallFromTop;
-    animation-duration: 2s;
-    animation-fill-mode: both;
-}
-
-.clock{
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    top: 90px;
-    right: 70px;
-}
-
-.action-text{
-    text-transform: uppercase;
-    color: #201f2f;
-    font-size: 30px;
-    text-align: center;
-}    
-
-.anim-icons{
-    width:150px;
-    height:150px;
-}
-
-.swing{
-    width: 150px;
-    height: 110px;
-    bottom: 57px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    -webkit-transform-origin: 50% 0; /* for Safari and older Chrome */
-    transform-origin: 50% 0;
-    -webkit-animation: swing 4s ease-in-out forwards infinite;
-    animation: swing 4s ease-in-out forwards infinite;
-}
-
-
-@keyframes swing { 
-    0%{transform: rotate(10deg);}
-    50%{transform: rotate(-5deg)}
-    100%{transform: rotate(10deg);}
-} 
-
-/*@keyframes fallFromTop {
-    from{ transform: translateY(-800px); opacity:0; }
-    to{ transform: translateY( 20px); opacity:1; }
-}*/
-
-
-
-.ing{
-    width: 50px;
-    position: absolute;
-    right: 42px;
-    bottom: 27px;
-    color: #201f2f;
-    font-family: 'Roboto', sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-
-}
-
-
-
-.mountain{
-    background-image: url('https://image.flaticon.com/icons/svg/179/179559.svg');
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
-/*    background-*/
-
-}
-.hikers{
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    right: 0px;
-}
-
-.weightlifter{
-    width: 60px;
-    height:60px;
-}
 
 
 /*--End of Intro Styling--*/
