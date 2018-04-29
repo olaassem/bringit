@@ -115,10 +115,8 @@ h2{
     height: 220px;
     margin-right: auto;
     margin-left: auto;
-/*   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    background-color: white;
-    opacity: .7;
-    z-index:2;
+    background-color: rgba(255,255,255, 0.8);
+
 }
 
 
@@ -159,11 +157,10 @@ h2{
 /*--Form Styling--*/
 .container {
     display: absolute;
-    float: bottom;
-/*    width: 50%;*/
-    bottom: 0;
+    margin-top: 15%;
     margin-right: auto;
     margin-left: auto;
+/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .signup-tab,
@@ -189,9 +186,13 @@ h2{
 }
 
 legend{
-    color: black;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #111111;;
+    padding-top: 35px;
+    padding-bottom: 30px;
 }
 
 .input {
@@ -308,7 +309,7 @@ div.row{
     position: fixed;
     top: 0px;
     left: 0px;
-    background: black;
+    background: rgba(225, 225, 225, .8);
 }
 
 
@@ -326,10 +327,9 @@ div.row{
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 1);
     border-radius: 3px;
-    background: #222223;
-    z-index: 100;
+    background: none;
+    z-index: 200;
 }
 
 
@@ -337,8 +337,8 @@ div.row{
 /* Close Button */
 
 .popup-close {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     padding-top: 4px;
     display: inline-block;
     position: absolute;
@@ -350,7 +350,7 @@ div.row{
     border-radius: 1000px;
     background: grey;
     font-family: Arial, Sans-Serif;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     line-height: 100%;
     color: white;

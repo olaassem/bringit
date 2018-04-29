@@ -84,7 +84,7 @@ loginExistingUser();
 
 //   C L I C K   O N   T A B   F U N C T I O N A L I T Y   //
 $('.login-form').hide();
-$('.login-tab').css('background', 'none');
+$('.login-tab').css('background', '#E1E1E1');
 
 
 
@@ -92,8 +92,8 @@ $('.login-tab').click(event => {
     event.preventDefault();
     $('.register-form').hide();
     $('.login-form').show();
-    $('.signup-tab').css('background', 'none');
-    $('.login-tab').css('background', 'white');
+    $('.signup-tab').css('background', '#E1E1E1');
+    $('.login-tab').css('background', '#f9fbfd');
 });
 
 
@@ -101,8 +101,8 @@ $('.signup-tab').click(event => {
     event.preventDefault();
     $('.register-form').show();
     $('.login-form').hide();
-    $('.login-tab').css('background', 'none');
-    $('.signup-tab').css('background', 'white');
+    $('.login-tab').css('background', '#E1E1E1');
+    $('.signup-tab').css('background', '#f9fbfd');
 });
 
 
