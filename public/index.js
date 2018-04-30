@@ -67,21 +67,6 @@ loginExistingUser();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //   C L I C K   O N   T A B   F U N C T I O N A L I T Y   //
 $('.signup-tab').css('background', '#f9fbfd');
 $('.login-form').hide();
@@ -111,6 +96,9 @@ $('.signup-tab').click(event => {
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
+
+// function
+
 
 function openModal() {
     $('[data-popup-open]').on('click', function(event) {

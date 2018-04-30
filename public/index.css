@@ -51,8 +51,60 @@ header{
     color: #111111;
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
+        display: inline-block;
 }
 
+
+.top-nav {
+    margin-top: 9px;
+    float: right;
+    display: inline-block;
+}
+
+.nav-link {
+    font-size: 18px;
+    padding: 0 6px;
+    border: none;
+    margin-right: 10px;
+}
+
+.poweroff-icon {
+    width: 27px;
+    height: 27px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    background-color: none;
+    background: none;
+    padding: 2px;
+}
+
+.signout {
+    background: none;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.4s ease;
+    color: white;
+    outline: none;
+    border-radius: 50%;
+    background-color: #E71353;
+}
+
+.signout:hover{
+    transform: translateY(-2px);
+    outline: none;
+    background-color: #E71353;
+    border: none;
+}
+
+.signout:active{
+    transform: translateY(4px);
+    transition: 0.1s ease;
+    outline: none;
+    border: none;
+}
 
 /*--End of Header Styling--*/
 
@@ -171,6 +223,8 @@ h2{
 .cont-description{
     font-size: 18px;
     margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /*--Intro Styling--*/
@@ -453,6 +507,13 @@ footer{
     height: 45px;
     margin-right: 20px;
     margin-top: 9px;
+    border-radius: 50%;
+}
+
+
+.linkedin-logo{
+    background-color: black;
+    border: white 5px solid;
 }
 
 
