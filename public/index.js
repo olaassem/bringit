@@ -83,6 +83,7 @@ loginExistingUser();
 
 
 //   C L I C K   O N   T A B   F U N C T I O N A L I T Y   //
+$('.signup-tab').css('background', '#f9fbfd');
 $('.login-form').hide();
 $('.login-tab').css('background', '#E1E1E1');
 

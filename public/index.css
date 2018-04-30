@@ -46,8 +46,8 @@ header{
 }
 
 .logo{
-    margin-top: 0px;
-    margin-bottom: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     color: #111111;
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
@@ -133,9 +133,10 @@ h2{
 }
 
 .steps-container{
-    margin-top: 110px;
+    margin-top: 115px;
     margin-bottom: 200px;
     padding: 0px;
+    padding-bottom: 10px;
 }
 
 .cont{
@@ -149,6 +150,7 @@ h2{
     text-align: center;
     color: #494949;
     border-radius: 60%;
+    font-family: 'Oxygen', sans-serif;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -193,7 +195,6 @@ h2{
     margin-top: 15%;
     margin-right: auto;
     margin-left: auto;
-/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .signup-tab,
@@ -414,9 +415,51 @@ div.row{
     text-decoration: none;
 }
 
-
-
-
 /*--End of Modal Styling--*/
 
 
+
+#box2{
+    margin-top: 20px;
+    height: 8vh;
+    color: black;
+    opacity: .8;
+    background-color: grey;
+    text-align: center;
+}
+
+
+footer{
+    width: 100%;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.author-date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
+.github-logo,
+.linkedin-logo{
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+    margin-top: 9px;
+}
+
+
+.github-cont{
+    float: right;
+}
+
+.linkedin-cont{
+    float: left;
+}
