@@ -324,8 +324,6 @@ function displayEditedFitGoal(fitgoal) {
 /***   D A Y   P L A N   F O R M   G LO B A L   V A R I A B L E   ***/
 let dayplanFormObject = {};
 
-
-
 /***   C A T E G O R I E S   ***/
 
 //Get all categories
@@ -348,28 +346,12 @@ function renderCategories(category) {
         </div>
     `
 }
-//ADD CATEGORY EDIT BUTTON???
-//  <button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 
 
 function displayAllCategories(allCategories) {
     let categoriesOutput = allCategories.data.map(category => renderCategories(category)).join('');
     $('.category-icons').html(categoriesOutput);
 }
-
-
-
-//Remove category delete button on category focus.
-// $('.category-icons').on('checked', 'input', function(event) {
-//     $(event.target).next('.delete-category-btn').addClass('hidden');
-// });
-
-// //Return category delete button on category focusout.
-// $('.category-icons').on('focusout', '.category-toggle', function() {
-//     $('.category-container').children('.delete-category-btn').removeClass('hidden');
-// });
-
-
 
 
 function revealNewCategoryForm() {
@@ -485,7 +467,6 @@ function postNewActivity() {
 postNewActivity();
 
 
-
 //Hide add dayplan button when plan is set for day.
 function hideAddDayPlanBtn() {
 
@@ -498,13 +479,7 @@ function showCategoryImgInDayCntnr() {
 
 
 
-
-
-
-
-
 /***   E X E R C I S E S   ***/
-
 
 function clearExerciseValue() {
     $('#exercise-name').val("");
@@ -688,8 +663,6 @@ function putExerciseEdits() {
 }
 putExerciseEdits();
 
-
-
 //Cancel exercise update.
 function cancelExerciseEdit() {
     $('.edit-exercise-form').on('click', '.cancel-exercise-btn', event => {
@@ -721,11 +694,7 @@ getSelectedExercises();
 
 
 
-
-
-
 /***   D A Y    P L A N  ***/
-
 
 //Post new day plan
 function createDayPlan() {
@@ -745,7 +714,6 @@ function createDayPlan() {
 }
 
 
-
 function getUserWeek() {
     $.ajax({
             type: 'GET',
@@ -763,6 +731,29 @@ function getUserWeek() {
 }
 
 
+function showCategoryImgInDayCntnr(week) {
+    let days = $('.day-container');
+    
+    let fitweek = week.data;
+
+    for(let i = 0 ; i < fitweek.length; i++){
+       let daycontainer = $(days[fitweek[i].day]);
+       console.log(daycontainer);
+
+    let containerImg = daycontainer.children('.day-category-img');
+    console.log(containerImg);
+    containerImg.html(`
+        <img class="day-container-img" src=${fitweek[i].categoryID.img} alt="category icon"/>
+        <p class="day-container-cat-name">${fitweek[i].categoryID.name}</p>
+    `)
+
+    let addFitPlan = daycontainer.children('.add-day-plan-btn');
+    addFitPlan.hide();
+
+    }
+}
+
+
 const noPlanMsg = [
     "No fit plan set for Monday.",
     "No fit plan set for Tuesday.",
@@ -774,39 +765,15 @@ const noPlanMsg = [
 ];
 
 
-
-
 //.find() specifically work to find elements in an html.
 //week is not an html element -- it is an array of objects.
 function findDay(week, day) { //day from showDayPlan
     for (let i = 0; i < week.data.length; i++) {
         if (week.data[i].day == day) { //values saved on json array is a number // string number 
-        // if (week.data[i].day[i] == day) {    
             return week.data[i]
         }
     }
 }
-
-function showCategoryImgInDayCntnr(week) {
-    let day = $('.day-container').attr('value');
-    // for(let i = 0; i < day.length; i++ ){
-
-    const dayFound = findDay(week, day);
-    if (dayFound === undefined) {
-        $('.day-category-img').html('');
-    } else {
-        displayDayCategoryImg(dayFound);
-    }
-    // }
-}
-
-function displayDayCategoryImg(dayFound) {
-    $('.day-category-img').html(`
-        <img class="day-container-img" src=${dayFound.categoryID.img} alt="category icon"/>
-        <p class="day-container-cat-name">${dayFound.categoryID.name}</p>
-    `);
-}
-
 
 
 //Display fit plan for particular/clicked day
@@ -830,9 +797,8 @@ function showDayPlan(week) {
 function displayDayPlan(dayFound) {
     $('.unique-dayplan-results').html('');
     $('.unique-dayplan-results').html(`
-         <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button>
+        <button type="submit" class="delete-dayplan-btn" value="${dayFound._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button>
         <button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button>
-    
         <p class="dp-rslts"><i class="fas fa-bullseye icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.name}</span></p>
         <p class="dp-rslts"><i class="fas fa-clock icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.time}</span></p>
         <p class="dp-rslts"><i class="fas fa-stopwatch icon"></i> &nbsp;&nbsp;<span class="rslt">${dayFound.activityID.duration}</span></p>
@@ -858,7 +824,6 @@ function displayDayPlan(dayFound) {
 
 //JSON.stringify(object) -> will provide  string of entire object
 //JSON.parse(string) 
-
 function renderDayPlanExercisesResults(exercise) {
     return `
       <tr class="exercise-result-rows">
@@ -875,8 +840,6 @@ function displayDayPlanExercisesResults(allExercises) {
     $('.exercise-results-list').html(dayplanExercisesOutput);
 }
 
-
-
 function deleteDayPlan() {
     $('.unique-dayplan-results').on('click', '.delete-dayplan-btn', event => {
         event.preventDefault();
@@ -888,14 +851,13 @@ function deleteDayPlan() {
         }).done((dayplan) => {
             $('.unique-dayplan-results').html('');
             getUserWeek();
+            showCategoryImgInDayCntnr();
         }).fail((error) => {
             console.log('Deleting day plan failed!');
         })
     });
 }
 deleteDayPlan();
-
-
 
 
 //Get day plan details when edit button is clicked.
