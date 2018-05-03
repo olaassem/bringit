@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/olaassem/wrkoutapp.git"
+    "url": "git+https://github.com/olaassem/bringit.git"
   },
   "keywords": [
     "fitness"
@@ -16,11 +16,10 @@
   "author": "Ola Assem",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/olaassem/wrkoutapp/issues"
+    "url": "https://github.com/olaassem/bringit/issues"
   },
-  "homepage": "https://github.com/olaassem/wrkoutapp#readme",
+  "homepage": "https://github.com/olaassem/bringit#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
