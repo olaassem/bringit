@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 // this makes the expect syntax available throughout this module
 const expect = chai.expect;
 
-const fitGoal = require('../fitgoal-model');
-const user = require('../user-model');
+const fitGoal = require('../fitgoal/fitgoal-model');
+const user = require('../user/user-model');
 const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL } = require('../config');
 
