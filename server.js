@@ -4,8 +4,17 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+
+
+require('dotenv').config()
+
+
+// const dotenv = require('dotenv');
+// const result = dotenv.config();
+
+
 const {PORT, DATABASE_URL} = require('./config');
-const dotenv = require('dotenv');
+console.log(DATABASE_URL);
 
 //Start the routing
 const app = express();
@@ -25,7 +34,7 @@ mongoose.Promise = global.Promise;
 
 
 //all variables stored in .env file will go to the server env
-dotenv.config({path:'./.env'});
+// dotenv.config({path:'./.env'});
 
 //MIDDLEWARE
 //Use morgan to log common elements (not environmental or production)
