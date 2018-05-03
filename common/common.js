@@ -1,6 +1,6 @@
 //need JWT
 const jwt = require('jsonwebtoken');
-
+const config = require('../config');
 
 
 //will be executed before the endpoints (requests)
@@ -15,7 +15,7 @@ exports.verifyToken = (req, res, next) => {
         return
     }
     //token exists
-    jwt.verify(token, "this is my secret", (error, decodeObject) => {
+    jwt.verify(token, config.JWT_SECRET, (error, decodeObject) => {
         if (error) {
             res.status(500).json({
                 message: 'token is not valid'

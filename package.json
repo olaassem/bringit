@@ -4,7 +4,7 @@
   "description": "Thinkful server side capstone project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,16 @@
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.1",
     "moment": "^2.21.0",
     "mongoose": "^5.0.10",
     "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.1.1"
   }
 }

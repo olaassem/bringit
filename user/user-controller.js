@@ -1,6 +1,7 @@
 const userModel = require('./user-model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); //create tokens
+const config = require('../config');
 
 //token is an object encrypted
 
@@ -187,7 +188,7 @@ exports.loginUser = (req, res) => {
                 id: user._id
             }
             //
-            let token = jwt.sign(userToken, "this is my secret"); //needs to be in .env file??
+            let token = jwt.sign(userToken, config.JWT_SECRET); 
             res.status(200).json({
                 message: 'User logged in.',
                 data: {
@@ -199,6 +200,7 @@ exports.loginUser = (req, res) => {
             })
         })
         .catch((error) => {
+            console.log(error);
             res.status(500).json({
                 message: `Error fetching user.`,
                 data: error
