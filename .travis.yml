@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: oZeDkFsV5Xfpnllt1/n+sfFz22fBUR/+u6gUaxtrQSMQ6LfewuoI+LE/5vXT7Jwc7w9M8r/wvUoCSK6xtfX02FYpQ3c6W3waxTHsc2A2fOW8vYx7AXtUvyeFISR7U1ikkzJejz1cR/i9Nr8x1Bmwu5P1a7yMRVpbRH6EYDBOyZBRWeBmVjIq/Lvm2IxJXRDtvKQM+mB2aSFYzLoLI44Jg5K5IYhPpWvOfws3ENspLD+kVPomvOMB2Z5vCt5bc/b5bgyt+/2rwn/sHR0aI4LTssnO6i8r5duWmyKrOUBEyJqGp4QRLmwTYCERLVmKnw3LUB5KfmORDO9M2j8bobeOpDMaY5DkAea+7/NMpfM/qWHZAe99aOGZK+93ZD+w/3V4ebXKzY7LK0sL1wD/LxgbYloIROXAWwt5b6yBnpPBJ8/lMr7PdXYAEk47hytVYh4Zgs5veBWmEat5OmH1LI+7doSHhHy7mze2bSSmRR9sYOFFsp5b564gB09GRkpEIC20rFFj+lig5e6W+sirZLM9ME72tRtXRdCyywaG4DsL7TlTnnDt/REiCu1cH1VXfNa25GE3e2j1CfG+/9n/IX+7L1iQJQanNOyXKMMcAQ6jZ37j+B/ZM4p7MXWRvzv3YxDZvegFRUCVOiVHX2ODS0TZ2VGn7fP7oJwrB8yU6xZJ0rs=
+  app: blooming-brushlands-53874
+  on:
+    repo: olaassem/bringit
