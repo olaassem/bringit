@@ -9,12 +9,10 @@ const activitySchema = new mongoose.Schema({
 	time: {type: String, required: true},
 	duration: {type: String, required: true},
 	cardio: {
-				distance: {type: String, required: false},
-				duration: {type: String, required: false},
+				distance: {type: String, required: false}
 			},
 	location: {type: String, required: false},
-	inspiration: {type: String, required: false},
-	completed: {type: Boolean, default: false}
+	inspiration: {type: String, required: false}
 });
 
 

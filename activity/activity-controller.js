@@ -15,11 +15,9 @@ exports.postNewActivity = (req, res) => {
 	newActivity.time = req.body.time;
 	newActivity.duration = req.body.duration;
 	newActivity.cardio.distance = req.body.cardio.distance;
-	newActivity.cardio.duration = req.body.cardio.duration;
 	newActivity.routine = req.body.routine;
 	newActivity.location = req.body.location;
 	newActivity.inspiration = req.body.inspiration;
-	newActivity.completed = req.body.completed;
 	newActivity.save()
 	.then((activity) => {
 		res.status(200).json({
@@ -35,24 +33,6 @@ exports.postNewActivity = (req, res) => {
 	})
 }
 
-/*
-//Create test for Postman:
-{
-    "name": "test",
-    "time": "1 am",
-	"duration": 1,
-	"cardio": {
-				"distance": 3,
-				"duration": 3
-			},
-	"routine": ["LOL"],
-	"location": "somewhere.",
-	"inspiration": "someone.",
-	"completed": true
-}
-*/
-
-//Can create allActivitiesShort (with specifc properties) AND allActivitiesFull (populate all properties)
 
 
 //Get all activities.
@@ -102,7 +82,7 @@ exports.updateActivityByID = (req, res) => {
 	}
 	const updated = {};
 	const updateableFields = ["name","time","duration","cardio", "routine",
-							  "location","inspiration", "completed"];
+							  "location","inspiration"];
  	updateableFields.forEach(field => {
     	if (field in req.body){
       		updated[field] = req.body[field];

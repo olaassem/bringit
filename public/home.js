@@ -451,8 +451,7 @@ function postNewActivity() {
                 'distance': $('#cardio-distance').val()
             },
             'location': $('#activity-location').val(),
-            'inspiration': $('#activity-inspiration').val(),
-            'completed': false,
+            'inspiration': $('#activity-inspiration').val()
         }
         dayplanFormObject.activity = body;
         dayplanFormObject.userID = localStorage.getItem('userID');
@@ -930,9 +929,6 @@ function openEditDayPlanModal() {
                                         <label for="cardio-distance">Distance</label>
                                         <input id="cardio-distance" type="text" value="${dayplan.data.activityID.cardio.distance}" />
                                         </br>
-                                        <label for="cardio-duration">Duration</label>
-                                        <input id="cardio-duration" type="text" value="${dayplan.data.activityID.cardio.duration}" />
-                                        </br>
                                         <label for="activity-location">Location</label>
                                         <input id="activity-location" type="text" value="${dayplan.data.activityID.location}"" />
                                         </br>
@@ -1173,7 +1169,6 @@ function putEditedDayPlanActivity() {
             },
             'location': $('#activity-location').val(),
             'inspiration': $('#activity-inspiration').val(),
-            'completed': false,
             '_id': `${ID}`
         }
         dayplanFormObject.activity = body;
