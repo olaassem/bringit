@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 
-require('dotenv').config()
+require('dotenv').config();
 
 
 // const dotenv = require('dotenv');
