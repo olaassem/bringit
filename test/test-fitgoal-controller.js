@@ -17,7 +17,7 @@ const { TEST_DATABASE_URL } = require('../config');
 chai.use(chaiHttp); //telling chai to use chaihttp when making a call
 let token;
 let userId;
-let fitgoalId;
+let fitGoalID;
 
 //register user
 function createUser() {
@@ -150,8 +150,8 @@ describe('test fitgoal API resources', function() {
             	token: token,
             	userID: userId,
         		createDate: Date.now(),
-        		title: "something",
-        		description: "rando description",
+        		title: "Rando Title",
+        		description: "Rando description here.",
         		completed: false
             })
             .then(function(_res) {
@@ -166,72 +166,77 @@ describe('test fitgoal API resources', function() {
     });
 
 
-
-
-
-
-
-
-
-
     // note the use of nested `describe` blocks.
     // this allows us to make clearer, more discrete tests that focus
     // on proving something small
 
     it('GET - should return all existing fitgoals for logged-in test user', function() {
-        // strategy:
-        //    1. get back all fitgoals returned by by GET request to `/goal/all/:token`
-        //    2. prove res has right status, data type
-        //    3. prove the number of fitgoals we got back is equal to number
-        //       in db.
-        //
-        // need to have access to mutate and access `res` across
-        // `.then()` calls below, so declare it here so can modify in place
         let res;
         return chai.request(app)
             .get('/goal/all/' + `${token}`)
             .then(function(_res) {
                 // so subsequent .then blocks can access response object
                 res = _res;
+                fitGoalID = _res.body.data[0]._id;
+                console.log('this is the fitGoalID');
+                console.log(fitGoalID);
                 expect(res).to.have.status(200);
                 // otherwise our db seeding didn't work
                 // expect(res.body).to.have.lengthOf.at.least(1); //can play around w this later
                 // return fitGoal.count();
             })
+    		.catch((error) => {
+    			console.log(error);
         // .then(function(count) {
         //     expect(res.body).to.have.lengthOf(count);
-        // });
+			});
     });
 
 
-    // it('should return fit goals with right fields', function() {
-    // // Strategy: Get back all fitgoals, and ensure they have expected keys
+    it('GET - should return fit goal with requested ID', function() {
+    	return chai.request(app)
+            .get(`/goal/${fitGoalID}/${token}`)
+        	.then(res => {
+        		expect(res).to.have.status(200);
+        		expect(res.body).to.be.a('object');
+        	})
+    		.catch((error) => {
+    			console.log(error);
+        });
+    });
 
-    // let resFitGoal;
-    // return chai.request(app)
-    //     .get('/goal/all' + `${token}`)
-    //     .then(function(res) {
-    //         expect(res).to.have.status(200);
-    //         expect(res).to.be.json;
-    //         expect(res.body).to.be.a('object');
-    //         expect(res.body).to.have.lengthOf.at.least(1);
 
-    //         res.body.forEach(function(fitgoal) {
-    //             expect(fitgoal).to.be.a('object');
-    //             expect(fitgoal).to.include.keys(
-    //                 '_id', 'userID', 'createDate', 'title', 'description', 'completed');
-    //         });
-    //         resFitGoal = res.body.fitgoals[0];
-    //         return fitGoal.findById(resFitGoal._id);
-    //     })
-    //     .then(function(fitGoal) {
+    it('PUT - should update requested ID fit goal', function(){
+ 			let updatedFitGoalInfo = {
+ 				token: token,
+            	userID: userId,
+        		createDate: Date.now(),
+        		title: "Updated Title",
+        		description: "Updated description here.",
+        		completed: true
+ 			}
+ 			return chai.request(app)
+ 			.put(`/goal/${fitGoalID}/${token}`)
+ 			.send(updatedFitGoalInfo)
+ 				.then((res)=>{
+ 					expect(res).to.have.status(200);
+ 				})
+ 				.catch((error)=>{
+ 					console.log(error);
+ 				});
+    });
 
-    //         expect(resFitGoal._id).to.equal(fitGoal._id);
-    //         expect(resFitGoal.userID).to.equal(fitGoal.userID);
-    //         expect(resFitGoal.createDate).to.equal(fitGoal.createDate);
-    //         expect(resFitGoal.title).to.equal(fitGoal.title);
-    //         expect(resFitGoal.description).to.equal(fitGoal.description);
-    //         expect(resFitGoal.completed).to.equal(fitGoal.completed);
-    //     });
-    // });
+
+
+    it('should delete fit goal with requested ID', function(){
+    	return chai.request(app)
+    	.delete(`/goal/${fitGoalID}/${token}`)
+    		.then((res) => {
+    			expect(res).to.have.status(200);
+    		})
+    		.catch((error) => {
+    			console.log(error);
+    		});
+	});	 
 });
+
