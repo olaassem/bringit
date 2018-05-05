@@ -70,7 +70,7 @@ loginExistingUser();
 //   C L I C K   O N   T A B   F U N C T I O N A L I T Y   //
 $('.signup-tab').css('background', '#f9fbfd');
 $('.login-form').hide();
-$('.login-tab').css('background', '#E1E1E1');
+$('.login-tab').css('background', '#A9A9A9');
 
 
 
@@ -78,7 +78,7 @@ $('.login-tab').click(event => {
     event.preventDefault();
     $('.register-form').hide();
     $('.login-form').show();
-    $('.signup-tab').css('background', '#E1E1E1');
+    $('.signup-tab').css('background', '#A9A9A9');
     $('.login-tab').css('background', '#f9fbfd');
 });
 
@@ -87,7 +87,7 @@ $('.signup-tab').click(event => {
     event.preventDefault();
     $('.register-form').show();
     $('.login-form').hide();
-    $('.login-tab').css('background', '#E1E1E1');
+    $('.login-tab').css('background', '#A9A9A9');
     $('.signup-tab').css('background', '#f9fbfd');
 });
 
@@ -115,6 +115,8 @@ function closeModal() {
     $('[data-popup-close]').on('click', function(event) {
         event.preventDefault();
         let targeted_popup_class = $(this).attr('data-popup-close');
+        $(this).closest('form').find("input[type=text], input[type=password]").val("");
+        $(this).closest('.popup-inner').find("input[type=text], input[type=password]").val("");
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
     });
 }

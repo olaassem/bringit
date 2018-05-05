@@ -304,7 +304,7 @@ header {
 }
 
 
-
+#cancel-dayplan-progress-button:hover,
 .next:hover,
 .put-exercise-btn:hover,
 #add-fitgoal-button:hover,
@@ -316,9 +316,11 @@ header {
 .cancel-exercise-btn:hover {
     transform: translateY(-3px);
     outline: none;
+    background-color: #E71353;
 }
 
 
+#cancel-dayplan-progress-button:active,
 .next:active,
 .put-exercise-btn:active,
 #add-fitgoal-button:active,
@@ -331,15 +333,19 @@ header {
     transform: translateY(4px);
     transition: 0.1s ease;
     outline: none;
+    background-color: #E71353;
+
 }
 
 
-
+#cancel-dayplan-progress-button,
 .next {
+    width: 120px;
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 10px 25px;
     cursor: pointer;
     user-select: none;
@@ -349,7 +355,9 @@ header {
     color: white;
     border-radius: 5px;
     background: rgba(88, 88, 88, 1);
-    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -400,7 +408,8 @@ header {
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 20px;
-    background-color: none;
+    background-color: #0c0c0c;
+    border-radius: 5px;
     -webkit-transition: background-color 1s ease-out;
     -moz-transition: background-color 1s ease-out;
     -o-transition: background-color 1s ease-out;
@@ -441,11 +450,14 @@ header {
 
 /*--Fit Plan Modal--*/
 
+.fitplan-legend{
+    font-size: 20px;
+    font-family: 'Anton', sans-serif;
+    text-transform:  uppercase;
+    letter-spacing: 2px;
+}
+
 .fitplan-modal-btns {}
-
-
-
-
 
 
 
@@ -476,6 +488,17 @@ header {
 .category-section {
     margin-right: auto;
     margin-left: auto;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding:10px;
+
+}
+
+.category-hdr{
+    margin-bottom: 40px;
+}
+
+.category-icons{
 }
 
 .step {
@@ -587,10 +610,6 @@ header {
     vertical-align: middle;
     width: 100%;
     height: 150px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
     margin-bottom: 20px;
     background-color: black;
     -webkit-transition: background-color 1s ease-out;
@@ -672,10 +691,6 @@ input[type="radio"] {
     background: none;
 }
 
-.dayplan-category-get {
-    margin-top: 25px;
-}
-
 
 
 
@@ -720,32 +735,6 @@ input[type="radio"] {
     transform: all 0.5s ease;
     margin-bottom: 20px;
 }
-
-
-
-
-
-
-
-
-
-/*#activity-name,
-#activity-time,
-#activity-duration,
-#activity-location,
-#activity-inspiration,
-#cardio-duration,
-#cardio-distance{
-    width: 100%;
-}*/
-
-.dayplan-activity-get {
-    margin-top: 25px;
-}
-
-
-
-
 
 
 
@@ -1082,20 +1071,20 @@ footer {
 /* Close Button */
 
 .popup-close {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     padding-top: 4px;
     display: inline-block;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 40px;
+    right: 40px;
     transition: ease 0.25s all;
     -webkit-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
     border-radius: 1000px;
     background: grey;
     font-family: Arial, Sans-Serif;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     line-height: 100%;
     color: white;

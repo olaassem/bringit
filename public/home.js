@@ -324,6 +324,30 @@ function displayEditedFitGoal(fitgoal) {
 /***   D A Y   P L A N   F O R M   G LO B A L   V A R I A B L E   ***/
 let dayplanFormObject = {};
 
+
+//Clear dayplan form and restart on cancel
+function clearDayplanForm(){
+    $('.popup-post-dayplan').on('click', '.popup-close', (event) => {
+        event.preventDefault();
+        $(this).find(':input').each(function() {
+            switch (this.type) {
+                case 'password':
+                case 'select-multiple':
+                case 'select-one':
+                case 'text':
+                case 'textarea':
+                    $(this).val('');
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    this.checked = false;
+            }
+         });
+    });    
+}
+clearDayplanForm();
+
+
 /***   C A T E G O R I E S   ***/
 
 //Get all categories
@@ -358,7 +382,7 @@ function revealNewCategoryForm() {
     $('.popdown-post-category').on('click', event => {
         event.preventDefault();
         $('.new-category-form').removeClass('hidden');
-    })
+    });
 }
 revealNewCategoryForm();
 
@@ -373,22 +397,29 @@ function postNewCategory() {
             'userID': localStorage.getItem('userID'),
             'token': localStorage.getItem('token')
         }
-        $.ajax({
-                type: "POST",
-                contentType: 'application/json',
-                url: '/category/new/' + localStorage.getItem('token'),
-                data: JSON.stringify(body),
-            })
-            .done(function(data) {
-                console.log(data);
-                getAllCategories(data);
-                $('#category-name').val(''),
-                    $('#category-img').val(''),
-                    $('.new-category-form').addClass('hidden');
-            })
-            .fail(function(error) {
-                console.log('Posting new category failed!')
-            })
+
+        if( $('.new-category-form input').val().length === 0 ) {
+            $('.post-category-btn').attr('disabled', true);
+            
+        } else {
+
+            $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: '/category/new/' + localStorage.getItem('token'),
+                    data: JSON.stringify(body),
+                })
+                .done(function(data) {
+                    console.log(data);
+                    getAllCategories(data);
+                    $('#category-name').val(''),
+                        $('#category-img').val(''),
+                        $('.new-category-form').addClass('hidden');
+                })
+                .fail(function(error) {
+                    console.log('Posting new category failed!')
+                })
+        }        
     })
 }
 postNewCategory();
@@ -397,6 +428,7 @@ postNewCategory();
 function cancelNewCategory() {
     $('.new-category-form').on('click', '.cancel-category-btn', event => {
         event.preventDefault();
+        $('.new-category-form').find("input[type=text]").val("");
         $('.new-category-form').addClass('hidden');
     });
 }
@@ -423,6 +455,15 @@ function deleteCategory() {
 deleteCategory();
 
 
+//Show next button when a category is selected
+function showDayplanCategoryGet(){
+    let checked = $('input[name="toggle"]:checked');
+    if(!checked){
+        $('.dayplan-category-get').attr('disabled', true);
+    }
+}
+
+
 //Get selected/checked category
 function getSelectedCategory() {
     $('.dayplan-category-get').on('click', event => {
@@ -430,6 +471,8 @@ function getSelectedCategory() {
         let ID = $('input[name="toggle"]:checked').val();
         dayplanFormObject.categoryID = ID;
         console.log(dayplanFormObject);
+        $('.category-section').addClass('hidden');
+        $('.activity-container').removeClass('hidden');
     })
 }
 getSelectedCategory();
@@ -459,23 +502,18 @@ function postNewActivity() {
         console.log(dayplanFormObject);
         createDayPlan(dayplanFormObject);
         hideAddDayPlanBtn();
-        //HIDE DAYPLAN ADD BUTTON
-        //SHOW CATEGORY IMG IN DAY CONTAINER
     })
 }
 postNewActivity();
 
 
-//Hide add dayplan button when plan is set for day.
-function hideAddDayPlanBtn() {
-
+function hideDayPlanActivitySection(){
+    $('.activity-container').on('click', '.dayplan-activity-get', event =>{
+        event.preventDefault();
+        $('.activity-container').addClass('hidden');
+        $('.exercise-container').removeClass('hidden');
+    });
 }
-
-
-function showCategoryImgInDayCntnr() {
-
-}
-
 
 
 /***   E X E R C I S E S   ***/
@@ -1201,7 +1239,7 @@ function putEditedDayPlan(ID) {
 
 
 /***   M O D A L   F U N C T I O N A L I T Y   ***/
-
+//Open modal
 function openModal() {
     $('[data-popup-open]').on('click', function(event) {
         event.preventDefault();
@@ -1214,24 +1252,26 @@ openModal();
 
 
 
+//Close modal and clear inputs on pop-up-close click
 function closeModal() {
     $('[data-popup-close]').on('click', function(event) {
         event.preventDefault();
         let targeted_popup_class = $(this).attr('data-popup-close');
+        $(this).closest('form').find(':input').each(function() {
+            switch (this.type) {
+                case 'password':
+                case 'select-multiple':
+                case 'select-one':
+                case 'text':
+                case 'textarea':
+                    $(this).val('');
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    this.checked = false;
+            }
+         });
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
     });
 }
 closeModal();
-
-
-
-function closeModalOnClickOutsideModal() {
-    //Close Modal on click outside of modal
-    $(".popup").click(function() {
-        $('.popup').fadeOut(350).removeClass("active");
-    });
-    $('.popup-inner').click(function(event) {
-        event.stopPropagation();
-    });
-}
-closeModalOnClickOutsideModal();
