@@ -154,6 +154,24 @@ function postNewFitGoal() {
 postNewFitGoal();
 
 
+
+//close post fitgoalform modal
+function closePostFitGoalFormModal() {
+    $('[data-popup-close="popup-post-fitgoal"]').on('click', (event) => {
+        event.preventDefault();
+        $('.post-fitgoal-form input').each(function(){
+                ($(this).val("")); 
+            });
+        if (!$('.post-fitgoal-form-alert').hasClass('hidden')) {
+            $('.post-fitgoal-form-alert').addClass('hidden');
+        }
+        $('[data-popup="popup-post-fitgoal"]').fadeOut(350);
+    });
+}
+closePostFitGoalFormModal();
+
+
+
 function getCurrentFitGoals() {
     let url = '/goal/all/' + localStorage.getItem('token');
     $.get(url, (allGoals) => {
@@ -318,9 +336,8 @@ function displayEditedFitGoal(fitgoal) {
     $('#fitgoal-description').val('');
     $('.current-fitgoal').html(`
         <p class="current-fitgoal-date">${formatedDate}</p>
-        <h3 class="current-fitgoal-title">${fitgoal.data.title}</h3>
-        <p class="current-fitgoal-description">${fitgoal.data.description}</p>
-        <button class="completed-fitgoal-button" value="${fitgoal.data._id}">Completed!</button>
+        <p class="current-fitgoal-title">${fitgoal.data.title}<span class="current-fitgoal-description">&nbsp;&nbsp;&nbsp;&nbsp;${fitgoal.data.description}</span></p>
+        <button class="completed-fitgoal-button" value="${fitgoal.data._id}"><img class="complete" src="https://i.imgur.com/cokaK0E.png" alt="check icon"/></button>
         <button class="edit-fitgoal-button" value="${fitgoal.data._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png" alt="edit icon"/></button>
         <button class="delete-fitgoal-button" value="${fitgoal.data._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
     `)
