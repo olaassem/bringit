@@ -1,13 +1,4 @@
-//motifit quote
-//fitgoals
-//fitweek
-//categories
-//exercises
-//modal functionality
-
-
 //token --local storage
-
 //will be executed anytime we refresh
 function initApp() {
     let userName = localStorage.getItem('name');
@@ -326,7 +317,7 @@ let dayplanFormObject = {};
 
 
 //Clear dayplan form and restart on cancel
-function clearDayplanForm(){
+function clearDayplanForm() {
     $('.popup-post-dayplan').on('click', '.popup-close', (event) => {
         event.preventDefault();
         $(this).find(':input').each(function() {
@@ -342,8 +333,8 @@ function clearDayplanForm(){
                 case 'radio':
                     this.checked = false;
             }
-         });
-    });    
+        });
+    });
 }
 clearDayplanForm();
 
@@ -387,48 +378,91 @@ function revealNewCategoryForm() {
 revealNewCategoryForm();
 
 
+
+//make sure function is working
+//check required input in new category form
+// function checkNewCategoryFormInput() {
+//     $('.new-category-form input').keyup(() => {
+
+//         let empty = false;
+//         $('.new-category-form input').each(function() {
+//             if ($(this).val().length == 0) {
+//                 empty = true;
+//             }
+//         });
+
+//         if (empty) {
+//             $('.post-category-btn').attr('disabled', 'disabled');
+//             $('.new-category-form-alert').removeClass('hidden');
+//             alert('dis empty');
+//             return false;
+//         } else {
+//             $('.post-category-btn').removeAttr('disabled');
+//             return true;
+//         }
+//     });
+// }
+
+
+
+
+
+
+
 //Post a new category
 function postNewCategory() {
     $('.new-category-form').on('click', '.post-category-btn', event => {
         event.preventDefault();
-        let body = {
-            'name': $('#category-name').val(),
-            'img': $('#category-img').val(),
-            'userID': localStorage.getItem('userID'),
-            'token': localStorage.getItem('token')
-        }
+        console.log('clicked');
+            let empty = false;
+            $('.new-category-form input').each(function() {
+                if ($(this).val() == "") {
+                    empty = true;
+                }
+            });    
+            if(empty){ 
+                $(this).prop('disabled','disabled');
+                $('.new-category-form-alert').removeClass('hidden');
+            } else {
+                $(this).removeProp('disabled');
+                $('.new-category-form-alert').addClass('hidden');
 
-        if( $('.new-category-form input').val().length === 0 ) {
-            $('.post-category-btn').attr('disabled', true);
-            
-        } else {
-
-            $.ajax({
-                    type: "POST",
-                    contentType: 'application/json',
-                    url: '/category/new/' + localStorage.getItem('token'),
-                    data: JSON.stringify(body),
-                })
-                .done(function(data) {
-                    console.log(data);
-                    getAllCategories(data);
-                    $('#category-name').val(''),
-                        $('#category-img').val(''),
-                        $('.new-category-form').addClass('hidden');
-                })
-                .fail(function(error) {
-                    console.log('Posting new category failed!')
-                })
+                let body = {
+                    'name': $('#category-name').val(),
+                    'img': $('#category-img').val(),
+                    'userID': localStorage.getItem('userID'),
+                    'token': localStorage.getItem('token')
+                }
+                $.ajax({
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: '/category/new/' + localStorage.getItem('token'),
+                        data: JSON.stringify(body),
+                    })
+                    .done(function(data) {
+                        console.log(data);
+                        getAllCategories(data);
+                        $('#category-name').val(''),
+                            $('#category-img').val(''),
+                            $('.new-category-form').addClass('hidden');
+                    })
+                    .fail(function(error) {
+                        console.log('Posting new category failed!')
+                    })
         }        
     })
 }
 postNewCategory();
 
 
+
+
 function cancelNewCategory() {
     $('.new-category-form').on('click', '.cancel-category-btn', event => {
         event.preventDefault();
+        $('.new-category-form-alert').addClass('hidden');
         $('.new-category-form').find("input[type=text]").val("");
+        // if
         $('.new-category-form').addClass('hidden');
     });
 }
@@ -456,9 +490,9 @@ deleteCategory();
 
 
 //Show next button when a category is selected
-function showDayplanCategoryGet(){
+function showDayplanCategoryGet() {
     let checked = $('input[name="toggle"]:checked');
-    if(!checked){
+    if (!checked) {
         $('.dayplan-category-get').attr('disabled', true);
     }
 }
@@ -507,8 +541,10 @@ function postNewActivity() {
 postNewActivity();
 
 
-function hideDayPlanActivitySection(){
-    $('.activity-container').on('click', '.dayplan-activity-get', event =>{
+
+//console.log
+function hideDayPlanActivitySection() {
+    $('.activity-container').on('click', '.dayplan-activity-get', event => {
         event.preventDefault();
         $('.activity-container').addClass('hidden');
         $('.exercise-container').removeClass('hidden');
@@ -770,22 +806,22 @@ function getUserWeek() {
 
 function showCategoryImgInDayCntnr(week) {
     let days = $('.day-container');
-    
+
     let fitweek = week.data;
 
-    for(let i = 0 ; i < fitweek.length; i++){
-       let daycontainer = $(days[fitweek[i].day]);
-       console.log(daycontainer);
+    for (let i = 0; i < fitweek.length; i++) {
+        let daycontainer = $(days[fitweek[i].day]);
+        console.log(daycontainer);
 
-    let containerImg = daycontainer.children('.day-category-img');
-    console.log(containerImg);
-    containerImg.html(`
+        let containerImg = daycontainer.children('.day-category-img');
+        console.log(containerImg);
+        containerImg.html(`
         <img class="day-container-img" src=${fitweek[i].categoryID.img} alt="category icon"/>
         <p class="day-container-cat-name">${fitweek[i].categoryID.name}</p>
     `)
 
-    let addFitPlan = daycontainer.children('.add-day-plan-btn');
-    addFitPlan.hide();
+        let addFitPlan = daycontainer.children('.add-day-plan-btn');
+        addFitPlan.hide();
 
     }
 }
@@ -1270,7 +1306,7 @@ function closeModal() {
                 case 'radio':
                     this.checked = false;
             }
-         });
+        });
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
     });
 }
