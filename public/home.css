@@ -46,7 +46,12 @@ button:focus {
 
 
 
-
+.alert{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    color: #E71353;
+}
 
 
 /*--End of Universal Styling--*/
@@ -244,7 +249,7 @@ header {
     height: 40px;
     width: 100%;
     font-size: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     transform: all 0.5s ease;
 }
 
@@ -1028,6 +1033,15 @@ footer {
 
 
 /*--End of Button Styling--*/
+
+
+
+
+
+
+
+
+
 
 
 /*--Modal Styling--*/

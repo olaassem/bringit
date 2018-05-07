@@ -111,28 +111,44 @@ function displayCompletedFitGoals(allGoals) {
 function postNewFitGoal() {
     $('.post-fitgoal-form').on('click', '#add-fitgoal-button', event => {
         event.preventDefault();
-        let body = {
-            'title': $('#fitgoal-title').val(),
-            'userID': localStorage.getItem('userID'),
-            'createDate': Date.now(),
-            'description': $('#fitgoal-description').val(),
-            'completed': false,
-            'token': localStorage.getItem('token')
-        }
-        $.ajax({
-                type: "POST",
-                contentType: 'application/json',
-                url: '/goal/new',
-                data: JSON.stringify(body)
-            })
-            .done(function(fitgoal) {
-                console.log(fitgoal);
-                closeModal();
-                getCurrentFitGoals();
-            })
-            .fail(function(fitgoal) {
-                console.log('Post new fit goal failed!');
-            })
+
+        let empty = false;
+        $('.post-fitgoal-form input').each(function(){
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });    
+        if(empty){ 
+            $(this).prop('disabled','disabled');
+            $('.post-fitgoal-form-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            $('.post-fitgoal-form-alert').addClass('hidden');
+
+            let body = {
+                'title': $('#fitgoal-title').val(),
+                'description': $('#fitgoal-description').val(),
+                'userID': localStorage.getItem('userID'),
+                'createDate': Date.now(),
+                'completed': false,
+                'token': localStorage.getItem('token')
+            }
+            console.log(body);
+            $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: '/goal/new/',
+                    data: JSON.stringify(body)
+                })
+                .done(function(fitgoal) {
+                    console.log(fitgoal);
+                    $('[data-popup="popup-post-fitgoal"]').fadeOut(350);
+                    getCurrentFitGoals();
+                })
+                .fail(function(fitgoal) {
+                    console.log('Post new fit goal failed!');
+                })
+        }        
     })
 }
 postNewFitGoal();
@@ -378,42 +394,10 @@ function revealNewCategoryForm() {
 revealNewCategoryForm();
 
 
-
-//make sure function is working
-//check required input in new category form
-// function checkNewCategoryFormInput() {
-//     $('.new-category-form input').keyup(() => {
-
-//         let empty = false;
-//         $('.new-category-form input').each(function() {
-//             if ($(this).val().length == 0) {
-//                 empty = true;
-//             }
-//         });
-
-//         if (empty) {
-//             $('.post-category-btn').attr('disabled', 'disabled');
-//             $('.new-category-form-alert').removeClass('hidden');
-//             alert('dis empty');
-//             return false;
-//         } else {
-//             $('.post-category-btn').removeAttr('disabled');
-//             return true;
-//         }
-//     });
-// }
-
-
-
-
-
-
-
 //Post a new category
 function postNewCategory() {
     $('.new-category-form').on('click', '.post-category-btn', event => {
         event.preventDefault();
-        console.log('clicked');
             let empty = false;
             $('.new-category-form input').each(function() {
                 if ($(this).val() == "") {
@@ -460,10 +444,11 @@ postNewCategory();
 function cancelNewCategory() {
     $('.new-category-form').on('click', '.cancel-category-btn', event => {
         event.preventDefault();
-        $('.new-category-form-alert').addClass('hidden');
-        $('.new-category-form').find("input[type=text]").val("");
-        // if
         $('.new-category-form').addClass('hidden');
+        $('.new-category-form').find("input[type=text]").val("");
+        if (!$('.new-category-form-alert').hasClass('hidden')) {
+            $('.new-category-form-alert').addClass('hidden');
+        }     
     });
 }
 cancelNewCategory();
@@ -1289,25 +1274,25 @@ openModal();
 
 
 //Close modal and clear inputs on pop-up-close click
-function closeModal() {
-    $('[data-popup-close]').on('click', function(event) {
-        event.preventDefault();
-        let targeted_popup_class = $(this).attr('data-popup-close');
-        $(this).closest('form').find(':input').each(function() {
-            switch (this.type) {
-                case 'password':
-                case 'select-multiple':
-                case 'select-one':
-                case 'text':
-                case 'textarea':
-                    $(this).val('');
-                    break;
-                case 'checkbox':
-                case 'radio':
-                    this.checked = false;
-            }
-        });
-        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-    });
-}
-closeModal();
+// function closeModal() {
+//     $('[data-popup-close]').on('click', function(event) {
+//         event.preventDefault();
+//         let targeted_popup_class = $(this).attr('data-popup-close');
+//         $(this).closest('form').find(':input').each(function() {
+//             switch (this.type) {
+//                 case 'password':
+//                 case 'select-multiple':
+//                 case 'select-one':
+//                 case 'text':
+//                 case 'textarea':
+//                     $(this).val('');
+//                     break;
+//                 case 'checkbox':
+//                 case 'radio':
+//                     this.checked = false;
+//             }
+//         });
+//         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+//     });
+// }
+// closeModal();
