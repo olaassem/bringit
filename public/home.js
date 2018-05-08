@@ -546,12 +546,15 @@ postNewActivity();
 
 //console.log
 function hideDayPlanActivitySection() {
-    $('.activity-container').on('click', '.dayplan-activity-get', event => {
+    $('.post-activity-form').on('click', '.dayplan-activity-get', event => {
         event.preventDefault();
+        console.log('dayplan-activity-get btn clicked');
         $('.activity-container').addClass('hidden');
         $('.exercise-container').removeClass('hidden');
     });
 }
+hideDayPlanActivitySection();
+
 
 
 /***   E X E R C I S E S   ***/
@@ -781,7 +784,7 @@ function createDayPlan() {
         })
         .done(function(dayplan) {
             console.log(dayplan);
-            getUserWeek();
+            getUserWeek(dayplan);
         })
         .fail(function(error) {
             console.log('Post new day plan failed!');
@@ -799,6 +802,7 @@ function getUserWeek() {
             console.log(week);
             showDayPlan(week);
             showCategoryImgInDayCntnr(week);
+            hideAddIconInDayCntnr(week);
         })
         .fail(function(error) {
             console.log('Post new day plan failed!');
@@ -823,8 +827,26 @@ function showCategoryImgInDayCntnr(week) {
     `)
 
         let addFitPlan = daycontainer.children('.add-day-plan-btn');
+        addFitPlan.addClass('hidden');
+
+    }
+}
+
+
+function hideAddIconInDayCntnr(week){
+    let days = $('.day-container');
+    let fitweek = week.data;
+
+    for (let i = 0; i < fitweek.length; i++) {
+        let daycontainer = $(days[fitweek[i].day]);
+        console.log(daycontainer);
+        let addFitPlan = daycontainer.children('.add-day-plan-btn');
         addFitPlan.hide();
 
+        if (daycontainer.length == 0){
+            let addFitPlan = daycontainer.children('.add-day-plan-btn');
+            addFitPlan.show();
+        }
     }
 }
 
@@ -918,21 +940,34 @@ function displayDayPlanExercisesResults(allExercises) {
 function deleteDayPlan() {
     $('.unique-dayplan-results').on('click', '.delete-dayplan-btn', event => {
         event.preventDefault();
+        
+        let that = event.currentTarget; //save scope in a variable
+
+
         let ID = $(event.currentTarget).attr('value');
         console.log(ID);
         $.ajax({
             url: `dayplan/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((dayplan) => {
-            $('.unique-dayplan-results').html('');
             getUserWeek();
-            showCategoryImgInDayCntnr();
+            console.log(`DELETED DAYPLAN`);
+            
+            $('.day-category-img').html('');
+            $('.day-container-cat-name').html('');
+            $('.unique-dayplan-results').html('');
+            // $(that).parents('.day-container').find('.add-icon').removeClass('hidden');
+
         }).fail((error) => {
             console.log('Deleting day plan failed!');
         })
     });
 }
 deleteDayPlan();
+
+
+
+
 
 
 //Get day plan details when edit button is clicked.
@@ -1052,7 +1087,7 @@ function openEditDayPlanModal() {
                                 <form role="form" class="edit-exercise-form" action="#" method="#"></form>
                             </div>
                             <div class="exercise-list-container">
-                                <table class="exercise-table" cellspacing="0" cellpadding="0">
+                                <table class="edit-exercise-table" cellspacing="0" cellpadding="0">
                                     <thread>
                                         <tr>
                                             <th class="th-exercise-select" width="15%">Select</th>
@@ -1115,10 +1150,10 @@ openEditDayPlanModal();
 
 //Get selected/checked edited exercises.
 function getSelectedEditedExercises() {
-    $('.edit-dayplan-form').on('click', 'edited-dayplan-exercise-get', event => {
+    $('.edit-dayplan-form').on('click', '.edited-dayplan-exercise-get', event => {
         event.preventDefault();
         let ID = $(":checkbox:checked").val();
-        let checked = $(":checkbox:checked");
+        let checked = $(".edit-exercise-table input:checked");
         console.log(checked);
 
         let exercisesIDs = [];
@@ -1130,6 +1165,15 @@ function getSelectedEditedExercises() {
         console.log(dayplanFormObject);
     })
 }
+
+
+// function checkboxChangedCheck(){
+//     $(':checkbox').change(function() {
+//         $(this).attr("checked", $(this).is(":checked"));
+//         debugger     
+//     });
+// }
+// checkboxChangedCheck();
 
 
 //Get all edit dayplan form categories
@@ -1162,8 +1206,6 @@ function renderEditDayPlanCategories(selectedCategoryId, category) {
     `
     }
 }
-//ADD CATEGORY EDIT BUTTON???
-//  <button class="edit-category-btn"><img class="edit-icon" src="https://i.pinimg.com/originals/2b/5d/21/2b5d21752e9b782f5b97e07b2317314f.png" alt="edit icon"/></button>
 
 //Display all edit dayplan form categories
 function displayAllEditDayPlanCategories(selectedCategoryId, allCategories) {
@@ -1291,25 +1333,25 @@ openModal();
 
 
 //Close modal and clear inputs on pop-up-close click
-// function closeModal() {
-//     $('[data-popup-close]').on('click', function(event) {
-//         event.preventDefault();
-//         let targeted_popup_class = $(this).attr('data-popup-close');
-//         $(this).closest('form').find(':input').each(function() {
-//             switch (this.type) {
-//                 case 'password':
-//                 case 'select-multiple':
-//                 case 'select-one':
-//                 case 'text':
-//                 case 'textarea':
-//                     $(this).val('');
-//                     break;
-//                 case 'checkbox':
-//                 case 'radio':
-//                     this.checked = false;
-//             }
-//         });
-//         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-//     });
-// }
+function closeModal() {
+    $('[data-popup-close]').on('click', function(event) {
+        event.preventDefault();
+        let targeted_popup_class = $(this).attr('data-popup-close');
+        $(this).closest('form').find(':input').each(function() {
+            switch (this.type) {
+                case 'password':
+                case 'select-multiple':
+                case 'select-one':
+                case 'text':
+                case 'textarea':
+                    $(this).val('');
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    this.checked = false;
+            }
+        });
+        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+    });
+}
 // closeModal();
