@@ -99,12 +99,10 @@ function renderCompletedFitGoals(fitgoal) {
 }
 
 
-
 function displayCompletedFitGoals(allGoals) {
     let completedFitGoalOutput = allGoals.data.map(fitgoal => renderCompletedFitGoals(fitgoal)).join('');
     $('.goalhistory-list').html(completedFitGoalOutput);
 }
-
 
 
 //Post a new fit goal
@@ -276,6 +274,7 @@ function openEditFitGoalModal() {
                     <label for="fitgoal-description-edit">Description<span class="required">*</span></label>
                     </br>
                     <input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
+                    <div><p class="alert edit-fitgoal-form-alert hidden">Please add a fit goal title &amp; description.</p></div>
                     <button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
                     <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
                 </fieldset> 
@@ -292,30 +291,45 @@ openEditFitGoalModal();
 function putFitGoalEdits() {
     $('.edit-fitgoal-form').on('click', '#update-fitgoal-button', event => {
         event.preventDefault();
-        let ID = $(event.currentTarget).attr("value");
-        let body = {
-            '_id': `${ID}`,
-            'title': $('#fitgoal-title-edit').val(),
-            'createDate': Date.now(),
-            'description': $('#fitgoal-description-edit').val(),
-            'completed': false,
-            'userID': localStorage.getItem('userID'),
-            'token': localStorage.getItem('token')
-        }
-        $.ajax({
-                type: "PUT",
-                contentType: 'application/json',
-                url: `/goal/${ID}/` + localStorage.getItem('token'),
-                data: JSON.stringify(body)
-            })
-            .done(function(fitgoal) {
-                console.log(fitgoal);
-                $('.popup').fadeOut(350);
-                displayEditedFitGoal(fitgoal);
-            })
-            .fail(function(fitgoal) {
-                console.log('Updating new fit goal failed!');
-            })
+        
+        let empty = false;
+        $('.edit-fitgoal-form input').each(function(){
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });    
+        if(empty){ 
+            $(this).prop('disabled','disabled');
+            $('.edit-fitgoal-form-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            $('.edit-fitgoal-form-alert').addClass('hidden');
+
+            let ID = $(event.currentTarget).attr("value");
+            let body = {
+                '_id': `${ID}`,
+                'title': $('#fitgoal-title-edit').val(),
+                'createDate': Date.now(),
+                'description': $('#fitgoal-description-edit').val(),
+                'completed': false,
+                'userID': localStorage.getItem('userID'),
+                'token': localStorage.getItem('token')
+            }
+            $.ajax({
+                    type: "PUT",
+                    contentType: 'application/json',
+                    url: `/goal/${ID}/` + localStorage.getItem('token'),
+                    data: JSON.stringify(body)
+                })
+                .done(function(fitgoal) {
+                    console.log(fitgoal);
+                    $('.popup').fadeOut(350);
+                    displayEditedFitGoal(fitgoal);
+                })
+                .fail(function(fitgoal) {
+                    console.log('Updating new fit goal failed!');
+                })
+        }        
     })
 }
 putFitGoalEdits();
@@ -324,7 +338,7 @@ putFitGoalEdits();
 //Cancel fitgoal update.
 function cancelFitGoalUpdate() {
     $('.edit-fitgoal-form').on('click', '#cancel-fitgoal-button', event => {
-        $('.popup').fadeOut(350);
+        $('[data-popup="popup-edit-fitgoal"]').fadeOut(350);
     });
 }
 cancelFitGoalUpdate();
@@ -1332,26 +1346,26 @@ openModal();
 
 
 
-//Close modal and clear inputs on pop-up-close click
-function closeModal() {
-    $('[data-popup-close]').on('click', function(event) {
-        event.preventDefault();
-        let targeted_popup_class = $(this).attr('data-popup-close');
-        $(this).closest('form').find(':input').each(function() {
-            switch (this.type) {
-                case 'password':
-                case 'select-multiple':
-                case 'select-one':
-                case 'text':
-                case 'textarea':
-                    $(this).val('');
-                    break;
-                case 'checkbox':
-                case 'radio':
-                    this.checked = false;
-            }
-        });
-        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-    });
-}
-// closeModal();
+// //Close modal and clear inputs on pop-up-close click
+// function closeModal() {
+//     $('[data-popup-close]').on('click', function(event) {
+//         event.preventDefault();
+//         let targeted_popup_class = $(this).attr('data-popup-close');
+//         $(this).closest('form').find(':input').each(function() {
+//             switch (this.type) {
+//                 case 'password':
+//                 case 'select-multiple':
+//                 case 'select-one':
+//                 case 'text':
+//                 case 'textarea':
+//                     $(this).val('');
+//                     break;
+//                 case 'checkbox':
+//                 case 'radio':
+//                     this.checked = false;
+//             }
+//         });
+//         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+//     });
+// }
+// // closeModal();
