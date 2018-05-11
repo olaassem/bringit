@@ -104,6 +104,7 @@ function openModal() {
     $('[data-popup-open]').on('click', function(event) {
         event.preventDefault();
         let targeted_popup_class = $(this).attr('data-popup-open');
+        $('.landing-alert').html("");
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
     });
 }
@@ -121,3 +122,4 @@ function closeModal() {
     });
 }
 closeModal();
+

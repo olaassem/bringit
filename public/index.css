@@ -87,14 +87,14 @@ header{
     user-select: none;
     transition: 0.4s ease;
     color: white;
-    outline: none;
+    outline-color: #E71353
     border-radius: 50%;
     background-color: #E71353;
 }
 
 .signout:hover{
     transform: translateY(-2px);
-    outline: none;
+    outline-color: #E71353;
     background-color: #E71353;
     border: none;
 }
@@ -102,7 +102,7 @@ header{
 .signout:active{
     transform: translateY(4px);
     transition: 0.1s ease;
-    outline: none;
+    outline-color: #E71353;
     border: none;
 }
 
@@ -131,7 +131,6 @@ h2{
     border-radius: 50%;
     width: 130px;
     height: 130px;
-    outline: none;
     cursor: pointer;
     display: block;
     margin-right: auto;
@@ -140,6 +139,7 @@ h2{
     -moz-animation: colorchange 7s infinite; /* Firefox */
     -webkit-animation: colorchange 7s infinite; /* Safari and Chrome */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    outline-color: #E71353;
 }
 
 
@@ -163,16 +163,17 @@ h2{
 .start-btn:hover{
     transform: translateY(-6px);
     transition: 0.4s ease;
-    outline: none;
 }
 
 
 .start-btn:active{
     transform: translateY(4px);
     transition: 0.4s ease;
-    outline: none;
 }
 
+.start-btn:focus{
+    outline-color: #E71353;
+}
 
 .start{
     font-family: 'Anton', sans-serif;
@@ -246,9 +247,12 @@ h2{
 /*--Form Styling--*/
 .container {
     display: absolute;
-    margin-top: 9%;
+    margin-top: 5%;
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    border-radius: 10px;
+/*    border: black solid 2px;*/
 }
 
 .signup-tab,
@@ -279,30 +283,53 @@ legend{
     text-transform: uppercase;
     color: #111111;
     padding-top: 35px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.required{
+    font-weight: bold;
+/*    float: right;
+*/  padding-left: 5px;
+    color: #E71353;
+}
+
+label{
+    display: block;
+    margin: 1px 10px 4px 10px;
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
 }
 
 .input {
     font-size: 20px;
     width: 100%;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    box-shadow: 1px 1px 4px #c1bfbf;
+    -moz-box-shadow: 1px 1px 4px #c1bfbf;
+    -webkit-box-shadow: 1px 1px 4px #c1bfbf;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     padding: 15px;
-    outline: none;
+    outline-color: #D5FF44;
     margin-bottom: 20px;
     border:none;
 }
 
 
-.input:focus{
-    border: 1px solid #D5FF44;
+.landing-alert{
+    text-align: center;
+    padding: 10px;
+    color: #E71353;
 }
 
-.input:focus,
+.input:focus{
+    border: 1px solid #D5FF44;
+    outline-color: #D5FF44;
+
+}
+
+
 .create-account-btn:focus,
 .login-btn:focus {
     outline: 0;
@@ -310,6 +337,8 @@ legend{
 
 .create-account-btn,
 .login-btn {
+    font-family: 'Anton', sans-serif;
+    color: #111111;
     width: 100%;
     background: #D5FF44; 
     height: 60px;
@@ -318,12 +347,12 @@ legend{
     text-transform: uppercase;
     color: #111111;
     transition: 0.4s ease;
-    font-size: 19px;
+    font-size: 22px;
     letter-spacing: 1px;
     cursor: pointer;
     margin-bottom: 30px;
     text-shadow: 1px 1px rgba(192,192,192,0.3);
-    outline: none;
+    outline-color: #D5FF44;
     border-radius: 3px;
     border: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
@@ -334,7 +363,7 @@ legend{
 .create-account-btn:hover,
 .login-btn:hover {
     transform: translateY(-3px);
-    outline: none;
+    outline-color: #D5FF44;
 }
 
 
@@ -342,7 +371,7 @@ legend{
 .login-btn:active {
     transform: translateY(4px);
     transition: 0.1s ease;
-    outline: none;
+    outline-color: #D5FF44;
 }
 
 .demo-cred,
@@ -427,7 +456,7 @@ div.row{
     position: fixed;
     top: 0px;
     left: 0px;
-    background: rgba(225, 225, 225, .8);
+    background: rgba(225, 225, 225, .9);
 }
 
 
