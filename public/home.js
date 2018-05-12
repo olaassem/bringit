@@ -582,7 +582,7 @@ cancelDayPlanOne();
 
 // Post new activity.
 function postNewActivity() {
-    $('.post-dayplan-form').on('click', '#submit-dayplan-button', event => {
+    $('.fitplan-modal-btns').on('click', '#submit-dayplan-button', event => {
         event.preventDefault();
         let body = {
             'name': $('#activity-name').val(),
@@ -599,7 +599,20 @@ function postNewActivity() {
         dayplanFormObject.token = localStorage.getItem('token');
         console.log(dayplanFormObject);
         createDayPlan(dayplanFormObject);
+
         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
+
+        $('.category-container input').each(function(){
+            $(this).prop('checked', false); 
+        });
+        $('.post-activity-form').find('input:text').val('');
+        $('.exercise-list-container input').each(function(){
+            $(this).prop('checked', false);
+        });
+        $('.fitplan-modal-btns').addClass('hidden');
+        $('.exercise-container').addClass('hidden');
+        $('.activity-container').addClass('hidden');
+        $('.category-section').removeClass('hidden');
     })
 }
 postNewActivity();
@@ -609,6 +622,7 @@ postNewActivity();
 function hideDayPlanActivitySection() {
     $('.post-activity-form').on('click', '.dayplan-activity-get', event => {
         event.preventDefault();
+
         let empty = false;
         $('.post-activity-form .req').each(function() {
             if ($(this).val() == "") {
@@ -1171,13 +1185,13 @@ function openEditDayPlanModal() {
                                     <fieldset>
                                         <legend>Edit Activity Info</legend>
                                         <label for="activity-name">Name<span class="required">*</span></label>
-                                        <input id="activity-name" type="text" value="${dayplan.data.activityID.name}" />
+                                        <input id="activity-name" class="req-edit" type="text" value="${dayplan.data.activityID.name}" />
                                         </br>
                                         <label for="activity-time">Time<span class="required">*</span></label>
-                                        <input id="activity-time" type="text" value="${dayplan.data.activityID.time}" />
+                                        <input id="activity-time" class="req-edit" type="text" value="${dayplan.data.activityID.time}" />
                                         </br>
                                         <label for="activity-duration">Duration<span class="required">*</span></label>
-                                        <input id="activity-duration" type="text" value="${dayplan.data.activityID.duration}" />
+                                        <input id="activity-duration" class="req-edit" type="text" value="${dayplan.data.activityID.duration}" />
                                         </br>
                                         <label for="cardio-distance">Cardio Distance</label>
                                         <input id="cardio-distance" type="text" value="${dayplan.data.activityID.cardio.distance}" />
@@ -1187,6 +1201,9 @@ function openEditDayPlanModal() {
                                         </br>
                                         <label for="activity-inspiration">Inspiration</label>
                                         <input id="activity-inspiration" type="text" value="${dayplan.data.activityID.inspiration}" />
+                                        <div>
+                                            <p class="alert post-dayplan-activity-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add an activity title, time, &amp; duration.</p>
+                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
@@ -1298,13 +1315,63 @@ function openEditDayPlanModal() {
             putExerciseEdits(dayplan);
             cancelExerciseEdit(dayplan);
             getSelectedEditedExercises(dayplan);
-            hideDayPlanActivitySection(dayplan);
+            hideEditDayPlanActivitySection(dayplan);
+            cancelEditDayPlanOne(dayplan);
+            cancelEditDayPlanTwo(dayplan);
+            cancelEditDayPlanThree(dayplan);
+            cancelEditDayPlanFinal(dayplan);
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
         });
     });
 }
 openEditDayPlanModal();
+
+
+
+function cancelEditDayPlanOne(){
+
+}
+
+
+function cancelEditDayPlanTwo(){
+
+}
+
+
+function cancelEditDayPlanThree(){
+
+}
+
+
+function cancelEditDayPlanFinal(){
+
+}
+
+
+function hideEditDayPlanActivitySection() {
+    $('.post-activity-form').on('click', '.dayplan-activity-get', event => {
+        event.preventDefault();
+
+        let empty = false;
+        $('.post-activity-form .req-edit').each(function() {
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });
+        if (empty) {
+            $(this).prop('disabled', 'disabled');
+            $('.post-dayplan-activity-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            $('.post-dayplan-activity-alert').addClass('hidden');
+            $('.activity-container').addClass('hidden');
+            $('.exercise-container').removeClass('hidden');
+        }    
+    });
+}
+hideEditDayPlanActivitySection();
+
 
 
 //Get selected/checked edited exercises.
@@ -1486,29 +1553,3 @@ function openModal() {
     });
 }
 openModal();
-
-
-
-// //Close modal and clear inputs on pop-up-close click
-// function closeModal() {
-//     $('[data-popup-close]').on('click', function(event) {
-//         event.preventDefault();
-//         let targeted_popup_class = $(this).attr('data-popup-close');
-//         $(this).closest('form').find(':input').each(function() {
-//             switch (this.type) {
-//                 case 'password':
-//                 case 'select-multiple':
-//                 case 'select-one':
-//                 case 'text':
-//                 case 'textarea':
-//                     $(this).val('');
-//                     break;
-//                 case 'checkbox':
-//                 case 'radio':
-//                     this.checked = false;
-//             }
-//         });
-//         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
-//     });
-// }
-// // closeModal();

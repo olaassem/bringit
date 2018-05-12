@@ -185,7 +185,7 @@ h2{
 }
 
 .steps-container{
-    margin-top: 115px;
+    margin-top: 118px;
     margin-bottom: 200px;
     padding: 0px;
     padding-bottom: 10px;
@@ -293,8 +293,7 @@ legend{
 
 .required{
     font-weight: bold;
-/*    float: right;
-*/  padding-left: 5px;
+    padding-left: 5px;
     color: #E71353;
 }
 
@@ -377,6 +376,14 @@ label{
     transform: translateY(4px);
     transition: 0.1s ease;
     outline-color: #D5FF44;
+}
+
+.demo{
+    color: #E71353;
+}
+
+.demo-hdr{
+    font-weight: bold;
 }
 
 .demo-cred,
@@ -544,6 +551,7 @@ footer{
     width: 100%;
     font-family: 'Oxygen', sans-serif;
     align-content: center;
+    text-transform: uppercase;
 }
 
 .github-cont,
