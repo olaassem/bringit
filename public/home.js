@@ -58,6 +58,16 @@ setupMotiFitQuote();
 function showMotiFitQuote() {
 
     let currentQuote = localStorage.getItem('randomQuote');
+    console.log(currentQuote);
+
+    if(`${currentQuote}` == "undefined"){
+        $('.random-quote').addClass('hidden');
+    }else{
+        $('.motifit-instruction').addClass('hidden');
+        $('.random-quote').removeClass('hidden');
+        $('.random-quote').html(`${currentQuote}`);
+    }
+
 
     $('.random-quote').html(`${currentQuote}`);
 }

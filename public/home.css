@@ -84,9 +84,14 @@ header {
     margin-right: 10px;
 }
 
+.firstname{
+    text-transform: uppercase;
+}
 
-
-
+.greeting{
+    top: -4px;
+    position: relative;
+}
 
 
 /*--End of Header Styling--*/
