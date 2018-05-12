@@ -1,12 +1,4 @@
 /*--Universal Styling--*/
-
-
-/*
-font-family: 'Just Me Again Down Here', cursive;
-font-family: 'Gochi Hand', cursive;
-font-family: 'Gloria Hallelujah', cursive;
-*/
-
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -63,8 +55,8 @@ header {
 }
 
 .logo {
-    margin-top: 0px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     color: #D5FF44;
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
@@ -96,6 +88,24 @@ header {
 
 /*--End of Header Styling--*/
 
+.welcome{
+    margin-top: 80px;
+    margin-bottom: 70px;
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    color:rgba(255,255,255, 0.9);
+}
+
+.firstname-welcome{
+    text-transform: uppercase;
+    color: #D5FF44;
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 50px;
+}
+
 
 /*--Quote Styling Section--*/
 
@@ -126,6 +136,65 @@ header {
     margin-left: auto;
     margin-right: auto;
 }
+
+.motifit-instruction{
+    text-align: center;
+    font-style: italic;
+    color:rgba(255,255,255, 0.7);
+    font-size: 20px;
+}
+
+.nudge{
+    margin-bottom: 0px;
+}
+
+.fa-angle-double-down{
+    color:rgba(255,255,255, 0.7);
+    font-size: 27px;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+    z-index: 2;
+}
+
+/* Scroll down indicator (bouncing) */
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0); }
+  40% {
+    -webkit-transform: translateY(-27px); }
+  60% {
+    -webkit-transform: translateY(-15px); } }
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0); }
+  40% {
+    -moz-transform: translateY(-25px); }
+  60% {
+    -moz-transform: translateY(-15px); } }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0); }
+  40% {
+    -webkit-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -o-transform: translateY(-25px);
+    transform: translateY(-25px); }
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -o-transform: translateY(-15px);
+    transform: translateY(-15px); } }
+
+
+
+
+
 
 .motifit-button {
     margin-left: auto;
@@ -159,8 +228,17 @@ header {
 
 /*--Fit Goal Section Styling--*/
 
+.addfitgoal,
 .fitgoal-hdr {
-    margin: 0px 10px;
+    margin: 2px 10px;
+}
+
+.checkfitgoalhistory,
+.addfitgoal{
+    font-style: italic;
+    color:rgba(255,255,255, 0.7);
+    font-size: 19px;
+    margin-top: 10px;
 }
 
 .add-fitgoal-lgnd {
@@ -330,6 +408,16 @@ header {
 }
 
 
+.post-category-btn,
+.cancel-category-btn{
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 #cancel-dayplan-progress-button,
 .next {
     width: 120px;
@@ -485,7 +573,7 @@ header {
     margin-left: auto;
     margin-top: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding:10px;
+    width: 100%;
 }
 
 .post-dayplan-activity-alert,

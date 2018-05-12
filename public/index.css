@@ -109,9 +109,8 @@ header{
 /*--End of Header Styling--*/
 
 .intro{
-    width:90%;
+    margin-top: 110px;
 }
-
 
 h2{
     font-style: italic;
@@ -119,13 +118,13 @@ h2{
     font-size: 56px;
     color: #111111;
     font-family: 'Anton', sans-serif;
-    margin-top: 100px;
     margin-bottom: 20px;
     text-align: center;
 }
 
 
 .start-btn{
+    margin-top: 15px;
     background: white;
     opacity: .9;
     border-radius: 50%;
@@ -190,6 +189,12 @@ h2{
     margin-bottom: 200px;
     padding: 0px;
     padding-bottom: 10px;
+}
+
+.characters{
+    font-style: italic;
+    color: grey;
+    font-size: 17px;
 }
 
 .cont{
@@ -516,29 +521,34 @@ div.row{
 
 #box2{
     margin-top: 20px;
-    height: 8vh;
     color: black;
     opacity: .8;
     background-color: grey;
     text-align: center;
 }
 
+.footercontent{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.capstone{
+    font-size: 20px;
+    color:rgba(255,255,255, 0.9);
+    margin: 9px;
+
+
+}
 
 footer{
     width: 100%;
-    text-align: center;
     font-family: 'Oxygen', sans-serif;
+    align-content: center;
 }
 
-.author-date{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    float: left;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.github-cont,
+.linkedin-cont{
+    display: inline-block;
 
 }
 
@@ -555,13 +565,4 @@ footer{
 .linkedin-logo{
     background-color: black;
     border: white 5px solid;
-}
-
-
-.github-cont{
-    float: right;
-}
-
-.linkedin-cont{
-    float: left;
 }

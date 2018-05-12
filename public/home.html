@@ -43,6 +43,7 @@
                         <div class="popup" data-popup="popup-fitgoal-history">
                             <div class="popup-inner">
                                 <h2>Fit Goal History</h2>
+                                <p class="checkfitgoalhistory">Check out how far you've come!</p>
                                 <div class="goalhistory-list"></div>
                                 <a class="popup-close" data-popup-close="popup-fitgoal-history" href="#">x</a>
                             </div>
@@ -57,12 +58,16 @@
             <div class="col-12">
                 <section role="region" class="quote-section">
                     <div class="testing">
+                        <div class="welcome">Welcome, <span class="firstname-welcome"></span></div>
                         <div class="quote-container">
-                            <p class="motifit-instruction">Click here whenever you want a little fit inspiration nudge.</p>
                             <p class="random-quote"></p>
                         </div>
                         <div class="row">
                             <div class="col-12">
+                                <div class="motifit-instruction">
+                                    <p class="nudge">Click here whenever you need a fit inspiration nudge.</p>
+                                    <p class="fas fa-angle-double-down"></p>
+                                </div>
                                 <div class="motifit-btn-container">
                                     <button type="submit" class="motifit-button">#FITSPIRE ME</button>
                                 </div>
@@ -156,6 +161,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="fitgoal-hdr">Fit Goal<button type="submit" class="main-add-fitgoal-icon rmv-btn-brdr" data-popup-open="popup-post-fitgoal"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon" /></button></h2>
+                                <p class="addfitgoal">Set your measureable fit goals.</p>
                                 <div class="current-fitgoal hidden"></div>
                             </div>
                         </div>
@@ -206,7 +212,8 @@
                             <div class="popup" data-popup="popup-post-dayplan">
                                 <div class="popup-inner">
                                     <form role="form" class="post-dayplan-form" action="#" method="#">
-                                        <fieldset>
+
+                                        <!-- <fieldset> -->
                                             <legend class="fitplan-legend">Fit Plan</legend>
                                             <div class="row">
                                                 <div class="col-12">
@@ -230,8 +237,14 @@
                                                                                 <p class="alert new-category-form-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add a category name &amp; image url</p>
                                                                             </div>
                                                                             </br>
-                                                                            <button type="submit" class="post-category-btn">Add</button>
-                                                                            <button type="submit" class="cancel-category-btn">Cancel</button>
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <button type="submit" class="post-category-btn">Add</button>
+                                                                                </div>
+                                                                                <div class="col-6">    
+                                                                                    <button type="submit" class="cancel-category-btn">Cancel</button>
+                                                                                </div> 
+                                                                            </div>           
                                                                         </fieldset>
                                                                     </form>
                                                                 </div>
@@ -404,7 +417,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </fieldset>
+                                        <!-- </fieldset> -->
                                     </form>
                                 </div>
                             </div>
@@ -417,8 +430,6 @@
                 </div>
             </div>
     </main>
-
-
     <!-- jQuery Script -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- JavaScript Script -->

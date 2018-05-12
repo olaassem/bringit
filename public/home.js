@@ -4,6 +4,7 @@ function initApp() {
     let userName = localStorage.getItem('name');
     if (userName) {
         $('.greeting .firstname').html(userName);
+        $('.welcome .firstname-welcome').html(userName + "!");
         getCurrentFitGoals();
         getUserWeek();
         showMotiFitQuote();
@@ -61,10 +62,11 @@ function showMotiFitQuote() {
     console.log(currentQuote);
 
     if(`${currentQuote}` == "undefined"){
-        $('.random-quote').addClass('hidden');
+        $('.quote-container').addClass('hidden');
     }else{
         $('.motifit-instruction').addClass('hidden');
-        $('.random-quote').removeClass('hidden');
+        $('.welcome').addClass('hidden');
+        $('.quote-container').removeClass('hidden');
         $('.random-quote').html(`${currentQuote}`);
     }
 
