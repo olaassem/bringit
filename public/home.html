@@ -340,17 +340,20 @@
                                                                             <legend>Add A New Exercise</legend>
                                                                             </br>
                                                                             <label for="exercise-name">Name<span class="required">*</span></label>
-                                                                            <input id="exercise-name" type="text" placeholder="e.g. Burpees" />
+                                                                            <input id="exercise-name" class="req" type="text" placeholder="e.g. Burpees" />
                                                                             </br>
                                                                             <label for="exercise-weight">Weight<span class="required"></span></label>
                                                                             <input id="exercise-weight" type="text" placeholder="e.g. Body Weight" />
                                                                             </br>
                                                                             <label for="exercise-sets">Sets<span class="required">*</span></label>
-                                                                            <input id="exercise-sets" type="text" placeholder="e.g. 5" />
+                                                                            <input id="exercise-sets" class="req" type="text" placeholder="e.g. 5" />
                                                                             </br>
                                                                             <label for="exercise-reps">Reps<span class="required">*</span></label>
-                                                                            <input id="exercise-reps" type="text" placeholder="e.g. 12" />
+                                                                            <input id="exercise-reps" class="req" type="text" placeholder="e.g. 12" />
                                                                             </br>
+                                                                            <div>
+                                                                                <p class="alert post-new-exercise-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please enter an exercise name, sets, &amp; reps.</p>
+                                                                            </div>
                                                                             <div class="row">
                                                                                 <div class="col-6">
                                                                                     <button type="submit" class="post-exercise-btn">Add</button>
@@ -358,6 +361,8 @@
                                                                                 <div class="col-6">    
                                                                                     <button type="submit" class="cancel-exercise-btn">Cancel</button>
                                                                                 </div>
+                                                                            </div>
+
                                                                         </fieldset>
                                                                     </form>
                                                                 </div>

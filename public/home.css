@@ -352,6 +352,8 @@ header {
 }
 
 
+.edit-dayplan-cancel-post-category-btn,
+.edit-dayplan-post-category-btn,
 .put-exercise-btn,
 #update-fitgoal-button,
 .cancel-category-btn,
@@ -360,7 +362,9 @@ header {
 .cancel-exercise-btn,
 #add-fitgoal-button,
 #cancel-fitgoal-button {
-    margin-right: 15px;
+
+    margin-right: auto;
+    margin-left: auto;
     display: inline-block;
     bottom: 0;
     font-size: 1.2em;
@@ -372,10 +376,15 @@ header {
     color: white;
     font-size: 20px;
     border: none;
-    border-radius: 2px;
+    border-radius: 2px;;
+        display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
+.edit-dayplan-cancel-post-category-btn: hover,
+.edit-dayplan-post-category-btn: hover,
 #cancel-edit-dayplan-progress-button:hover,
 #cancel-dayplan-progress-button:hover,
 .next:hover,
@@ -392,6 +401,8 @@ header {
 }
 
 
+.edit-dayplan-cancel-post-category-btn: active,
+.edit-dayplan-post-category-btn:active,
 #cancel-edit-dayplan-progress-button:active,
 #cancel-dayplan-progress-button:active,
 .next:active,
@@ -410,6 +421,8 @@ header {
 }
 
 
+.edit-dayplan-cancel-post-category-btn,
+.edit-dayplan-post-category-btn,
 .post-category-btn,
 .cancel-category-btn{
     margin-right: auto;
@@ -539,6 +552,7 @@ header {
     letter-spacing: 2px;
 }
 
+.edit-fitplan-modal-btns,
 .fitplan-modal-btns {
     margin-top: 34%;
     height: 115px;
@@ -571,6 +585,7 @@ header {
 
 /*post form*/
 
+.edit-dayplan-category-section,
 .category-section {
     margin-right: auto;
     margin-left: auto;
@@ -588,8 +603,6 @@ header {
     margin-bottom: 40px;
 }
 
-.category-icons{
-}
 
 .step {
     float: right;
@@ -605,6 +618,7 @@ header {
     margin-top: 30px;
 }
 
+.edit-dayplan-new-category-form,
 .exercise-table,
 .exercise-container,
 .edit-exercise-form,
@@ -617,6 +631,7 @@ header {
 }
 
 
+.edit-dayplan-new-category-form legend,
 .edit-exercise-form legend,
 .edit-fitgoal-form legend,
 .post-fitgoal-form legend,
@@ -628,6 +643,8 @@ header {
     font-size: 22px;
 }
 
+
+.edit-dayplan-new-category-form label,
 .edit-exercise-form label,
 .edit-fitgoal-form label,
 .post-fitgoal-form label,
@@ -641,6 +658,7 @@ header {
 }
 
 
+.edit-dayplan-new-category-form label>span,
 .edit-exercise-form label>span,
 .edit-fitgoal-form label>span,
 .post-activity-form label>span,
@@ -654,6 +672,7 @@ header {
 }
 
 
+.edit-dayplan-new-category-form input,
 .edit-exercise-form input,
 .edit-fitgoal-form input,
 .post-fitgoal-form input,
@@ -694,12 +713,12 @@ header {
 
 /*end of category post form*/
 
-.category-icons {}
-
+.edit-dayplan-new-category-form,
 .new-category-form {
     margin-bottom: 40px;
 }
 
+.edit-dayplan-category-container,
 .category-container {
     position: relative;
     display: inline-block;
@@ -718,10 +737,7 @@ header {
 }
 
 
-.category-container p {
-    font-size: 15px;
-}
-
+.edit-dayplan-category-container label,
 .category-container label {
     font-size: 0px;
     margin: 0px;
@@ -733,6 +749,7 @@ input[type="radio"] {
     margin-left: auto;
 }
 
+.edit-dayplan-category-img,
 .category-img {
     border: black 1px solid;
     border-radius: 50%;
@@ -745,25 +762,30 @@ input[type="radio"] {
     margin-top: 10px;
 }
 
+
+.edit-dayplan-category-container input:hover+img,
 .category-container input:hover+img {
     cursor: pointer;
 }
 
+
+.edit-dayplan-category-container label img,
 .category-container label img {
     margin-left: auto;
     margin-right: auto;
 }
 
-
+.edit-dayplan-category-container label input,
 .category-container label input {
     display: none;
 }
 
-
+.edit-dayplan-category-container input img,
 .category-container input img {
     border-radius: 50%;
 }
 
+.edit-dayplan-category-container input:checked+img,
 .category-container input:checked+img {
     border: 5px solid #D5FF44;
     background-color: #D5FF44;
@@ -773,10 +795,11 @@ input[type="radio"] {
     overflow: hidden;
 }
 
-
+.edit-dayplan-category-container p,
 .category-container p {
     text-align: center;
     margin: 5px;
+    font-size: 15px;
 }
 
 
@@ -800,6 +823,7 @@ input[type="radio"] {
 
 /*--Activity Section Styling--*/
 
+.edit-dayplan-activity-container,
 .activity-container {
     margin-top: 50px;
 }

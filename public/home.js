@@ -1,5 +1,4 @@
-//token --local storage
-//will be executed anytime we refresh
+/***   I N I T I A L I S E    A P P    ***/
 function initApp() {
     let userName = localStorage.getItem('name');
     if (userName) {
@@ -9,18 +8,14 @@ function initApp() {
         getUserWeek();
         showMotiFitQuote();
     }
-    //anytime we check, and we don't have have the token it will go back to index pg
     if (!localStorage.getItem('token')) {
-        window.location.href = 'index.html'; //always an object
+        window.location.href = 'index.html';
     }
-    //token and ID exists
-    //We do the check to get user info
     else {
         console.log(localStorage.getItem('userID'));
     }
 }
 initApp();
-
 
 
 /***   S I G N  O U T    ***/
@@ -34,20 +29,12 @@ function signOut() {
 signOut();
 
 
-
 /***   M O T I F I T   Q U O T E    ***/
-
-//calls take the most time
-// do the random grab serverside
-//adds button listener
 function setupMotiFitQuote() {
     $('.motifit-button').on('click', event => {
         event.preventDefault();
-
         $.get('/quote/random/' + localStorage.getItem('token'), (randomQuote) => {
-
             localStorage.setItem('randomQuote', randomQuote.data);
-
             showMotiFitQuote();
         })
     })
@@ -55,12 +42,8 @@ function setupMotiFitQuote() {
 setupMotiFitQuote();
 
 
-// displays the given quote to the "random-quote" element
 function showMotiFitQuote() {
-
     let currentQuote = localStorage.getItem('randomQuote');
-    console.log(currentQuote);
-
     if(`${currentQuote}` == "undefined"){
         $('.quote-container').addClass('hidden');
     }else{
@@ -69,16 +52,9 @@ function showMotiFitQuote() {
         $('.quote-container').removeClass('hidden');
         $('.random-quote').html(`${currentQuote}`);
     }
-
-
     $('.random-quote').html(`${currentQuote}`);
 }
 showMotiFitQuote();
-
-
-
-
-
 
 
 /***   F I T   G O A L S   ***/
@@ -90,7 +66,6 @@ function getAllCompletedGoals() {
         $('[data-popup="popup-fitgoal-history"]').fadeIn(350);
         let url = '/goal/all/' + localStorage.getItem('token');
         $.get(url, (allGoals) => {
-            console.log(allGoals);
             displayCompletedFitGoals(allGoals);
         })
     });
@@ -151,7 +126,6 @@ function postNewFitGoal() {
                 'completed': false,
                 'token': localStorage.getItem('token')
             }
-            console.log(body);
             $.ajax({
                     type: "POST",
                     contentType: 'application/json',
@@ -159,7 +133,6 @@ function postNewFitGoal() {
                     data: JSON.stringify(body)
                 })
                 .done(function(fitgoal) {
-                    console.log(fitgoal);
                     $('[data-popup="popup-post-fitgoal"]').fadeOut(350);
                     getCurrentFitGoals();
                 })
@@ -170,7 +143,6 @@ function postNewFitGoal() {
     })
 }
 postNewFitGoal();
-
 
 
 //close post fitgoalform modal
@@ -189,11 +161,9 @@ function closePostFitGoalFormModal() {
 closePostFitGoalFormModal();
 
 
-
 function getCurrentFitGoals() {
     let url = '/goal/all/' + localStorage.getItem('token');
     $.get(url, (allGoals) => {
-        console.log(allGoals);
         displayCurrentFitGoals(allGoals);
     });
 }
@@ -230,7 +200,6 @@ function completedFitGoal() {
     $('.current-fitgoal').on('click', '.completed-fitgoal-button', event => {
         event.preventDefault();
         let ID = $(event.currentTarget).attr('value');
-        console.log(ID);
         let body = {
             '_id': `${ID}`,
             'completed': true,
@@ -247,7 +216,7 @@ function completedFitGoal() {
             getCurrentFitGoals();
             getAllCompletedGoals();
         }).fail((error) => {
-            console.log('Completeing fit goal failed!');
+            console.log('Checking fit goal as complete failed!');
         })
     });
 }
@@ -259,7 +228,6 @@ function deleteFitGoal() {
     $('.current-fitgoal').on('click', '.delete-fitgoal-button', event => {
         event.preventDefault();
         let ID = $(event.currentTarget).attr("value");
-        console.log(ID);
         $.ajax({
             url: `goal/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
@@ -283,7 +251,6 @@ function openEditFitGoalModal() {
             url: `goal/${ID}/` + localStorage.getItem('token'),
             type: 'GET'
         }).done(function(fitgoal) {
-            console.log(fitgoal);
             $('.edit-fitgoal-form').html(`
                 <fieldset>
                     <legend>Update Current Fit Goal</legend>
@@ -300,7 +267,7 @@ function openEditFitGoalModal() {
                 </fieldset> 
             `);
         }).fail(function(fitgoal) {
-            console.log('Updating new fit goal failed!');
+            console.log('Updating fitgoal failed!');
         });
     });
 }
@@ -342,12 +309,11 @@ function putFitGoalEdits() {
                     data: JSON.stringify(body)
                 })
                 .done(function(fitgoal) {
-                    console.log(fitgoal);
                     $('.popup').fadeOut(350);
                     displayEditedFitGoal(fitgoal);
                 })
                 .fail(function(fitgoal) {
-                    console.log('Updating new fit goal failed!');
+                    console.log('Updating fitgoal failed!');
                 })
         }
     })
@@ -355,7 +321,6 @@ function putFitGoalEdits() {
 putFitGoalEdits();
 
 
-//Cancel fitgoal update.
 function closeFitGoalUpdate() {
     $('[data-popup-close="popup-edit-fitgoal"]').on('click', (event) => {
         $('[data-popup="popup-edit-fitgoal"]').fadeOut(350);
@@ -372,8 +337,6 @@ function cancelFitGoalUpdate() {
 cancelFitGoalUpdate();
 
 
-
-
 function displayEditedFitGoal(fitgoal) {
     let formatedDate = moment(fitgoal.data.createDate).format('dddd, MMMM Do, YYYY');
     $('#fitgoal-title').val('');
@@ -388,9 +351,9 @@ function displayEditedFitGoal(fitgoal) {
 }
 
 
-
 /***   D A Y   P L A N   F O R M   G LO B A L   V A R I A B L E   ***/
 let dayplanFormObject = {};
+
 
 
 /***   C A T E G O R I E S   ***/
@@ -477,8 +440,6 @@ function postNewCategory() {
 postNewCategory();
 
 
-
-
 function cancelNewCategory() {
     $('.new-category-form').on('click', '.cancel-category-btn', event => {
         event.preventDefault();
@@ -519,8 +480,6 @@ function getSelectedCategory() {
         event.preventDefault();
         
         let checked = $('input[name="toggle"]:checked');
-        console.log(checked);
-        console.log(checked.length);
 
         if (checked.length == 0){
             $(this).prop('disabled', 'disabled');
@@ -536,7 +495,6 @@ function getSelectedCategory() {
             $('.activity-container').removeClass('hidden');
         }    
     })
-
 }
 getSelectedCategory();
 
@@ -548,8 +506,11 @@ function cancelDayPlanOne() {
         event.preventDefault();
         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
         $('.category-container input').each(function(){
-            $(this).prop('checked', false); 
-        });    
+            $(this).prop('checked', false);   
+        });
+        if (!$('.post-dayplan-category-alert').hasClass('hidden')) {
+            $('.post-dayplan-category-alert').addClass('hidden');
+        }    
     });
 }        
 cancelDayPlanOne();
@@ -626,6 +587,10 @@ function cancelDayPlanTwo() {
         event.preventDefault();
         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
 
+        if (!$('.post-dayplan-activity-alert').hasClass('hidden')){
+            $('.post-dayplan-activity-alert').addClass('hidden');
+        } 
+
         $('.category-container input').each(function(){
             $(this).prop('checked', false);
         }); 
@@ -694,29 +659,45 @@ showNewExerciseForm();
 function postNewExercise() {
     $('.post-exercise-form').on('click', '.post-exercise-btn', event => {
         event.preventDefault();
-        let body = {
-            'name': $('#exercise-name').val(),
-            'sets': $('#exercise-sets').val(),
-            'reps': $('#exercise-reps').val(),
-            'weight': $('#exercise-weight').val(),
-            'token': localStorage.getItem('token'),
-            'userID': localStorage.getItem('userID')
-        }
-        $.ajax({
-                type: "POST",
-                contentType: 'application/json',
-                url: '/exercise/new/' + localStorage.getItem('token'),
-                data: JSON.stringify(body)
-            })
-            .done(function(newExercise) {
-                console.log(newExercise);
-                clearExerciseValue();
-                $('.new-exercise-form').addClass('hidden');
-                getAllExercises();
-            })
-            .fail(function(error) {
-                console.log('Post new weights routine failed!');
-            })
+
+        let empty = false;
+        $('.post-exercise-form .req').each(function() {
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });
+        if (empty) {
+            $(this).prop('disabled', 'disabled');
+            $('.post-new-exercise-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            if (!$('.post-new-exercise-alert').hasClass('hidden')) {
+                $('.post-new-exercise-alert').addClass('hidden');
+            }
+            let body = {
+                'name': $('#exercise-name').val(),
+                'sets': $('#exercise-sets').val(),
+                'reps': $('#exercise-reps').val(),
+                'weight': $('#exercise-weight').val(),
+                'token': localStorage.getItem('token'),
+                'userID': localStorage.getItem('userID')
+            }
+            $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: '/exercise/new/' + localStorage.getItem('token'),
+                    data: JSON.stringify(body)
+                })
+                .done(function(newExercise) {
+                    console.log(newExercise);
+                    clearExerciseValue();
+                    $('.new-exercise-form').addClass('hidden');
+                    getAllExercises();
+                })
+                .fail(function(error) {
+                    console.log('Post new weights routine failed!');
+                })
+        }        
     })
 }
 postNewExercise();
@@ -727,6 +708,11 @@ function cancelNewExercise() {
         event.preventDefault();
         clearExerciseValue();
         $('.new-exercise-form').addClass('hidden');
+        $('.post-new-exercise-alert').removeClass('hidden');
+
+        if (!$('.post-new-exercise-alert').hasClass('hidden')) {
+            $('.post-new-exercise-alert').addClass('hidden');
+        }
     });
 }
 cancelNewExercise();
@@ -767,20 +753,27 @@ function showEditExerciseForm() {
                 <fieldset>
                     <legend>Update Exercise Routine</legend>
                     <label for="exercise-name-edit">Name<span class="required">*</span></label>
-                    <input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>  
+                    <input id="exercise-name-edit" class="req" type="text" value="${exercise.data.name}"/>  
                     </br>
                     <label for="exercise-weight-edit">Weight</label>
                     <input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
                     </br>       
-                    <label for="exercise-sets-edit">Sets</label>
-                    <input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>  
+                    <label for="exercise-sets-edit">Sets<span class="required">*</span></label>
+                    <input id="exercise-sets-edit" class="req" type="text" value="${exercise.data.sets}"/>  
                     </br>
-                    <label for="exercise-reps-edit">Reps</label>
-                    <input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
+                    <label for="exercise-reps-edit">Reps<span class="required">*</span></label>
+                    <input id="exercise-reps-edit" class="req" type="text" value="${exercise.data.reps}"/>
                     </br>
+                    <div>
+                        <p class="alert put-edit-exercise-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please enter an exercise name, sets, &amp; reps.</p>
+                    </div>
                      <div class="row">
-                        <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>   
-                        <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                        <div class="col-6">
+                            <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>
+                        </div>
+                        <div class="col-6">       
+                            <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                        </div>    
                     </div>
                 </fieldset> 
             `);
@@ -797,29 +790,45 @@ showEditExerciseForm();
 function putExerciseEdits() {
     $('.edit-exercise-form').on('click', '.put-exercise-btn', event => {
         event.preventDefault();
-        let ID = $(event.currentTarget).attr("value");
-        let body = {
-            '_id': `${ID}`,
-            'name': $('#exercise-name-edit').val(),
-            'sets': $('#exercise-sets-edit').val(),
-            'reps': $('#exercise-reps-edit').val(),
-            'weight': $('#exercise-weight-edit').val(),
-            'userID': localStorage.getItem('userID')
-        }
-        $.ajax({
-                type: "PUT",
-                contentType: 'application/json',
-                url: `exercise/${ID}/` + localStorage.getItem('token'),
-                data: JSON.stringify(body)
-            })
-            .done(function(exercise) {
-                console.log(exercise);
-                $('.popdown-edit-exercise').addClass('hidden');
-                getAllExercises();
-            })
-            .fail(function(error) {
-                console.log('Updating exercise failed!');
-            })
+        
+        let empty = false;
+        $('.edit-exercise-form .req').each(function() {
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });
+        if (empty) {
+            $(this).prop('disabled', 'disabled');
+            $('.put-edit-exercise-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            if (!$('.put-edit-exercise-alert').hasClass('hidden')) {
+                $('.put-edit-exercise-alert').addClass('hidden');
+            }
+            let ID = $(event.currentTarget).attr("value");
+            let body = {
+                '_id': `${ID}`,
+                'name': $('#exercise-name-edit').val(),
+                'sets': $('#exercise-sets-edit').val(),
+                'reps': $('#exercise-reps-edit').val(),
+                'weight': $('#exercise-weight-edit').val(),
+                'userID': localStorage.getItem('userID')
+            }
+            $.ajax({
+                    type: "PUT",
+                    contentType: 'application/json',
+                    url: `exercise/${ID}/` + localStorage.getItem('token'),
+                    data: JSON.stringify(body)
+                })
+                .done(function(exercise) {
+                    console.log(exercise);
+                    $('.popdown-edit-exercise').addClass('hidden');
+                    getAllExercises();
+                })
+                .fail(function(error) {
+                    console.log('Updating exercise failed!');
+                })
+        }       
     })
 }
 putExerciseEdits();
@@ -829,6 +838,9 @@ putExerciseEdits();
 function cancelExerciseEdit() {
     $('.edit-exercise-form').on('click', '.cancel-exercise-btn', event => {
         $('.popdown-edit-exercise').addClass('hidden');
+        if (!$('.put-edit-exercise-alert').hasClass('hidden')) {
+            $('.put-edit-exercise-alert').addClass('hidden');
+        }
     });
 }
 cancelExerciseEdit();
@@ -840,7 +852,6 @@ function getSelectedExercises() {
         event.preventDefault();
         let ID = $(":checkbox:checked").val();
         let checked = $(":checkbox:checked");
-        console.log(checked);
 
         let exercisesIDs = [];
         for (let i = 0; i < checked.length; i++) {
@@ -945,10 +956,8 @@ function showCategoryImgInDayCntnr(week) {
 
     for (let i = 0; i < fitweek.length; i++) {
         let daycontainer = $(days[fitweek[i].day]);
-        console.log(daycontainer);
 
         let containerImg = daycontainer.children('.day-category-img');
-        console.log(containerImg);
         containerImg.html(`
         <img class="day-container-img" src=${fitweek[i].categoryID.img} alt="category icon"/>
         <p class="day-container-cat-name">${fitweek[i].categoryID.name}</p>
@@ -967,7 +976,6 @@ function hideAddIconInDayCntnr(week) {
 
     for (let i = 0; i < fitweek.length; i++) {
         let daycontainer = $(days[fitweek[i].day]);
-        console.log(daycontainer);
         let addFitPlan = daycontainer.children('.add-day-plan-btn');
         addFitPlan.hide();
 
@@ -1111,12 +1119,12 @@ function openEditDayPlanModal() {
             $('.edit-dayplan-form').html(`
                 <fieldset>
                     <legend><span class="dayoftheweek"></span>Fit Plan</legend>
-                    <div class="category-section">
+                    <div class="edit-dayplan-category-section">
                         <p class="step"> Step 1/3 </p>
                         <h2>Category<button type="submit" class="btn popdown-post-category"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>                        <!--category section-->
                         <div class="row">
                             <div class="col-12">
-                                <div class="new-category-form hidden">
+                                <div class="edit-dayplan-new-category-form hidden">
                                     <form role="form" class="post-category-form" novalidate>
                                         <fieldset>
                                             <legend>Add New Category</legend>
@@ -1126,19 +1134,28 @@ function openEditDayPlanModal() {
                                             <label for="category-img">Image<span class="required">*</span></label>
                                             <input id="category-img" type="text" placeholder="URL" />
                                             </br>
-                                            <button type="submit" class="post-category-btn">Add</button>
-                                            <button type="submit" class="cancel-category-btn">Cancel</button>
+                                            <div>
+                                                <p class="alert edit-dayplan-new-category-form-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add a category name &amp; image url</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <button type="submit" class="edit-dayplan-post-category-btn">Add</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button type="submit" class="edit-dayplan-cancel-post-category-btn">Cancel</button>
+                                                </div>
+                                            </div>        
                                         </fieldset>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="category-icons"></div>
+                        <div class="edit-dayplan-category-icons"></div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit" class="dayplan-category-get next">Next</button>
+                                        <button type="submit" class="edit-dayplan-category-get next">Next</button>
                                     </div>
                                     <div class="col-6">
                                         <button type="submit" id="cancel-edit-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
@@ -1151,7 +1168,7 @@ function openEditDayPlanModal() {
                     <!--activity section-->
                     <div class="row">
                         <div class="col-12">
-                            <div class="activity-container hidden">
+                            <div class="edit-dayplan-activity-container hidden">
                                 <form role="form" class="post-activity-form" novalidate>
                                     <p class="step"> Step 2/3 </p>
                                     <h2>Activity</h2>
@@ -1181,7 +1198,7 @@ function openEditDayPlanModal() {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <button type="submit" class="dayplan-activity-get next">Next</button>
+                                                        <button type="submit" class="edit-dayplan-dayplan-activity-get next">Next</button>
                                                     </div>
                                                     <div class="col-6">
                                                         <button type="submit" id="cancel-edit-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
@@ -1265,7 +1282,7 @@ function openEditDayPlanModal() {
                         </div>
                     </div>    
                     <!--end of exercise section-->
-                    <div class="fitplan-modal-btns hidden">
+                    <div class="edit-fitplan-modal-btns hidden">
                         <div class="row">
                           <div class="col-6">
                                 <button type="submit" id="submit-edited-dayplan-button" data-popup-close="popup-post-dayplan" value="${dayplan.data._id}"><i class="fas fa-calendar-check"></i>&nbsp; Save Edits</button>
@@ -1279,11 +1296,18 @@ function openEditDayPlanModal() {
              `);
 
             getAllEditDayPlanCategories(dayplan);
-            revealNewCategoryForm(dayplan);
-            postNewCategory(dayplan);
-            cancelNewCategory(dayplan);
-            deleteCategory(dayplan);
-            getSelectedCategory(dayplan);
+            revealNewCategoryFormEditDayPlan(dayplan);
+            postNewCategoryEditDayPlan(dayplan);
+            cancelNewCategoryEditDayPlan(dayplan);
+            deleteCategoryEditDayPlan(dayplan);
+            getSelectedCategoryEditDayPlan(dayplan);
+            cancelEditDayPlanOne(dayplan);
+
+
+            hideEditDayPlanActivitySection(dayplan);
+            cancelEditDayPlanTwo(dayplan);
+
+
             getAllEditDayPlanExercises(dayplan);
             showNewExerciseForm(dayplan);
             showEditExerciseForm(dayplan);
@@ -1294,10 +1318,10 @@ function openEditDayPlanModal() {
             putExerciseEdits(dayplan);
             cancelExerciseEdit(dayplan);
             getSelectedEditedExercises(dayplan);
-            hideEditDayPlanActivitySection(dayplan);
-            cancelEditDayPlanOne(dayplan);
-            cancelEditDayPlanTwo(dayplan);
+
             cancelEditDayPlanThree(dayplan);
+
+
             cancelEditDayPlanFinal(dayplan);
         }).fail(function(error) {
             console.log('Retrieving day plan details failed!');
@@ -1308,504 +1332,165 @@ openEditDayPlanModal();
 
 
 
+//Get all edit dayplan form categories
+function getAllEditDayPlanCategories(dayplan) {
+    $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
+        console.log(allCategories);
+        console.log(dayplan.data.categoryID._id)
+        displayAllEditDayPlanCategories(dayplan.data.categoryID._id, allCategories);
+    });
+}
+getAllEditDayPlanCategories();
 
-// /***   C A T E G O R I E S   ***/
+//render all edit dayplan form categories and display checked category
+function renderEditDayPlanCategories(selectedCategoryId, category) {
+    if (selectedCategoryId === category._id) {
+        return `
+        <div class="col-3">
+            <div class="edit-dayplan-category-container">
+                <label for="${category.name}"><input checked type="radio" name="toggle-edit" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="edit-dayplan-category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
+            </div>
+        </div>
+    `
+    } else {
+        return `
+        <div class="col-3">
+            <div class="edit-dayplan-category-container">
+                <label for="${category.name}"><input type="radio" name="toggle-edit" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="edit-dayplan-category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
+                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
+            </div>
+        </div>
+    `
+    }
+}
 
-// //Get all categories
-// function getAllCategories() {
-//     $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
-//         console.log(allCategories);
-//         displayAllCategories(allCategories);
-//     });
-// }
-// getAllCategories();
-
-
-// function renderCategories(category) {
-//     return `
-//         <div class="col-3">
-//             <div class="category-container">
-//                 <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-//                 <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
-//             </div>
-//         </div>
-//     `
-// }
-
-
-// function displayAllCategories(allCategories) {
-//     let categoriesOutput = allCategories.data.map(category => renderCategories(category)).join('');
-//     $('.category-icons').html(categoriesOutput);
-// }
-
-
-// function revealNewCategoryForm() {
-//     $('.popdown-post-category').on('click', event => {
-//         event.preventDefault();
-//         $('.new-category-form').removeClass('hidden');
-//     });
-// }
-// revealNewCategoryForm();
-
-
-// //Post a new category
-// function postNewCategory() {
-//     $('.new-category-form').on('click', '.post-category-btn', event => {
-//         event.preventDefault();
-//         let empty = false;
-//         $('.new-category-form input').each(function() {
-//             if ($(this).val() == "") {
-//                 empty = true;
-//             }
-//         });
-//         if (empty) {
-//             $(this).prop('disabled', 'disabled');
-//             $('.new-category-form-alert').removeClass('hidden');
-//         } else {
-//             $(this).removeProp('disabled');
-//             $('.new-category-form-alert').addClass('hidden');
-
-//             let body = {
-//                 'name': $('#category-name').val(),
-//                 'img': $('#category-img').val(),
-//                 'userID': localStorage.getItem('userID'),
-//                 'token': localStorage.getItem('token')
-//             }
-//             $.ajax({
-//                     type: "POST",
-//                     contentType: 'application/json',
-//                     url: '/category/new/' + localStorage.getItem('token'),
-//                     data: JSON.stringify(body),
-//                 })
-//                 .done(function(data) {
-//                     console.log(data);
-//                     getAllCategories(data);
-//                     $('#category-name').val(''),
-//                         $('#category-img').val(''),
-//                         $('.new-category-form').addClass('hidden');
-//                 })
-//                 .fail(function(error) {
-//                     console.log('Posting new category failed!')
-//                 })
-//         }
-//     })
-// }
-// postNewCategory();
+//Display all edit dayplan form categories
+function displayAllEditDayPlanCategories(selectedCategoryId, allCategories) {
+    let categoriesOutput = allCategories.data.map(category => renderEditDayPlanCategories(selectedCategoryId, category)).join('');
+    $('.edit-dayplan-category-icons').html(categoriesOutput);
+}
 
 
-
-
-// function cancelNewCategory() {
-//     $('.new-category-form').on('click', '.cancel-category-btn', event => {
-//         event.preventDefault();
-//         $('.new-category-form').addClass('hidden');
-//         $('.new-category-form').find("input[type=text]").val("");
-//         if (!$('.new-category-form-alert').hasClass('hidden')) {
-//             $('.new-category-form-alert').addClass('hidden');
-//         }
-//     });
-// }
-// cancelNewCategory();
-
-
-// //Delete category.
-// function deleteCategory() {
-//     $('.category-icons').on('click', '.delete-category-btn', event => {
-//         event.preventDefault();
-//         let ID = $(event.currentTarget).attr("value");
-//         console.log(ID);
-//         $.ajax({
-//             url: `/category/${ID}/` + localStorage.getItem('token'),
-//             type: 'DELETE'
-//         }).done((category) => {
-//             console.log(category);
-//             getAllCategories();
-//         }).fail((error) => {
-//             console.log('Deleting category failed!');
-//         })
-//     });
-// }
-// deleteCategory();
-
-
-
-// //Get selected/checked category
-// function getSelectedCategory() {
-//     $('.dayplan-category-get').on('click', event => {
-//         event.preventDefault();
+//Get selected/checked category
+function getSelectedCategoryEditDayPlan() {
+    $('.edit-dayplan-category-get').on('click', event => {
+        event.preventDefault();
         
-//         let checked = $('input[name="toggle"]:checked');
-//         console.log(checked);
-//         console.log(checked.length);
-
-//         if (checked.length == 0){
-//             $(this).prop('disabled', 'disabled');
-//             $('.post-dayplan-category-alert').removeClass('hidden');
-//         } else {
-//             $(this).removeProp('disabled');
-//             $('.post-dayplan-category-alert').addClass('hidden');
-
-//             let ID = $('input[name="toggle"]:checked').val();
-//             dayplanFormObject.categoryID = ID;
-//             console.log(dayplanFormObject);
-//             $('.category-section').addClass('hidden');
-//             $('.activity-container').removeClass('hidden');
-//         }    
-//     })
-
-// }
-// getSelectedCategory();
-
-
-
-// //Cancel dayplan one (category-section)
-// function cancelDayPlanOne() {
-//     $('.category-section').on('click', '#cancel-dayplan-progress-button', event => {
-//         event.preventDefault();
-//         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
-//         $('.category-container input').each(function(){
-//             $(this).prop('checked', false); 
-//         });    
-//     });
-// }        
-// cancelDayPlanOne();
-
-
-// /***   A C T I V I T Y   ***/
-
-// // Post new activity.
-// function postNewActivity() {
-//     $('.fitplan-modal-btns').on('click', '#submit-dayplan-button', event => {
-//         event.preventDefault();
-//         let body = {
-//             'name': $('#activity-name').val(),
-//             'time': $('#activity-time').val(),
-//             'duration': $('#activity-duration').val(),
-//             'cardio': {
-//                 'distance': $('#cardio-distance').val()
-//             },
-//             'location': $('#activity-location').val(),
-//             'inspiration': $('#activity-inspiration').val()
-//         }
-//         dayplanFormObject.activity = body;
-//         dayplanFormObject.userID = localStorage.getItem('userID');
-//         dayplanFormObject.token = localStorage.getItem('token');
-//         console.log(dayplanFormObject);
-//         createDayPlan(dayplanFormObject);
-
-//         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
-
-//         $('.category-container input').each(function(){
-//             $(this).prop('checked', false); 
-//         });
-//         $('.post-activity-form').find('input:text').val('');
-//         $('.exercise-list-container input').each(function(){
-//             $(this).prop('checked', false);
-//         });
-//         $('.fitplan-modal-btns').addClass('hidden');
-//         $('.exercise-container').addClass('hidden');
-//         $('.activity-container').addClass('hidden');
-//         $('.category-section').removeClass('hidden');
-//     })
-// }
-// postNewActivity();
-
-
-
-// function hideDayPlanActivitySection() {
-//     $('.post-activity-form').on('click', '.dayplan-activity-get', event => {
-//         event.preventDefault();
-
-//         let empty = false;
-//         $('.post-activity-form .req').each(function() {
-//             if ($(this).val() == "") {
-//                 empty = true;
-//             }
-//         });
-//         if (empty) {
-//             $(this).prop('disabled', 'disabled');
-//             $('.post-dayplan-activity-alert').removeClass('hidden');
-//         } else {
-//             $(this).removeProp('disabled');
-//             $('.post-dayplan-activity-alert').addClass('hidden');
-//             $('.activity-container').addClass('hidden');
-//             $('.exercise-container').removeClass('hidden');
-//         }    
-//     });
-// }
-// hideDayPlanActivitySection();
-
-
-
-// function cancelDayPlanTwo() {
-//     $('.post-activity-form').on('click', '#cancel-dayplan-progress-button',event => {
-//         event.preventDefault();
-//         $('[data-popup="popup-post-dayplan"]').fadeOut(350);
-
-//         $('.category-container input').each(function(){
-//             $(this).prop('checked', false);
-//         }); 
-//         $('.post-activity-form').find('input:text').val('');
-
-//         $('.activity-container').addClass('hidden');
-//         $('.category-section').removeClass('hidden');
-        
-//     });
-// }        
-// cancelDayPlanTwo();
-
-
-
-// /***   E X E R C I S E S   ***/
-
-// function clearExerciseValue() {
-//     $('#exercise-name').val("");
-//     $('#exercise-sets').val("");
-//     $('#exercise-reps').val("");
-//     $('#exercise-weight').val("");
-// }
-
-
-// //Get all exercises.
-// function getAllExercises() {
-//     $.get('/exercise/all/' + localStorage.getItem('token'), (allExercises) => {
-//         console.log(allExercises);
-//         displayExercises(allExercises);
-//     });
-// }
-// getAllExercises();
-
-
-// function renderExercises(exercise) {
-//     return `
-//       <tr class="exercise-rows">
-//         <td><input type="checkbox" id="select-exercise" value="${exercise._id}"></td>
-//         <td class="td-exercise-name" width="25%">${exercise.name}</td>
-//         <td class="td-exercise-weight" width="25%">${exercise.weight}</td> 
-//         <td class="td-exercise-sets" width="25%">${exercise.sets}</td>
-//         <td class="td-exercise-reps" width="25%">${exercise.reps}</td>
-//         <td><button type="submit" class="edit-exercise-btn rmv-btn-brdr" value="${exercise._id}"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button></td>
-//         <td><button type="submit" class="delete-exercise-btn rmv-btn-brdr" value="${exercise._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png"/></button></td>
-//       </tr>
-//     `
-// }
-
-
-// function displayExercises(allExercises) {
-//     let exercisesOutput = allExercises.data.map(exercise => renderExercises(exercise)).join('');
-//     $('.exercise-list').html(exercisesOutput);
-// }
-
-
-// function showNewExerciseForm() {
-//     $('.popdown-post-exercise').on('click', event => {
-//         event.preventDefault();
-//         $('.new-exercise-form').removeClass('hidden');
-//     })
-// }
-// showNewExerciseForm();
-
-
-// //Post new exercise.
-// function postNewExercise() {
-//     $('.post-exercise-form').on('click', '.post-exercise-btn', event => {
-//         event.preventDefault();
-//         let body = {
-//             'name': $('#exercise-name').val(),
-//             'sets': $('#exercise-sets').val(),
-//             'reps': $('#exercise-reps').val(),
-//             'weight': $('#exercise-weight').val(),
-//             'token': localStorage.getItem('token'),
-//             'userID': localStorage.getItem('userID')
-//         }
-//         $.ajax({
-//                 type: "POST",
-//                 contentType: 'application/json',
-//                 url: '/exercise/new/' + localStorage.getItem('token'),
-//                 data: JSON.stringify(body)
-//             })
-//             .done(function(newExercise) {
-//                 console.log(newExercise);
-//                 clearExerciseValue();
-//                 $('.new-exercise-form').addClass('hidden');
-//                 getAllExercises();
-//             })
-//             .fail(function(error) {
-//                 console.log('Post new weights routine failed!');
-//             })
-//     })
-// }
-// postNewExercise();
-
-// //Cancel adding new exercise.
-// function cancelNewExercise() {
-//     $('.new-exercise-form').on('click', '.cancel-exercise-btn', event => {
-//         event.preventDefault();
-//         clearExerciseValue();
-//         $('.new-exercise-form').addClass('hidden');
-//     });
-// }
-// cancelNewExercise();
-
-
-// //Delete exercise table.
-// function deleteExerciseTable() {
-//     $('.exercise-list').on('click', '.delete-exercise-btn', event => {
-//         event.preventDefault();
-//         let ID = $(event.currentTarget).attr("value");
-//         console.log(ID);
-//         $.ajax({
-//             url: `/exercise/${ID}/` + localStorage.getItem('token'),
-//             type: 'DELETE'
-//         }).done((exercise) => {
-//             console.log(exercise);
-//             getAllExercises();
-//         }).fail((error) => {
-//             console.log('Deleting exercise routine table failed!');
-//         })
-//     });
-// }
-// deleteExerciseTable();
-
-
-// //Get exercise details when edit button is clicked.
-// function showEditExerciseForm() {
-//     $('.exercise-list').on('click', '.edit-exercise-btn', event => {
-//         event.preventDefault();
-//         $('.popdown-edit-exercise').removeClass('hidden');
-//         let ID = $(event.currentTarget).attr("value");
-//         $.ajax({
-//             url: `/exercise/${ID}/` + localStorage.getItem('token'),
-//             type: 'GET'
-//         }).done(function(exercise) {
-//             console.log(exercise);
-//             $('.edit-exercise-form').html(`
-//                 <fieldset>
-//                     <legend>Update Exercise Routine</legend>
-//                     <label for="exercise-name-edit">Name<span class="required">*</span></label>
-//                     <input id="exercise-name-edit" type="text" value="${exercise.data.name}"/>  
-//                     </br>
-//                     <label for="exercise-weight-edit">Weight</label>
-//                     <input id="exercise-weight-edit" type="text" value="${exercise.data.weight}"/>
-//                     </br>       
-//                     <label for="exercise-sets-edit">Sets</label>
-//                     <input id="exercise-sets-edit" type="text" value="${exercise.data.sets}"/>  
-//                     </br>
-//                     <label for="exercise-reps-edit">Reps</label>
-//                     <input id="exercise-reps-edit" type="text" value="${exercise.data.reps}"/>
-//                     </br>
-//                      <div class="row">
-//                         <button type="submit" class="put-exercise-btn" value="${exercise.data._id}">Update</button>   
-//                         <button type="submit" class="cancel-exercise-btn">Cancel</button>
-//                     </div>
-//                 </fieldset> 
-//             `);
-//         }).fail(function(error) {
-//             console.log('Updating exercise failed!');
-//         });
-//     });
-// }
-// showEditExerciseForm();
-
-
-
-// //Put exercise edits.
-// function putExerciseEdits() {
-//     $('.edit-exercise-form').on('click', '.put-exercise-btn', event => {
-//         event.preventDefault();
-//         let ID = $(event.currentTarget).attr("value");
-//         let body = {
-//             '_id': `${ID}`,
-//             'name': $('#exercise-name-edit').val(),
-//             'sets': $('#exercise-sets-edit').val(),
-//             'reps': $('#exercise-reps-edit').val(),
-//             'weight': $('#exercise-weight-edit').val(),
-//             'userID': localStorage.getItem('userID')
-//         }
-//         $.ajax({
-//                 type: "PUT",
-//                 contentType: 'application/json',
-//                 url: `exercise/${ID}/` + localStorage.getItem('token'),
-//                 data: JSON.stringify(body)
-//             })
-//             .done(function(exercise) {
-//                 console.log(exercise);
-//                 $('.popdown-edit-exercise').addClass('hidden');
-//                 getAllExercises();
-//             })
-//             .fail(function(error) {
-//                 console.log('Updating exercise failed!');
-//             })
-//     })
-// }
-// putExerciseEdits();
-
-
-// //Cancel exercise update.
-// function cancelExerciseEdit() {
-//     $('.edit-exercise-form').on('click', '.cancel-exercise-btn', event => {
-//         $('.popdown-edit-exercise').addClass('hidden');
-//     });
-// }
-// cancelExerciseEdit();
-
-
-// //Get selected/checked exercises.
-// function getSelectedExercises() {
-//     $('.dayplan-exercise-get').on('click', event => {
-//         event.preventDefault();
-//         let ID = $(":checkbox:checked").val();
-//         let checked = $(":checkbox:checked");
-//         console.log(checked);
-
-//         let exercisesIDs = [];
-//         for (let i = 0; i < checked.length; i++) {
-//             exercisesIDs.push(checked[i].value);
-//         }
-//         dayplanFormObject.exercisesIDs = exercisesIDs;
-//         console.log(dayplanFormObject);
-//         $('.exercise-container').addClass('hidden');
-//         $('.fitplan-modal-btns').removeClass('hidden');
-//     })
-// }
-// getSelectedExercises();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        let checked = $('input[name="toggle-edit"]:checked');
+        console.log(checked);
+        console.log(checked.length);
+
+        if (checked.length == 0){
+            $(this).prop('disabled', 'disabled');
+            // $('.post-dayplan-category-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            // $('.post-dayplan-category-alert').addClass('hidden');
+
+            let ID = $('input[name="toggle-edit"]:checked').val();
+            dayplanFormObject.categoryID = ID;
+            console.log(dayplanFormObject);
+            $('.edit-dayplan-category-section').addClass('hidden');
+            $('.edit-dayplan-activity-container').removeClass('hidden');
+        }    
+    })
+}
+
+
+
+function revealNewCategoryFormEditDayPlan() {
+    $('.popdown-post-category').on('click', event => {
+        event.preventDefault();
+        $('.edit-dayplan-new-category-form').removeClass('hidden');
+    });
+}
+
+
+
+//Post a new category
+function postNewCategoryEditDayPlan() {
+    $('.edit-dayplan-new-category-form').on('click', '.edit-dayplan-post-category-btn', event => {
+        event.preventDefault();
+        let empty = false;
+        $('.edit-dayplan-new-category-form input').each(function() {
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });
+        if (empty) {
+            $(this).prop('disabled', 'disabled');
+            $('.edit-dayplan-new-category-form-alert').removeClass('hidden');
+        } else {
+            $(this).removeProp('disabled');
+            $('.edit-dayplan-new-category-form-alert').addClass('hidden');
+
+            let body = {
+                'name': $('#category-name').val(),
+                'img': $('#category-img').val(),
+                'userID': localStorage.getItem('userID'),
+                'token': localStorage.getItem('token')
+            }
+            $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: '/category/new/' + localStorage.getItem('token'),
+                    data: JSON.stringify(body),
+                })
+                .done(function(data) {
+                    console.log(data);
+                    getAllEditDayPlanCategories(data);
+                    $('#category-name').val(''),
+                    $('#category-img').val(''),
+                    $('.edit-dayplan-new-category-form').addClass('hidden');
+                })
+                .fail(function(error) {
+                    console.log('Posting new category failed!')
+                })
+        }
+    })
+}
+
+
+function cancelNewCategoryEditDayPlan() {
+    $('.edit-dayplan-new-category-form').on('click', '.edit-dayplan-cancel-post-category-btn', event => {
+        event.preventDefault();
+        $('.edit-dayplan-new-category-form').addClass('hidden');
+        $('.edit-dayplan-new-category-form').find("input[type=text]").val("");
+        if (!$('.edit-dayplan-new-category-form-alert').hasClass('hidden')) {
+            $('.edit-dayplan-new-category-form-alert').addClass('hidden');
+        }
+    });
+}
+
+
+//Delete category.
+function deleteCategoryEditDayPlan() {
+    $('.edit-dayplan-category-icons').on('click', '.delete-category-btn', event => {
+        event.preventDefault();
+        let ID = $(event.currentTarget).attr("value");
+        console.log(ID);
+        $.ajax({
+            url: `/category/${ID}/` + localStorage.getItem('token'),
+            type: 'DELETE'
+        }).done((category) => {
+            console.log(category);
+            getAllEditDayPlanCategories();
+        }).fail((error) => {
+            console.log('Deleting category failed!');
+        })
+    });
+}
 
 
 function cancelEditDayPlanOne(){
-    $('.category-section').on('click', '#cancel-edit-dayplan-progress-button', event => {
+    $('.edit-dayplan-category-section').on('click', '#cancel-edit-dayplan-progress-button', event => {
         event.preventDefault();
         $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
-        $('.category-container input').each(function(){
-            $(this).prop('checked', false); 
-        });
     });
 }
+
+
 
 
 function cancelEditDayPlanTwo(){
@@ -1813,13 +1498,13 @@ function cancelEditDayPlanTwo(){
             event.preventDefault();
             $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
 
-            $('.category-container input').each(function(){
+            $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false);
             }); 
             $('.post-activity-form').find('input:text').val('');
 
-            $('.activity-container').addClass('hidden');
-            $('.category-section').removeClass('hidden');
+            $('.edit-dayplan-activity-container').addClass('hidden');
+            $('.edit-dayplan-category-section').removeClass('hidden');
     });    
 }
 
@@ -1830,7 +1515,7 @@ function cancelEditDayPlanThree(){
 
         $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
 
-        $('.category-container input').each(function(){
+        $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
         $('.post-activity-form').find('input:text').val('');
@@ -1838,8 +1523,8 @@ function cancelEditDayPlanThree(){
             $(this).prop('checked', false);
         });
         $('.exercise-container').addClass('hidden');
-        $('.activity-container').addClass('hidden');
-        $('.category-section').removeClass('hidden');
+        $('.edit-dayplan-activity-container').addClass('hidden');
+        $('.edit-dayplan-category-section').removeClass('hidden');
         
     });
 }
@@ -1851,7 +1536,7 @@ function cancelEditDayPlanFinal(){
 
         $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
 
-        $('.category-container input').each(function(){
+        $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
         $('.post-activity-form').find('input:text').val('');
@@ -1860,35 +1545,14 @@ function cancelEditDayPlanFinal(){
         });
         $('.fitplan-modal-btns').addClass('hidden');
         $('.exercise-container').addClass('hidden');
-        $('.activity-container').addClass('hidden');
-        $('.category-section').removeClass('hidden');
+        $('.edit-dayplan-activity-container').addClass('hidden');
+        $('.edit-dayplan-category-section').removeClass('hidden');
     });
 }
 
 
 
-function hideEditDayPlanActivitySection() {
-    $('.post-activity-form').on('click', '.dayplan-activity-get', event => {
-        event.preventDefault();
 
-        let empty = false;
-        $('.post-activity-form .req-edit').each(function() {
-            if ($(this).val() == "") {
-                empty = true;
-            }
-        });
-        if (empty) {
-            $(this).prop('disabled', 'disabled');
-            $('.post-dayplan-activity-alert').removeClass('hidden');
-        } else {
-            $(this).removeProp('disabled');
-            $('.post-dayplan-activity-alert').addClass('hidden');
-            $('.activity-container').addClass('hidden');
-            $('.exercise-container').removeClass('hidden');
-        }    
-    });
-}
-hideEditDayPlanActivitySection();
 
 
 
@@ -1909,48 +1573,11 @@ function getSelectedEditedExercises() {
         console.log(dayplanFormObject);
 
         $('.exercise-container').addClass('hidden');
-        $('.fitplan-modal-btns').removeClass('hidden');
+        $('.edit-fitplan-modal-btns').removeClass('hidden');
     })
 }
 
 
-
-//Get all edit dayplan form categories
-function getAllEditDayPlanCategories(dayplan) {
-    $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
-        console.log(allCategories);
-        displayAllEditDayPlanCategories(dayplan.data.categoryID._id, allCategories);
-    });
-}
-
-//render all edit dayplan form categories and display checked category
-function renderEditDayPlanCategories(selectedCategoryId, category) {
-    if (selectedCategoryId === category._id) {
-        return `
-        <div class="col-3">
-            <div class="category-container">
-                <label for="${category.name}"><input checked type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
-            </div>
-        </div>
-    `
-    } else {
-        return `
-        <div class="col-3">
-            <div class="category-container">
-                <label for="${category.name}"><input type="radio" name="toggle" id="${category.name}" value="${category._id}" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)"><img class="category-img" src="${category.img}" alt="${category.name} image" width="100px" height="100px"/><p>${category.name}</p></label>
-                <button class="delete-category-btn" value="${category._id}"><img class="delete-icon" src="https://i.imgur.com/mUiBG7a.png" alt="delete icon"/></button>
-            </div>
-        </div>
-    `
-    }
-}
-
-//Display all edit dayplan form categories
-function displayAllEditDayPlanCategories(selectedCategoryId, allCategories) {
-    let categoriesOutput = allCategories.data.map(category => renderEditDayPlanCategories(selectedCategoryId, category)).join('');
-    $('.category-icons').html(categoriesOutput);
-}
 
 
 //Get all edit dayplan form exercises.
@@ -2034,17 +1661,17 @@ function putEditedDayPlanActivity() {
         console.log(dayplanFormObject);
         putEditedDayPlan(ID);
 
-        $('.category-container input').each(function(){
+        $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
         $('.post-activity-form').find('input:text').val('');
         $('.exercise-list-container input').each(function(){
             $(this).prop('checked', false);
         });
-        $('.fitplan-modal-btns').addClass('hidden');
+        $('.edit-fitplan-modal-btns').addClass('hidden');
         $('.exercise-container').addClass('hidden');
-        $('.activity-container').addClass('hidden');
-        $('.category-section').removeClass('hidden');
+        $('.edit-dayplan-activity-container').addClass('hidden');
+        $('.edit-dayplan-category-section').removeClass('hidden');
     });
 }
 putEditedDayPlanActivity();
