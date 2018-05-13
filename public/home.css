@@ -376,6 +376,7 @@ header {
 }
 
 
+#cancel-edit-dayplan-progress-button:hover,
 #cancel-dayplan-progress-button:hover,
 .next:hover,
 .put-exercise-btn:hover,
@@ -391,6 +392,7 @@ header {
 }
 
 
+#cancel-edit-dayplan-progress-button:active,
 #cancel-dayplan-progress-button:active,
 .next:active,
 .put-exercise-btn:active,
@@ -418,6 +420,7 @@ header {
     margin-bottom: 10px;
 }
 
+#cancel-edit-dayplan-progress-button,
 #cancel-dayplan-progress-button,
 .next {
     width: 120px;
@@ -1064,6 +1067,7 @@ footer {
     font-size: 30px;
 }
 
+#cancel-edit-dayplan-button,
 #submit-edited-dayplan-button,
 #submit-dayplan-button,
 #cancel-dayplan-button {
@@ -1084,7 +1088,7 @@ footer {
     margin-bottom: 30px;
 }
 
-
+#cancel-edit-dayplan-button:hover,
 #submit-edited-dayplan-button:hover,
 #submit-dayplan-button:hover,
 #cancel-dayplan-button:hover {
@@ -1093,6 +1097,7 @@ footer {
     border: 2px solid #D5FF44;
 }
 
+#cancel-edit-dayplan-button:active,
 #submit-edited-dayplan-button:active,
 #submit-dayplan-button:active,
 #cancel-dayplan-button:active {
