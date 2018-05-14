@@ -1,14 +1,6 @@
-# bringit
+# _bringit_
 
-[bringit](https://blooming-brushlands-53874.herokuapp.com/index.html) is a full-stack web application that  
-
-
-
-## Features
-* 
-* 
-* 
-* Mobile responsive design
+A goal without a plan is a wish. **_[bringit](https://blooming-brushlands-53874.herokuapp.com/index.html)_** is a full-stack web application that provides users with both daily motivational and planning tools to conquer their fitness goals.  
 
 
 
@@ -49,7 +41,7 @@
 
 ## Technologies
 
-####Front End
+### Front End
 
 * HTML5
 * CSS3
@@ -57,7 +49,7 @@
 * jQuery
 
 
-####Back End
+### Back End
 
 * Node.js
 * Express.js
@@ -69,11 +61,11 @@
 * JWT
 
 
-## Acknowledgements
-
-* Jon Oyanguren
-
-
 ## Contributor
 
 * Ola Assem
+
+
+## Acknowledgements
+
+* Jon Oyanguren & Thinkful
