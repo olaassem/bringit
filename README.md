@@ -41,7 +41,7 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 ![step 1 - categories](screenshots/6dayplanform.png)
 
-![step 2 - activity](screenshots/6dayplanform2.png) 
+![step 2 - activity](screenshots/6dayplanform2.png)
 
 ![step 3 - exercises](screenshots/6dayplanform3.png)
 
