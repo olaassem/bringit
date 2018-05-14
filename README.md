@@ -60,7 +60,7 @@ Users may add, edit, delete, _and_ check their fit goals as completed. To see ho
 ![fitgoal](screenshots/5fitgoal.png)
 
 
-## Technologies
+## Technologies Used
 
 ### Front End
 
