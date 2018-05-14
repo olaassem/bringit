@@ -52,7 +52,9 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 
 
-## Built With
+## Technologies
+
+###Front End
 
 * HTML5
 * CSS3
@@ -60,13 +62,15 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 * jQuery
 
 
+###Back End
 
-## Powered By
-
-* [Google Maps API](https://developers.google.com/maps/)
-* [Wunderground API](https://www.wunderground.com/weather/api/d/docs?d=index)
-* [Hiking Project API](https://www.hikingproject.com/data)
-
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* Passport
+* Bcrypt
+* JWT
 
 
 ## Acknowledgements
