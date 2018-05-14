@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 
 
-//Exercise
 const exerciseSchema = new mongoose.Schema({ 
 	userID: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
 	name: {type: String, required: false},

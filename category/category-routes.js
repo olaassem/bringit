@@ -8,7 +8,6 @@ router.post('/new/:token', commonController.verifyToken, categoryController.post
 router.get('/all/:token', commonController.verifyToken, categoryController.getAllCategories);
 router.get('/:id/:token', commonController.verifyToken, categoryController.getCategoryByID);
 router.delete('/:id/:token', commonController.verifyToken, categoryController.deleteCategoryByID);
-// router.put('/:id', categoryController.updateCategoryByID);
 
 
 

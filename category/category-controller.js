@@ -2,8 +2,6 @@ const categoryModel = require('./category-model');
 const userModel = require('../user/user-model');
 
 
-
-//Create new category
 exports.postNewCategory = (req, res) => {
 	console.log(req.body);
 	let newCategory = new categoryModel();
@@ -27,8 +25,6 @@ exports.postNewCategory = (req, res) => {
 }
 
 
-
-//Get all categories
 exports.getAllCategories = (req, res) => {
 	categoryModel.find({userID: req.user.id})
 	.then((categories) => {
@@ -46,8 +42,6 @@ exports.getAllCategories = (req, res) => {
 }
 
 
-
-//Get category by ID
 exports.getCategoryByID = (req, res) => {
 	categoryModel.findById(req.params.id)
 	.then((category) => {
@@ -66,7 +60,6 @@ exports.getCategoryByID = (req, res) => {
 
 
 
-//Edit category by ID
 exports.updateCategoryByID = (req, res) => {
 	if(!(req.params.id  && req.body.id && req.params.id === req.body.id)){
 		res.status(400).json({
@@ -94,8 +87,6 @@ exports.updateCategoryByID = (req, res) => {
 }
 
 
-
-//Delete category by ID
 exports.deleteCategoryByID = (req, res) => {
 	categoryModel.findByIdAndRemove(req.params.id)
 	.then(() => {

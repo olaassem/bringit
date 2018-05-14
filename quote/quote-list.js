@@ -1,17 +1,3 @@
-/*
-
-motvQuotes.forEach(quote => {
-  let objQuotes = {
-    quote: quote
-  };
-  
-  console.log(objQuotes);
-})
-
-*/
-
-
-
 const motvQuotes = [
 	"Wow, I really regret that workout. – No One. Ever.",
 	"When nothing goes right… go lift.",

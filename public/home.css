@@ -29,7 +29,6 @@ fieldset {
     margin-left: auto;
 }
 
-
 .alert{
     text-align: center;
     margin-top: 0px;
@@ -44,12 +43,10 @@ button:focus,
 a:focus{
     outline-color: #D5FF44;
 }
-
 /*--End of Universal Styling--*/
 
 
 /*--Header Styling--*/
-
 header {
     background-color: #151515;
 }
@@ -84,8 +81,6 @@ header {
     top: -4px;
     position: relative;
 }
-
-
 /*--End of Header Styling--*/
 
 .welcome{
@@ -106,15 +101,12 @@ header {
     font-size: 50px;
 }
 
-
 /*--Quote Styling Section--*/
-
 .quote-section {
     margin-top: 50px;
     margin-bottom: 0px;
     min-height: 20%;
 }
-
 
 .quote-container {
     min-height: 200px;
@@ -191,11 +183,6 @@ header {
     -o-transform: translateY(-15px);
     transform: translateY(-15px); } }
 
-
-
-
-
-
 .motifit-button {
     margin-left: auto;
     margin-right: auto;
@@ -213,7 +200,6 @@ header {
     border-radius: 2px;
 }
 
-
 .motifit-button:hover {
     transform: translateY(-3px);
 }
@@ -222,12 +208,10 @@ header {
     transform: translateY(4px);
     transition: 0.1s ease;
 }
-
 /*--End of Quote Styling Section--*/
 
 
 /*--Fit Goal Section Styling--*/
-
 .addfitgoal,
 .fitgoal-hdr {
     margin: 2px 10px;
@@ -299,7 +283,6 @@ header {
     font-size: 22px;
 }
 
-
 .open-fitgoal-modal {
     border-radius: 15px;
     cursor: pointer;
@@ -325,8 +308,6 @@ header {
     margin-bottom: 50px;
 }
 
-
-
 #exercise-name-edit:focus,
 #exercise-weight-edit:focus,
 #exercise-sets-edit:focus,
@@ -350,7 +331,6 @@ header {
     border: 2px solid #D5FF44;
     outline-color: #D5FF44;
 }
-
 
 .edit-dayplan-cancel-post-category-btn,
 .edit-dayplan-post-category-btn,
@@ -420,7 +400,6 @@ header {
 
 }
 
-
 .edit-dayplan-cancel-post-category-btn,
 .edit-dayplan-post-category-btn,
 .post-category-btn,
@@ -455,32 +434,18 @@ header {
     justify-content: center;
 }
 
-
 #fitgoal-description-edit {
     margin-bottom: 50px;
 }
-
-
-
-/*position default is static (ignores other layout attributes )
-*/
 
 .edit-fitgoal-button,
 .delete-fitgoal-button {
     border: none;
     background-color: transparent;
 }
-
-
-
-
-
-
 /*--End of Fit Goal Section Styling--*/
 
-
 /*--Fit Week Section Styling--*/
-
 .fitweekh2 {
     font-weight: bold;
     color: #9fb7c9;
@@ -511,14 +476,12 @@ header {
     transition: background-color 1s ease-out;
 }
 
-
 .weekday {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     letter-spacing: 3px;
 }
-
 
 .day-container-img {
     margin-right: auto;
@@ -530,8 +493,6 @@ header {
     border-radius: 50%;
 }
 
-
-
 .day-container-cat-name {
     text-align: center;
     color: #D5FF44;
@@ -541,10 +502,7 @@ header {
 
 
 /*--End of Fit Week Section Styling--*/
-
-
 /*--Fit Plan Modal--*/
-
 .fitplan-legend{
     font-size: 20px;
     font-family: 'Anton', sans-serif;
@@ -558,8 +516,6 @@ header {
     height: 115px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
 
 /*--End of Fit Plan Modal Styling*/
 
@@ -576,15 +532,7 @@ header {
     border-bottom: 2px solid #222223;
 }
 
-
-
-
-
 /*--Category Section Styling--*/
-
-
-/*post form*/
-
 .edit-dayplan-category-section,
 .category-section {
     margin-right: auto;
@@ -602,7 +550,6 @@ header {
 .category-hdr{
     margin-bottom: 40px;
 }
-
 
 .step {
     float: right;
@@ -632,7 +579,6 @@ header {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
 .edit-dayplan-post-activity-form legend,
 .edit-dayplan-new-category-form legend,
 .edit-exercise-form legend,
@@ -645,7 +591,6 @@ header {
     font-weight: bold;
     font-size: 22px;
 }
-
 
 .edit-dayplan-new-category-form label,
 .edit-exercise-form label,
@@ -660,7 +605,6 @@ header {
     padding-right: 5px;
 }
 
-
 .edit-dayplan-post-activity-form label>span,
 .edit-dayplan-new-category-form label>span,
 .edit-exercise-form label>span,
@@ -674,7 +618,6 @@ header {
     padding-left: 5px;
     color: #D5FF44;
 }
-
 
 .edit-dayplan-post-activity-form input,
 .edit-dayplan-new-category-form input,
@@ -696,7 +639,6 @@ header {
     margin-bottom: 20px;
 }
 
-
 .edit-fitgoal-form,
 .post-fitgoal-form {
     margin-top: 22%;
@@ -707,16 +649,9 @@ header {
     margin-bottom: 30px;
 }
 
-
-
 .margin-bottom{
     margin-bottom: 30px;
 }
-
-
-
-
-/*end of category post form*/
 
 .edit-dayplan-new-category-form,
 .new-category-form {
@@ -740,7 +675,6 @@ header {
     transition: background-color 1s ease-out;
     border-radius: 10px;
 }
-
 
 .edit-dayplan-category-container label,
 .category-container label {
@@ -767,12 +701,10 @@ input[type="radio"] {
     margin-top: 10px;
 }
 
-
 .edit-dayplan-category-container input:hover+img,
 .category-container input:hover+img {
     cursor: pointer;
 }
-
 
 .edit-dayplan-category-container label img,
 .category-container label img {
@@ -807,7 +739,7 @@ input[type="radio"] {
     font-size: 15px;
 }
 
-
+.edit-delete-category-btn,
 .delete-category-btn {
     position: absolute;
     top: -10px;
@@ -816,23 +748,13 @@ input[type="radio"] {
     border: none;
     background: none;
 }
-
-
-
-
-
-
-
 /*--End of Category Section Styling--*/
 
-
 /*--Activity Section Styling--*/
-
 .edit-dayplan-activity-container,
 .activity-container {
     margin-top: 50px;
 }
-
 
 .edit-dayplan-post-activity-form label,
 .post-activity-form label {
@@ -842,8 +764,6 @@ input[type="radio"] {
     padding-top: 8px;
     padding-right: 5px;
 }
-
-
 
 .edit-dayplan-post-activity-form input,
 .post-activity-form input {
@@ -859,18 +779,12 @@ input[type="radio"] {
     transform: all 0.5s ease;
     margin-bottom: 20px;
 }
-
-
-
 /*--End of Activity Styling Section--*/
 
-
 /*--Exercise Section Styling--*/
-
 .exercise-routine {
     margin: 20px 10px;
 }
-
 
 input[type="checkbox"] {
     width: 33px;
@@ -880,12 +794,7 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-
-
-
-
 /*--Table Styling--*/
-
 table,
 th,
 td {
@@ -897,15 +806,11 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
-
 /*--End of Table Styling--*/
-
-
 /*--End of Exercise Section Styling--*/
 
 
 /*--Footer Styling--*/
-
 footer {
     height: 50px;
     background-color: white;
@@ -949,12 +854,10 @@ footer {
     padding-bottom: 0px;
     margin-top: 11px;
 }
-
 /*--End of Footer Styling--*/
 
 
 /*--Button Styling--*/
-
 .exercise-icon,
 .complete,
 .add-icon,
@@ -982,7 +885,6 @@ footer {
 .fitgoal-history-button {
     background: none;
 }
-
 
 .wrkout-section-button,
 .complete {
@@ -1053,7 +955,6 @@ footer {
     border: none;
 }
 
-
 .view-icon {
     background: none;
     border-radius: 50%;
@@ -1078,7 +979,6 @@ footer {
     background: none;
 }
 
-
 .popdown-post-exercise,
 .popdown-post-category{
     width:30px;
@@ -1086,11 +986,9 @@ footer {
     margin-left: 8px;
 }
 
-
 .completed-fitgoal-button {
     padding: 1px 6px;
 }
-
 
 .fa-calendar-check,
 .fa-ban{
@@ -1135,26 +1033,10 @@ footer {
     transition: 0.1s ease;
     border: 2px solid #D5FF44;
 }
-
-
-
 /*--End of Button Styling--*/
 
-
-
-
-
-
-
-
-
-
-
 /*--Modal Styling--*/
-
-
 /* Outer */
-
 .popup {
     width: 100%;
     height: 100%;
@@ -1165,10 +1047,7 @@ footer {
     background: black;
 }
 
-
-
 /* Inner */
-
 .popup-inner {
     overflow-y: auto;
     height: 90%;
@@ -1186,10 +1065,7 @@ footer {
     z-index: 100;
 }
 
-
-
 /* Close Button */
-
 .popup-close {
     width: 40px;
     height: 40px;
@@ -1216,15 +1092,9 @@ footer {
     background: #E71353;
     text-decoration: none;
 }
-
-
-
-
 /*--End of Modal Styling--*/
 
-
 /*--Exercise Table Styling--*/
-
 .edit-dayplan-btn,
 .delete-dayplan-btn {
     float: right;
@@ -1232,11 +1102,9 @@ footer {
     margin-right: 20px;
 }
 
-
 .rslt {
     text-transform: uppercase;
 }
-
 
 table {
     border-collapse: collapse;
@@ -1264,10 +1132,6 @@ th {
     background-color: #353535;
     color: #E1DAC8;
 }
-
-
-/*    border-radius: 15px;
-*/
 
 .icon {
     color: #D5FF44;

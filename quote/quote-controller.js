@@ -1,8 +1,7 @@
 const quoteModel = require('./quote-model');
-const userModel = require('../user/user-model'); //access the user model
+const userModel = require('../user/user-model');
 
 
-//Get all quotes
 exports.getAllQuotes = (req, res, next) => {
 	quoteModel.find({})
 	.then((quotes) => {
@@ -19,11 +18,9 @@ exports.getAllQuotes = (req, res, next) => {
 }
 
 exports.saveQuoteToUser = (req, res) =>{
-	//select one random quote
 	let num = Math.floor(Math.random() * req.quotes.length);
 	let randomQuote = req.quotes[num];
 	console.log(randomQuote);
-	//and save to user
 	userModel.findByIdAndUpdate(req.user.id, { $set: { currentQuote: randomQuote.quote }} )
 	.then((user) => {
 		res.status(200).json({

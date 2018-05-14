@@ -1,13 +1,5 @@
-//controllers
-//require all route requiremnets
-//in the controller just do a function/dont need express router
-
-//Require activity model file
 const activityModel = require('./activity-model');
 
-
-
-//Create new activity.
 exports.postNewActivity = (req, res) => {
 	let newActivity = new activityModel();
 	newActivity.userID = req.body.userID;
@@ -34,8 +26,6 @@ exports.postNewActivity = (req, res) => {
 }
 
 
-
-//Get all activities.
 exports.getAllActivities = (req, res) => {
 		activityModel.find({userID: req.user.id}) 
 	.then((activities) => {
@@ -53,8 +43,6 @@ exports.getAllActivities = (req, res) => {
 }
 
 
-
-//Get activity by ID.
 exports.getActivityByID = (req, res) => {
 	activityModel.findById(req.params.id)
 	.then((activity) => {
@@ -72,8 +60,6 @@ exports.getActivityByID = (req, res) => {
 }
 
 
-
-//Update activity by ID
 exports.updateActivityByID = (req, res) => {
 	if(!(req.params.id && req.params._body && req.params.id === req.params._body)){
 		res.status(400).json({
@@ -88,7 +74,6 @@ exports.updateActivityByID = (req, res) => {
       		updated[field] = req.body[field];
     	}
   	})
-  	//$set : mongoose functionality for updating specific fields selected in the db
   	activityModel.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
 	.then((updatedActivity) => {
 		res.status(200).json({
@@ -103,8 +88,6 @@ exports.updateActivityByID = (req, res) => {
 }
 
 
-
-//Delete activity by ID
 exports.deleteActivityByID = (req,res) => {
 	activityModel.findByIdAndRemove(req.params.id)
 	.then(() => {

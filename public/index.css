@@ -10,7 +10,6 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-
 html{
     margin: 0;
     padding: 0; 
@@ -32,13 +31,11 @@ fieldset{
     text-align: center;
     background-color: #f9fbfd;
 }
-
 /*--End of Universal Styling--*/
 
 
 
 /*--Header Styling--*/
-
 header{
     background-color: #D5FF44;
     opacity: .7;
@@ -53,7 +50,6 @@ header{
     font-family: 'Oxygen', sans-serif;
         display: inline-block;
 }
-
 
 .top-nav {
     margin-top: 9px;
@@ -105,7 +101,6 @@ header{
     outline-color: #E71353;
     border: none;
 }
-
 /*--End of Header Styling--*/
 
 .intro{
@@ -150,7 +145,6 @@ h2{
     padding: 5px 0px;
 }
 
-
   @-moz-keyframes colorchange /* Firefox */
 {
 0%   {background: white;}
@@ -167,7 +161,6 @@ h2{
 100%  {background: #D5FF44;}
 }
 
-
 .start{
     font-family: 'Anton', sans-serif;
     font-weight: bold;
@@ -176,7 +169,6 @@ h2{
     margin:0px;
     font-style: italic;
 }
-
 
 .start-btn:link{
   color: #111111;
@@ -201,10 +193,6 @@ h2{
     transform: translateY(-6px);
     transition: 0.4s ease;
 }
-
-
-
-
 
 .middle{
     height: 500px;
@@ -260,7 +248,6 @@ h2{
 }
 
 /*--Intro Styling--*/
-
 .box1{
     height: 100vh;
     width: 100%;
@@ -270,7 +257,6 @@ h2{
     display: table;
     background-attachment: fixed;
 }
-
 /*--End of Intro Styling--*/
 
 
@@ -283,7 +269,6 @@ h2{
     margin-left: auto;
     width: 100%;
     border-radius: 10px;
-/*    border: black solid 2px;*/
 }
 
 .signup-tab,
@@ -347,7 +332,6 @@ label{
     border:none;
 }
 
-
 .landing-alert{
     text-align: center;
     padding: 10px;
@@ -357,9 +341,7 @@ label{
 .input:focus{
     border: 1px solid #D5FF44;
     outline-color: #D5FF44;
-
 }
-
 
 .create-account-btn:focus,
 .login-btn:focus {
@@ -386,17 +368,14 @@ label{
     outline-color: #D5FF44;
     border-radius: 3px;
     border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 .create-account-btn:hover,
 .login-btn:hover {
     transform: translateY(-3px);
     outline-color: #D5FF44;
 }
-
 
 .create-account-btn:active,
 .login-btn:active {
@@ -457,14 +436,11 @@ span a {
     color: grey;
 }
 
-
 .landing-alert,
 .register-alert,
 .login-alert{
     margin: 0px;
 }
-
-
 /*-- End of Form Styling --*/
 
 
@@ -475,19 +451,11 @@ span a {
     bottom: 100px;
 }
 
-
 div.row{
     margin-right: 
 }
-
-
-
-
 /*--Modal Styling--*/
-
-
 /* Outer */
-
 .popup {
     width: 100%;
     height: 100%;
@@ -498,10 +466,7 @@ div.row{
     background: rgba(225, 225, 225, .9);
 }
 
-
-
 /* Inner */
-
 .popup-inner {
     overflow-y: auto;
     height: 90%;
@@ -518,10 +483,7 @@ div.row{
     z-index: 200;
 }
 
-
-
 /* Close Button */
-
 .popup-close {
     width: 40px;
     height: 40px;
@@ -548,10 +510,7 @@ div.row{
     background: #E71353;
     text-decoration: none;
 }
-
 /*--End of Modal Styling--*/
-
-
 
 #box2{
     margin-top: 20px;
@@ -585,7 +544,6 @@ footer{
 .github-cont,
 .linkedin-cont{
     display: inline-block;
-
 }
 
 .github-logo,
@@ -596,7 +554,6 @@ footer{
     margin-top: 9px;
     border-radius: 50%;
 }
-
 
 .linkedin-logo{
     background-color: black;

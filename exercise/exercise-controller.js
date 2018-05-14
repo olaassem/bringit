@@ -1,7 +1,6 @@
 const exerciseModel = require('./exercise-model');
 
 
-//Create new exercise
 exports.postNewExercise = (req, res) => {
     let newExercise = new exerciseModel();
     newExercise.userID = req.body.userID;
@@ -25,10 +24,6 @@ exports.postNewExercise = (req, res) => {
 }
 
 
-
-
-
-//Get all exercises
 exports.getAllExercises = (req, res) => {
     exerciseModel.find({userID: req.user.id})
         .then((exercises) => {
@@ -47,9 +42,6 @@ exports.getAllExercises = (req, res) => {
 
 
 
-
-
-//Get exercise by ID
 exports.getExerciseByID = (req, res) => {
     exerciseModel.findById(req.params.id)
         .then((exercise) => {
@@ -68,9 +60,6 @@ exports.getExerciseByID = (req, res) => {
 
 
 
-
-
-//Edit category by ID
 exports.updateExerciseByID = (req, res) => {
     if (!req.params.id) {
         res.status(400).json({
@@ -100,7 +89,6 @@ exports.updateExerciseByID = (req, res) => {
 
 
 
-//Delete category by ID
 exports.deleteExerciseyByID = (req, res) => {
     exerciseModel.findByIdAndRemove(req.params.id)
         .then(() => {

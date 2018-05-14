@@ -7,7 +7,7 @@
     <meta name="description" content="." />
     <meta name="keywords" content="bringit, app, fitness, planner, motivation, exercise, workout" />
     <meta name="author" content="Ola Assem" />
-    <!-- Responsive viewport tag, tells small screens that it's responsive -->
+    <!-- Responsive viewport tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="grid.css" />
@@ -75,9 +75,7 @@
                         </div>
                     </div>
                 </section>
-                <!--fitweek section-->
                 <div class="fitweek">
-                    <!-- <h2 class="fitweekh2">Fit Week</h2> -->
                     <div class="row">
                         <div class="col-7">
                             <div class="day-container mon-container" value="0">
@@ -155,7 +153,6 @@
                             </div>
                         </div>
                     </section>
-                    <!--end of fitweek section-->
                     <section role="region" class="fitgoal-section">
                         <div class="row">
                             <div class="col-12">
@@ -187,10 +184,10 @@
                                                 <div class="col-6">
                                                     <button type="submit" id="add-fitgoal-button">Add</button>
                                                 </div>
-                                                <div class="col-6">    
+                                                <div class="col-6">
                                                     <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-post-fitgoal">Cancel</button>
                                                 </div>
-                                            </div>        
+                                            </div>
                                         </fieldset>
                                     </form>
                                     <a class="popup-close" data-popup-close="popup-post-fitgoal" href="#">x</a>
@@ -210,55 +207,187 @@
                             </div>
                         </div>
                     </section>
-                    <!--end of fitgoal section-->
-                    <!--day plan modal form section-->
                     <div class="row">
                         <div class="col-12">
                             <div class="popup" data-popup="popup-post-dayplan">
                                 <div class="popup-inner">
                                     <form role="form" class="post-dayplan-form" action="#" method="#">
-
-                                        <!-- <fieldset> -->
-                                            <legend class="fitplan-legend">Fit Plan</legend>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="category-section">
-                                                        <p class="step"> Step 1/3 </p>
-                                                        <h2 class="category-hdr">Category<button type="submit" class="btn popdown-post-category rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
-                                                        <!--category section-->
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="new-category-form hidden">
-                                                                    <form role="form" class="post-category-form" novalidate>
-                                                                        <fieldset>
-                                                                            <legend>Add a New Category</legend>
-                                                                            <label for="category-name">Name<span class="required">*</span></label>
-                                                                            <input id="category-name" type="text" placeholder="e.g. Climbing" />
-                                                                            </br>
-                                                                            <label for="category-img">Image<span class="required">*</span></label>
-                                                                            <input id="category-img" type="text" placeholder="Transparent icon in .PNG format url" />
-                                                                            </br>
-                                                                            <div>
-                                                                                <p class="alert new-category-form-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add a category name &amp; image url</p>
+                                        <legend class="fitplan-legend">Fit Plan</legend>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="category-section">
+                                                    <p class="step"> Step 1/3 </p>
+                                                    <h2 class="category-hdr">Category<button type="submit" class="btn popdown-post-category rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="new-category-form hidden">
+                                                                <form role="form" class="post-category-form" novalidate>
+                                                                    <fieldset>
+                                                                        <legend>Add a New Category</legend>
+                                                                        <label for="category-name">Name<span class="required">*</span></label>
+                                                                        <input id="category-name" type="text" placeholder="e.g. Climbing" />
+                                                                        </br>
+                                                                        <label for="category-img">Image<span class="required">*</span></label>
+                                                                        <input id="category-img" type="text" placeholder="Transparent icon in .PNG format url" />
+                                                                        </br>
+                                                                        <div>
+                                                                            <p class="alert new-category-form-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add a category name &amp; image url</p>
+                                                                        </div>
+                                                                        </br>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <button type="submit" class="post-category-btn">Add</button>
                                                                             </div>
-                                                                            </br>
-                                                                            <div class="row">
-                                                                                <div class="col-6">
-                                                                                    <button type="submit" class="post-category-btn">Add</button>
-                                                                                </div>
-                                                                                <div class="col-6">    
-                                                                                    <button type="submit" class="cancel-category-btn">Cancel</button>
-                                                                                </div> 
-                                                                            </div>           
-                                                                        </fieldset>
-                                                                    </form>
+                                                                            <div class="col-6">
+                                                                                <button type="submit" class="cancel-category-btn">Cancel</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="category-icons"></div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p class="post-dayplan-category-alert alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please select a category.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="margin-bottom">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <button type="submit" class="dayplan-category-get next">Next</button>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <button type="submit" id="cancel-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="category-icons"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="activity-container hidden">
+                                                    <p class="step">Step 2/3</p>
+                                                    <h2>Activity</h2>
+                                                    <form role="form" class="post-activity-form" novalidate>
                                                         <div class="row">
                                                             <div class="col-12">
-                                                                <p class="post-dayplan-category-alert alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please select a category.</p>
+                                                                <fieldset>
+                                                                    <legend>Add an Activity</legend>
+                                                                    <label for="activity-name">Name<span class="required">*</span></label>
+                                                                    <input id="activity-name" class="req" type="text" placeholder="e.g. Pull Day: Back & Biceps" />
+                                                                    </br>
+                                                                    <label for="activity-time">Time<span class="required">*</span></label>
+                                                                    <input id="activity-time" class="req" type="text" placeholder="e.g. 6.00 am" />
+                                                                    </br>
+                                                                    <label for="activity-duration">Duration<span class="required">*</span></label>
+                                                                    <input id="activity-duration" class="req" type="text" placeholder="e.g. 1 hr" />
+                                                                    </br>
+                                                                    <label for="activity-location">Location</label>
+                                                                    <input id="activity-location" type="text" placeholder="e.g. Gym" />
+                                                                    </br>
+                                                                    <label for="cardio-distance">Cardio Distance</label>
+                                                                    <input id="cardio-distance" type="text" placeholder="e.g. 2 miles" />
+                                                                    </br>
+                                                                    <label for="activity-inspiration">Inspiration</label>
+                                                                    <input id="activity-inspiration" type="text" placeholder="" />
+                                                                    <div>
+                                                                        <p class="alert post-dayplan-activity-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add an activity title, time, &amp; duration.</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="margin-bottom">
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        <button type="submit" class="dayplan-activity-get next">Next</button>
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <button type="submit" id="cancel-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="exercise-container hidden">
+                                                    <p class="step">Step 3/3</p>
+                                                    <h2>Exercises<button type="submit" class="btn popdown-post-exercise rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="new-exercise-form hidden">
+                                                                <form role="form" class="post-exercise-form" action="#" method="#">
+                                                                    <fieldset>
+                                                                        <legend>Add A New Exercise</legend>
+                                                                        </br>
+                                                                        <label for="exercise-name">Name<span class="required">*</span></label>
+                                                                        <input id="exercise-name" class="req" type="text" placeholder="e.g. Burpees" />
+                                                                        </br>
+                                                                        <label for="exercise-weight">Weight<span class="required"></span></label>
+                                                                        <input id="exercise-weight" type="text" placeholder="e.g. Body Weight" />
+                                                                        </br>
+                                                                        <label for="exercise-sets">Sets<span class="required">*</span></label>
+                                                                        <input id="exercise-sets" class="req" type="text" placeholder="e.g. 5" />
+                                                                        </br>
+                                                                        <label for="exercise-reps">Reps<span class="required">*</span></label>
+                                                                        <input id="exercise-reps" class="req" type="text" placeholder="e.g. 12" />
+                                                                        </br>
+                                                                        <div>
+                                                                            <p class="alert post-new-exercise-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please enter an exercise name, sets, &amp; reps.</p>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <button type="submit" class="post-exercise-btn">Add</button>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <button type="submit" class="cancel-exercise-btn">Cancel</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                    <div class="popdown-edit-exercise hidden">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <form role="form" class="edit-exercise-form" action="#" method="#"></form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="exercise-list-container">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <table class="exercise-table" border="1">
+                                                                    <thread>
+                                                                        <tr>
+                                                                            <th class="th-exercise-select" width="15%">Select</th>
+                                                                            <th class="th-exercise-name" width="15%">Name</th>
+                                                                            <th class="th-exercise-weight" width="15%">Weight</th>
+                                                                            <th class="th-exercise-sets" width="15%">Sets</th>
+                                                                            <th class="th-exercise-name" width="15%">Reps</th>
+                                                                            <th class="th-exercise-edit" width="15%"></th>
+                                                                            <th class="th-exercise-delete" width="15%"></th>
+                                                                        </tr>
+                                                                    </thread>
+                                                                    <tbody class="exercise-list">
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -266,7 +395,7 @@
                                                                 <div class="margin-bottom">
                                                                     <div class="row">
                                                                         <div class="col-6">
-                                                                            <button type="submit" class="dayplan-category-get next">Next</button>
+                                                                            <button type="submit" class="dayplan-exercise-get next">Next</button>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <button type="submit" id="cancel-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
@@ -278,167 +407,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--end of category section-->
-                                            <!--activity section-->
+                                        </div>
+                                        <div class="fitplan-modal-btns hidden">
                                             <div class="row">
-                                                <div class="col-12">
-                                                    <div class="activity-container hidden">
-                                                        <p class="step">Step 2/3</p>
-                                                        <h2>Activity</h2>
-                                                        <form role="form" class="post-activity-form" novalidate>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <fieldset>
-                                                                        <legend>Add an Activity</legend>
-                                                                        <label for="activity-name">Name<span class="required">*</span></label>
-                                                                        <input id="activity-name" class="req" type="text" placeholder="e.g. Pull Day: Back & Biceps" />
-                                                                        </br>
-                                                                        <label for="activity-time">Time<span class="required">*</span></label>
-                                                                        <input id="activity-time" class="req" type="text" placeholder="e.g. 6.00 am" />
-                                                                        </br>
-                                                                        <label for="activity-duration">Duration<span class="required">*</span></label>
-                                                                        <input id="activity-duration" class="req" type="text" placeholder="e.g. 1 hr" />
-                                                                        </br>
-                                                                        <label for="activity-location">Location</label>
-                                                                        <input id="activity-location" type="text" placeholder="e.g. Gym" />
-                                                                        </br>
-                                                                        <label for="cardio-distance">Cardio Distance</label>
-                                                                        <input id="cardio-distance" type="text" placeholder="e.g. 2 miles" />
-                                                                        </br>
-                                                                        <label for="activity-inspiration">Inspiration</label>
-                                                                        <input id="activity-inspiration" type="text" placeholder="" />
-                                                                        <div>
-                                                                            <p class="alert post-dayplan-activity-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add an activity title, time, &amp; duration.</p>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <div class="margin-bottom">
-                                                                                    <div class="row">
-                                                                                        <div class="col-6">
-                                                                                            <button type="submit" class="dayplan-activity-get next">Next</button>
-                                                                                        </div>
-                                                                                        <div class="col-6">
-                                                                                            <button type="submit" id="cancel-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </fieldset>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                <div class="col-6">
+                                                    <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan"><i class="fas fa-calendar-check"></i>&nbsp; Submit Day Plan</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan"><i class="fas fa-ban"></i>&nbsp; Cancel Day Plan</button>
                                                 </div>
                                             </div>
-                                            <!--end of activity section-->
-                                            <!--exercise section-->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="exercise-container hidden">
-                                                        <p class="step">Step 3/3</p>
-                                                        <h2>Exercises<button type="submit" class="btn popdown-post-exercise rmv-btn-brdr"><img class="add-icon" src="https://i.imgur.com/oH9oPor.png" alt="add icon"/></button></h2>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="new-exercise-form hidden">
-                                                                    <form role="form" class="post-exercise-form" action="#" method="#">
-                                                                        <fieldset>
-                                                                            <legend>Add A New Exercise</legend>
-                                                                            </br>
-                                                                            <label for="exercise-name">Name<span class="required">*</span></label>
-                                                                            <input id="exercise-name" class="req" type="text" placeholder="e.g. Burpees" />
-                                                                            </br>
-                                                                            <label for="exercise-weight">Weight<span class="required"></span></label>
-                                                                            <input id="exercise-weight" type="text" placeholder="e.g. Body Weight" />
-                                                                            </br>
-                                                                            <label for="exercise-sets">Sets<span class="required">*</span></label>
-                                                                            <input id="exercise-sets" class="req" type="text" placeholder="e.g. 5" />
-                                                                            </br>
-                                                                            <label for="exercise-reps">Reps<span class="required">*</span></label>
-                                                                            <input id="exercise-reps" class="req" type="text" placeholder="e.g. 12" />
-                                                                            </br>
-                                                                            <div>
-                                                                                <p class="alert post-new-exercise-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please enter an exercise name, sets, &amp; reps.</p>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-6">
-                                                                                    <button type="submit" class="post-exercise-btn">Add</button>
-                                                                                </div>
-                                                                                <div class="col-6">    
-                                                                                    <button type="submit" class="cancel-exercise-btn">Cancel</button>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </fieldset>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                        </div>
-                                                        <div class="popdown-edit-exercise hidden">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <form role="form" class="edit-exercise-form" action="#" method="#"></form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="exercise-list-container">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <table class="exercise-table" border="1">
-                                                                        <thread>
-                                                                            <tr>
-                                                                                <th class="th-exercise-select" width="15%">Select</th>
-                                                                                <th class="th-exercise-name" width="15%">Name</th>
-                                                                                <th class="th-exercise-weight" width="15%">Weight</th>
-                                                                                <th class="th-exercise-sets" width="15%">Sets</th>
-                                                                                <th class="th-exercise-name" width="15%">Reps</th>
-                                                                                <th class="th-exercise-edit" width="15%"></th>
-                                                                                <th class="th-exercise-delete" width="15%"></th>
-                                                                            </tr>
-                                                                        </thread>
-                                                                        <tbody class="exercise-list">
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="margin-bottom">
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <button type="submit" class="dayplan-exercise-get next">Next</button>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <button type="submit" id="cancel-dayplan-progress-button" data-popup-close="popup-post-dayplan">Cancel</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--end of activity section-->
-                                            <div class="fitplan-modal-btns hidden">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <button type="submit" id="submit-dayplan-button" data-popup-close="popup-post-dayplan"><i class="fas fa-calendar-check"></i>&nbsp; Submit Day Plan</button>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <button type="submit" id="cancel-dayplan-button" data-popup-close="popup-post-dayplan"><i class="fas fa-ban"></i>&nbsp; Cancel Day Plan</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <!-- </fieldset> -->
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--end of day plan modal form section-->
                     <section role="region" class="fitweek-history-section hidden">
                         <h2>Fit Week History</h2>
                     </section>

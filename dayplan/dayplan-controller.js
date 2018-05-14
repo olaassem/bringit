@@ -5,11 +5,7 @@ const categoryModel = require('../category/category-model');
 const exerciseModel = require('../exercise/exercise-model');
 
 
-
-
-//Create new activity.
 exports.postNewActivity = (req, res, next) => {
-
     let newActivity = new activityModel();
     newActivity.userID = req.body.userID;
     newActivity.name = req.body.activity.name;
@@ -21,13 +17,9 @@ exports.postNewActivity = (req, res, next) => {
     newActivity.location = req.body.activity.location;
     newActivity.inspiration = req.body.activity.inspiration;
     newActivity.completed = req.body.activity.completed;
-
-
     newActivity.save()
         .then((activity) => {
-
             req.activityID = activity._id;
-
             next();
         })
         .catch((error) => {
@@ -39,9 +31,7 @@ exports.postNewActivity = (req, res, next) => {
 }
 
 
-//Create new day plan.
 exports.postNewDayPlan = (req, res, next) => {
-    console.log(req.body);
     let newDayPlan = new dayplanModel();
     newDayPlan.userID = req.body.userID;
     newDayPlan.categoryID = req.body.categoryID;
@@ -66,7 +56,6 @@ exports.postNewDayPlan = (req, res, next) => {
 }
 
 
-//Get all day plans
 exports.getWeekByUser = (req, res) => {
     dayplanModel.find({ userID: req.user.id })
         .populate('activityID')
@@ -88,8 +77,6 @@ exports.getWeekByUser = (req, res) => {
 }
 
 
-
-//Delete day plan by ID
 exports.deleteDayPlanByID = (req, res) => {
     dayplanModel.findByIdAndRemove(req.params.id)
         .then(() => {
@@ -106,7 +93,6 @@ exports.deleteDayPlanByID = (req, res) => {
 }
 
 
-//Get day plan by ID
 exports.getDayPlanByID = (req, res) => {
     dayplanModel.findById(req.params.id)
         .populate('activityID')
@@ -129,16 +115,12 @@ exports.getDayPlanByID = (req, res) => {
 
 
 
-
-
-//Edit dayplan by ID
 exports.updateDayPlanByID = (req, res, next) => {
     if (!req.params.dayplanid) {
         res.status(400).json({
             message: "Error. Request path id and request body id values must match - dayplan."
         })
     }
-
     let updated = {};
     const updateableFields = ['categoryID', 'activityID', 'exercisesIDs'];
     updateableFields.forEach(field => {
@@ -146,8 +128,6 @@ exports.updateDayPlanByID = (req, res, next) => {
             updated[field] = req.body[field];
         }
     })
-    console.log(updated);
-    //$set use to change one field
     dayplanModel.findByIdAndUpdate(req.params.dayplanid, { $set: updated }, { new: true })
         .then((updatedDayPlan) => {
 
@@ -162,15 +142,13 @@ exports.updateDayPlanByID = (req, res, next) => {
 }
 
 
-//Update activity by ID
-exports.updateActivityByID = (req, res) => {
 
+exports.updateActivityByID = (req, res) => {
     if (!req.activityID) {
         res.status(400).json({
             message: "Error. Request path id and request body id values must match - activity."
         });
     }
-
     let updated = {};
     const updateableFields = ["name", "time", "duration", "cardio", "routine",
         "location", "inspiration"
@@ -180,7 +158,6 @@ exports.updateActivityByID = (req, res) => {
             updated[field] = req.body.activity[field];
         }
     })
-    console.log(updated);
     activityModel.findByIdAndUpdate(req.activityID, { $set: updated }, { new: true })
         .then((updatedActivity) => {
             res.status(200).json({
@@ -189,7 +166,6 @@ exports.updateActivityByID = (req, res) => {
             })
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({
                 message: "Error updating activity."
             })

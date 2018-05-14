@@ -1,9 +1,6 @@
 const fitgoalModel = require('./fitgoal-model');
 
 
-
-//Create new fit goal.
-//NOTE: to use in Home Page.
 exports.postNewFitGoal = ( req, res) => {
 	//creating an object with the keys/values defined in bookSchema
 	let newFitGoal = new fitgoalModel();
@@ -12,7 +9,6 @@ exports.postNewFitGoal = ( req, res) => {
 	newFitGoal.createDate = req.body.createDate;
 	newFitGoal.description = req.body.description;
 	newFitGoal.completed = req.body.completed;
-	//mongoose function to save object (goal) in the database
 	newFitGoal.save()
 	.then( (goal) =>{
 		res.status(200).json({ 
@@ -28,9 +24,6 @@ exports.postNewFitGoal = ( req, res) => {
 }
 
 
-
-//Get all fit goals
-//NOTE: to use in Goals History Page.
 exports.getAllFitGoals = (req, res) => {
 	fitgoalModel.find({userID: req.user.id}) 
 	.then((goals) => {
@@ -49,7 +42,6 @@ exports.getAllFitGoals = (req, res) => {
 
 
 
-//Get fit goal by ID
 exports.getFitGoalByID = (req, res) => {
 	fitgoalModel.findById(req.params.id)
 	.then((goal) => {
@@ -68,7 +60,6 @@ exports.getFitGoalByID = (req, res) => {
 
 
 
-//Edit fit goal by ID.
 exports.updateFitGoalByID = (req, res) => {
 	if (!req.params.id) {
 		res.status(400).json({
@@ -83,7 +74,6 @@ exports.updateFitGoalByID = (req, res) => {
       		updated[field] = req.body[field];
     	}
   	});
-  	//$set : mongoose functionality for updating specific fields selected in the db
   	fitgoalModel.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
 	.then((updatedGoal) => {
 		res.status(200).json({
@@ -100,7 +90,6 @@ exports.updateFitGoalByID = (req, res) => {
 
 
 
-//Delete fit goal by ID.
 exports.deleteFitGoalByID = (req, res) => {
 	fitgoalModel.findByIdAndRemove(req.params.id)
 	.then(() => {

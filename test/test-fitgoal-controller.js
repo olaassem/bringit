@@ -5,7 +5,6 @@ const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
 
-// this makes the expect syntax available throughout this module
 const expect = chai.expect;
 
 const fitGoal = require('../fitgoal/fitgoal-model');
@@ -14,12 +13,12 @@ const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL } = require('../config');
 
 
-chai.use(chaiHttp); //telling chai to use chaihttp when making a call
+chai.use(chaiHttp);
 let token;
 let userId;
 let fitGoalID;
 
-//register user
+
 function createUser() {
     console.log("Creating user.");
     let testUser = {
@@ -34,7 +33,7 @@ function createUser() {
             .then((res) => {
                 console.log('Registered user.');
                 loginUser().then(() => {
-                    resolve() //resolve will go to the 'success' part of the data
+                    resolve()
                 });
             })
             .catch((error) => {
@@ -67,11 +66,6 @@ function loginUser() {
 }
 
 
-// used to put randomish documents in db
-// so we have data to work with and assert about.
-// we use the Faker library to automatically
-// generate placeholder values for author, title, content
-// and then we insert that data into mongo
 function seedFitGoalData() {
     console.info('Seeding fitgoal data.');
     const seedData = [];
@@ -79,12 +73,10 @@ function seedFitGoalData() {
     for (let i = 0; i < 5; i++) {
         seedData.push(generateFitGoalData());
     }
-    // this will return a promise
     return fitGoal.insertMany(seedData);
 }
 
 
-// used to generate data to put in db
 function generateFitGoalTitle() {
     const titles = [
         'Run More', 'Lift More', 'Stretch More', 'Dance More', 'Water More'
@@ -93,9 +85,6 @@ function generateFitGoalTitle() {
 }
 
 
-// generate an object represnting a fit goal.
-// can be used to generate seed data for db
-// or request.body data
 function generateFitGoalData() {
     return {
         userID: userId,
@@ -107,10 +96,7 @@ function generateFitGoalData() {
 }
 
 
-// this function deletes the entire database.
-// we'll call it in an `afterEach` block below
-// to ensure data from one test does not stick
-// around for next one.
+
 function tearDownDb() {
     console.warn('Deleting database');
     return mongoose.connection.dropDatabase();
@@ -118,23 +104,19 @@ function tearDownDb() {
 
 
 describe('test fitgoal API resources', function() {
-    // we need each of these hook functions to return a promise
-    // otherwise we'd need to call a `done` callback. `runServer`,
-    // `seedFitGoalData` and `tearDownDb` each return a promise,
-    // so we return the value returned by these function calls.
     before(function(done) {
         console.log('before running server')
-        runServer(TEST_DATABASE_URL) //before -- runServer is a promise
+        runServer(TEST_DATABASE_URL) 
             .then(function() {
-                createUser().then(function() { //always have a .then after promise to wait till it is executed
-                    done(); //same as resolve/ return a success
+                createUser().then(function() { 
+                    done(); 
                 })
             })
     });
 
     after(function() {
         tearDownDb();
-        return closeServer(); //after
+        return closeServer(); 
     });
 
 
@@ -155,40 +137,26 @@ describe('test fitgoal API resources', function() {
         		completed: false
             })
             .then(function(_res) {
-                // so subsequent .then blocks can access response object
                 res = _res;
                 expect(res).to.have.status(200);
-                // otherwise our db seeding didn't work
-                // expect(res.body).to.have.lengthOf.at.least(1); //can play around w this later
-                // return fitGoal.count();
             })
 
     });
 
-
-    // note the use of nested `describe` blocks.
-    // this allows us to make clearer, more discrete tests that focus
-    // on proving something small
 
     it('GET - should return all existing fitgoals for logged-in test user', function() {
         let res;
         return chai.request(app)
             .get('/goal/all/' + `${token}`)
             .then(function(_res) {
-                // so subsequent .then blocks can access response object
                 res = _res;
                 fitGoalID = _res.body.data[0]._id;
                 console.log('this is the fitGoalID');
                 console.log(fitGoalID);
                 expect(res).to.have.status(200);
-                // otherwise our db seeding didn't work
-                // expect(res.body).to.have.lengthOf.at.least(1); //can play around w this later
-                // return fitGoal.count();
             })
     		.catch((error) => {
     			console.log(error);
-        // .then(function(count) {
-        //     expect(res.body).to.have.lengthOf(count);
 			});
     });
 
