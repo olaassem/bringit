@@ -618,6 +618,8 @@ header {
     margin-top: 30px;
 }
 
+.edit-dayplan-exercise-container,
+.edit-dayplan-post-activity-form,
 .edit-dayplan-new-category-form,
 .exercise-table,
 .exercise-container,
@@ -631,6 +633,7 @@ header {
 }
 
 
+.edit-dayplan-post-activity-form legend,
 .edit-dayplan-new-category-form legend,
 .edit-exercise-form legend,
 .edit-fitgoal-form legend,
@@ -658,6 +661,7 @@ header {
 }
 
 
+.edit-dayplan-post-activity-form label>span,
 .edit-dayplan-new-category-form label>span,
 .edit-exercise-form label>span,
 .edit-fitgoal-form label>span,
@@ -672,6 +676,7 @@ header {
 }
 
 
+.edit-dayplan-post-activity-form input,
 .edit-dayplan-new-category-form input,
 .edit-exercise-form input,
 .edit-fitgoal-form input,
@@ -829,7 +834,7 @@ input[type="radio"] {
 }
 
 
-
+.edit-dayplan-post-activity-form label,
 .post-activity-form label {
     display: block;
     margin: 10px 0px 4px 0px;
@@ -840,6 +845,7 @@ input[type="radio"] {
 
 
 
+.edit-dayplan-post-activity-form input,
 .post-activity-form input {
     width: 100%;
     border: 1px solid #C2C2C2;

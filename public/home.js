@@ -262,8 +262,14 @@ function openEditFitGoalModal() {
                     </br>
                     <input id="fitgoal-description-edit" type="text" value="${fitgoal.data.description}" />
                     <div><p class="alert edit-fitgoal-form-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add a fit goal title &amp; description.</p></div>
-                    <button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
-                    <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" id="update-fitgoal-button" data-popup-close="popup-edit-fitgoal" value="${fitgoal.data._id}">Update</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" id="cancel-fitgoal-button" data-popup-close="popup-edit-fitgoal">Cancel</button>
+                        </div>
+                    </div>
                 </fieldset> 
             `);
         }).fail(function(fitgoal) {
@@ -1169,7 +1175,7 @@ function openEditDayPlanModal() {
                     <div class="row">
                         <div class="col-12">
                             <div class="edit-dayplan-activity-container hidden">
-                                <form role="form" class="post-activity-form" novalidate>
+                                <form role="form" class="edit-dayplan-post-activity-form" novalidate>
                                     <p class="step"> Step 2/3 </p>
                                     <h2>Activity</h2>
                                     <fieldset>
@@ -1192,7 +1198,7 @@ function openEditDayPlanModal() {
                                         <label for="activity-inspiration">Inspiration</label>
                                         <input id="activity-inspiration" type="text" value="${dayplan.data.activityID.inspiration}" />
                                         <div>
-                                            <p class="alert post-dayplan-activity-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add an activity title, time, &amp; duration.</p>
+                                            <p class="alert post-edit-dayplan-activity-alert hidden"><i class="fas fa-exclamation-triangle"></i>&nbsp; Please add an activity title, time, &amp; duration.</p>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
@@ -1213,7 +1219,7 @@ function openEditDayPlanModal() {
                     </div>
                     <!--end of activity section-->
                     <!--exercise section-->
-                    <div class="exercise-container hidden">
+                    <div class="edit-dayplan-exercise-container hidden">
                         <div class="row">
                             <div class="col-12">
                                 <p class="step"> Step 3/3 </p>
@@ -1249,7 +1255,7 @@ function openEditDayPlanModal() {
                                 <div class="popdown-edit-exercise hidden">
                                     <form role="form" class="edit-exercise-form" action="#" method="#"></form>
                                 </div>
-                                <div class="exercise-list-container">
+                                <div class="edit-dayplan-exercise-list-container">
                                     <table class="edit-exercise-table" cellspacing="0" cellpadding="0">
                                         <thread>
                                             <tr>
@@ -1491,17 +1497,38 @@ function cancelEditDayPlanOne(){
 }
 
 
+function hideEditDayPlanActivitySection(){
+    $('.edit-dayplan-post-activity-form').on('click', '.edit-dayplan-dayplan-activity-get', event => {
+    event.preventDefault();
+
+    let empty = false;
+    $('.edit-dayplan-post-activity-form .req-edit').each(function() {
+        if ($(this).val() == "") {
+            empty = true;
+        }
+    });
+    if (empty) {
+        $(this).prop('disabled', 'disabled');
+        $('.post-edit-dayplan-activity-alert').removeClass('hidden');
+    } else {
+        $(this).removeProp('disabled');
+        $('.post-dayplan-activity-alert').addClass('hidden');
+        $('.edit-dayplan-activity-container').addClass('hidden');
+        $('.edit-dayplan-exercise-container').removeClass('hidden');
+    }    
+    });
+}
 
 
 function cancelEditDayPlanTwo(){
-    $('.post-activity-form').on('click', '#cancel-edit-dayplan-progress-button',event => {
+    $('.edit-dayplan-post-activity-form').on('click', '#cancel-edit-dayplan-progress-button',event => {
             event.preventDefault();
             $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
 
             $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false);
             }); 
-            $('.post-activity-form').find('input:text').val('');
+            $('.edit-dayplan-post-activity-form').find('input:text').val('');
 
             $('.edit-dayplan-activity-container').addClass('hidden');
             $('.edit-dayplan-category-section').removeClass('hidden');
@@ -1510,7 +1537,7 @@ function cancelEditDayPlanTwo(){
 
 
 function cancelEditDayPlanThree(){
-    $('.exercise-list-container').on('click', '#cancel-edit-dayplan-progress-button',event => {
+    $('.edit-dayplan-exercise-list-container').on('click', '#cancel-edit-dayplan-progress-button',event => {
         event.preventDefault();
 
         $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
@@ -1518,11 +1545,11 @@ function cancelEditDayPlanThree(){
         $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
-        $('.post-activity-form').find('input:text').val('');
-        $('.exercise-list-container input').each(function(){
+        $('.edit-dayplan-post-activity-form').find('input:text').val('');
+        $('.edit-dayplan-exercise-list-container input').each(function(){
             $(this).prop('checked', false);
         });
-        $('.exercise-container').addClass('hidden');
+        $('.edit-dayplan-exercise-container').addClass('hidden');
         $('.edit-dayplan-activity-container').addClass('hidden');
         $('.edit-dayplan-category-section').removeClass('hidden');
         
@@ -1539,12 +1566,12 @@ function cancelEditDayPlanFinal(){
         $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
-        $('.post-activity-form').find('input:text').val('');
-        $('.exercise-list-container input').each(function(){
+        $('.edit-dayplan-post-activity-form').find('input:text').val('');
+        $('.edit-dayplan-exercise-list-container input').each(function(){
             $(this).prop('checked', false);
         });
         $('.fitplan-modal-btns').addClass('hidden');
-        $('.exercise-container').addClass('hidden');
+        $('.edit-dayplan-exercise-container').addClass('hidden');
         $('.edit-dayplan-activity-container').addClass('hidden');
         $('.edit-dayplan-category-section').removeClass('hidden');
     });
@@ -1572,7 +1599,7 @@ function getSelectedEditedExercises() {
         dayplanFormObject.exercisesIDs = exercisesIDs;
         console.log(dayplanFormObject);
 
-        $('.exercise-container').addClass('hidden');
+        $('.edit-dayplan-exercise-container').addClass('hidden');
         $('.edit-fitplan-modal-btns').removeClass('hidden');
     })
 }
@@ -1664,12 +1691,12 @@ function putEditedDayPlanActivity() {
         $('.edit-dayplan-category-container input').each(function(){
             $(this).prop('checked', false); 
         });
-        $('.post-activity-form').find('input:text').val('');
-        $('.exercise-list-container input').each(function(){
+        $('.edit-dayplan-post-activity-form').find('input:text').val('');
+        $('.edit-dayplan-exercise-list-container input').each(function(){
             $(this).prop('checked', false);
         });
         $('.edit-fitplan-modal-btns').addClass('hidden');
-        $('.exercise-container').addClass('hidden');
+        $('.edit-dayplan-exercise-container').addClass('hidden');
         $('.edit-dayplan-activity-container').addClass('hidden');
         $('.edit-dayplan-category-section').removeClass('hidden');
     });
