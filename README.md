@@ -32,7 +32,7 @@
 
 ![homepage](screenshots/3home.png)
 
-![fit week & dayplan](4dayplan.png)
+![fit week and dayplan](4dayplan.png)
 
 ![fitgoal](screenshots/5fitgoal.png)
 
