@@ -21,8 +21,8 @@ A goal without a plan is a wish. **_[bringit](https://blooming-brushlands-53874.
 
 
 #### Homepage
-
 Upon successful login, users are directed to bringit's homepage. Users are greeted with a random inspiring fit quote. For more inspiration, just click on the #fitspire_me button!
+
 ![homepage](screenshots/3home.png)
 
 
@@ -35,15 +35,18 @@ The fitweek section is where users can add, view, edit, and delete their customi
 #### Day Plan Form
 To add (and edit) a day plan, users go through a quick 3-step form:
 
+
 ##### 1. Categories
 Users may post, delete, and select new categories.
 
 ![step 1 - categories](screenshots/6dayplanform.png)
 
+
 ##### 2. Activity
 Users may post activity details.
 
 ![step 1 - activity](screenshots/6dayplanform2.png)
+
 
 ##### 3. Exercises
 Users may post, delete, edit and select exercises before submitting their customised day plan.
