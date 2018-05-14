@@ -1,14 +1,14 @@
 # bringit
 
-A one-stop-shop web application for planning your golden hour runs. Users can search for trails in any location in the world by entering a specific address, city, landmark, or trail name. Valid searches return the selected location's current, sunrise, and sunset times, the next 12-hour forecast, and a summary and map for each trail found within a ten mile radius. 
+[bringit](https://blooming-brushlands-53874.herokuapp.com/index.html) is a full-stack web application that  
 
 
 
 ## Features
+* 
+* 
+* 
 * Mobile responsive design
-* 
-* 
-* 
 
 
 
@@ -41,7 +41,7 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 ![step 1 - categories](screenshots/6dayplanform.png)
 
-![step 2 - activity](screenshots/6dayplanform2.png)
+![step 1 - activity](screenshots/6dayplanform2.png)
 
 ![step 3 - exercises](screenshots/6dayplanform3.png)
 
@@ -49,7 +49,7 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 ## Technologies
 
-###Front End
+####Front End
 
 * HTML5
 * CSS3
@@ -57,12 +57,13 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 * jQuery
 
 
-###Back End
+####Back End
 
 * Node.js
 * Express.js
 * MongoDB
 * Mongoose
+* MVC framework
 * Passport
 * Bcrypt
 * JWT
@@ -71,7 +72,6 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 ## Acknowledgements
 
 * Jon Oyanguren
-
 
 
 ## Contributor
