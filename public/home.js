@@ -1092,12 +1092,12 @@ function deleteDayPlan() {
             url: `dayplan/${ID}/` + localStorage.getItem('token'),
             type: 'DELETE'
         }).done((dayplan) => {
-            getUserWeek();
+            // getUserWeek();
             console.log(`DELETED DAYPLAN`);
-
-            $('.day-category-img').html('');
-            $('.day-container-cat-name').html('');
-            $('.unique-dayplan-results').html('');
+            window.location.reload();
+            // $('.day-category-img').html('');
+            // $('.day-container-cat-name').html('');
+            // $('.unique-dayplan-results').html('');
             // $(that).parents('.day-container').find('.add-icon').removeClass('hidden');
 
         }).fail((error) => {
@@ -1341,12 +1341,10 @@ openEditDayPlanModal();
 //Get all edit dayplan form categories
 function getAllEditDayPlanCategories(dayplan) {
     $.get('/category/all/' + localStorage.getItem('token'), (allCategories) => {
-        console.log(allCategories);
-        console.log(dayplan.data.categoryID._id)
         displayAllEditDayPlanCategories(dayplan.data.categoryID._id, allCategories);
     });
 }
-getAllEditDayPlanCategories();
+
 
 //render all edit dayplan form categories and display checked category
 function renderEditDayPlanCategories(selectedCategoryId, category) {
@@ -1714,10 +1712,9 @@ function putEditedDayPlan(ID) {
         })
         .done(function(dayplan) {
             console.log(dayplan);
-
-            getUserWeek();
-            $('.unique-dayplan-results').html('');
-            $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
+            window.location.reload();
+            // $('.unique-dayplan-results').html('');
+            // $('[data-popup="popup-edit-dayplan"]').fadeOut(350);
         })
         .fail(function(error) {
             console.log('Updating day plan failed!');
