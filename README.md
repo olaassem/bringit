@@ -6,9 +6,9 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 ## Features
 * Mobile responsive design
-* Search using autocomplete
-* Parallax scrolling
-* Current time background image changes depending on 24 hour time
+* 
+* 
+* 
 
 
 
@@ -22,33 +22,28 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 #### Landing Page
 
-![landing page](screenshots/1landingpg.png)
+![landing page](screenshots/1landing.png)
 
-![mobile landing page](screenshots/5mobilelandingpg.png)
-
-
-
-#### Location Search
-
-![location search](screenshots/2locationsearch.png)
-
-![mobile search location](screenshots/6mobilelocationsearch.png)
+![register & login modal](screenshots/2login.png)
 
 
 
-#### Location's Current, Sunrise, Sunrise Times, & 12-Hour Forecast
+#### Homepage
 
-![current, sunrise, sunset times and 12-hour forecast](screenshots/3times&forecast.png)
+![homepage](screenshots/3home.png)
 
-![mobile current, sunrise, sunset times](screenshots/7mobiletimes.png) ![mobile 12-hour forecast](screenshots/8mobileforecast.png)
+![fit week & dayplan](4dayplan.png)
+
+![fitgoal](screenshots/5fitgoal.png)
 
 
+#### Day Plan Form
 
-#### Trails Info & Maps
+![step 1 - categories](screenshots/6dayplanform.png)
 
-![trails and maps](screenshots/4trailsfound.png)
+![step 2 - activity](screenshots/6dayplanform2.png) 
 
-![mobile trails info](screenshots/9mobiletrailsfound.png) ![mobile trails map](screenshots/10mobiletrailsmap.png)
+![step 3 - exercises](screenshots/6dayplanform3.png)
 
 
 
