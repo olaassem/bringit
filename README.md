@@ -1,11 +1,11 @@
 # _bringit_
 
-A goal without a plan is a wish. **_[bringit](https://blooming-brushlands-53874.herokuapp.com/index.html)_** is a full-stack web application that provides users with both daily motivational and planning tools to conquer their fitness goals.
+A goal without a plan is a wish. **_[bringit](https://bringit-app.herokuapp.com/)_** is a full-stack web application that provides users with both daily motivational and planning tools to conquer their fitness goals.
 
 
 ## Demo
 
-- [Live Demo](https://blooming-brushlands-53874.herokuapp.com/index.html)
+- [Live Demo](https://bringit-app.herokuapp.com/)
 
 
 ## Screenshots
