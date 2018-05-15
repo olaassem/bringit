@@ -84,7 +84,7 @@ Users may add, edit, delete, _and_ check their fit goals as completed. To see ho
 
 ## Future Iterations
 
-* Add an events API that provides users with a additional fitness events options
+* Add an events API that allows users to search for local fitness events options.
 * Allow users to search and connect with each other.
 * Allow users to 'like', invite, or request to join another user's day plan.
 * Add a maps API to share locations with users in-app. 
