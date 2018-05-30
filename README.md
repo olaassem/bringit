@@ -77,7 +77,6 @@ Users may add, edit, delete, _and_ check their fit goals as completed. To see ho
 * MongoDB
 * Mongoose
 * MVC framework
-* Passport
 * Bcrypt
 * JWT
 
