@@ -1,60 +1,68 @@
-# bringit
+# _bringit_
 
-A one-stop-shop web application for planning your golden hour runs. Users can search for trails in any location in the world by entering a specific address, city, landmark, or trail name. Valid searches return the selected location's current, sunrise, and sunset times, the next 12-hour forecast, and a summary and map for each trail found within a ten mile radius. 
-
-
-
-## Features
-* Mobile responsive design
-* Search using autocomplete
-* Parallax scrolling
-* Current time background image changes depending on 24 hour time
-
+A goal without a plan is a wish. **_[bringit](https://bringit-app.herokuapp.com/)_** is a full-stack web application that provides users with both daily motivational and planning tools to conquer their fitness goals.
 
 
 ## Demo
 
-- [Live Demo](https://blooming-brushlands-53874.herokuapp.com/index.html)
-
+- [Live Demo](https://bringit-app.herokuapp.com/)
 
 
 ## Screenshots
 
 #### Landing Page
 
-![landing page](screenshots/1landingpg.png)
-
-![mobile landing page](screenshots/5mobilelandingpg.png)
+![landing page](screenshots/1landing.png)
 
 
+#### Sign-up & Log-in Modals
 
-#### Location Search
-
-![location search](screenshots/2locationsearch.png)
-
-![mobile search location](screenshots/6mobilelocationsearch.png)
+![register & login modal](screenshots/2login.png)
 
 
+#### Homepage
+Upon successful login, users are directed to bringit's homepage. Users are greeted with a random inspiring fit quote. For more inspiration, just click on the #fitspire_me button!
 
-#### Location's Current, Sunrise, Sunrise Times, & 12-Hour Forecast
-
-![current, sunrise, sunset times and 12-hour forecast](screenshots/3times&forecast.png)
-
-![mobile current, sunrise, sunset times](screenshots/7mobiletimes.png) ![mobile 12-hour forecast](screenshots/8mobileforecast.png)
+![homepage](screenshots/3home.png)
 
 
+#### Fitweek
+The fitweek section is where users can add, view, edit, and delete their customised day plans for each day of the week.
 
-#### Trails Info & Maps
-
-![trails and maps](screenshots/4trailsfound.png)
-
-![mobile trails info](screenshots/9mobiletrailsfound.png) ![mobile trails map](screenshots/10mobiletrailsmap.png)
+![fit week dayplan](screenshots/4dayplan.png)
 
 
+#### Day Plan Form
+To add (and edit) a day plan, users go through a quick 3-step form:
 
-## Technologies
 
-###Front End
+##### 1. Categories
+Users may post, delete, and select new categories.
+
+![step 1 - categories](screenshots/6dayplanform.png)
+
+
+##### 2. Activity
+Users may post activity details.
+
+![step 1 - activity](screenshots/6dayplanform2.png)
+
+
+##### 3. Exercises
+Users may post, delete, edit and select exercises before submitting their customised day plan.
+
+![step 3 - exercises](screenshots/6dayplanform3.png)
+
+
+#### Fit Goals
+Users may add, edit, delete, _and_ check their fit goals as completed. To see how far they've come, users can also view their fit goal history log.
+
+![fitgoal](screenshots/5fitgoal.png)
+
+
+## Technologies Used
+
+### Front End
 
 * HTML5
 * CSS3
@@ -62,23 +70,30 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 * jQuery
 
 
-###Back End
+### Back End
 
 * Node.js
 * Express.js
 * MongoDB
 * Mongoose
-* Passport
+* MVC framework
 * Bcrypt
 * JWT
 
 
-## Acknowledgements
+## Future Iterations
 
-* Jon Oyanguren
-
+* Add an events API that allows users to search for local fitness events options.
+* Allow users to search and connect with each other.
+* Allow users to 'like', invite, or request to join another user's day plan.
+* Add a maps API to share locations with users in-app. 
 
 
 ## Contributor
 
 * Ola Assem
+
+
+## Acknowledgements
+
+* Jon Oyanguren & Thinkful
