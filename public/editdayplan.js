@@ -1,6 +1,4 @@
 //<button type="submit" class="edit-dayplan-btn" value="${dayFound._id}" data-popup-open="popup-edit-dayplan"><img class="edit-icon" src="https://i.imgur.com/1V60b8V.png"/></button>
-
-
 function openEditDayPlanModal() {
     $('.unique-dayplan-results').on('click', '.edit-dayplan-btn', event => {
         event.preventDefault();
